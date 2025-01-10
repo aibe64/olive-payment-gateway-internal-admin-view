@@ -1,0 +1,176 @@
+.home_page_loader_div {
+  width: 100% !important;
+  padding-top: 200px !important;
+  row-gap: 0px !important;
+  margin-left: 44.4%;
+}
+
+@media screen and (max-width: 600px) {
+  .home_page_loader_div {
+    margin-left: 18vw !important;
+  }
+
+}
+
+.loader_logo_title {
+  font-weight: 600;
+  font-size: 30px;
+  color: rgb(10, 106, 21);
+}
+
+.ant-progress-line {
+  position: relative;
+  width: 170px !important;
+  font-size: 14px;
+}
+
+.ant-progress-success-bg,
+.ant-progress-bg {
+  background-color: #27c64e !important;
+}
+
+.ant-table-thead>tr>th {
+  position: relative;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  text-align: left;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.3s ease;
+  font-weight: bold !important;
+}
+
+.ant-table-pagination.ant-pagination {
+  margin: 16px 0;
+  justify-content: center;
+}
+
+.ant-pagination-next {
+  border: none;
+  background: #2B872B;
+  width: 100px;
+  border-radius: 5px !important;
+  color: white !important;
+}
+
+.ant-pagination-prev {
+  background: #F8F8F8;
+  border: 1px solid #C4C4C4;
+  width: 100px;
+  border-radius: 5px !important;
+  color: #575F6E !important;
+}
+
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td,
+.ant-table tfoot>tr>th,
+.ant-table tfoot>tr>td {
+  position: relative;
+  padding: 5px 16px !important;
+  overflow-wrap: break-word;
+}
+
+/* .pageNumberButton:focus {
+  background-color: rgb(146 180 114);
+  border: 1px solid #C4C4C4;
+  border-radius: 4px;
+  width: 10px;
+  height: 35px;
+}
+.pageNumberButton{
+  background-color: #F8F8F8 !important;
+  border: 1px solid #C4C4C4;
+  border-radius: 4px;
+  width: 10px;
+  height: 35px;
+} */
+
+
+.pg-datatable {
+  font-size: 14px;
+  margin-bottom: 20px;
+  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  .pg-datatable {
+    width: 100%;
+    overflow-x: scroll;
+  }
+}
+
+@media screen and (max-height: 900px) {
+  .table_row {
+    height: 72vh !important;
+  }
+}
+
+.cookies_left {
+    
+  position: absolute;
+  width: 47.37px;
+  height: 6px;
+    background: linear-gradient(254.27deg, #006d01 43.63%, #ff6c00 60.23%);
+    border-radius: 5px;
+    transform: matrix(0.74, 0.68, -0.67, 0.74, 0, 0);
+  }
+  
+  .cookies_right{
+      position: absolute;
+  width: 47.39px;
+  height: 6px;
+      background: linear-gradient(254.27deg, #006D01 43.63%, #FF6C00 60.23%);
+  border-radius: 5px;
+  transform: matrix(0.68, -0.74, 0.73, 0.68, 0, 0);
+  }
+
+  
+.CookieContent-btn {
+  background-color: red;
+  background: rgba(0, 109, 1, 1);
+  border: 0;
+  border-radius: 3px;
+  box-shadow: none;
+  color: #fff;
+  cursor: pointer;
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  /* // margin: 15px; */
+  width: 120px;
+  height: 40px;
+  font-weight: bold;
+  display: "";
+  position: absolute;
+  right: 50px;
+  top: 10px;
+  /* //   // marginLeft: "-90%", */
+}
+
+
+.policyButton {
+  background: yellow;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: none;
+  color: #000;
+  cursor: pointer;
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  width: 120px;
+  height: 40px;
+  font-weight: bold;
+  position: absolute;
+  right: 200px;
+  top: 10px;
+}
+.policyButton:focus {
+  outline: none;
+}
+
+.cookie-consent p {
+  width: 75%;
+}

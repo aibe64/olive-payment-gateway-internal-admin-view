@@ -1,0 +1,8 @@
+.ant-modal-content {
+    border-radius: 5px !important;
+    width: auto;
+    margin-left: 90px;
+}
+.ant-switch-checked {
+    background-color: #2B872B !important;
+}
