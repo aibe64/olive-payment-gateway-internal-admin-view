@@ -1,3 +1,4 @@
+import { apiDomain } from "@/service/apiConfig";
 import { Request } from "../client/apiRequest";
 import { Response } from "../client/apiResponse";
 
@@ -236,7 +237,7 @@ export namespace State {
         identificationNumber?: string = ""
         errorMessage?: string;
         successMessage?: string;
-        domain: string = sessionStorage.getItem("$$$") as string;
+        domain: string = apiDomain;
         apiToCall: string = "";
         tabActiveStatus: number = 0;
         isValidating: boolean = false;

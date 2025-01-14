@@ -2,6 +2,7 @@ import { State } from "../../models/application/state";
 import { Encription } from "../../shared/functions/encryption";
 import { UrlSearch } from "../../shared/functions/urlSearch";
 import { Response } from "../../models/client/apiResponse";
+import { SSO_DOMAIN } from "@/utils";
 
 export class UserService {
   static VerifyUser(state: State.UserValidation): State.UserValidation {
@@ -11,7 +12,7 @@ export class UserService {
     sessionStorage.setItem("**", lastLoginDate);
     appKey = appKey.replace(/ /g, "-");
     if (!appKey) {
-      window.location.href = `${sessionStorage.getItem("sso")}?redirectTo=${
+      window.location.href = `${SSO_DOMAIN}?redirectTo=${
         window.location.origin
       }`;
     }
@@ -84,19 +85,19 @@ export class UserService {
       }
       if (apiResponse.responseCode === "02") {
         redirect = true;
-        window.location.href = `${sessionStorage.getItem("sso")}?redirectTo=${
+        window.location.href = `${SSO_DOMAIN}?redirectTo=${
           window.location.origin
         }`;
       }
       if (apiResponse.responseCode === "99") {
         redirect = true;
-        window.location.href = `${sessionStorage.getItem("sso")}?redirectTo=${
+        window.location.href = `${SSO_DOMAIN}?redirectTo=${
           window.location.origin
         }`;
         redirect = true;
       }
       if (apiResponse.responseCode === "404") {
-        window.location.href = `${sessionStorage.getItem("sso")}?redirectTo=${
+        window.location.href = `${SSO_DOMAIN}?redirectTo=${
           window.location.origin
         }`;
         redirect = true;

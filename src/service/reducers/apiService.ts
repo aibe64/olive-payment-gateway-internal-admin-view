@@ -1,20 +1,12 @@
 import { ActionTypes } from "../actions/types";
 import { ActionModel } from "../../models/application/action";
 import { Response } from "../../models/client/apiResponse";
-import { AccountThunkService } from "../thunk/merchant/accountService";
-import { UserService } from "../state/user";
+
 export namespace APIServiceReducers {
   export class AccountService {
     static User(state: any = {}, action: ActionModel) {
       switch (action.type) {
         case ActionTypes.Users.Set_Validate_User_State:
-          return action.payload;
-        case ActionTypes.Users.Validate_User_First_Time_LogIn:
-            action.payload = UserService.VerifyUser(action.payload);
-          AccountThunkService.ValidateUser(action.payload);
-          return action.payload;
-          case ActionTypes.Users.Create_Account:
-          AccountThunkService.RegisterUser(action.payload);
           return action.payload;
         default:
           return state;

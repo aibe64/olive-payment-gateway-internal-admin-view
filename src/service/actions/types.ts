@@ -13,7 +13,6 @@ export namespace ActionTypes {
     }
 
     export class Users {
-        static Validate_User_First_Time_LogIn = "Validate_User_First_Time_LogIn"
         static Create_Account = "Create_Account"
         static Get_All_Industries = "Get_All_Industries"
         static Get_All_Categories = "Get_All_Categories"

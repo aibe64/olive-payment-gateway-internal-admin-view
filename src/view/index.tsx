@@ -1,45 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../models/application/state";
-import { ActionTypes } from "../service/actions/types";
+import { usePostData } from "@/hooks";
+import { ApiConfig } from "@/service";
+import { getQueryStringValue } from "@/utils";
+import { useCallback, useEffect } from "react";
 import { XpressLoader } from "../shared/components/loader";
-import { RegistrationPage } from "./merchants/registration";
-
 export const LandingPage = () => {
-  const dispatch = useDispatch();
-  const { validateUserState }: any = useSelector((state: any) => state);
-  const state: State.UserValidation = validateUserState;
-  const validateUser = useCallback(async () => {
-    await fetchConfig()
-    dispatch({
-      type: ActionTypes.Users.Validate_User_First_Time_LogIn,
-      payload: {
-        ...state,
-        loading:true
-      },
-    });
-  }, [state]);
+  const token = getQueryStringValue("token")
+  const appKey = getQueryStringValue("appKey")
 
-  const fetchConfig = async () =>{
-    await fetch("config.json").then((response) => {
-      response.json().then((settings) => {
-        sessionStorage.setItem("$$$", settings.ApiDomain);
-        sessionStorage.setItem("sso", settings.SSODomain);
-      });
-    });
-  }
+  const { mutate, isPending } = usePostData<{}, any>({
+    endpoint: ApiConfig.Users.ValidateUserFirstTimeLogIn,
+    queryKey: "",
+  });
+
+  const validateUser = useCallback(async () => {
+    mutate({ appKey, token }, {onSuccess: () => {console.log("called")}});
+  }, [token, appKey]);
 
   useEffect(() => {
     validateUser();
   }, []);
-  return (<>
-       {
-         state.pageState === 'loading' ?
-         <XpressLoader/> :
-         state.pageState === 'success' ?
-         <RegistrationPage/> :
-         <XpressLoader/>
-       }
-  </>);
+  return <>{isPending ? <XpressLoader /> : <>hhhhhh</>}</>;
 };

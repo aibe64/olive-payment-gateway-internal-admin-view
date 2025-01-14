@@ -28,7 +28,7 @@ import PaymentMenuIcon from "../../images/icons/PaymentMenuIcon.svg";
 import KYCdocIcon from "../../images/icons/kycDoc.svg";
 import { useNavigate } from "react-router-dom";
 import { Props } from "../../models/application/props";
-import apiConfig from "../../service/apiConfig";
+import apiConfig, { apiDomain } from "../../service/apiConfig";
 import { GET } from "../../service/apiService";
 import { Request } from "../../models/client/apiRequest";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +42,7 @@ export const MerchantSideBar: React.FC<Props.LeftSideBarProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isCompletedRegistration, setIsCompletedRegistration] = useState(false);
-  const domain = sessionStorage.getItem("$$$") as string;
+  
   const releaseComplainceField = () => {
     dispatch({
       type: ActionTypes.CompliancePage.Set_Compliance_Page_State,
@@ -55,7 +55,7 @@ export const MerchantSideBar: React.FC<Props.LeftSideBarProps> = (props) => {
   async function FetchMerchantDetails() {
     if (Number(localStorage.getItem("****"))) {
       const response = await GET(
-        domain + apiConfig.Merchants.MerchantByID + localStorage.getItem("****")
+        apiDomain + apiConfig.Merchants.MerchantByID + localStorage.getItem("****")
       );
       if (response.success) {
         let merchant: Request.MerchantAccountRequest = response.data;

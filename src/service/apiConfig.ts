@@ -1,14 +1,6 @@
-GetDomain();
-//"http://172.21.7.5:25017/api/"
-async function GetDomain() {
-  await fetch("config.json").then((response) => {
-    response.json().then((settings) => {
-      sessionStorage.setItem("$$$", settings.ApiDomain);
-      sessionStorage.setItem("$$$$", settings.apiDomain);
-    });
-  });
-}
-let apiDomain = sessionStorage.getItem("$$$");
+
+
+export const apiDomain = import.meta.env.VITE_API_BASE_URL
 export const ApiConfig = {
   Account: {
     GetAllRoles: "Account/GetAllRoles",

@@ -1,26 +1,25 @@
 import { Button } from "antd";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import xpresspayLogo from "../images/logo.svg";
 import notFound from "../images/notFound.svg";
 import { Encription } from "../shared/functions/encryption";
 import { Response } from "../models/client/apiResponse";
+import { SSO_DOMAIN } from "@/utils";
 
 export const NotFound = () => {
   useEffect(() => {
-    if(localStorage.getItem("***")){
+    if (localStorage.getItem("***")) {
       const userInfo: Response.UserInfo = JSON.parse(
         Encription.decrypt(localStorage.getItem("***") as string)
       );
-      if(!userInfo.isInternalUser){
-        window.location.href = `${sessionStorage.getItem("sso")}?redirectTo=${
-          window.location.origin}`
+      if (!userInfo.isInternalUser) {
+        window.location.href = `${SSO_DOMAIN}?redirectTo=${window.location.origin}`;
       }
-    }else{
-      window.location.href = `${sessionStorage.getItem("sso")}?redirectTo=${
-        window.location.origin}`
+    } else {
+      window.location.href = `${SSO_DOMAIN}?redirectTo=${window.location.origin}`;
     }
-  }, [])
-  
+  }, []);
+
   return (
     <>
       <section className="notFound-container">
@@ -55,9 +54,7 @@ export const NotFound = () => {
       <section style={{ marginTop: 30 }} className="notFound-content">
         <Button
           onClick={() =>
-            (window.location.href = `${sessionStorage.getItem(
-              "sso"
-            )}?redirectTo=${window.location.origin}`)
+            (window.location.href = `${SSO_DOMAIN}?redirectTo=${window.location.origin}`)
           }
           style={{ border: "1px solid green", color: "green" }}
         >

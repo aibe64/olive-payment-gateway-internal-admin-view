@@ -1,4 +1,5 @@
 import { UploadFile } from "antd/lib/upload/interface";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 
 export namespace Response {
   export class API {
@@ -8,6 +9,24 @@ export namespace Response {
     jwtToken?: string;
     refreshToken?: string;
     success?: boolean;
+  }
+
+  export class Data<T> {
+    responseCode: string = "";
+    responseMessage: string = "";
+    data: T | undefined;
+    jwtToken?: string;
+    refreshToken?: string;
+    success?: boolean;
+  }
+
+  export interface AxiosError<T = any, D = any> extends Error {
+    config: AxiosRequestConfig<D>;
+    code?: string;
+    request?: any;
+    response?: AxiosResponse<T, D>;
+    isAxiosError: boolean;
+    toJSON: () => object;
   }
 
   export class Settings {
@@ -216,8 +235,8 @@ export namespace Response {
     webHookUrl?: string = "";
     isKeysVisible?: boolean;
     oldMerchantId?: string;
-    eNaira?:boolean
-    receiveInternationalPayment?: boolean
+    eNaira?: boolean;
+    receiveInternationalPayment?: boolean;
   }
 
   export class KYCResponse {
@@ -380,7 +399,7 @@ export namespace Response {
     firstname?: string;
     lastname?: string;
     organization?: string;
-    address?: string
+    address?: string;
     accountNumber?: string;
     accountName?: string;
     dateOfBirth?: string;
@@ -442,12 +461,12 @@ export namespace Response {
     key?: number;
     merchantName?: string;
     oldMerchantId?: any;
-    oldGatewayMerchantId?:any;
+    oldGatewayMerchantId?: any;
     transactionNumber?: any;
     oldMerchantKey?: string;
-    eNaira?:boolean
-    chargeType?: any
-    chargeValue?: any
+    eNaira?: boolean;
+    chargeType?: any;
+    chargeValue?: any;
   }
   export class AdditionalTransactionReport {
     $id?: string;
@@ -476,8 +495,8 @@ export namespace Response {
     phone?: string;
     purpose?: string;
     net_Amount_Received?: number;
-    settlementDate?: string
-}
+    settlementDate?: string;
+  }
 
   export class Permissions {
     $id?: string;
@@ -555,8 +574,8 @@ export namespace Response {
     approvalDate?: string;
     approvalStatus?: any;
     isKeysVisible?: boolean;
-    eNaira?:boolean
-    receiveInternationalPayment?: boolean
+    eNaira?: boolean;
+    receiveInternationalPayment?: boolean;
   }
 
   export interface SubscriptionPlan {
@@ -938,6 +957,5 @@ export namespace Response {
     merchantName: string;
     oldMerchantKey: string;
     oldGatewayMerchantId?: any;
-}
-
+  }
 }

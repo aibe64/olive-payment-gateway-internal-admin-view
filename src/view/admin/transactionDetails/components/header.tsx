@@ -1,10 +1,8 @@
 import React from "react";
 import { DatePicker, Input, Select, Form, Row, Col } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import moment from "moment";
+// import moment from "moment";
 import { Props } from "../../../../models/application/props";
-import ExcelExport from "../../../../shared/components/excelExport";
-import "../../../merchants/transactions/style.css";
 import { usePageValidation } from "../../../../shared/hooks/usePageValidation";
 const { RangePicker } = DatePicker;
 const { Option } = Select;
@@ -28,13 +26,13 @@ const Header: React.FC<Props.ReportHeader> = (props) => {
           <Col className="gutter-row" span={6}>
             <RangePicker
               style={{ height: 20 }}
-              ranges={{
-                Today: [moment(), moment()],
-                "This Month": [
-                  moment().startOf("month"),
-                  moment().endOf("month"),
-                ],
-              }}
+              // ranges={{
+              //   Today: [moment(), moment()],
+              //   "This Month": [
+              //     moment().startOf("month"),
+              //     moment().endOf("month"),
+              //   ],
+              // }}
               onChange={props.onChangeDateRange}
               format={dateFormat}
             />
@@ -42,40 +40,43 @@ const Header: React.FC<Props.ReportHeader> = (props) => {
           <Col className="gutter-row" span={12} style={{ float: "right" }}>
             {props.isMerchant ? (
               canAccessOnRender ? (
-                <ExcelExport
-                  download={props.download}
-                  downloading={props.downloading}
-                  fileName={props.excelData?.fileName}
-                  title={props.excelData?.title}
-                  rows={props.excelData?.rows}
-                  column={props.excelData?.column}
-                  buttonName={"Download"}
-                />
+                // <ExcelExport
+                //   download={props.download}
+                //   downloading={props.downloading}
+                //   fileName={props.excelData?.fileName}
+                //   title={props.excelData?.title}
+                //   rows={props.excelData?.rows}
+                //   column={props.excelData?.column}
+                //   buttonName={"Download"}
+                // />
+                <></>
               ) : (
                 ""
               )
             ) : (
-              <ExcelExport
-                download={props.download}
-                downloading={props.downloading}
-                fileName={props.excelData?.fileName}
-                title={props.excelData?.title}
-                rows={props.excelData?.rows}
-                column={props.excelData?.column}
-                buttonName={"Download"}
-              />
+              // <ExcelExport
+              //   download={props.download}
+              //   downloading={props.downloading}
+              //   fileName={props.excelData?.fileName}
+              //   title={props.excelData?.title}
+              //   rows={props.excelData?.rows}
+              //   column={props.excelData?.column}
+              //   buttonName={"Download"}
+              // />
+              <></>
             )}
 
             {!props.disableMerchant ? (
-              <ExcelExport
-                downloadMetaData={props.downloadMetaData}
-                downloading={props.downloading}
-                fileName={props.excelMetaData?.fileName}
-                title={props.excelMetaData?.title}
-                rows={props.excelMetaData?.rows}
-                column={props.excelMetaData?.column}
-                buttonName={"Download Additional Info"}
-              />
+              // <ExcelExport
+              //   downloadMetaData={props.downloadMetaData}
+              //   downloading={props.downloading}
+              //   fileName={props.excelMetaData?.fileName}
+              //   title={props.excelMetaData?.title}
+              //   rows={props.excelMetaData?.rows}
+              //   column={props.excelMetaData?.column}
+              //   buttonName={"Download Additional Info"}
+              // />
+              <></>
             ) : (
               ""
             )}
@@ -219,13 +220,13 @@ const Header: React.FC<Props.ReportHeader> = (props) => {
           <Col className="gutter-row" span={12} style={{ marginTop: 40 }}>
             <RangePicker
               style={{ height: 20 }}
-              ranges={{
-                Today: [moment(), moment()],
-                "This Month": [
-                  moment().startOf("month"),
-                  moment().endOf("month"),
-                ],
-              }}
+              // ranges={{
+              //   Today: [moment(), moment()],
+              //   "This Month": [
+              //     moment().startOf("month"),
+              //     moment().endOf("month"),
+              //   ],
+              // }}
               onChange={props.onChangeDateRange}
               format={dateFormat}
             />
