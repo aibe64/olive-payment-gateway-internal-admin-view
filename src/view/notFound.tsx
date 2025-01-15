@@ -2,15 +2,15 @@ import { Button } from "antd";
 import { useEffect } from "react";
 import xpresspayLogo from "../images/logo.svg";
 import notFound from "../images/notFound.svg";
-import { Encription } from "../shared/functions/encryption";
+import { Encryption } from "../shared/functions/encryption";
 import { Response } from "../models/client/apiResponse";
 import { SSO_DOMAIN } from "@/utils";
 
 export const NotFound = () => {
   useEffect(() => {
-    if (localStorage.getItem("***")) {
+    if (sessionStorage.getItem("***")) {
       const userInfo: Response.UserInfo = JSON.parse(
-        Encription.decrypt(localStorage.getItem("***") as string)
+        Encryption.decrypt(sessionStorage.getItem("***") as string)
       );
       if (!userInfo.isInternalUser) {
         window.location.href = `${SSO_DOMAIN}?redirectTo=${window.location.origin}`;

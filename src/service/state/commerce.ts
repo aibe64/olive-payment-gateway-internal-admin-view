@@ -42,7 +42,7 @@ export class CommerceStateBusiness {
       state.pageDetails?.isPhoneNumberRequired;
     state.request.isActive = state.pageDetails?.isActive;
     state.request.callBackUrl = state.pageDetails?.callBackUrl;
-    state.request.merchantId = parseInt(localStorage.getItem("****") as string);
+    state.request.merchantId = parseInt(sessionStorage.getItem("****") as string);
     if (state.pageDetails?.amount && state.pageDetails?.amount > 0) {
       state.request.price = formatAmount(state.pageDetails?.amount as number);
     } else {

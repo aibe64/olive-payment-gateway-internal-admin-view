@@ -1,11 +1,23 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 @font-face {
-  font-family: "GelionRegular";
-  src: url("./fonts/Gelion-Regular.ttf") format("truetype");
+  font-family: "InterRegular";
+  src: url("./fonts/Inter-Regular.ttf") format("truetype");
   font-style: normal;
 }
 
+body {
+  font-family: 'InterRegular'
+}
+
+.ant-menu-title-content {
+  color: white !important
+}
+
 .xpress-container {
-  font-family: 'GelionRegular' !important
+  font-family: 'InterRegular' !important
 }
 
 .notFound-container {
@@ -77,6 +89,7 @@
   border-color: #2B872B !important;
   border-bottom: 3px solid #2B872B;
 }
+
 .null-btn:hover {
   background-color: #C4C4C4 !important;
   color: #575F6E !important;
@@ -88,13 +101,16 @@
   border-color: #2b872b !important;
   z-index: 1;
 }
+
 .ant-checkbox-checked .ant-checkbox-inner {
   background-color: #2b872b !important;
   border-color: #2b872b !important;
 }
+
 .ant-checkbox-checked .ant-checkbox-inner:hover {
   border-color: #2b872b !important;
 }
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -109,9 +125,11 @@
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background: rgb(44, 103, 44); 
+  background: rgb(44, 103, 44);
   border-radius: 10px;
 }
-.carousel .thumb.selected, .carousel .thumb:hover {
+
+.carousel .thumb.selected,
+.carousel .thumb:hover {
   border: 3px solid green !important;
 }

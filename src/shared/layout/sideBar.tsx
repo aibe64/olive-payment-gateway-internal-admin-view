@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { AdminSideBar } from "./adminSideBar";
 import BankIcon from "../../images/icons/BankIcon.svg";
-import { Encription } from "../functions/encryption";
+import { Encryption } from "../functions/encryption";
 import { POST } from "../../service/apiService";
 import { Response } from "../../models/client/apiResponse";
 import { Request } from "../../models/client/apiRequest";
@@ -14,15 +14,15 @@ import { useSelector } from "react-redux";
 export const XpressSideBar = () => {
   const { MerchantDetails }: any = useSelector((state: any) => state);
   const state: Request.MerchantAccountRequest = MerchantDetails;
-  const [merchantName, setMerchantName] = useState("");
-  const GetMerchantName = () => {
-    if (localStorage.getItem("***")) {
+  const [adminName, setAdminName] = useState("");
+  const GetadminName = () => {
+    if (sessionStorage.getItem("***")) {
       const userInfo: Response.UserInfo = JSON.parse(
-        Encription.decrypt(localStorage.getItem("***") as string)
+        Encryption.decrypt(sessionStorage.getItem("***") as string)
       );
-      setMerchantName(userInfo?.firstName + " " + userInfo?.lastName);
+      setAdminName(userInfo?.firstName + " " + userInfo?.lastName);
     } else {
-      localStorage.clear();
+      sessionStorage.clear();
       sessionStorage.clear();
       window.location.href = "/";
     }
@@ -74,7 +74,7 @@ export const XpressSideBar = () => {
   //   BusinessProfile: "start",
   // });
   async function LogOut() {
-    let email = localStorage.getItem("*********") as string;
+    let email = sessionStorage.getItem("*********") as string;
     if (email !== null || email) {
       let request = { email: email };
       const response = await POST(
@@ -91,7 +91,7 @@ export const XpressSideBar = () => {
     }
   }
   const RedirectUser = async () => {
-    await localStorage.clear();
+    await sessionStorage.clear();
     await sessionStorage.clear();
     window.location.href = `${domain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
   };
@@ -105,11 +105,11 @@ export const XpressSideBar = () => {
     });
   }
   async function GetUserInfo() {
-    if (!localStorage.getItem("***")) {
+    if (!sessionStorage.getItem("***")) {
       LogOut();
     }
     let userInfo: Response.UserInfo = JSON.parse(
-      Encription.decrypt(localStorage.getItem("***") as string)
+      Encryption.decrypt(sessionStorage.getItem("***") as string)
     );
     if (userInfo) {
       if (userInfo.isInternalUser) {
@@ -140,74 +140,22 @@ export const XpressSideBar = () => {
     GetConfig();
     GetPageName();
     GetUserInfo();
-    GetMerchantName();
+    GetadminName();
   }, []);
   return (
-    <main className="xpress-menu">
-      <div className="xpress-user-title">
-        <div
-          style={{
-            position: "absolute",
-            marginTop: 7,
-            marginLeft: 5,
-            borderRadius: "50%",
-            width: "32px",
-            height: "32px",
-            background: "rgb(23 83 23)",
-            border: "3px solid #2B872B",
-          }}
-        >
-          <span
-            style={{
-              color: "rgb(7 90 7)",
-              position: "absolute",
-              width: "9px",
-              height: "19px",
-              left: "6px",
-            }}
-          >
-            <img alt="" src={BankIcon} />
-          </span>
-        </div>
-        <div
-          style={{
-            color: "#005D01",
-            marginTop: 15,
-            marginLeft: 40,
-            lineHeight: "15px",
-            display: "inline-block",
-          }}
-        >
-          <span style={{ color: "#005D01", fontSize: "15px", fontWeight: 600 }}>
-            {isAdmin
-              ? merchantName
-              : state.businessName
-              ? state.businessName
-              : localStorage.getItem("*******")}
-          </span>
-        </div>
+    <nav className="w-[15rem] flex flex-col gap-7 py-5 bg-primary min-h-screen">
+      <div className="px-5">
+        <h1 className="text-[1.1rem]">{adminName}</h1>
       </div>
-      {isAdmin ? (
-        <AdminSideBar
-          OpenMenu={() => {}}
-          CollapseMenu={() => {}}
-          setPageTitle={setPageTitle}
-          pageTitle={pageTitle}
-          menus={{}}
-          menu={menu}
-          page={page}
-        />
-      ) : (
-        <MerchantSideBar
-          OpenMenu={() => {}}
-          CollapseMenu={() => {}}
-          setPageTitle={setPageTitle}
-          pageTitle={pageTitle}
-          menus={{}}
-          menu={menu}
-          page={page}
-        />
-      )}
-    </main>
+      <AdminSideBar
+        OpenMenu={() => {}}
+        CollapseMenu={() => {}}
+        setPageTitle={setPageTitle}
+        pageTitle={pageTitle}
+        menus={{}}
+        menu={menu}
+        page={page}
+      />
+    </nav>
   );
 };

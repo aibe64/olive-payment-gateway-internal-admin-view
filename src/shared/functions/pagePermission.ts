@@ -1,4 +1,4 @@
-import { Encription } from "./encryption";
+import { Encryption } from "./encryption";
 import { Response } from "../../models/client/apiResponse";
 import apiUrl from "../../service/apiConfig";
 import { GET } from "../../service/apiService";
@@ -6,9 +6,9 @@ export class PagePermission {
 
     static async IsUserPermitted(claim: string, rolesAndPermissions: Response.RoleResources[] | null = null) {
         let userInfo: Response.UserInfo = new Response.UserInfo();
-        if (localStorage.getItem("***")) {
+        if (sessionStorage.getItem("***")) {
             userInfo = JSON.parse(
-                Encription.decrypt(localStorage.getItem("***") as string)
+                Encryption.decrypt(sessionStorage.getItem("***") as string)
             );
         } else {
             return false
@@ -19,7 +19,7 @@ export class PagePermission {
             const roleResources: Response.RoleResources = rolesAndPermissions.filter(function (data: Response.RoleResources) {
                 return data.id === userInfo.roleId
             })[0];
-            localStorage.setItem('&&&', Encription.encrypt(JSON.stringify(roleResources.roleResources?.$values)))
+            sessionStorage.setItem('&&&', Encryption.encrypt(JSON.stringify(roleResources.roleResources?.$values)))
             if (roleResources.roleResources?.$values?.findIndex(x => x.claim === claim) as number > -1) {
                 return true
             } else {
@@ -32,7 +32,7 @@ export class PagePermission {
                 const roleResources: Response.RoleResources = roleAndPermissions.filter(function (data: Response.RoleResources) {
                     return data.id === userInfo.roleId
                 })[0];
-                localStorage.setItem('&&&', Encription.encrypt(JSON.stringify(roleResources.roleResources?.$values)))
+                sessionStorage.setItem('&&&', Encryption.encrypt(JSON.stringify(roleResources.roleResources?.$values)))
                 if (roleResources.roleResources?.$values?.findIndex(x => x.claim === claim) as number > -1) {
                     return true
                 } else {
@@ -44,8 +44,8 @@ export class PagePermission {
     }
 
     static IsUserActionPermitted(claim: string): boolean {
-        if (localStorage.getItem('&&&')) {
-            let roleResources: Array<Response.Permissions> = JSON.parse(Encription.decrypt(localStorage.getItem('&&&') as string));
+        if (sessionStorage.getItem('&&&')) {
+            let roleResources: Array<Response.Permissions> = JSON.parse(Encryption.decrypt(sessionStorage.getItem('&&&') as string));
             roleResources = JSON.parse(roleResources as any)
             if (roleResources?.findIndex(x => x.claim === claim) as number > -1) {
                 return true

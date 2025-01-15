@@ -1,12 +1,12 @@
 import { State } from "../../models/application/state";
-import { Encription } from "../../shared/functions/encryption";
+import { Encryption } from "../../shared/functions/encryption";
 import { UrlSearch } from "../../shared/functions/urlSearch";
 import { Response } from "../../models/client/apiResponse";
 import { SSO_DOMAIN } from "@/utils";
 
 export class UserService {
   static VerifyUser(state: State.UserValidation): State.UserValidation {
-    localStorage.clear();
+    sessionStorage.clear();
     let appKey = UrlSearch.getParameterByName("key");
     const lastLoginDate = UrlSearch.getParameterByName("date");
     sessionStorage.setItem("**", lastLoginDate);
@@ -28,7 +28,7 @@ export class UserService {
         appKey: appKey,
       },
     };
-    localStorage.setItem("***********", Encription.encrypt(state.request));
+    sessionStorage.setItem("***********", Encryption.encrypt(state.request));
     return state;
   }
   static VerifyUserApiResponse(
@@ -37,9 +37,9 @@ export class UserService {
   ): State.UserValidation {
     let redirect = false;
     if (apiResponse.success) {
-      localStorage.setItem("****", state.response?.merchantId + "");
-      localStorage.setItem("***", Encription.encrypt(state.response));
-      localStorage.setItem("*********", state.response?.email + "");
+      sessionStorage.setItem("****", state.response?.merchantId + "");
+      sessionStorage.setItem("***", Encryption.encrypt(state.response));
+      sessionStorage.setItem("*********", state.response?.email + "");
       if (state.response?.isFirstimeLogin && !state.response?.isInternalUser) {
         if (state.response?.roleId === 0) {
           state.pageState = "loading";
@@ -61,10 +61,10 @@ export class UserService {
         UserService.RedirectUserToPage(state.response as any);
       }
     } else {
-      localStorage.setItem("****", state.response?.merchantId + "");
-      localStorage.setItem("*********", state.response?.email + "");
-      localStorage.setItem("**********", state.response?.phoneNumber + "");
-      localStorage.setItem("***", Encription.encrypt(state.response));
+      sessionStorage.setItem("****", state.response?.merchantId + "");
+      sessionStorage.setItem("*********", state.response?.email + "");
+      sessionStorage.setItem("**********", state.response?.phoneNumber + "");
+      sessionStorage.setItem("***", Encryption.encrypt(state.response));
       if (state.response?.isFirstimeLogin === false) {
         if (state.response?.isRegistrationCompleted === true) {
           redirect = true;
@@ -74,7 +74,7 @@ export class UserService {
             redirect = true;
             window.location.href = "compliance";
           } else {
-            localStorage.setItem("***", Encription.encrypt(state.response));
+            sessionStorage.setItem("***", Encryption.encrypt(state.response));
             UserService.RedirectUserToPage(state.response);
           }
         }

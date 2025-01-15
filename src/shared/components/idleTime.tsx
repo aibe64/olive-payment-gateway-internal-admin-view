@@ -22,10 +22,10 @@ export default function (props: any) {
   async function LogOut() {
     if (getConfig.SSOBackendDomain) {
       if (
-        localStorage.getItem("*********") ||
-        localStorage.getItem("*********") === null
+        sessionStorage.getItem("*********") ||
+        sessionStorage.getItem("*********") === null
       ) {
-        let email = localStorage.getItem("*********") as string;
+        let email = sessionStorage.getItem("*********") as string;
         email = email.replace("/", "");
         email = email.replace('"', "");
         email = email.replace('"', "");
@@ -35,21 +35,21 @@ export default function (props: any) {
           request
         );
         if (response.success) {
-          await localStorage.clear();
+          await sessionStorage.clear();
           await sessionStorage.clear();
           window.location.href = `${getConfig.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
         } else {
-          await localStorage.clear();
+          await sessionStorage.clear();
           await sessionStorage.clear();
           window.location.href = `${getConfig.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
         }
       } else {
-        await localStorage.clear();
+        await sessionStorage.clear();
         await sessionStorage.clear();
         window.location.href = `${getConfig.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
       }
     } else {
-      await localStorage.clear();
+      await sessionStorage.clear();
       await sessionStorage.clear();
       window.location.href = `${getConfig.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
     }

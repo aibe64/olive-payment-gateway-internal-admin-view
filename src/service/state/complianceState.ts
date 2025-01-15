@@ -6,7 +6,7 @@ import { Notification } from "../../shared/components/notification";
 
 export class ComplianceState {
   static UpdateMerchantDetails(state: State.ComplianceState) {
-    state.merchant.businessEmail = localStorage.getItem("*********") as string;
+    state.merchant.businessEmail = sessionStorage.getItem("*********") as string;
     if (state.merchant.isRegistrationCompleted === true) {
       // history.push("/Dashboard");
       window.location.href = "/Dashboard";
@@ -76,12 +76,12 @@ export class ComplianceState {
     return state;
   }
   static UpdateDefaultState(state: State.ComplianceState) {
-    const businessName: string = localStorage.getItem("*******")
-      ? (localStorage.getItem("*******") as string)
+    const businessName: string = sessionStorage.getItem("*******")
+      ? (sessionStorage.getItem("*******") as string)
       : "";
     state.merchant.businessName = businessName;
     state.merchant.individualCategory = state.merchant.merchantCategory
-    state.merchant.businessEmail = localStorage.getItem("*********") as string;
+    state.merchant.businessEmail = sessionStorage.getItem("*********") as string;
     let userIdentifications = new Array<Request.UserIdentification>();
     userIdentifications.push({
       identification: "",
@@ -235,12 +235,12 @@ export class ComplianceState {
     };
     request.newFiles = newFiles;
     request.isCompleted = state.isCompletedProfile;
-    if (parseInt(localStorage.getItem("****") as string) > 0) {
+    if (parseInt(sessionStorage.getItem("****") as string) > 0) {
       state.apiToCall = state.domain + apiConfig.Merchants.Update;
       request.businessEmail = merchant.businessEmail
         ? merchant.businessEmail
         : "";
-      request.merchantId = parseInt(localStorage.getItem("****") as string);
+      request.merchantId = parseInt(sessionStorage.getItem("****") as string);
       request.id = request.merchantId;
     } else {
       request.businessEmail = "";

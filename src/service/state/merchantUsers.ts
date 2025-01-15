@@ -1,5 +1,5 @@
 import { State } from "../../models/application/state";
-import { Encription } from "../../shared/functions/encryption";
+import { Encryption } from "../../shared/functions/encryption";
 export class MerchantUserState {
 
     static OpenEditModal(state: State.MerchantUserPage) {
@@ -26,7 +26,7 @@ export class MerchantUserState {
         state.showModal = true;
         state.errorMessage = "";
         let data: any = JSON.parse(
-            Encription.decrypt(localStorage.getItem("***********") as string)
+            Encryption.decrypt(sessionStorage.getItem("***********") as string)
         );
         const token = data.token;
         const appKey = data.appKey;

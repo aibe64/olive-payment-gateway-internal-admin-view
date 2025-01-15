@@ -1,5 +1,5 @@
 import { Response } from "../../models/client/apiResponse";
-import { Encription } from "./encryption";
+import { Encryption } from "./encryption";
 
 export class PGUtil {
   static saveByteArray(reportName: string, byte: any, extension: string) {
@@ -16,9 +16,9 @@ export class PGUtil {
 export const getUserInfo = () => {
   let userInfo: Response.UserInfo = new Response.UserInfo();
   try {
-    if (localStorage.getItem("***")) {
+    if (sessionStorage.getItem("***")) {
       userInfo = JSON.parse(
-        Encription.decrypt(localStorage.getItem("***") as string)
+        Encryption.decrypt(sessionStorage.getItem("***") as string)
       );
       return userInfo;
     } else {

@@ -53,9 +53,9 @@ export const MerchantSideBar: React.FC<Props.LeftSideBarProps> = (props) => {
     })
   }
   async function FetchMerchantDetails() {
-    if (Number(localStorage.getItem("****"))) {
+    if (Number(sessionStorage.getItem("****"))) {
       const response = await GET(
-        apiDomain + apiConfig.Merchants.MerchantByID + localStorage.getItem("****")
+        apiDomain + apiConfig.Merchants.MerchantByID + sessionStorage.getItem("****")
       );
       if (response.success) {
         let merchant: Request.MerchantAccountRequest = response.data;

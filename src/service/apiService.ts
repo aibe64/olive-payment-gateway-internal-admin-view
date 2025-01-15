@@ -1,13 +1,13 @@
 import axios from "axios"
 import { Response } from "../models/client/apiResponse";
-import { Encription } from "../shared/functions/encryption";
+import { Encryption } from "../shared/functions/encryption";
 import { InternetErrorNotification } from "../shared/components/internetError";
 
-if (!localStorage.getItem("***")) {
+if (!sessionStorage.getItem("***")) {
 } else {
     axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
     try {
-        let data: any = JSON.parse(Encription.decrypt(localStorage.getItem("***") as string))
+        let data: any = JSON.parse(Encryption.decrypt(sessionStorage.getItem("***") as string))
         const token = data.token
         axios.defaults.headers.common['Authorization'] = "bearer " + token;
     } catch (e) { }
@@ -182,9 +182,9 @@ export async function Config() {
 
 const GetToken = () => {
     let userInfo: Response.UserInfo = new Response.UserInfo();
-    if (localStorage.getItem("***")) {
+    if (sessionStorage.getItem("***")) {
         userInfo = JSON.parse(
-            Encription.decrypt(localStorage.getItem("***") as string)
+            Encryption.decrypt(sessionStorage.getItem("***") as string)
         );
         return userInfo.token
     }

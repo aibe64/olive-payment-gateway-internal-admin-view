@@ -39,22 +39,33 @@ export namespace Response {
     DocumentationLink?: string;
   }
 
-  export class UserInfo {
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    referralCode?: string;
-    myReferralCode?: string;
-    isFirstimeLogin?: boolean;
-    phoneNumber?: string;
-    roleId?: number;
-    merchantId?: number;
-    isRegistrationCompleted?: boolean;
-    isSelfOnboarding?: boolean;
-    businessName?: string;
-    isInternalUser?: boolean;
-    code?: any;
-    token?: string;
+ 
+  
+  export interface AdminRoleResources {
+    $id: string
+    $values: string[]
+  }
+
+  export interface UserInfo {
+    $id: string
+    firstName: string
+    lastName: string
+    email: string
+    phoneNumber: any
+    referralCode: any
+    myReferralCode: any
+    isFirstimeLogin: boolean
+    isSelfOnboarding: boolean
+    token: string
+    userRole: string
+    roleId: number
+    merchantId: any
+    roleResources: AdminRoleResources
+    isRegistrationCompleted: any
+    code: any
+    message: any
+    businessName: any
+    isInternalUser: boolean
   }
 
   export interface Industries {

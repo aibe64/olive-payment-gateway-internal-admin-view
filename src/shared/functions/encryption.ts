@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js'
 
-export class  Encription{
+export class  Encryption{
        
     static encrypt(value: any): string {
         return CryptoJS.AES.encrypt(JSON.stringify(value), "XpressPayment1234!").toString();

@@ -13,7 +13,7 @@ import { TransactionLimit } from "../../view/admin/setUp/transactionLimit";
 import { TransactionManager } from "../../view/admin/setUp/transactionManager";
 import { AdminTransactionReport } from "../../view/admin/transactionDetails/transactionReport";
 import { NotFound } from "../../view/notFound";
-import { Encription } from "../functions/encryption";
+import { Encryption } from "../functions/encryption";
 import { Response } from "../../models/client/apiResponse";
 import { Receipt } from "../../view/receipt";
 
@@ -21,7 +21,7 @@ export const PageRouter = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   async function GetUserPermission() {
     let userInfo: Response.UserInfo = JSON.parse(
-      Encription.decrypt(localStorage.getItem("***") as string)
+      Encryption.decrypt(sessionStorage.getItem("***") as string)
     );
     if (userInfo) {
       if (userInfo.isInternalUser) {
@@ -32,7 +32,7 @@ export const PageRouter = () => {
     }
   }
   useEffect(() => {
-    if (localStorage.getItem("***") as string) GetUserPermission();
+    if (sessionStorage.getItem("***") as string) GetUserPermission();
   }, []);
   console.log("first")
   return (

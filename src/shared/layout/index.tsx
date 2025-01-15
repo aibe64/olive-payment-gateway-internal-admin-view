@@ -6,27 +6,11 @@ import cbn from "../../images/cbn.svg";
 
 export const XpressLayout = ({ children }: any) => {
   return (
-    <section className="xpress-pay-container">
+    <section className="flex mx-auto max-w-screen-2x">
       <XpressSideBar />
-      <main className="xpress-pay-page-body">
+      <main className="flex flex-col">
         <TopBar />
         {children}
-        {/* <footer className="pg-footer" style={{ textAlign: "center" }}>
-          © Copyright Xpresspayments Limited
-        </footer> */}
-        <footer
-          style={{
-            textAlign: "center",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "85%",
-            margin: "0 auto",
-            marginTop: -20,
-          }}
-        >
-          <img src={cbn} alt="" style={{ width: "80%", height: "20px" }} />
-        </footer>
       </main>
     </section>
   );

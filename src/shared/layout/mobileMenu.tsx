@@ -38,18 +38,18 @@ export const MobileMenu: React.FC<DrawerProps> = (props) => {
     </div>
   );
   async function LogOut() {
-    let email = localStorage.getItem("*********") as string;
+    let email = sessionStorage.getItem("*********") as string;
     let request = { email: email };
     const response = await POST(
       config.SSOBackendDomain + apiConfig.Account.LogOut,
       request
     );
     if (response.success) {
-      await localStorage.clear();
+      await sessionStorage.clear();
       await sessionStorage.clear();
       window.location.href = `${config.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
     } else {
-      await localStorage.clear();
+      await sessionStorage.clear();
       await sessionStorage.clear();
       window.location.href = `${config.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
     }

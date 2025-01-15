@@ -9,7 +9,7 @@ import { Response } from "../../../models/client/apiResponse";
 import { Request } from "../../../models/client/apiRequest";
 import { Button, Tooltip } from "antd";
 import { DataTableUtil } from "../../../shared/functions/dataTableUtil";
-import { Encription } from "../../../shared/functions/encryption";
+import { Encryption } from "../../../shared/functions/encryption";
 import { PagePermission } from "../../../shared/functions/pagePermission";
 import UnAuthorizePage from "../../../shared/components/unAuthorizePage";
 import SearchDatatable from "../../../shared/functions/searchDatatable";
@@ -72,7 +72,7 @@ export const AdminUsers: React.FC = (props) => {
     await setState({ ...state, isEdit: true });
     await setModal(true);
     let data: any = JSON.parse(
-      Encription.decrypt(localStorage.getItem("***********") as string)
+      Encryption.decrypt(sessionStorage.getItem("***********") as string)
     );
     await setUser({
       firstName: record.firstName,
@@ -94,7 +94,7 @@ export const AdminUsers: React.FC = (props) => {
       errorMessage: "",
     });
     let data: any = JSON.parse(
-      Encription.decrypt(localStorage.getItem("***********") as string)
+      Encryption.decrypt(sessionStorage.getItem("***********") as string)
     );
     const token = data.token;
     const appKey = data.appKey;
@@ -120,9 +120,9 @@ export const AdminUsers: React.FC = (props) => {
   }
   const GetToken = () => {
     let userInfo: Response.UserInfo = new Response.UserInfo();
-    if (localStorage.getItem("***")) {
+    if (sessionStorage.getItem("***")) {
       userInfo = JSON.parse(
-        Encription.decrypt(localStorage.getItem("***") as string)
+        Encryption.decrypt(sessionStorage.getItem("***") as string)
       );
       return userInfo.token;
     }

@@ -14,7 +14,7 @@ import DisapproveIcon from "../../../images/icons/DisapproveIcon.svg";
 import SearchDatatable from "../../../shared/functions/searchDatatable";
 import { PagePermission } from "../../../shared/functions/pagePermission";
 import UnAuthorizePage from "../../../shared/components/unAuthorizePage";
-import { Encription } from "../../../shared/functions/encryption";
+import { Encryption } from "../../../shared/functions/encryption";
 import { XpressLayout } from "../../../shared/layout";
 
 export const AdminRole: React.FC = (props) => {
@@ -198,9 +198,9 @@ export const AdminRole: React.FC = (props) => {
   };
   const GetToken = () => {
     let userInfo: Response.UserInfo = new Response.UserInfo();
-    if (localStorage.getItem("***")) {
+    if (sessionStorage.getItem("***")) {
       userInfo = JSON.parse(
-        Encription.decrypt(localStorage.getItem("***") as string)
+        Encryption.decrypt(sessionStorage.getItem("***") as string)
       );
       return userInfo.token;
     }

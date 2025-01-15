@@ -11,12 +11,12 @@ import {
 } from "@ant-design/icons";
 import placeholder from "../../images/placeholder.png";
 import "./style.css";
-import React, { useEffect, useState,useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { MobileMenu } from "./mobileMenu";
 import { useSelector } from "react-redux";
 import { Request } from "../../models/client/apiRequest";
 import { Response } from "../../models/client/apiResponse";
-import { Encription } from "../functions/encryption";
+import { Encryption } from "../functions/encryption";
 import apiConfig from "../../service/apiConfig";
 import { POST } from "../../service/apiService";
 import { useDispatch } from "react-redux";
@@ -32,23 +32,23 @@ export const TopBar = () => {
   const state: Request.MerchantAccountRequest = MerchantDetails;
   const notification: State.Notification = notificationState;
   const config: Response.Settings = getConfig;
-  const [userInfo, setUserInfo] = useState(new Response.UserInfo());
+  const [userInfo, setUserInfo] = useState<Response.UserInfo>();
   const [pageTitle, setPageTitle] = useState("Get Started");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   async function LogOut() {
-    let email = localStorage.getItem("*********") as string;
+    let email = sessionStorage.getItem("*********") as string;
     let request = { email: email };
     const response = await POST(
       config.SSOBackendDomain + apiConfig.Account.LogOut,
       request
     );
     if (response.success) {
-      await localStorage.clear();
+      await sessionStorage.clear();
       await sessionStorage.clear();
       window.location.href = `${config.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
     } else {
-      await localStorage.clear();
+      await sessionStorage.clear();
       await sessionStorage.clear();
       window.location.href = `${config.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
     }
@@ -75,15 +75,15 @@ export const TopBar = () => {
       type: ActionTypes.Merchants.Get_Notification,
       payload: { ...notification },
     });
-  },[notification])
+  }, [notification]);
   const GetMerchantName = () => {
-    if (localStorage.getItem("***")) {
+    if (sessionStorage.getItem("***")) {
       const userInfo: Response.UserInfo = JSON.parse(
-        Encription.decrypt(localStorage.getItem("***") as string)
+        Encryption.decrypt(sessionStorage.getItem("***") as string)
       );
       setUserInfo(userInfo);
     } else {
-      localStorage.clear();
+      sessionStorage.clear();
       sessionStorage.clear();
       window.location.href = "/";
     }
@@ -122,7 +122,7 @@ export const TopBar = () => {
     GetMerchantName();
   }, []);
   const content = (
-    <div className="xpress_account-dropdown">
+    <div className="shadow-md bg-white w-[270px] h-auto">
       <Row style={{ width: "100%", margin: 5 }}>
         <Col style={{ marginTop: 10, marginLeft: 10 }} md={24}>
           <span style={{ fontWeight: 600, color: "rgb(107, 119, 140)" }}>
@@ -143,8 +143,8 @@ export const TopBar = () => {
           />
         </Col>
         <Col md={15} style={{ marginTop: 5 }}>
-          <span>{`${userInfo.firstName} ${userInfo.lastName}`}</span>
-          <p style={{ fontSize: ".785714em" }}>{userInfo.email}</p>
+          <span>{`${userInfo?.firstName} ${userInfo?.lastName}`}</span>
+          <p style={{ fontSize: ".785714em" }}>{userInfo?.email}</p>
         </Col>
       </Row>
       <Divider style={{ marginBottom: 10, marginTop: 10 }}></Divider>
@@ -152,7 +152,7 @@ export const TopBar = () => {
       <Row style={{ width: "100%" }}>
         <Col style={{ marginLeft: 10, marginBottom: 10 }} md={24}>
           <span style={{ fontWeight: 600, color: "rgb(107, 119, 140)" }}>
-            {userInfo.isInternalUser ? "Company" : "Business"}
+            {userInfo?.isInternalUser ? "Company" : "Business"}
           </span>
         </Col>
         <Col className="xpress-settings" style={{ marginLeft: 10 }} md={3}>
@@ -171,11 +171,11 @@ export const TopBar = () => {
         </Col>
         <Col md={15} style={{ marginTop: -5 }}>
           <span>
-            {userInfo.isInternalUser
+            {userInfo?.isInternalUser
               ? "Xpress Payments Solution"
               : state.businessName}
           </span>
-          <p style={{ fontSize: ".785714em" }}>{userInfo.email}</p>
+          <p style={{ fontSize: ".785714em" }}>{userInfo?.email}</p>
         </Col>
       </Row>
       <Divider style={{ marginBottom: 10 }}></Divider>
@@ -240,14 +240,14 @@ export const TopBar = () => {
                       width: "100%",
                       color: "black",
                       marginBottom: 0,
-                      justifyContent:'space-between'
+                      justifyContent: "space-between",
                     }}
                   >
-                    <span style={{color:'#965507'}}>KYC</span>
+                    <span style={{ color: "#965507" }}>KYC</span>
                     <div
                       style={{
                         color: "rgb(107, 119, 140)",
-                        marginRight:10
+                        marginRight: 10,
                       }}
                     >
                       {timeNotified(x.dateCreated)}
@@ -276,14 +276,14 @@ export const TopBar = () => {
                       width: "50%",
                       color: "black",
                       marginBottom: 0,
-                      justifyContent:'space-between'
+                      justifyContent: "space-between",
                     }}
                   >
-                    <span style={{color:'#965507'}}>KYC</span>
+                    <span style={{ color: "#965507" }}>KYC</span>
                     <div
                       style={{
                         color: "rgb(107, 119, 140)",
-                        marginRight:10
+                        marginRight: 10,
                       }}
                     >
                       {timeNotified(x.dateCreated)}
@@ -308,103 +308,11 @@ export const TopBar = () => {
     </div>
   );
   return (
-    <Header className="site-layout-background xpress-header">
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h1 style={{ fontSize: 20, marginLeft: 20, fontWeight: 800 }}>
-          {" "}
-          {pageTitle.toUpperCase()}
-        </h1>
-        <div
-          className="xpress-account-section"
-          style={{
-            display: "flex",
-            height: "inherit",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Dropdown
-            overlay={notificationContent}
-            trigger={["click"]}
-            placement={"bottomRight"}
-          >
-            <Badge
-              style={{ marginRight: 15, cursor: "pointer" }}
-              count={
-                notification?.data
-                  ? notification.data?.filter((x) => x.isVisited === false)
-                      .length
-                  : null
-              }
-            >
-              <BellFilled
-                style={{
-                  fontSize: 22,
-                  marginRight: 15,
-                  color: "green",
-                  cursor: "pointer",
-                }}
-              />
-            </Badge>
-          </Dropdown>
-          {userInfo.isInternalUser ? (
-            <Button
-              style={{
-                borderRadius: 10,
-                marginRight: 5,
-                fontWeight: 800,
-                fontSize: 15,
-              }}
-            >
-              {" "}
-              <span style={{ color: "green" }}>Xpress</span>
-              <span style={{ color: "orange" }}>Admin</span>
-            </Button>
-          ) : state.kycStatus === "Accepted" ? (
-            <Button
-              style={{ borderRadius: 10, color: "green", marginRight: 5 }}
-            >
-              {" "}
-              Live Mode
-            </Button>
-          ) : (
-            <Button style={{ borderRadius: 10, color: "red", marginRight: 5 }}>
-              {" "}
-              Test Mode
-            </Button>
-          )}
-
-          <Dropdown overlay={content} trigger={["click"]}>
-            <img
-              height={30}
-              width={30}
-              src={placeholder}
-              alt=""
-              style={{
-                border: "2px solid green",
-                borderRadius: "50%",
-                marginRight: 5,
-                cursor: "pointer",
-              }}
-            />
-          </Dropdown>
-        </div>
-
-        <MenuOutlined
-          className="xpress-bread-crumb"
-          onClick={() => setVisible(true)}
-          style={{
-            cursor: "pointer",
-            marginRight: 10,
-            fontSize: 30,
-            fontWeight: 800,
-            color: "green",
-            marginTop: 20,
-          }}
-        />
-      </div>
-      <MobileMenu visible={visible} onClose={setState as any} />
-    </Header>
+      <header className="flex justify-between items-center p-4 shadow-md w-full">
+          <h1> {pageTitle.toUpperCase()}</h1>
+          <div className="flex gap-3">
+        s
+          </div>
+      </header>
   );
 };
-
