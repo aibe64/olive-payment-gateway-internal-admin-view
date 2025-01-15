@@ -1,11 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Badge, Button, Col, Divider, Dropdown, Row } from "antd";
-import { Header } from "antd/lib/layout/layout";
 import {
   BankOutlined,
   LogoutOutlined,
-  MenuOutlined,
   HomeOutlined,
   BellFilled,
 } from "@ant-design/icons";
@@ -17,13 +15,12 @@ import { useSelector } from "react-redux";
 import { Request } from "../../models/client/apiRequest";
 import { Response } from "../../models/client/apiResponse";
 import { Encryption } from "../functions/encryption";
-import apiConfig from "../../service/apiConfig";
-import { POST } from "../../service/apiService";
 import { useDispatch } from "react-redux";
 import { ActionTypes } from "../../service/actions/types";
 import { State } from "../../models/application/state";
 import { ComplianceState } from "../../service/state/complianceState";
 import { useNavigate } from "react-router-dom";
+import { MERCHANT_ADMIN_PORTAL } from "@/utils";
 
 export const TopBar = () => {
   const { MerchantDetails, getConfig, notificationState }: any = useSelector(
@@ -37,21 +34,9 @@ export const TopBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   async function LogOut() {
-    let email = sessionStorage.getItem("*********") as string;
-    let request = { email: email };
-    const response = await POST(
-      config.SSOBackendDomain + apiConfig.Account.LogOut,
-      request
-    );
-    if (response.success) {
-      await sessionStorage.clear();
-      await sessionStorage.clear();
-      window.location.href = `${config.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
-    } else {
-      await sessionStorage.clear();
-      await sessionStorage.clear();
-      window.location.href = `${config.SSODomain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
-    }
+    await sessionStorage.clear();
+    await sessionStorage.clear();
+    window.location.href = `${MERCHANT_ADMIN_PORTAL}`;
   }
 
   async function GetPageName() {
@@ -308,11 +293,52 @@ export const TopBar = () => {
     </div>
   );
   return (
-      <header className="flex justify-between items-center p-4 shadow-md w-full">
-          <h1> {pageTitle.toUpperCase()}</h1>
-          <div className="flex gap-3">
-        s
-          </div>
-      </header>
+    <header className="flex justify-between items-center p-4 shadow-md w-full">
+      <h1> {pageTitle.toUpperCase()}</h1>
+      <div className="flex gap-2 items-center">
+        <Dropdown
+          overlay={notificationContent}
+          trigger={["click"]}
+          placement={"bottomRight"}
+        >
+          <Badge
+            style={{ marginRight: 15, cursor: "pointer" }}
+            count={
+              notification?.data
+                ? notification.data?.filter((x) => x.isVisited === false).length
+                : null
+            }
+          >
+            <BellFilled
+              style={{
+                fontSize: 22,
+                color: "green",
+                cursor: "pointer",
+              }}
+            />
+          </Badge>
+        </Dropdown>
+        <Button className="px-2">
+          {" "}
+          <span style={{ color: "green" }}>Xpress</span>
+          <span style={{ color: "orange" }}>Admin</span>
+        </Button>
+        <Dropdown overlay={content} trigger={["click"]}>
+          <img
+            height={30}
+            width={30}
+            src={placeholder}
+            alt=""
+            style={{
+              border: "2px solid green",
+              borderRadius: "50%",
+              marginRight: 5,
+              cursor: "pointer",
+            }}
+          />
+        </Dropdown>
+        <MobileMenu visible={visible} onClose={setState as any} />
+      </div>
+    </header>
   );
 };

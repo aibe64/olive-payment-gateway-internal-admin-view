@@ -14,17 +14,15 @@ export class PGUtil {
 }
 
 export const getUserInfo = () => {
-  let userInfo: Response.UserInfo = new Response.UserInfo();
   try {
     if (sessionStorage.getItem("***")) {
-      userInfo = JSON.parse(
+      return JSON.parse(
         Encryption.decrypt(sessionStorage.getItem("***") as string)
-      );
-      return userInfo;
+      ) as Response.UserInfo;
     } else {
-      return new Response.UserInfo();
+      return {};
     }
   } catch (error) {
-    return new Response.UserInfo();
+    return {};
   }
 };

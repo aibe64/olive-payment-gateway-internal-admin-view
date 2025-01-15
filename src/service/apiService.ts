@@ -23,7 +23,7 @@ if (!sessionStorage.getItem("***")) {
     //     }
     // );
 }
-export async function GET(url: string, isCallBack: boolean = false, token: any = null) {
+export async function GET(url: string) {
     // const history = useHistory();
     // store.dispatch({
     //     type: ActionTypes.PageUtility.Page_Loading,
@@ -69,7 +69,7 @@ export async function GET(url: string, isCallBack: boolean = false, token: any =
     return apiResponse;
 }
 
-export async function POST(url: string, request: any, token: any = null) {
+export async function POST(url: string, request: any) {
     axios.defaults.headers.common['Authorization'] = "bearer " + GetToken();
     let apiResponse = new Response.API();
     apiResponse = await axios.post(url, request)
@@ -131,7 +131,7 @@ export async function DELETE(url: string) {
             apiResponse = response.data
             apiResponse.success = apiResponse.responseCode === "00" ? true : false;
             return apiResponse;
-        }).catch(function (error) {
+        }).catch(function () {
             apiResponse.success = false
             apiResponse.responseMessage = "Something went wrong. Please come back later.";
             apiResponse.responseCode = "01";
@@ -174,16 +174,15 @@ export async function Config() {
         .then(function (response) {
             config = response.data
             return config;
-        }).catch(function (error) {
+        }).catch(function () {
             return config;
         })
     return config;
 }
 
 const GetToken = () => {
-    let userInfo: Response.UserInfo = new Response.UserInfo();
     if (sessionStorage.getItem("***")) {
-        userInfo = JSON.parse(
+       const userInfo: Response.UserInfo = JSON.parse(
             Encryption.decrypt(sessionStorage.getItem("***") as string)
         );
         return userInfo.token

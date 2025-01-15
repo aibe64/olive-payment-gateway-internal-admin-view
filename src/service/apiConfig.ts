@@ -13,8 +13,7 @@ export const ApiConfig = {
     UpdateRoleResources: apiDomain + "Account/UpdateRolePermission",
   },
   Users: {
-    ValidateUserFirstTimeLogIn: "Account/ValidateUserFirstTimeLogIn",
-    CreateAccount: "Account/Register",
+    ValidateUserFirstTimeLogIn: "Admin/ValidateUserFirstTimeLogIn",
     GetAllIndustries: "Account/GetAllIndustries",
     GetAllCategories: "Account/GetAllCategories",
     ValidateSettlementAccount: apiDomain + "Account/ValidateSettlementAccount",

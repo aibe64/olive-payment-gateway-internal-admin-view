@@ -1,21 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminSideBar } from "./adminSideBar";
-import BankIcon from "../../images/icons/BankIcon.svg";
 import { Encryption } from "../functions/encryption";
-import { POST } from "../../service/apiService";
 import { Response } from "../../models/client/apiResponse";
-import { Request } from "../../models/client/apiRequest";
-import apiConfig from "../../service/apiConfig";
 import { allMenus } from "./menu";
-import { MerchantSideBar } from "./merchantSideBar";
-import { useSelector } from "react-redux";
+import { MERCHANT_ADMIN_PORTAL } from "@/utils";
 
 export const XpressSideBar = () => {
-  const { MerchantDetails }: any = useSelector((state: any) => state);
-  const state: Request.MerchantAccountRequest = MerchantDetails;
   const [adminName, setAdminName] = useState("");
-  const GetadminName = () => {
+  const GetAdminName = () => {
     if (sessionStorage.getItem("***")) {
       const userInfo: Response.UserInfo = JSON.parse(
         Encryption.decrypt(sessionStorage.getItem("***") as string)
@@ -58,65 +51,21 @@ export const XpressSideBar = () => {
       };
     }
   };
-  const [isAdmin, setIsAdmin] = useState(false);
   const page: any = setKey();
-  const [ssoBackendDomain, setSSOBackendDomain] = useState("");
-  const [domain, setSSOdomain] = useState("");
-  const [menu, setMenu] = useState(new Array<Response.Menu>());
   const [pageTitle, setPageTitle] = useState("Get Started");
-  // const [menus, setMenus] = useState({
-  //   Payment: "start",
-  //   Vas: "start",
-  //   Commerce: "start",
-  //   Transfers: "start",
-  //   Setup: "start",
-  //   Users: "start",
-  //   BusinessProfile: "start",
-  // });
+
   async function LogOut() {
-    let email = sessionStorage.getItem("*********") as string;
-    if (email !== null || email) {
-      let request = { email: email };
-      const response = await POST(
-        ssoBackendDomain + apiConfig.Account.LogOut,
-        request
-      );
-      if (response.success) {
-        RedirectUser();
-      } else {
-        RedirectUser();
-      }
-    } else {
-      RedirectUser();
-    }
+    RedirectUser();
   }
   const RedirectUser = async () => {
     await sessionStorage.clear();
     await sessionStorage.clear();
-    window.location.href = `${domain}?redirectTo=${window.location.origin}&lastPath=${window.location.href}`;
+    window.location.href = `${MERCHANT_ADMIN_PORTAL}`;
   };
-  async function GetConfig() {
-    await fetch("../config.json").then((response) => {
-      response.json().then(async (settings) => {
-        await setMenu(settings.Menu);
-        await setSSOdomain(settings.SSODomain);
-        await setSSOBackendDomain(settings.SSOBackendDomain);
-      });
-    });
-  }
+
   async function GetUserInfo() {
     if (!sessionStorage.getItem("***")) {
       LogOut();
-    }
-    let userInfo: Response.UserInfo = JSON.parse(
-      Encryption.decrypt(sessionStorage.getItem("***") as string)
-    );
-    if (userInfo) {
-      if (userInfo.isInternalUser) {
-        await setIsAdmin(true);
-      } else {
-        await setIsAdmin(false);
-      }
     }
   }
   async function GetPageName() {
@@ -137,25 +86,35 @@ export const XpressSideBar = () => {
   }
 
   useEffect(() => {
-    GetConfig();
     GetPageName();
     GetUserInfo();
-    GetadminName();
+    GetAdminName();
   }, []);
   return (
-    <nav className="w-[15rem] flex flex-col gap-7 py-5 bg-primary min-h-screen">
-      <div className="px-5">
-        <h1 className="text-[1.1rem]">{adminName}</h1>
+    <nav className="w-[15rem] flex flex-col gap-7 py-5 bg-primary min-h-screen justify-between">
+      <div className="flex flex-col gap-5">
+        {" "}
+        <div className="px-5">
+          <h1 className="text-[1rem] text-white">{adminName}</h1>
+        </div>
+        <AdminSideBar
+          OpenMenu={() => {}}
+          CollapseMenu={() => {}}
+          setPageTitle={setPageTitle}
+          pageTitle={pageTitle}
+          menus={{}}
+          page={page}
+        />
       </div>
-      <AdminSideBar
-        OpenMenu={() => {}}
-        CollapseMenu={() => {}}
-        setPageTitle={setPageTitle}
-        pageTitle={pageTitle}
-        menus={{}}
-        menu={menu}
-        page={page}
-      />
+
+      <footer
+       className="px-2 text-white text-[0.7rem]"
+      >
+        <span>
+          Xpress Payment Solutions Limited - <br />
+          Licensed by the Central Bank of Nigeria
+        </span>
+      </footer>
     </nav>
   );
 };

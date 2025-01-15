@@ -15,7 +15,7 @@ import UnAuthorizePage from "../../../shared/components/unAuthorizePage";
 import SearchDatatable from "../../../shared/functions/searchDatatable";
 import { XpressLayout } from "../../../shared/layout";
 
-export const AdminUsers: React.FC = (props) => {
+export const AdminUsers: React.FC = () => {
   const [rows, setRow] = useState([] as any);
   const [originalRows, setOriginalRows] = useState([] as any);
   const [column, setColumn] = useState([] as any);
@@ -119,9 +119,8 @@ export const AdminUsers: React.FC = (props) => {
     }
   }
   const GetToken = () => {
-    let userInfo: Response.UserInfo = new Response.UserInfo();
     if (sessionStorage.getItem("***")) {
-      userInfo = JSON.parse(
+     const userInfo: Response.UserInfo = JSON.parse(
         Encryption.decrypt(sessionStorage.getItem("***") as string)
       );
       return userInfo.token;

@@ -11,6 +11,9 @@
 body {
   font-family: 'InterRegular'
 }
+.ant-menu-submenu-arrow{
+  color: white !important
+}
 
 .ant-menu-title-content {
   color: white !important

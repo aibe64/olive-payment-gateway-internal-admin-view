@@ -8,7 +8,6 @@ import SettingsIcon from "../../images/icons/Settingsicon.svg";
 import ProductIcon from "../../images/icons/Producticon.svg";
 import PaymentPageIcon from "../../images/icons/PaymentPageicon.svg";
 import OrdersIcon from "../../images/icons/Ordersicon.svg";
-import AuditlogIcon from "../../images/icons/Auditlogicon.svg";
 import ApproveIcon from "../../images/icons/Complianceicon.svg";
 import { useNavigate } from "react-router-dom";
 import { Props } from "../../models/application/props";
@@ -43,8 +42,8 @@ export const AdminSideBar: React.FC<Props.LeftSideBarProps> = (props) => {
             <span className="text-white">DASHBOARD</span>
           </Menu.Item>
           <Menu.Item
-            onClick={() => navigate("/admin/Home")}
-            key="1"
+            onClick={() => navigate("/admin/merchants")}
+            key="2"
             icon={
               <img
                 alt=""
@@ -257,7 +256,7 @@ export const AdminSideBar: React.FC<Props.LeftSideBarProps> = (props) => {
                 ? "#5BAE7D"
                 : "#006F01"
             }}
-              key="601"
+              key="607"
               icon={
                 <img
                   alt=""
@@ -279,6 +278,11 @@ export const AdminSideBar: React.FC<Props.LeftSideBarProps> = (props) => {
             <Menu.Item
               key="701"
               onClick={() => navigate("/admin/approval/merchant-approval")}
+              style={{
+                background: isActive("/admin/approval/merchant-approval")
+                  ? "#5BAE7D"
+                  : "#006F01"
+              }}
               icon={
                 <img
                   alt=""
@@ -290,20 +294,6 @@ export const AdminSideBar: React.FC<Props.LeftSideBarProps> = (props) => {
               Merchants
             </Menu.Item>
           </SubMenu>
-          <Menu.Item
-            style={{ marginTop: "40px" }}
-            onClick={() => navigate("/Home")}
-            key="25"
-            icon={
-              <img
-                alt=""
-                src={AuditlogIcon}
-                style={{ height: 14, width: 20 }}
-              />
-            }
-          >
-            <span>AUDIT LOGS</span>
-          </Menu.Item>
           <Menu.Item
             onClick={() => navigate("/Home")}
             key="26"

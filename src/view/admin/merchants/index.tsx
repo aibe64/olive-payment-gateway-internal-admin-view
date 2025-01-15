@@ -21,10 +21,11 @@ import PendingIcon from "../../../images/icons/PendingIcon.svg";
 import { Notification } from "../../../shared/components/notification";
 import { XpressLayout } from "../../../shared/layout";
 
-export const MerchantSetup: React.FC = (props) => {
+export const MerchantSetup: React.FC = () => {
   const [rows, setRow] = useState([] as any);
   const [originalRows, setOriginalRows] = useState([] as any);
   const [column, setColumn] = useState([] as any);
+  console.log("first")
   const [merchant, setMerchant] = useState(
     new Request.RegisteredMerchantRequest()
   );

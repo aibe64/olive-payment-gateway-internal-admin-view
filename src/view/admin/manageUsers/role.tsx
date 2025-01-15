@@ -17,7 +17,7 @@ import UnAuthorizePage from "../../../shared/components/unAuthorizePage";
 import { Encryption } from "../../../shared/functions/encryption";
 import { XpressLayout } from "../../../shared/layout";
 
-export const AdminRole: React.FC = (props) => {
+export const AdminRole: React.FC = () => {
   const [state, setState] = useState({
     isEdit: false,
     errorMessage: "",
@@ -197,9 +197,8 @@ export const AdminRole: React.FC = (props) => {
     }
   };
   const GetToken = () => {
-    let userInfo: Response.UserInfo = new Response.UserInfo();
     if (sessionStorage.getItem("***")) {
-      userInfo = JSON.parse(
+      const userInfo: Response.UserInfo  = JSON.parse(
         Encryption.decrypt(sessionStorage.getItem("***") as string)
       );
       return userInfo.token;
