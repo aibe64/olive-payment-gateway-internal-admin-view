@@ -1,0 +1,43 @@
+{
+  "responseCode": "00",
+  "data": {
+    "pendingTransaction": 1500,
+    "pendingTransactionCount": 20,
+    "totalTransaction": 10000,
+    "totalTransactionCount": 150,
+    "successfulTransaction": 9000,
+    "successfulTransactionCount": 130,
+    "failedTransaction": 1000,
+    "failedTransactionCount": 20,
+    "categoriesReport": [
+      {
+        "name": "Utilities",
+        "value": 5000
+      },
+      {
+        "name": "Entertainment",
+        "value": 2000
+      }
+    ],
+    "billersReport": [
+      {
+        "name": "Netflix",
+        "value": 1500
+      },
+      {
+        "name": "Amazon",
+        "value": 3000
+      }
+    ],
+    "productsReport": [
+      {
+        "name": "Product A",
+        "value": 1200
+      },
+      {
+        "name": "Product B",
+        "value": 2800
+      }
+    ]
+  }
+}

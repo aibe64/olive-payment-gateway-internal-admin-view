@@ -1,16 +1,22 @@
+import { ToastContainer } from "react-toastify";
 import { Suspense } from "react";
-import "./index.css";
-import { PageRouter } from "./shared/components/pageRouter";
-import { XpressLoader } from "./shared/components/loader";
-import IdleTimer from "./shared/components/idleTime";
+import "./App.css";
+import { LazyLoader, PageLoader, XpressModal } from "@/components";
+import { AppRoutes } from "./routes";
 
 function App() {
   return (
-    <Suspense fallback={<XpressLoader />}>
-      <IdleTimer />
-      <section className="xpress-container">
-        <PageRouter />
-      </section>
+    <Suspense
+      fallback={
+        <>
+          <PageLoader />
+          <LazyLoader />
+        </>
+      }
+    >
+      <AppRoutes />
+      <ToastContainer />
+      <XpressModal />
     </Suspense>
   );
 }

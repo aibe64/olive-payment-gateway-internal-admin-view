@@ -1,0 +1,23 @@
+{
+  "responseCode": "00",
+  "data": {
+    "hasNextRecord": false,
+    "totalCount": 0,
+    "transactionDTOS": [
+      {
+        "transactionId": 12345,
+        "transactionDate": "2024-09-20T12:34:56Z",
+        "amount": 100.5,
+        "currency": "USD",
+        "status": "Completed"
+      },
+      {
+        "transactionId": 12346,
+        "transactionDate": "2024-09-19T11:30:00Z",
+        "amount": 250.0,
+        "currency": "EUR",
+        "status": "Pending"
+      }
+    ]
+  }
+}

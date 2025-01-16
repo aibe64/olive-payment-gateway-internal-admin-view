@@ -1,2 +1,1 @@
-export * from "./apiRequest"
-export * from "./apiResponse"
+export * from "./response"

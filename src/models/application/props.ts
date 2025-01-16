@@ -1,450 +1,152 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-import { Request } from "../client/apiRequest";
-import { Response } from "../client/apiResponse";
-import { FormAttributeModel } from "./formAttributeModel";
-import { State } from "./state";
+import { FC, ReactNode } from "react";
+import { FormInstance, Rule } from "antd/es/form/index";
+import {
+  ColumnGroupType,
+  ColumnType,
+  TableRowSelection,
+} from "antd/es/table/interface";
+import { ApiConfigModel, ValidateFetchConfig } from "./arguments";
+import { MenuProps } from "rc-menu";
 
 export namespace Props {
-  export class RegistrationProps {
-    alert: AlertModel = new AlertModel("success", "");
-    HandleSubmit(e: React.FormEvent<HTMLFormElement>) {}
-    FetchConfig() {}
-    setShow(show: boolean = false) {}
-    executing?: boolean;
-    validated?: boolean;
-    isLoading?: boolean;
-    noInternet?: boolean;
-    disableField?: boolean;
-    invalidUser?: boolean;
-    userAccount?: Request.UserAccount;
-    setChangeUserAccount(e: React.SetStateAction<Request.UserAccount>) {}
-    CheckIsDeveloper(e: React.ChangeEvent<HTMLInputElement>) {}
-    setFieldValue(number: string) {}
-    GoBack() {}
+  export interface LandingPageLayout {
+    appName: string;
+    appMotto: string;
+    appDescription: string;
+    appDescriptionImage: string;
+    appLogo: string;
+  }
+  export interface MenuListProps {
+    label: string;
+    path?: string;
+    icon?: FC<{
+      color: string;
+    }>;
+    children?: MenuListProps[];
+  }
+  export interface TableData<T> {
+    dataSource: T[];
+    columns: (ColumnGroupType<T> | ColumnType<T>)[];
+    spinning?: boolean;
+    total?: number;
+    pageSize?: number;
+    onPagination?: (page: number, size: number) => void;
+    onRowSelection?: (_rowIndex: number, record: any) => void;
+    shouldExpand?: boolean;
+    scrollX?: number;
+    isNotPaginated?: boolean;
+    emptyParagraphText?: string;
+    emptyHeadingText?: string;
+    rowSelection?: TableRowSelection<T>;
+    page?: number;
   }
 
-  export class ButtonLoaderProps {
-    executing?: boolean;
-    actionName?: string;
-  }
+  export interface Field {
+    name: string;
+    value?: any;
+    required?: boolean;
+    label?: string | ReactNode[];
+    formClassNames?: string;
+    labelClassNames?: string;
+    fieldErrorMessage?: string;
+    telHeight?: string;
+    customFieldValidationRules?: Rule[];
+    disabledDate?: any;
+    defaultValue?: any;
+    classNames?: string;
+    addonBefore?: any;
+    checkboxChildren?: string | JSX.Element;
+    validator?:
+      | "bvn"
+      | "email"
+      | "phone"
+      | "onlyAphabet"
+      | "onlyNumber"
+      | "url"
+      | "exist_on_db"
+      | "amountRange";
+    validatorFetchConfig?: ValidateFetchConfig;
+    showPasswordMeter?: boolean;
+    type?:
+      | "password"
+      | "select"
+      | "date"
+      | "tel"
+      | "search"
+      | "number"
+      | "dropdown"
+      | "text"
+      | "text-area"
+      | "checkbox"
+      | "email";
 
-  export class NotificationModalProps {
-    open: boolean = false;
-    handleClose() {}
-  }
-
-  export class AlertProps {
-    alert?: AlertModel;
-    setShow(
-      show: boolean = false,
-      isError: boolean = true,
-      message: string = ""
-    ) {
-      this.alert = !isError
-        ? new AlertModel("success", message)
-        : new AlertModel("error", message);
-      this.alert?.setShow(true);
-    }
-  }
-
-  export class AlertModel {
-    message?: string;
-    type?: string;
-    show: boolean = false;
-    constructor(type: string, message: string, show: boolean = false) {
-      this.message = message;
-      this.type = type;
-      this.show = show;
-    }
-    setShow(show: boolean = false) {
-      this.show = show;
-    }
-  }
-
-  export class ComplianceProps {
-    onSubmitNextButton(
-      e: React.FormEvent<HTMLFormElement>,
-      tabName: string,
-      isPreview: boolean = true,
-      tabActiveStatus: number = 0
-    ) {}
-    onClickPreviousButton(tabName: string, isPreview: boolean) {}
-    setMerchant(e: React.SetStateAction<Request.MerchantAccountRequest>) {}
-    setFieldValue(number: string) {}
-    complianceTab?: string;
-    setComplianceTab(value: React.SetStateAction<string>) {}
-    validated?: boolean;
-    isPreview?: boolean;
-    merchant?: Request.MerchantAccountRequest;
-    banks?: Array<Response.Banks>;
-    uploading?: boolean;
-    showIndividualMerchantCategory?: boolean;
-    accountResponse?: Response.SettlementAccountResponse;
-    setShowIndividualMerchantCategory(e: React.SetStateAction<boolean>) {}
-    SetBusinessIdentificationValidID(value: string, fileCategory: string) {}
-    SetBusinessIdentificationValidIDIdentification(
-      value: string,
-      fileCategory: string
-    ) {}
-    UploadFile(
-      files: File,
-      fileTCategory: string,
-      isBusinessFiles: boolean = false
-    ) {}
-    setUserIdentification(
-      e: React.SetStateAction<Array<Request.UserIdentification>>
-    ) {}
-    setBusinessIdentification(
-      e: React.SetStateAction<Request.BusinessIdentification>
-    ) {}
-    userIdentification?: Array<Request.UserIdentification>;
-    businessIdentification?: Request.BusinessIdentification;
-    governmentIdentification?: Array<Request.GovernmentIdentification>;
-    SetDocumentComplianceTab() {}
-    ValidateAccount(accountNumber: string, bankCode: string) {}
-    isValidating?: boolean = false;
-    ChangeDocumentCategory(
-      value: string,
-      fileCategory: string,
-      isIDnumber: boolean = false
-    ) {}
-    SaveProfile(
-      tabName: string,
-      isCompleted: boolean = false,
-      tabActiveStatus: number,
-      registrationStatus: number,
-      tabNumber: number
-    ) {}
-  }
-
-  export class MerchantProfilePreview {
-    merchant?: Request.MerchantAccountRequest;
-    SaveProfile(
-      tabName: string,
-      isCompleted: boolean = false,
-      tabActiveStatus: number,
-      registrationStatus: number,
-      tabNumber: number
-    ) {}
-    complianceTab?: string;
-    setComplianceTab(value: React.SetStateAction<string>) {}
-    setMerchant(e: React.SetStateAction<Request.MerchantAccountRequest>) {}
-    userIdentification?: Array<Request.UserIdentification>;
-    governmentIdentification?: Array<Request.GovernmentIdentification>;
-    businessIdentification?: Request.BusinessIdentification;
-    banks?: Array<Response.Banks>;
-    onClickPreviousButton(tabName: string, isPreview: boolean) {}
-  }
-
-  export class TabProps {
-    isPreview?: boolean;
-    merchant?: Request.MerchantAccountRequest;
-    tabName?: string;
-    tabActiveStatus?: number;
-  }
-
-  export class TestKeyProps {
-    privateKey?: string;
-    publicKey?: string;
-  }
-
-  export interface MerchantKycTableProps {
-    datatable?: any;
-    approvedApprovalDatatable?: any;
-    rejectedApprovalDatatable?: any;
-    allApprovalDatatable?: any;
-    activeButtons?: FormAttributeModel.ActiveApprovalButton;
-  }
-
-  export class DataTable {
-    columns?: [];
-    rows?: [];
-    size?: number;
+    prefix?: React.ReactNode;
+    suffix?: React.ReactNode;
+    items?: Array<{ label?: string; value?: any }>;
+    isAmountField?: boolean;
+    dropDownItems?: MenuProps["items"];
+    onSelectDropDownCallBack?: (value: any) => void;
+    onOpenDropDown?: () => void;
+    validateStatus?: "" | "success" | "warning" | "error" | "validating";
+    hasFeedback?: boolean;
+    help?: string;
     loading?: boolean;
+    onBlur?: React.FocusEventHandler<HTMLInputElement> | undefined;
+    onSearch?: () => void | undefined;
+    maxLength?: number | undefined;
+    minLength?: number | undefined;
+    validate?: any;
+    showCount?: boolean;
+    searchText?: string;
+    confirmPassword?: { passwordkey?: string };
+    readonly?: boolean;
+    defaultCountryFlag?: string;
+    defaultCountryCode?: string;
+    placeholder?: string;
+    onChange?: (val: string) => void;
   }
-
-  export class FilterButtonProps {
-    Search(value: string) {}
-    activeButtons?: FormAttributeModel.ActiveApprovalButton;
-    ActivateButton(buttonCode: number) {}
-    excelData?: ExcelData;
-  }
-  export class ExcelData {
-    title?: string = "";
-    buttonName: string = "Download"
-    rows?: [];
-    column?: [];
-    fileName?: string = "";
-  }
-
-  export class SetupHeaders {
-    Search(value: string) {}
-    OpenCreateSetupMenuModal() {}
-    showAddButton?: boolean;
-    addButtonNmae?: string;
-  }
-
-  export class Header {
-    Search(value: string) {}
-    OpenCreateModal() {}
-    excelData?: ExcelData;
-    showCreateButton?: boolean;
-  }
-
-  export class ProviderModal {
-    setModal(e: React.SetStateAction<boolean>) {}
-    showModal?: boolean;
-    banks?: Array<Response.Banks>;
-    providerRequest?: Request.ProviderRequest;
-    setProviderRequest(e: React.SetStateAction<Request.ProviderRequest>) {}
-    CreateProvider() {}
-    UpdateProvider() {}
+  export interface Button {
+    form?: FormInstance;
+    title: string;
+    htmlType?: "button" | "submit" | "reset" | "link" | undefined;
+    block?: boolean;
+    onClick?: () => void;
     loading?: boolean;
-    isEdit?: boolean;
-    isError?: boolean;
-    errorMessage?: string;
+    classNames?: string;
+    callApi?: boolean;
+    disabled?: boolean;
+    customApiConfigs?: {
+      endpoint: string;
+      method: "POST" | "GET";
+      callBackFunction?: (apiResponse?: any) => void;
+      customPayload: any;
+    };
   }
-  export class MerchantModal {
-    setModal(e: React.SetStateAction<boolean>) {}
-    showModal?: boolean;
-    merchantRequest?: Request.RegisteredMerchantRequest;
-    setMerchantRequest(
-      e: React.SetStateAction<Request.RegisteredMerchantRequest>
-    ) {}
-    UpdateMerchant() {}
-    ValidateAccountNumber() {}
-    MapMerchant() {}
-    loading?: boolean;
-    processingMapping?: boolean;
-    isError?: boolean;
-    errorMessage?: string;
-    transactionLimits?: Response.TransactionLimitResponse;
-    validating?: boolean;
+  export interface SubmitButton extends Button {
+    form?: FormInstance;
   }
-  export class TransactionReprtModal {
-    setModal(e: React.SetStateAction<boolean>) {}
-    showModal?: boolean;
-    transaction?: Response.TransactionReport;
+  export interface FormProp<T> extends React.HTMLAttributes<T> {
+    form?: FormInstance<T>;
+    children?: JSX.Element[] | JSX.Element;
+    classNames?: string;
+    apiCallBackResponse?: () => void;
+    customValues?: any;
+    extraValues?: T;
+    postUrl?: string;
+    callFetch?: boolean;
+    payloadRemovedKey?: string;
+    layout?: "vertical" | "horizontal";
+    onCallBack?: () => void;
+    onFinish?: ((values: T) => void) | undefined;
+    apiKeys?: Array<string>;
+    callApi?: boolean;
+    apiConfig?: ApiConfigModel;
+    requiredMark?: boolean;
   }
-  export class MerchantApprovalModal {
-    setModal(e: React.SetStateAction<boolean>) {}
-    showModal?: boolean;
-    merchantRequest?: Request.MerchantApproval;
-    setMerchantRequest(e: React.SetStateAction<Request.MerchantApproval>) {}
-    ApproveMerchant() {}
-    DisapproveMerchant() {}
-    loading?: boolean;
-    loadingDisapproval?: boolean;
-    isError?: boolean;
-    errorMessage?: string;
-  }
-  export class InstitutionModal {
-    setModal(e: React.SetStateAction<boolean>) {}
-    showModal?: boolean;
-    institutionRequest?: Request.BankRequest;
-    setInstitutionRequest(e: React.SetStateAction<Request.BankRequest>) {}
-    UpdateInstitution() {}
-    loading?: boolean;
-    isEdit?: boolean;
-    isError?: boolean;
-    errorMessage?: string;
-  }
-  export class MerchantUserModalProps {
-    setModal(e: React.SetStateAction<boolean>) {}
-    showModal?: boolean;
-    userRequest?: Request.MerchantUserRequest;
-    setUserRequest(e: React.SetStateAction<Request.MerchantUserRequest>) {}
-    CreateUser() {}
-    UpdateUser() {}
-    loading?: boolean;
-    isEdit?: boolean;
-    isError?: boolean;
-    errorMessage?: string;
-    roles?: Array<Response.MerchantRoles>;
-  }
-  export class MerchantRoleResourcesModalProps {
-    setModal(e: React.SetStateAction<boolean>) {}
-    showModal?: boolean;
-    roleResourcesRequest?: Request.RoleAndPermission;
-    setRoleResourcesRequest(
-      e: React.SetStateAction<Request.RoleAndPermission>
-    ) {}
-    CreateRoleResources() {}
-    UpdateRoleResources() {}
-    loading?: boolean;
-    isEdit?: boolean;
-    isError?: boolean;
-    errorMessage?: string;
-  }
-  export class BinHeader {
-    Search(value: string) {}
-    OpenCreateBinModal() {}
-  }
-
-  export class BinModal {
-    setModal(e: React.SetStateAction<boolean>) {}
-    cardBrand?: Array<Response.CardBrandResponse>;
-    showModal?: boolean;
-    binRequest?: Request.BinRequest;
-    providers?: Array<Response.ProviderResponse>;
-    setBinRequest(e: React.SetStateAction<Request.BinRequest>) {}
-    CreateBin() {}
-    UpdateBin() {}
-    loading?: boolean;
-    isEdit?: boolean;
-    isError?: boolean;
-    show?: boolean;
-    errorMessage?: string;
-  }
-  export class TransactionManageModal {
-    setModal(e: React.SetStateAction<boolean>) {}
-    cardBrand?: Array<Response.CardBrandResponse>;
-    showModal?: boolean;
-    tranManagerRequest?: Request.TransactionManagerRequest;
-    providers?: Array<Response.ProviderResponse>;
-    setTranManagerRequest(
-      e: React.SetStateAction<Request.TransactionManagerRequest>
-    ) {}
-    UpdateTransactionManager() {}
-    loading?: boolean;
-  }
-  export class TransactionLimitModal {
-    setModal(e: React.SetStateAction<boolean>) {}
-    showModal?: boolean;
-    tranLimitRequest?: Request.TransactionLimitRequest;
-    setTranLimitRequest(
-      e: React.SetStateAction<Request.TransactionLimitRequest>
-    ) {}
-    UpdateTransactionLimit() {}
-    CreateTransactionLimit() {}
-    loading?: boolean;
-    isCreate?: boolean;
-  }
-  export class TranManagerHeader {
-    Search(value: string) {}
-  }
-  export class TranLimitHeader {
-    showAddButton?: boolean;
-    Search(value: string) {}
-    OpenCreateModal() {}
-  }
-
-  export class MerchantDetails {
-    merchant?: Response.MerchantDetails;
-    merchantKycRequest?: Request.MerchantKYCRequest;
-    setMerchantKycRequest(
-      e: React.SetStateAction<Request.MerchantKYCRequest>
-    ) {}
-    CancelViewMerchantKYC() {}
-    executingFileViewer?: boolean;
-    ViewFile(
-      fileId: number,
-      uri: string,
-      fileName: string,
-      download: boolean
-    ) {}
-    DownloadAllDocuments() {}
-    ApproveMerchantKYC() {}
-    validated?: boolean;
-    executing?: boolean;
-    appoval?: FormAttributeModel.ActiveApprovalButton;
-    transactionLimit?: Response.TransactionLimitResponse;
-  }
-
-  export class EditMerchantProps {
-    merchant?: Response.MerchantDetails;
-    showModal?: boolean;
-    setModal(e: React.SetStateAction<boolean>) {}
-  }
-
-  export class ModalAlertProps {
-    show?: boolean;
-    hide?: boolean;
-    message?: string;
-    noOfApproveditem?: string;
-    noOfDissapprovedItem?: string;
-    isApproved?: boolean;
-    isSuccess?: boolean = true;
-    handleClose() {}
-  }
-
-  export class ActivateBusinessProps {
-    isCompleteRegistration?: boolean;
-  }
-
-  export class LeftSideBarProps {
-    pageTitle?: string;
-    setPageTitle(e: React.SetStateAction<string>) {}
-    menu?: Array<Response.Menu>;
-    CollapseMenu() {}
-    OpenMenu(menuName: string) {}
-    menus?: Menus;
-    page?: { key: string; subKey: string };
-  }
-  export class Menus {
-    Payment?: string;
-    Vas?: string;
-    Commerce?: string;
-    Transfers?: string;
-    BusinessProfile?: string;
-    Setup?: string;
-    Users?: string;
-    Home?: string;
-  }
-
-  export class FileViewerProps {
-    fileByte?: string;
-    fileSize?: string;
-    fileName?: string;
-    CancelFileViewer() {}
-    fileExtension?: string;
-  }
-  export class ReportHeader {
-    startDate?: string;
-    endDate?: string;
-    download() {}
-    downloadMetaData?: ()=>{}
-    onChangeDateRange(date: any, dateString: any) {}
-    Search(value: string, filterType: string = "") {}
-    merchants?: Array<Response.MerchantDetails>;
-    disableMerchant?: boolean;
-    excelData?: ExcelData;
-    excelMetaData?: ExcelData;
-    downloading?: boolean;
-    isMerchant?:boolean;
-  }
-
-  export class CookiesProps {
-    handleClose() {}
-    handlePrivacy() {}
-  }
-
-  export class UnAuthorizedPageProps {
-    claim?: string;
-  }
-  export class PGTheme {
-    setModal(e: React.SetStateAction<boolean>) {}
-  }
-
-  export class PGThemeModalProps extends PGTheme {
-    showModal?: boolean;
-    loading?: boolean;
-    isError?: boolean;
-    errorMessage?: string;
-    color?: string;
-    setColor(e: React.SetStateAction<string>) {}
-  }
-  export class VideoTour {
-    TakeATourVideo() {}
-  }
-
-  export interface UploadDiv {
-    showButton?: boolean;
-    size?: "large" | "small";
-    uploadType: keyof State.UploadList;
-  }
-
-  export class CommercePageHeaderProps {
-    pageName?: "product" | "payment";
+  export interface TableAction<T> {
+    record?: T;
+    pageName: string;
+    actions: Array<"View" | "Edit" | "Approve" | "Disapprove" | "Delete">;
+    components?: { Edit?: JSX.Element; View?: JSX.Element };
   }
 }

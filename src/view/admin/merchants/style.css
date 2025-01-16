@@ -1,6 +1,0 @@
-.admin-merchant-container{
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 50px auto;
-    margin-top:20px;
-}
