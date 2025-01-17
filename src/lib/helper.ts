@@ -95,3 +95,27 @@ export const shortenURL = (url: string) => {
       : hostname;
   return `${protocol}//${shortenedHostname}${port}${pathname}`;
 };
+
+export const getQueryStringValue = (queryKey: string) => {
+  const urlObj = new URL(window.location.href);
+  return urlObj.searchParams.get(queryKey);
+};
+
+export const cleanDecimalInput = (input: string) => {
+  // Remove all non-numeric characters except for a single dot
+  let cleaned = input.replace(/[^0-9.]/g, "");
+
+  // Ensure only one dot is allowed
+  const parts = cleaned.split(".");
+  if (parts.length > 2) {
+    cleaned = parts[0] + "." + parts.slice(1).join("");
+  }
+  //Replace multiple dots with a single dot and remove all but the first one
+  cleaned
+    .replace(/\.+/g, ".")
+    .replace(
+      /(.*?)\.(.*)/,
+      (_match, p1: string, p2: string) => p1 + "." + p2.replace(/\./g, "")
+    );
+  return cleaned;
+};

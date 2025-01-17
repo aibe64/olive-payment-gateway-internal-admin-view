@@ -5,7 +5,7 @@ import {
   ColumnType,
   TableRowSelection,
 } from "antd/es/table/interface";
-import { ApiConfigModel, ValidateFetchConfig } from "./arguments";
+import { ActionDetails, ApiConfigModel, ValidateFetchConfig } from "./arguments";
 import { MenuProps } from "rc-menu";
 
 export namespace Props {
@@ -146,7 +146,32 @@ export namespace Props {
   export interface TableAction<T> {
     record?: T;
     pageName: string;
-    actions: Array<"View" | "Edit" | "Approve" | "Disapprove" | "Delete">;
-    components?: { Edit?: JSX.Element; View?: JSX.Element };
+    actions: Array<{
+      title: string;
+      action: TableActions;
+      modalWidth?: number;
+      downloadName?: string;
+    }>;
+    components?: {
+      Edit?: JSX.Element;
+      View?: JSX.Element;
+      Download?: JSX.Element;
+      Custom?: JSX.Element;
+    };
+    details?: Array<ActionDetails>;
   }
 }
+export type TableActions =
+  | "View"
+  | "Edit"
+  | "Update"
+  | "Approve"
+  | "Disapprove"
+  | "Delete"
+  | "Activate"
+  | "Others"
+  | "Deactivate"
+  | "Download"
+  | "Custom"
+  | "none"
+  | "Status";

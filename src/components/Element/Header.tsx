@@ -5,7 +5,7 @@ import {
   CaretDownOutlined,
 } from "@ant-design/icons";
 import { NotificationIcon } from "@/assets";
-import { FC, ReactNode, useState } from "react";
+import { useState } from "react";
 import { APIResponse } from "@/models";
 import { Avatar, Drawer, Dropdown, MenuProps } from "antd";
 import { Link } from "react-router-dom";
@@ -14,7 +14,7 @@ import { usePageStore, AppStorage } from "@/store";
 import { ROUTE_PATH, State } from "@/models";
 import { XpressSideBar } from "../Layout";
 
-const Header: FC<{ children?: ReactNode }> = ({ children }) => {
+const Header = () => {
   const { showLogout } = usePageStore<State.Layout>((state) => state);
   const userInfo = AppStorage.getItem<APIResponse.LoginInfo>("");
   const { themeMode, toggleTheme } = useTheme();
@@ -39,8 +39,7 @@ const Header: FC<{ children?: ReactNode }> = ({ children }) => {
         onClick={() => setOpen(true)}
         className="lg:!hidden dark:text-[#FFFFFF]"
       />
-      <div className="flex items-center w-full justify-end lg:justify-between">
-        {children}
+      <div className="flex items-center w-full justify-end">
         <div className="flex items-center gap-5 justify-end">
           <NotificationIcon
             color={themeMode === "dark" ? "#FFFFFF" : "#000000"}

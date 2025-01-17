@@ -1,38 +1,12 @@
 import React from "react";
-import { Dropdown, MenuProps, Tooltip, Typography } from "antd";
-import { Link } from "react-router-dom";
-import { CaretDownOutlined } from "@ant-design/icons";
-import { ROUTE_PATH } from "@/models";
+import { Tooltip, Typography } from "antd";
+import { AppStorageKeys } from "@/models";
 import { XpressMenuItems } from "../UI";
 import { AppStorage } from "@/store";
 import { APIResponse } from "@/models/client";
 
 const SideBar: React.FC<{ className?: string }> = ({ className }) => {
-  const userInfo = AppStorage.getItem<APIResponse.LoginInfo>("");
-
-  const items: MenuProps["items"] = [
-    {
-      key: "1",
-      label: <Link to={ROUTE_PATH.Users}>Developer Docs</Link>,
-    },
-    { type: "divider" },
-    {
-      key: "2",
-      label: <Link to={ROUTE_PATH.Users}>Support</Link>,
-    },
-    { type: "divider" },
-    {
-      key: "3",
-      label: (
-        <Link to={ROUTE_PATH.Users}>Merchant ID: {userInfo?.merchantId}</Link>
-      ),
-    },
-    { type: "divider" },
-    {
-      key: "4",
-      label: <Link to={ROUTE_PATH.Landing}>Logout</Link>,
-    },
-  ];
+  const userInfo = AppStorage.getItem<APIResponse.LoginInfo>(AppStorageKeys.UserInfo);
 
   return (
     <nav
@@ -53,21 +27,10 @@ const SideBar: React.FC<{ className?: string }> = ({ className }) => {
                 }}
                 className="!text-[1.1rem] !font-inter-semibold !text-ellipsis !whitespace-nowrap !w-48"
               >
-                {userInfo?.firstName?.toUpperCase() ?? "Xpresspay"}
+                {userInfo?.userRole}
               </Typography>
             </Tooltip>
-            {userInfo?.merchantId && (
-              <Typography className="!text-[0.8rem]">
-                Merchant ID:{" "}
-                <button type="button" className="text-[#FF6D00]">
-                  {userInfo?.merchantId}
-                </button>
-              </Typography>
-            )}
           </div>
-          <Dropdown menu={{ items }} placement="bottom" rootClassName="p-10">
-            <CaretDownOutlined className="dark:text-[#FFFFFF]" />
-          </Dropdown>
         </div>
         <XpressMenuItems />
       </div>

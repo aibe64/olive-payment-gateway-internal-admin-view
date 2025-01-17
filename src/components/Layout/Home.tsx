@@ -19,10 +19,7 @@ export const HomeLayout = () => {
         {isApproved && (
           <WarningHeader message="Upgrade your kyc to use this service." />
         )}
-        <XpressHeader>
-          {" "}
-          <div>Title</div>
-        </XpressHeader>
+        <XpressHeader/>
         <section className="p-2 md:p-5 md:pr-16 bg-[#FAFAFA] dark:bg-[#121212] overflow-auto">
           <Outlet />
         </section>

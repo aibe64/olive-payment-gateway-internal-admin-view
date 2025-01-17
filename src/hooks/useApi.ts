@@ -73,7 +73,7 @@ export const useAPI = <T>({
         setState("originalTableData", []);
         formState.setIsProcessing(false);
         const error: BaseQueryErrorResponse =
-        result.error as BaseQueryErrorResponse;
+          result.error as BaseQueryErrorResponse;
         if (formState.onError) {
           formState.onError(error?.data);
         } else if (!callGetApiOnRender) {
@@ -153,7 +153,7 @@ export const useAPI = <T>({
       getData,
       formState.setIsProcessing,
       formState.setFormState,
-      formState.setFormState
+      formState.setFormState,
     ]
   );
 
@@ -167,6 +167,7 @@ export const useAPI = <T>({
         showToastAfterApiResponse,
         clearPayloadAfterApiSuccessResponse,
         reloadTable,
+        callBackApiError,
       } = action;
       formState.setFormState("isProcessing", true);
       const response = await postData({
@@ -206,16 +207,26 @@ export const useAPI = <T>({
         if (error?.status && error.status === 400) {
           generateBadRequestErrorMessage(error);
         } else if (error.status !== 401) {
-          Notify(
-            "Sorry, Error occurred from the server while posting details",
-            false
-          );
+          if (callBackApiError) {
+            callBackApiError(
+              "Sorry, Error occurred from the server while posting details"
+            );
+          } else {
+            Notify(
+              "Sorry, Error occurred from the server while posting details",
+              false
+            );
+          }
         }
       } else if (
         response.data &&
         response.data?.responseCode !== APIResponseCode.Success
       ) {
-        Notify(response.data?.responseMessage, false);
+        if (callBackApiError) {
+          callBackApiError(response.data?.responseMessage);
+        } else {
+          Notify(response.data?.responseMessage, false);
+        }
       }
     },
     [
@@ -228,14 +239,25 @@ export const useAPI = <T>({
     ]
   );
 
-  const generateBadRequestErrorMessage = (error: any) => {
+  const generateBadRequestErrorMessage = (
+    error: any,
+    callBackApiError?: (errorMessage: string) => void
+  ) => {
     if (error?.data?.responseMessage) {
-      Notify(error?.data?.responseMessage, false);
+      if (callBackApiError) {
+        callBackApiError(error?.data?.responseMessage);
+      } else {
+        Notify(error?.data?.responseMessage, false);
+      }
     } else {
       const apiError: APIResponse.Error = error?.data;
       const errorFields: string[] = Object.keys(apiError.errors);
       let message = `${camelCaseToTitle(errorFields[0])} is required`;
-      Notify(message.replace("$.", ""), false);
+      if (callBackApiError) {
+        callBackApiError(message.replace("$.", ""));
+      } else {
+        Notify(message.replace("$.", ""), false);
+      }
     }
   };
 

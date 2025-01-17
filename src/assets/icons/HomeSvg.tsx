@@ -4,17 +4,39 @@ interface HomeSvgProps {
 const HomeSvg: React.FC<HomeSvgProps> = ({ color }) => {
   return (
     <svg
-      width="13"
-      height="13"
-      viewBox="0 0 13 13"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M6.62813 0.584351L12.5906 6.02185L11.925 6.68748L10.9781 5.82873V11.9469L10.5094 12.4156H7.69688L7.22813 11.9469V8.6656H5.35313V11.9469L4.88438 12.4156H2.07188L1.60313 11.9469V5.83623L0.665625 6.68748L0 6.02185L5.95313 0.584351H6.62813ZM2.54063 4.98404V11.4781H4.41563V8.19685L4.88438 7.7281H7.69688L8.16563 8.19685V11.4781H10.0406V4.97841L6.29063 1.5781L2.54063 4.98404Z"
-        fill={color}
+        d="M22 10.9V4.1C22 2.6 21.36 2 19.77 2H15.73C14.14 2 13.5 2.6 13.5 4.1V10.9C13.5 12.4 14.14 13 15.73 13H19.77C21.36 13 22 12.4 22 10.9Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M22 19.9V18.1C22 16.6 21.36 16 19.77 16H15.73C14.14 16 13.5 16.6 13.5 18.1V19.9C13.5 21.4 14.14 22 15.73 22H19.77C21.36 22 22 21.4 22 19.9Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M10.5 13.1V19.9C10.5 21.4 9.86 22 8.27 22H4.23C2.64 22 2 21.4 2 19.9V13.1C2 11.6 2.64 11 4.23 11H8.27C9.86 11 10.5 11.6 10.5 13.1Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M10.5 4.1V5.9C10.5 7.4 9.86 8 8.27 8H4.23C2.64 8 2 7.4 2 5.9V4.1C2 2.6 2.64 2 4.23 2H8.27C9.86 2 10.5 2.6 10.5 4.1Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
     </svg>
   );

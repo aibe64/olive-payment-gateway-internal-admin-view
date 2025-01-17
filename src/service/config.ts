@@ -18,7 +18,7 @@ export const baseQueryWithReauth: (baseQuery: BaseQueryType) => BaseQueryType =
 export const baseQuery = fetchBaseQuery({
   baseUrl: AppConfig.API_BASE_URL,
   prepareHeaders: (headers) => {
-    const token = AppStorage.getItem(AppStorageKeys.Token) as string;
+    const token = AppStorage.getItem(AppStorageKeys.Token) as string; 
     headers.set("Authorization", `bearer ${token}`);
     return headers;
   },

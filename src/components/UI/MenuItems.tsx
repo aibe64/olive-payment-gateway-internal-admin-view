@@ -52,7 +52,7 @@ const MenuItems: React.FC = () => {
                   />
                 )}
                 <Typography
-                  className="!text-[0.8rem] !font-inter-medium"
+                  className="!text-[1rem] !font-inter-medium"
                   style={{
                     color:
                       openSubmenu === item.label
@@ -102,7 +102,7 @@ const MenuItems: React.FC = () => {
                   {({ isActive }) => (
                     <div className="ml-5 flex items-center gap-2">
                       <Typography
-                        className="!text-[0.75rem] !font-inter-medium"
+                        className="!text-[0.9rem] !font-inter-medium"
                         style={{
                           color:
                             isActive && themeMode === "light"

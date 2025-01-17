@@ -21,6 +21,7 @@ export default {
       "light-orange": "#FFF1E6",
       "primary-dark": "#121212",
       "gray-text": "#656565",
+      "danger": "#FF0000"
     },
     fontFamily: {
       "inter-black": ["inter-black"],

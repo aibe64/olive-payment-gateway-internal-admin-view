@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react/types-6-0";
 import { XpressTable } from "@/components";
 import { APIResponse, Props } from "@/models";
 import "../../index.css";
-import { userDataColumns } from "@/features/User/Columns";
+import { userDataColumns } from "@/features/Merchant/Columns";
 import { useEffect, useState } from "react";
 
 // Define metadata for the story

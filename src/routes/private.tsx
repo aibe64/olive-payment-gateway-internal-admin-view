@@ -3,7 +3,8 @@ import { HomeLayout, XpressProtectedRoutes } from "@/components";
 import { ROUTE_PATH } from "@/models";
 import { lazy } from "react";
 
-const UserPage = lazy(() => import("@/features/User"));
+const MerchantPage = lazy(() => import("@/features/Merchant"));
+const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
 const Dashboard = lazy(() => import("@/features/Dashboard"));
 
 export const privateRoutes = [
@@ -14,17 +15,17 @@ export const privateRoutes = [
       </XpressProtectedRoutes>
     ),
     children: [
-      // {
-      //   path: ROUTE_PATH.GetStarted,
-      //   Component: GetStarted,
-      // },
       {
         path: ROUTE_PATH.Dashboard,
         Component: Dashboard,
       },
       {
-        path: ROUTE_PATH.Users,
-        Component: UserPage,
+        path: ROUTE_PATH.Merchant,
+        Component: MerchantPage,
+      },
+      {
+        path: ROUTE_PATH.MerchantApproval,
+        Component: MerchantApprovalPage,
       },
     ],
   },

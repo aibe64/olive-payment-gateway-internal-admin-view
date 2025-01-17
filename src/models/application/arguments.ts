@@ -22,10 +22,29 @@ export interface ValidateFetchConfig {
     fieldKey: string;
   }>;
 }
+export interface ActionDetails {
+  endpoint?: string;
+  onCallBackAPI?: () => void;
+  actionFor?: string;
+  payload?:any;
+  actionName?: string;
+  name?:
+    | "View"
+    | "Edit"
+    | "Approve"
+    | "Disapprove"
+    | "Delete"
+    | "Activate"
+    | "Others"
+    | "Deactivate"
+    | "Status";
+}
+
 export interface FormAction {
   request?: any;
   url: string;
   callBackApiResponse?: (apiResponse: any) => void;
+  callBackApiError?: (errorMessage: string) => void
   callBackAction?: () => void;
   callAPI?: boolean;
   customRequest?: any;

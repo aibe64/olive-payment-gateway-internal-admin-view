@@ -2,7 +2,8 @@ export const ROUTE_PATH = {
   Landing: "/",
   GetStarted: "/get-started",
   Dashboard: "/dashboard",
-  Users: "/user",
+  Merchant: "/merchant",
+  MerchantApproval: "/approval/merchant",
   Login: import.meta.env.VITE_AUTH_DOMAIN,
 };
 

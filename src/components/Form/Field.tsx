@@ -59,6 +59,7 @@ export const XpressField: React.FC<Props.Field> = ({
   onOpenDropDown,
   loading,
   disabledDate,
+  onChange,
 }) => {
   const { payload, setPayload, setFormState, validationStatusByFieldName } =
     useFormStore();
@@ -88,29 +89,37 @@ export const XpressField: React.FC<Props.Field> = ({
 
   const onChangeValue = useCallback(
     async (value: string) => {
-      if (validatorFetchConfig?.removeValueSpaces)
-        value = value.replace(/\s+/g, "");
-      if (isAmountField) {
-        setPayload(
-          name,
-          value
-            ?.toString()
-            .replace(/[^\d.]/g, "") // Allow digits and decimal point only
-            .replace(/^(\d*\.?)|(\d*)\.?/g, "$1$2") // Allow only one decimal point
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        );
+      if (onChange) {
+        onChange(value);
       } else {
-        if (validator === "exist_on_db") {
-          const isValid = await validateValueIfItExistOnDB(value, name);
-          if (isValid) {
-            setFormState("validationStatusByFieldName", updateValidatingStatusByFieldName(name, "success"));
+        if (validatorFetchConfig?.removeValueSpaces)
+          value = value.replace(/\s+/g, "");
+        if (isAmountField) {
+          setPayload(
+            name,
+            value
+              ?.toString()
+              .replace(/[^\d.]/g, "") // Allow digits and decimal point only
+              .replace(/^(\d*\.?)|(\d*)\.?/g, "$1$2") // Allow only one decimal point
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+          );
+        } else {
+          if (validator === "exist_on_db") {
+            const isValid = await validateValueIfItExistOnDB(value, name);
+            if (isValid) {
+              setFormState(
+                "validationStatusByFieldName",
+                updateValidatingStatusByFieldName(name, "success")
+              );
+            }
           }
+          setPayload(name, value);
         }
-        setPayload(name, value);
       }
     },
-    [setPayload, validateValueIfItExistOnDB, name]
+    [setPayload, validateValueIfItExistOnDB, name, payload]
   );
+
   useEffect(() => {
     if ((validator === "bvn" || validator === "exist_on_db") && name) {
       const validatingStatus = validationStatusByFieldName?.filter(
@@ -127,6 +136,7 @@ export const XpressField: React.FC<Props.Field> = ({
 
   return (
     <Form.Item
+      key={name}
       label={
         label && (
           <span className={`font-normal ${labelClassNames}`}>{label}</span>
@@ -246,6 +256,8 @@ export const XpressField: React.FC<Props.Field> = ({
         <Select
           className={`rounded-lg h-[45px] ${classNames}`}
           placeholder={placeholder}
+          disabled={readonly}
+          loading={loading}
           onChange={(e) => {
             setPayload(name, e);
             if (onSelectDropDownCallBack) onSelectDropDownCallBack(e);
@@ -336,6 +348,7 @@ export const XpressField: React.FC<Props.Field> = ({
           showCount
           maxLength={maxLength}
           defaultValue={defaultValue}
+          readOnly={readonly}
           placeholder={placeholder}
           onChange={(e) => setPayload(name, e.target.value)}
         />
