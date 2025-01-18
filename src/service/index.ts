@@ -1,6 +1,8 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { globalApi } from "./api";
+import { ApolloClient, InMemoryCache, from } from "@apollo/client";
+import { graphQlAuthLink, graphQlHttpLink } from "./config";
 
 export const store = configureStore({
   reducer: {
@@ -34,3 +36,8 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+export const apolloClient = new ApolloClient({
+  link: from([graphQlAuthLink, graphQlHttpLink]),
+  cache: new InMemoryCache(),
+});

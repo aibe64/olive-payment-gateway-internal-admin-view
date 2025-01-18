@@ -1,4 +1,4 @@
-import { ApprovalIcon, HomeIcon, UserIcon } from "@/assets";
+import { ApprovalIcon, HomeIcon, PaymentIcon, UserIcon } from "@/assets";
 import { Props, ROUTE_PATH } from "@/models";
 
 export const menuList: Props.MenuListProps[] = [
@@ -19,6 +19,20 @@ export const menuList: Props.MenuListProps[] = [
       {
         label: "Merchant",
         path: ROUTE_PATH.MerchantApproval,
+      },
+    ],
+  },
+  {
+    label: "Payments",
+    icon: PaymentIcon,
+    children: [
+      {
+        label: "Transaction",
+        path: ROUTE_PATH.Transaction,
+      },
+      {
+        label: "Store",
+        path: ROUTE_PATH.Store,
       },
     ],
   },

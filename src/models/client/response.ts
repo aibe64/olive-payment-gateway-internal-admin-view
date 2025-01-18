@@ -1,3 +1,5 @@
+import { APIResponseCode } from "../application";
+
 export namespace APIResponse {
   export class API<T> {
     responseCode: string = "";
@@ -112,8 +114,214 @@ export namespace APIResponse {
     bankName?: string
   }
  
- 
- 
+  export interface MerchantApproval {
+    id: number
+    merchantId: number
+    cardPayment: boolean
+    accountPayment: boolean
+    ussdPayment: boolean
+    qrPayment: boolean
+    walletPayment: boolean
+    bankTransferPayment: boolean
+    chargeType: string
+    chargeValue: string
+    isChargeTransferedToCustomer: boolean
+    transactionLimit: number
+    isActive: boolean
+    createdByUserId: number
+    dateCreated: string
+    approvedByUserId: any
+    dateApproved: any
+    isApproved: boolean
+    disapprovedByUserId: any
+    dateDisapproved: any
+    isDisapproved: boolean
+    disapprovedComment: any
+    businessName: string
+    businessType: any
+    businessNumber: string
+    settlementAccountNumber: string
+    accountName: string
+    bankCode: string
+    eNaira: boolean
+    receiveInternationalPayment: boolean
+  }
+  export interface UserActivity {
+    id: number;
+    accessCode: string;
+    createdAt: string;
+    message: string;
+    reference: string;
+    transactionId: string;
+    type: string;
+    __typename: string;
+  }
+  export interface Transaction {
+    _typename: string;
+    id: string;
+    transactionReference: string;
+    firstname: string;
+    lastname: string;
+    amount: number;
+    paymentType: string;
+    publicKey: string;
+    clientRedirectUrl: string;
+    expiryMonth: string;
+    expiryYear: string;
+    email: string;
+    currency: string;
+    transactionId: string;
+    xpressReference: string;
+    providerReference: string;
+    phoneNumber: string;
+    narration: string;
+    cardBin: string;
+    brand: string;
+    cardType: string;
+    processor: string;
+    merchantId: string;
+    paymentResponseCode: APIResponseCode;
+    paymentResponseMessage: string;
+    dateCreated: string;
+    dateModified: string;
+    billerCode: string;
+    mandateCode: string;
+    transType: string;
+    cardPan: string;
+    metaData: string;
+    productDescription: string;
+    productId: string;
+    merchantName: string;
+    transactionNumber: string;
+    transactionDate: string;
+    userActivities: UserActivity[];
+  }
+  export interface StoreTransaction {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    customerAddress: string;
+    merchantName: string;
+    city: string;
+    country: string;
+    deliveryNotes: string;
+    isBeneficiary: boolean;
+    totalAmount: number;
+    dateCreated: string;
+    dateUpdated: string;
+    isSuccessful: boolean;
+    transactionId: string;
+    status: APIResponseCode;
+    storeName: string;
+    paymentResponseMessage: string;
+    productDescription: string;
+    paymentDate: string;
+    paymentReference: string;
+    metaData: string;
+    merchantId: string;
+    isDelivered?: boolean;
+    __typename: string
+    discount: {
+      code: string;
+      discountAmount: number;
+    };
+    deliveryDetails: {
+      customerAddress: string;
+      deliveryFee: number;
+      region: string;
+    };
+    productPurchased: {
+      id: string;
+      productName: string;
+      quantity?: number;
+      amount: number;
+      isLiked: boolean;
+      rating: number;
+      comment: string;
+    }[];
+  }
+
+  export interface TransactionsData {
+    transactions: {
+      items: Transaction[];
+      totalCount: number;
+      pageNumber: number;
+      pageSize: number;
+    };
+  }
+
+  export interface StoreTransactionsData {
+    storeTransactions: {
+      items: StoreTransaction[];
+      totalCount: number;
+      pageNumber: number;
+      pageSize: number;
+    };
+  }
+
+  export interface StoreTransactionSummaryResponse {
+    storeTransactionSummarry: {
+      item: StoreTransactionSummaryItems;
+    };
+  }
+  export interface StoreTransactionSummaryItems {
+    totalOrders: number;
+    totalNonDiscountedOrders: number;
+    totalDiscountedOrders: number;
+    totalGrossSales: number;
+    totalNetSales: number;
+    totalNonDiscountedAmount: number;
+    totalDiscountedAmount: number;
+    totalCompletedProductAmount: number;
+    totalAbandonedProductAmount: number;
+    totalCompletedProduct: number;
+    totalAbandonedProduct: number;
+    totalSuccessful: number;
+    totalSuccessfulAmount: number;
+    averageItemsPerOrder: number;
+    averageOrderValue: number;
+    totalCartProduct: number;
+    totalFailed: number;
+    totalFailedAmount: number;
+    topProducts: { totalQuantity: number; productName: string }[];
+    topCustomers: { totalQuantityOrder: number; name: string; email: string }[];
+  }
+
+  export interface TransactionSummaryResponse {
+    transactionSummarry: {
+      item: {
+        transactionVolume: number;
+        totalTransactionAmount: number;
+        nextSettlementAmount: number;
+        totalCardTransactionAmount: number;
+        totalUSSDTransactionAmount: number;
+        totalTransferTransactionAmount: number;
+        totalAccountTransactionAmount: number;
+        totalQRAmount: number;
+        totalENairaTransactionAmount: number;
+        totalWalletAmount: number;
+      };
+    };
+  }
+
+  export interface YearlyTransactionsResponse {
+    yearlyTransactions: {
+      items: {
+        transactionMonth: string;
+        totalTransactions: number;
+        totalTransactionAmount: number;
+        totalSuccessfulAmount: number;
+        totalSuccessful: number;
+        totalFailedAmount: number;
+        totalFailed: number;
+        totalPending: number;
+        totalPendingAmount: number;
+      }[];
+    };
+  }
+  
   export class CategoriesReport {
     name: string = "";
     value: number = 0;

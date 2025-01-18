@@ -1,106 +1,156 @@
 import { XpressTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
+import { endpoints } from "@/service";
 import { Tag } from "antd";
 import { ColumnProps } from "antd/es/table";
-import { UpdateMerchant } from "./Update";
 import { ViewMerchant } from "./View";
 
-export const merchantDataColumns: ColumnProps<APIResponse.MerchantDetails>[] = [
-  {
-    title: "Date Profiled",
-    width: "20%",
-    key: "1",
-    ellipsis: true,
-    render(_, record) {
-      return record.dateProfiled
-        ? Format.toDateTime(record.dateProfiled)
-        : "N/A";
+export const merchantDataColumns: ColumnProps<APIResponse.MerchantApproval>[] =
+  [
+    {
+      title: "Date Created",
+      width: "19%",
+      key: "1",
+      ellipsis: true,
+      render(_, record) {
+        return record.dateCreated
+          ? Format.toDateTime(record.dateCreated)
+          : "N/A";
+      },
     },
-  },
-  {
-    title: "Business Name",
-    width: "30%",
-    key: "2",
-    ellipsis: true,
-    render(_, record) {
-      return (
-        <div className="flex flex-col">
-          <span className="font-inter-semibold">{record.businessName}</span>
-          <span className="text-gray-text">{record.businessEmail}</span>
-        </div>
-      );
+    {
+      title: "Business Name",
+      width: "25%",
+      key: "2",
+      ellipsis: true,
+      render(_, record) {
+        return (
+          <div className="flex flex-col">
+            <span className="font-inter-semibold">{record.businessName}</span>
+          </div>
+        );
+      },
     },
-  },
-
-  {
-    title: "Business Number",
-    width: "18%",
-    key: "2",
-    ellipsis: true,
-    render(_, record) {
-      return record.businessNumber ?? "N/A";
+    {
+      title: "International Payment",
+      width: "18%",
+      key: "2",
+      ellipsis: true,
+      render(_, record) {
+        return (
+          <div>
+            {record.receiveInternationalPayment ? (
+              <Tag color={"green"}>Enabled</Tag>
+            ) : (
+              <Tag color={"red"}>Disabled</Tag>
+            )}
+          </div>
+        );
+      },
     },
-  },
-  {
-    title: "Business Type",
-    width: "20%",
-    key: "2",
-    ellipsis: true,
-    render(_, record) {
-      return record.businessType ?? "N/A";
+    {
+      title: "Card Payment",
+      width: "15%",
+      key: "2",
+      ellipsis: true,
+      render(_, record) {
+        return (
+          <div>
+            {record.cardPayment ? (
+              <Tag color={"green"}>Enabled</Tag>
+            ) : (
+              <Tag color={"red"}>Disabled</Tag>
+            )}
+          </div>
+        );
+      },
     },
-  },
-  {
-    title: "Date Updated",
-    width: "20%",
-    key: "2",
-    ellipsis: true,
-    render(_, record) {
-      return record.dateUpdated ? Format.toDateTime(record.dateUpdated) : "N/A";
+    {
+      title: "Transfer Payment",
+      width: "15%",
+      key: "2",
+      ellipsis: true,
+      render(_, record) {
+        return (
+          <div>
+            {record.bankTransferPayment ? (
+              <Tag color={"green"}>Enabled</Tag>
+            ) : (
+              <Tag color={"red"}>Disabled</Tag>
+            )}
+          </div>
+        );
+      },
     },
-  },
-  {
-    title: "Status",
-    width: "10%",
-    key: "2",
-    ellipsis: true,
-    render(_, record) {
-      return (
-        <div>
-          {record.approvalStatus === 2 ? (
-            <Tag color={"green"}>Approved</Tag>
-          ) : record.approvalStatus === 1 ? (
-            <Tag color={"orange"}>Pending</Tag>
-          ) : record.approvalStatus === 3 ? (
-            <Tag color={"red"}>Disapproved</Tag>
-          ) : (
-            ""
-          )}
-        </div>
-      );
+    {
+      title: "USSD Payment",
+      width: "15%",
+      key: "2",
+      ellipsis: true,
+      render(_, record) {
+        return (
+          <div>
+            {record.ussdPayment ? (
+              <Tag color={"green"}>Enabled</Tag>
+            ) : (
+              <Tag color={"red"}>Disabled</Tag>
+            )}
+          </div>
+        );
+      },
     },
-  },
-  {
-    title: "ACTION",
-    key: "7",
-    fixed: "right",
-    width: "100px",
-    render(_: any, record: APIResponse.MerchantDetails) {
-      return (
-        <XpressTableActions
-          record={record}
-          pageName={"Merchant Registration"}
-          actions={[
-            { title: "View", action: "View", modalWidth: 500 },
-            { title: "Edit", action: "Edit", modalWidth: 600 },
-          ]}
-          components={{
-            View: <ViewMerchant records={record}/>,
-            Edit: <UpdateMerchant records={record} />,
-          }}
-        />
-      );
+    {
+      title: "Status",
+      width: "15%",
+      key: "2",
+      ellipsis: true,
+      render(_, record) {
+        return (
+          <div>
+            {record.ussdPayment ? (
+              <Tag color={"green"}>Enabled</Tag>
+            ) : (
+              <Tag color={"red"}>Disabled</Tag>
+            )}
+          </div>
+        );
+      },
     },
-  },
-];
+    {
+      title: "ACTION",
+      key: "7",
+      fixed: "right",
+      width: "80px",
+      render(_: any, record: APIResponse.MerchantApproval) {
+        return (
+          <XpressTableActions
+            record={record}
+            pageName={"Merchant Registration"}
+            actions={[
+              { title: "View", action: "View", modalWidth: 500 },
+              { title: "Approve", action: "Approve" },
+              { title: "Disapprove", action: "Disapprove" },
+            ]}
+            details={[
+              {
+                name: "Approve",
+                actionFor: `${record.businessName}`,
+                endpoint: `${endpoints.Approvals.ApproveMerchantCharge}`,
+                payload: record,
+              },
+              {
+                name: "Disapprove",
+                actionFor: `${record.businessName}`,
+                endpoint: `${endpoints.Approvals.DisapproveMerchantCharge}`,
+                payload: record,
+              },
+            ]}
+            components={{
+              View: <ViewMerchant records={record} />,
+            }}
+          />
+        );
+      },
+    },
+  ];

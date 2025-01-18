@@ -12,6 +12,7 @@ export const useTableActions = (details: ActionDetails) => {
   }, [setModalState]);
 
   const callActionApi = useCallback(() => {
+    console.log(details?.payload)
     callPostData({
       url: details.endpoint ?? "",
       request: details?.payload,

@@ -1,39 +1,28 @@
-import { APIResponse } from "@/models";
 import { memo } from "react";
 import { Card, Typography } from "antd";
 import { useTheme } from "@/components";
-import { formatToNaira } from "@/lib";
+import { Format } from "@/lib";
+import { AppState } from "@/models";
+import { usePageStore } from "@/store";
 
-const Component: React.FC<{
-  statistics: APIResponse.Statistics | undefined;
-  loading: boolean;
-}> = ({ statistics, loading }) => {
+const Component = () => {
   const { themeMode } = useTheme();
-
+  const { transactionSummaryData, loadingSummary } = usePageStore<AppState>(
+    (state) => state
+  );
+  const item = transactionSummaryData?.transactionSummarry.item;
   const data = [
     {
-      name: "Total Transaction",
-      amount: `${formatToNaira(
-        statistics?.totalTransaction?.toString() ?? "0.00"
-      )}`,
+      name: "Transaction Value",
+      value: Format.toNaira(item?.totalTransactionAmount?.toString() ?? "0.00"),
     },
     {
-      name: "Successful Transaction",
-      amount: `${formatToNaira(
-        statistics?.successfulTransaction?.toString() ?? "0.00"
-      )}`,
+      name: "Transaction Volume",
+      value: item?.transactionVolume,
     },
     {
-      name: "Pending Transaction",
-      amount: `NGN ${formatToNaira(
-        statistics?.pendingTransaction?.toString() ?? "0.00"
-      )}`,
-    },
-    {
-      name: "Failed Transaction",
-      amount: `${formatToNaira(
-        statistics?.failedTransaction?.toString() ?? "0.00"
-      )}`,
+      name: "Next Settlement",
+      value: Format.toNaira(item?.nextSettlementAmount?.toString() ?? "0.00"),
     },
   ];
 
@@ -46,13 +35,13 @@ const Component: React.FC<{
           style={{
             backgroundColor: themeMode === "dark" ? "#1F1F1F" : "#FFF",
           }}
-          loading={loading}
+          loading={loadingSummary}
         >
           <Typography className="!text-gray-text !font-inter-medium !text-[14px]">
             {item.name}
           </Typography>
           <Typography className="!font-inter-bold !text-[1.2rem] !mt-4">
-            {item.amount}
+            {item.value}
           </Typography>
         </Card>
       ))}

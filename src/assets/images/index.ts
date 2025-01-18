@@ -1,3 +1,4 @@
 export {default as lanndingImage} from "./landing-img.png"
 export {default as logo} from "./logo.svg"
 export {default as NgnFlag} from "./NgnFlag.svg"
+export {default as logoImg} from "./logo.png"

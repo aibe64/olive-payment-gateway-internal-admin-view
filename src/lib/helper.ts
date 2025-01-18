@@ -3,6 +3,7 @@ import { AppStorage } from "@/store";
 import { jwtDecode } from "jwt-decode";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import dayjs, { Dayjs } from "dayjs";
 
 export const formatToNaira = (money: string): string => {
   return `₦${money.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
@@ -118,4 +119,14 @@ export const cleanDecimalInput = (input: string) => {
       (_match, p1: string, p2: string) => p1 + "." + p2.replace(/\./g, "")
     );
   return cleaned;
+};
+
+export function omit<T, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
+  const result = { ...obj };
+  keys.forEach((key) => delete result[key]);
+  return result;
+}
+
+export const disableFutureDates = (current: Dayjs) => {
+  return current && current > dayjs().endOf("day");
 };

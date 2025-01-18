@@ -5,4 +5,5 @@ export namespace AppConfig {
   export const SSO_DOMAIN = import.meta.env.VITE_SSO_DOMAIN;
   export const APP_DESCRIPTION = " - More opportunities for Businesses";
   export const APP_NAME = "Xpress Admin";
+  export const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 }

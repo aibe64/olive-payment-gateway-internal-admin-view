@@ -3,6 +3,7 @@ export { default as HomeIcon } from "./HomeSvg";
 export { default as UserIcon } from "./UsersSvg";
 export { default as WarningIcon } from "./warning.svg";
 export { default as ActionIcon } from "./action.svg";
+export { default as PaymentIcon } from "./PaymentIcon";
 
 
 export { default as CheckmarkIcon } from "./checkmark";

@@ -4,6 +4,8 @@ import { ROUTE_PATH } from "@/models";
 import { lazy } from "react";
 
 const MerchantPage = lazy(() => import("@/features/Merchant"));
+const TransactionPage = lazy(() => import("@/features/Payments/Transactions"));
+const StoreTransactionPage = lazy(() => import("@/features/Payments/Store"));
 const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
 const Dashboard = lazy(() => import("@/features/Dashboard"));
 
@@ -26,6 +28,14 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.MerchantApproval,
         Component: MerchantApprovalPage,
+      },
+      {
+        path: ROUTE_PATH.Transaction,
+        Component: TransactionPage,
+      },
+      {
+        path: ROUTE_PATH.Store,
+        Component: StoreTransactionPage,
       },
     ],
   },

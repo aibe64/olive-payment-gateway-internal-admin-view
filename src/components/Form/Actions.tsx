@@ -12,6 +12,7 @@ const Component = <T,>({
   pageName,
   details,
 }: Props.TableAction<T>) => {
+  console.log("details", details);
   const { setActionModal } = useTableActions({});
 
   const onClickAction = useCallback(
@@ -63,15 +64,18 @@ const Component = <T,>({
           );
           break;
         case "Approve":
+          console.log("xxxxxxx", actionDetails);
           setActionModal(
             <ApproveForm {...actionDetails} />,
-            `${action} ${pageName}`
+            `${action} ${pageName}`,
+            350
           );
           break;
         case "Disapprove":
           setActionModal(
             <DisapproveForm {...actionDetails} />,
-            `${action} ${pageName}`
+            `${action} ${pageName}`,
+            350
           );
           break;
         case "Delete":
@@ -212,17 +216,81 @@ export const DeleteForm: FC<ActionDetails> = ({
   );
 };
 
-export const ApproveForm: FC<ActionDetails> = () => (
-  <div>
-    <span>Details</span>
-  </div>
-);
+export const ApproveForm: FC<ActionDetails> = ({
+  actionFor,
+  endpoint,
+  onCallBackAPI,
+  payload,
+}) => {
+  const { processing, callActionApi, handleClose } = useTableActions({
+    endpoint,
+    onCallBackAPI,
+    payload,
+  });
+  return (
+    <div className="flex flex-col">
+      <Typography className="text-center">
+        Are you sure you want to approve{" "}
+        <Typography className="text-tertiary font-bold">
+          {actionFor}?
+        </Typography>
+      </Typography>
+      <Divider className="mt-3 mb-3" />
+      <div className="flex justify-end gap-2">
+        <Button
+          onClick={handleClose}
+          className="!bg-[#fff] !text-[#1a1818] !py-2 !border-[#808080] transition-all duration-500 hover:w-[65px]"
+        >
+          No
+        </Button>
+        <XpressButton
+          onClick={callActionApi}
+          classNames="!py-2"
+          title="Yes"
+          loading={processing}
+        />
+      </div>
+    </div>
+  );
+};
 
-export const DisapproveForm: FC<ActionDetails> = () => (
-  <div>
-    <span>Edit</span>
-  </div>
-);
+export const DisapproveForm: FC<ActionDetails> = ({
+  actionFor,
+  endpoint,
+  onCallBackAPI,
+  payload,
+}) => {
+  const { processing, callActionApi, handleClose } = useTableActions({
+    endpoint,
+    onCallBackAPI,
+    payload,
+  });
+  return (
+    <div className="flex flex-col">
+      <Typography className="text-center">
+        Are you sure you want to disapprove{" "}
+        <Typography className="text-tertiary font-bold">
+          {actionFor}?
+        </Typography>
+      </Typography>
+      <Divider className="mt-3 mb-3" />
+      <div className="flex justify-end gap-2">
+        <Button
+          onClick={handleClose}
+          className="!bg-[#fff] !text-[#1a1818] !py-2 !border-[#808080] transition-all duration-500 hover:w-[65px]"
+        >
+          No
+        </Button>
+        <XpressButton
+          onClick={callActionApi}
+          classNames="!py-2"
+          title="Yes"
+          loading={processing}
+        />
+      </div>
+    </div>
+  );
+};
 
 export const OtherForm: FC<ActionDetails> = ({
   actionFor,

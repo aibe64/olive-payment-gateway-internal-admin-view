@@ -66,5 +66,91 @@ export namespace APIRequest {
         receiveInternationalPayment: boolean
         merchantPortalId: string
       }
-      
+      export interface TransactionsVars {
+        page: number;
+        limit: number;
+        filter: TransactionsFilters;
+      }
+    
+      export interface TransactionsFilters {
+        customerEmail?: string | null;
+        reference?: string | null;
+        transactionId?: string | null;
+        startDate?: string | null;
+        endDate?: string | null;
+        cardBrand?: string | null;
+        paymentMethod?: string | null;
+        status?: string | null;
+        storeName?: string | null;
+        merchantId?: number | null
+      }
+    
+      export interface StoreTransactionsVars {
+        page: number;
+        limit: number;
+        filter: {
+          customerEmail?: string | null;
+          reference?: string | null;
+          transactionId?: string | null;
+          startDate?: string | null;
+          endDate?: string | null;
+          cardBrand?: string | null;
+          paymentMethod?: string | null;
+          status?: string | null;
+          storeName?: string | null;
+        };
+      }
+      export interface StoreTransactionFilterInput {
+        customerEmail?: string | null;
+        reference?: string | null;
+        transactionId?: string | null;
+        startDate?: string | null;
+        endDate?: string | null;
+        cardBrand?: string | null;
+        paymentMethod?: string | null;
+        status?: string | null;
+      }
+      export interface StoreOverviewFilterVar {
+        filter: {
+          customerEmail?: string | null;
+          reference?: string | null;
+          transactionId?: string | null;
+          startDate?: string | null;
+          endDate?: string | null;
+          cardBrand?: string | null;
+          paymentMethod?: string | null;
+          status?: string | null;
+        };
+      }
+    
+      export interface TransactionFilterVar {
+        filter: {
+          customerEmail?: string | null;
+          reference?: string | null;
+          transactionId?: string | null;
+          startDate?: string | null;
+          endDate?: string | null;
+          cardBrand?: string | null;
+          paymentMethod?: string | null;
+          status?: string | null;
+          merchantId?: number | null
+        };
+      }
+    
+      export interface TransactionFilterInput {
+        customerEmail?: string | null;
+        reference?: string | null;
+        transactionId?: string | null;
+        startDate?: string | null;
+        endDate?: string | null;
+        cardBrand?: string | null;
+        paymentMethod?: string | null;
+        status?: string | null;
+      }
+    
+      export interface YearlyTransactionsFilterInput {
+        filter: {
+          year: string;
+        };
+      }
 }

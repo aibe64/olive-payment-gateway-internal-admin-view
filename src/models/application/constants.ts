@@ -4,6 +4,8 @@ export const ROUTE_PATH = {
   Dashboard: "/dashboard",
   Merchant: "/merchant",
   MerchantApproval: "/approval/merchant",
+  Transaction: "/payment/transaction",
+  Store: "/payment/store",
   Login: import.meta.env.VITE_AUTH_DOMAIN,
 };
 
@@ -21,4 +23,7 @@ export enum APIResponseCode {
   Success = "00",
   BadRequest = "ERR_BAD_REQUEST",
   RedirectToXpressPay = "05",
+  Invalid = "04",
+  Pending = "06",
+  Failed = "02"
 }

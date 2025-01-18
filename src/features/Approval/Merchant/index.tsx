@@ -6,9 +6,9 @@ import { Typography } from "antd";
 import { merchantDataColumns } from "./Columns";
 
 const MerchantApproval: React.FC = () => {
-  const { data, fetching } = useAPI<Array<APIResponse.MerchantDetails>>({
+  const { data, fetching } = useAPI<Array<APIResponse.MerchantApproval>>({
     callGetApiOnRender: true,
-    queryDataEndpoint: endpoints.SetUp.GetAllMerchant,
+    queryDataEndpoint: endpoints.Approvals.GetAllMerchantChargePendingApproval,
   });
 
   return (
@@ -16,7 +16,7 @@ const MerchantApproval: React.FC = () => {
       <Typography className="text-xl font-inter-medium mt-5">
         Merchant Approval
       </Typography>
-      <XpressTable<APIResponse.MerchantDetails>
+      <XpressTable<APIResponse.MerchantApproval>
         columns={merchantDataColumns}
         dataSource={data ?? []}
         emptyHeadingText="No User"

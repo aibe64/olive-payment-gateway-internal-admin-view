@@ -1,20 +1,59 @@
-import { Empty, Table } from "antd";
-import { useScreenHeight } from "@/hooks";
+import { Empty, PaginationProps, Spin, Table } from "antd";
+import { useScreenHeight, useTable } from "@/hooks";
 import { Props } from "@/models";
 import { memo } from "react";
+import EmptyPageData from "./EmptyPageData";
 
 const Component = <T,>({
   columns,
   dataSource,
+  originalSource,
   spinning,
   total,
   scrollX,
   pageSize,
   rowSelection,
+  emptyParagraphText,
+  emptyHeadingText,
+  actions,
   onPagination,
   onRowSelection,
+  hideSizeChanger,
+  rowCount
 }: Props.TableData<T>) => {
   const { screenHeight } = useScreenHeight();
+  const { onPaginate } = useTable();
+  const itemRender: PaginationProps["itemRender"] = (
+    _,
+    type,
+    originalElement
+  ) => {
+    if (type === "prev") {
+      return <a>Previous</a>;
+    }
+    if (type === "next") {
+      return <a>Next</a>;
+    }
+    return originalElement;
+  };
+  
+  if (dataSource?.length === 0 && !spinning && !originalSource?.length && rowCount as number <= 0) {
+    return (
+      <EmptyPageData
+        emptyDataTableMainText={emptyHeadingText}
+        emptyDataTableDescriptionText={emptyParagraphText}
+        actions={actions}
+      />
+    );
+  }
+
+  if (spinning && dataSource?.length === 0) {
+    return (
+      <div className="grid place-content-center mt-[20%]">
+        <Spin spinning tip="Loading data..." />
+      </div>
+    );
+  }
 
   return (
     <Table
@@ -23,15 +62,15 @@ const Component = <T,>({
         spinning,
       }}
       dataSource={dataSource}
-      className="cursor-pointer"
+      className="cursor-pointer border-[1px] border-[#F1F1F1] dark:border-[#1F1F1F] rounded-lg"
       pagination={{
-        position: ["bottomRight"],
-        onChange: onPagination,
-        showSizeChanger: true,
+        position: ["bottomCenter"],
+        onChange: onPagination ?? onPaginate,
+        showSizeChanger: !hideSizeChanger,
         total,
         pageSize,
-        hideOnSinglePage: true,
         className: "px-6 relative",
+        itemRender,
         pageSizeOptions: [
           "10",
           "20",
@@ -44,14 +83,6 @@ const Component = <T,>({
           "90",
           "100",
         ],
-        showTotal: (total: number) => {
-          return (
-            <div className="flex gap-2 border border-[#E8F6FA] dark:border-[#1F1F1F] rounded-[4px] p-1 px-2 absolute left-1/3 translate-x-1/2">
-              <div className="text-[#666060]">{total}</div>
-              <span className="text-[#666060] -ml-1">Record(s)</span>
-            </div>
-          );
-        },
       }}
       scroll={{ x: scrollX ? scrollX : 800, y: screenHeight - 340 }}
       rowSelection={rowSelection}

@@ -26,17 +26,22 @@ export namespace Props {
   }
   export interface TableData<T> {
     dataSource: T[];
+    originalSource?: T[];
     columns: (ColumnGroupType<T> | ColumnType<T>)[];
     spinning?: boolean;
+    hideSizeChanger?: boolean;
     total?: number;
+    rowCount?: number;
     pageSize?: number;
     onPagination?: (page: number, size: number) => void;
     onRowSelection?: (_rowIndex: number, record: any) => void;
     shouldExpand?: boolean;
+    actions?: ReactNode[];
+    emptyDataTableDescriptionText?: string;
     scrollX?: number;
     isNotPaginated?: boolean;
     emptyParagraphText?: string;
-    emptyHeadingText?: string;
+    emptyHeadingText?: string | JSX.Element;
     rowSelection?: TableRowSelection<T>;
     page?: number;
   }
