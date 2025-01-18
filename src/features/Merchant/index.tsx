@@ -1,8 +1,7 @@
-import { XpressTable } from "@/components";
+import { PageTitle, XpressTable } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse } from "@/models";
 import { endpoints } from "@/service";
-import { Typography } from "antd";
 import { merchantDataColumns } from "./Columns";
 
 const Merchant: React.FC = () => {
@@ -12,10 +11,11 @@ const Merchant: React.FC = () => {
   });
 
   return (
-    <div>
-      <Typography className="text-xl font-inter-medium mt-5">
-        Merchant Management
-      </Typography>
+    <div className="flex flex-col gap-5">
+     <PageTitle
+        totalDataCount={data?.length ?? 0}
+        title="Merchant Management"
+      />
       <XpressTable<APIResponse.MerchantDetails>
         columns={merchantDataColumns}
         dataSource={data ?? []}

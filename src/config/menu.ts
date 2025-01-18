@@ -1,4 +1,11 @@
-import { ApprovalIcon, HomeIcon, PaymentIcon, UserIcon } from "@/assets";
+import {
+  ApprovalIcon,
+  HomeIcon,
+  PaymentIcon,
+  SettingsIcon,
+  UserIcon,
+  UsersIcon,
+} from "@/assets";
 import { Props, ROUTE_PATH } from "@/models";
 
 export const menuList: Props.MenuListProps[] = [
@@ -13,12 +20,16 @@ export const menuList: Props.MenuListProps[] = [
     icon: UserIcon,
   },
   {
-    label: "Approval",
-    icon: ApprovalIcon,
+    label: "Manage Users",
+    icon: UsersIcon,
     children: [
       {
-        label: "Merchant",
-        path: ROUTE_PATH.MerchantApproval,
+        label: "Roles",
+        path: ROUTE_PATH.Roles,
+      },
+      {
+        label: "Administrators",
+        path: ROUTE_PATH.Users,
       },
     ],
   },
@@ -33,6 +44,38 @@ export const menuList: Props.MenuListProps[] = [
       {
         label: "Store",
         path: ROUTE_PATH.Store,
+      },
+    ],
+  },
+  {
+    label: "Setup",
+    icon: SettingsIcon,
+    children: [
+      {
+        label: "Provider",
+        path: ROUTE_PATH.Provider,
+      },
+      {
+        label: "Bin",
+        path: ROUTE_PATH.Bin,
+      },
+      {
+        label: "Transaction Manager",
+        path: ROUTE_PATH.TransactionManager,
+      },
+      {
+        label: "Institutions",
+        path: ROUTE_PATH.Institution,
+      },
+    ],
+  },
+  {
+    label: "Approval",
+    icon: ApprovalIcon,
+    children: [
+      {
+        label: "Merchant",
+        path: ROUTE_PATH.MerchantApproval,
       },
     ],
   },

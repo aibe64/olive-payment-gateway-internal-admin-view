@@ -130,3 +130,31 @@ export function omit<T, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
 export const disableFutureDates = (current: Dayjs) => {
   return current && current > dayjs().endOf("day");
 };
+
+export const searchTable = <T>(array: Array<T>, value: string): Array<T> => {
+  let newArray: Array<T> = [];
+  if (array) {
+    let object = array[0];
+    if (object || object != null) {
+      array.forEach(function (element) {
+        let values: string[] = Object.values(element);
+        let exist = false;
+        values.forEach(function (element2) {
+          if (element2 !== null && element2) {
+            element2 = element2.toString();
+            if (
+              element2?.toLocaleLowerCase().includes(value?.toLocaleLowerCase())
+            ) {
+              exist = true;
+              return;
+            }
+          }
+        });
+        if (exist) newArray.push(element);
+      });
+    }
+    return newArray;
+  } else {
+    return array;
+  }
+};

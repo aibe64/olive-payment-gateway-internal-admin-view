@@ -7,6 +7,14 @@ const MerchantPage = lazy(() => import("@/features/Merchant"));
 const TransactionPage = lazy(() => import("@/features/Payments/Transactions"));
 const StoreTransactionPage = lazy(() => import("@/features/Payments/Store"));
 const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
+const ProviderPage = lazy(() => import("@/features/Setup/Provider"));
+const BinPage = lazy(() => import("@/features/Setup/Bin"));
+const InstitutionPage = lazy(() => import("@/features/ManageUsers/Roles"));
+const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
+const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
+const TransactionManagerPage = lazy(
+  () => import("@/features/Setup/TransactionManager")
+);
 const Dashboard = lazy(() => import("@/features/Dashboard"));
 
 export const privateRoutes = [
@@ -36,6 +44,30 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.Store,
         Component: StoreTransactionPage,
+      },
+      {
+        path: ROUTE_PATH.Provider,
+        Component: ProviderPage,
+      },
+      {
+        path: ROUTE_PATH.Bin,
+        Component: BinPage,
+      },
+      {
+        path: ROUTE_PATH.Institution,
+        Component: InstitutionPage,
+      },
+      {
+        path: ROUTE_PATH.TransactionManager,
+        Component: TransactionManagerPage,
+      },
+      {
+        path: ROUTE_PATH.Roles,
+        Component: RolesPage,
+      },
+      {
+        path: ROUTE_PATH.Users,
+        Component: UsersPage,
       },
     ],
   },

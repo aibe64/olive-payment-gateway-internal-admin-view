@@ -4,6 +4,9 @@ export { default as UserIcon } from "./UsersSvg";
 export { default as WarningIcon } from "./warning.svg";
 export { default as ActionIcon } from "./action.svg";
 export { default as PaymentIcon } from "./PaymentIcon";
+export { default as SettingsIcon } from "./Settings";
+export { default as UsersIcon } from "./UsersIcon";
+export { default as settingSVG} from "./settings.svg";
 
 
 export { default as CheckmarkIcon } from "./checkmark";
@@ -11,4 +14,6 @@ export { default as WarningAlertIcon } from "./warning";
 export { default as CloseIcon } from "./closeIcon";
 export { default as ApprovalIcon } from "./ApprovalIcon";
 export { default as close_button } from "./close_button.svg";
+export { default as enabledIcon } from "./enabled.svg";
+export { default as disabledIcon } from "./disabled.svg";
 

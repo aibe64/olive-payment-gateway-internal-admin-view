@@ -46,6 +46,18 @@ export namespace Props {
     page?: number;
   }
 
+  export interface Filter {
+    isPaginated?: boolean;
+    filterTypes?: Array<"dateRange" | "status" | JSX.Element>;
+    customSelectedValue?: JSX.Element;
+    onCallBackFilter?: () => void;
+    statusOptions?: Array<{
+      label: string;
+      value: string | number | boolean | undefined;
+    }>;
+    statusKey?: string;
+  }
+
   export interface Field {
     name: string;
     value?: any;

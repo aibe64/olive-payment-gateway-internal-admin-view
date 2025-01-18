@@ -3,9 +3,15 @@ export const ROUTE_PATH = {
   GetStarted: "/get-started",
   Dashboard: "/dashboard",
   Merchant: "/merchant",
+  Roles: "/roles",
+  Users: "/users",
   MerchantApproval: "/approval/merchant",
   Transaction: "/payment/transaction",
   Store: "/payment/store",
+  Provider: "/setup/provider",
+  Bin: "/setup/bin",
+  Institution: "setup/institution",
+  TransactionManager: "setup/transaction-manager",
   Login: import.meta.env.VITE_AUTH_DOMAIN,
 };
 

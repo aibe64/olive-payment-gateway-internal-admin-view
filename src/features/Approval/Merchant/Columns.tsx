@@ -102,16 +102,16 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantApproval>[] =
     },
     {
       title: "Status",
-      width: "15%",
+      width: "10%",
       key: "2",
       ellipsis: true,
       render(_, record) {
         return (
           <div>
-            {record.ussdPayment ? (
-              <Tag color={"green"}>Enabled</Tag>
+            {record.isApproved ? (
+              <Tag color={"green"}>Approved</Tag>
             ) : (
-              <Tag color={"red"}>Disabled</Tag>
+              <Tag color={"orange"}>Pending</Tag>
             )}
           </div>
         );
