@@ -1,61 +1,17 @@
 import { XpressButton, XpressField, XpressForm } from "@/components";
-import { useAPI } from "@/hooks";
-import { APIResponse, State } from "@/models";
+import { usePermission } from "@/hooks";
+import { APIResponse } from "@/models";
 import { APIRequest } from "@/models";
 import { endpoints } from "@/service";
-import { useFormStore, useModalStore } from "@/store";
 import { Checkbox, Col, Divider, Form, Row, Switch } from "antd";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC } from "react";
 
 export const UpdateRoles: FC<{
   isCreate: boolean;
   records?: APIResponse.Roles;
 }> = ({ isCreate, records }) => {
-  const { callGetData, fetching, data } = useAPI<
-    Array<APIResponse.Permissions>
-  >({ isDataTable: false });
-  const [permissions, setPermissions] = useState<
-    Array<APIResponse.Permissions>
-  >([]);
-  const { set } = useModalStore();
-  const {
-    setFormState,
-    clearForm,
-    setPayload,
-    payload,
-  }: State.Form<APIRequest.Provider> = useFormStore();
-
-  const closeModal = useCallback(() => {
-    set({
-      open: false,
-      showCloseButton: undefined,
-      title: undefined,
-      body: undefined,
-      clearPayloadOnClose: true,
-    });
-    clearForm();
-  }, [set]);
-
-  useEffect(() => {
-    if (records && !isCreate) {
-      setFormState("payload", {
-        ...records,
-      });
-    } else {
-      clearForm();
-    }
-  }, [records, setFormState, isCreate, clearForm]);
-
-  useEffect(() => {
-    callGetData(endpoints.Account.GetPermissions);
-  }, []);
-
-  useEffect(() => {
-    if (Array.isArray(data)) {
-      setPermissions(data);
-    }
-  }, [data]);
-
+  const { closeModal, permissions, setPayload, payload, updatePermission } =
+    usePermission(records, isCreate);
   return (
     <XpressForm<APIRequest.RoleAndPermission>
       callApi
@@ -103,19 +59,24 @@ export const UpdateRoles: FC<{
           gutter={16}
           style={{ overflow: "scroll", height: "280px", marginBottom: "10px" }}
         >
-          {permissions?.map((x, index) => (
+          {permissions?.map((x) => (
             <Col className="gutter-row" span={12}>
               <Form.Item>
-                <Checkbox checked={x.isChecked}>{x.name}</Checkbox>
+                <Checkbox
+                  onChange={(e) =>
+                    updatePermission(x.id as number, e.target.checked)
+                  }
+                  checked={x.isChecked}
+                >
+                  {x.name}
+                </Checkbox>
               </Form.Item>
             </Col>
           ))}
         </Row>
       </div>
       <Divider />
-      <XpressButton.Submit
-        title={isCreate ? "Create Role" : "Update Update"}
-      />
+      <XpressButton.Submit title={isCreate ? "Create Role" : "Update Update"} />
     </XpressForm>
   );
 };

@@ -9,7 +9,7 @@ const StoreTransactionPage = lazy(() => import("@/features/Payments/Store"));
 const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
 const ProviderPage = lazy(() => import("@/features/Setup/Provider"));
 const BinPage = lazy(() => import("@/features/Setup/Bin"));
-const InstitutionPage = lazy(() => import("@/features/ManageUsers/Roles"));
+const InstitutionPage = lazy(() => import("@/features/Setup/Institution"));
 const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
 const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
 const TransactionManagerPage = lazy(

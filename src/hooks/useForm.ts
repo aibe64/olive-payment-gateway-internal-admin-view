@@ -18,7 +18,7 @@ export const useAppForm = () => {
           setFormState("submitForm", false);
         }
       });
-  }, [ form, setFormState]);
+  }, [ form, setFormState, payload]);
 
   useEffect(() => {
     checkFormValidation();
