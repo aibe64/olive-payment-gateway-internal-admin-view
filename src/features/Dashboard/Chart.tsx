@@ -1,11 +1,12 @@
 import { memo } from "react";
 import { Card, DatePicker, Empty } from "antd";
-import { Pie, Area, PieConfig } from "@ant-design/charts";
+import { Pie, Area, PieConfig, AreaConfig } from "@ant-design/charts";
 import { useTheme } from "@/components";
 import { usePageStore } from "@/store";
 import { AppState } from "@/models";
 import dayjs, { Dayjs } from "dayjs";
 import { useDashboard } from "@/hooks";
+import { Format } from "@/lib";
 
 const Component = () => {
   const { themeMode } = useTheme();
@@ -19,15 +20,32 @@ const Component = () => {
       amount: item.totalTransactionAmount,
     })) ?? [];
 
-  const config = {
+  const config: AreaConfig = {
     data: yearlyData,
+    colorField: "#fff",
     xField: (d: any) => d.month,
     yField: "amount",
     style: {
       fill: "linear-gradient(180deg, #E5F1E6 0%, #FFFFFF 100%)",
     },
+    theme: {
+      styleSheet: {
+        fontFamily: "Arial",
+        axis: {
+          label: {
+            fill: "#fff",
+          },
+        },
+      },
+    },
     axis: {
       y: { labelFormatter: "~s" },
+      x: { color: "#fff" },
+      label: {
+        style: {
+          color: "#ffff",
+        },
+      },
     },
     line: {
       style: {
@@ -41,28 +59,14 @@ const Component = () => {
     data: [
       { type: "Card", value: item?.totalCardTransactionAmount },
       { type: "Transfer", value: item?.totalTransferTransactionAmount },
-      { type: "USSD", value: item?.totalUSSDTransactionAmount },
       { type: "Account", value: item?.totalAccountTransactionAmount },
       { type: "QR", value: item?.totalQRAmount },
       { type: "E-Naira", value: item?.totalENairaTransactionAmount },
     ],
     angleField: "value",
     colorField: "type",
-    color: [
-      "#006F01B2", // Card
-      "#FF6D00B2", // Transfer
-      "#FF33E1", // USSD
-      "#75FF33", // Account
-      "#FFC300", // QR
-      "#C70039", // E-Naira
-    ],
     innerRadius: 0.6,
-    label: {
-      text: "value",
-      style: {
-        fontWeight: "bold",
-      },
-    },
+    label: false,
     legend: {
       color: {
         title: false,
@@ -104,10 +108,12 @@ const Component = () => {
       loading={loadingSummary}
       className="!border !border-[#E8E8E8] dark:!border-[#1F1F1F] !rounded-[8px] !mt-5"
     >
-      <div className="grid grid-cols-[65%_33%] gap-[2%]">
+      <div className="grid grid-cols-[60%_38%] gap-[2%]">
         <div className="rounded-lg border-gray-100 border-[0.5px] p-4 flex flex-col gap-2">
           <div className="flex justify-between">
-            <span className="text-gray-text">Yearly Transactions</span>
+            <span className="text-gray-text dark:text-white">
+              Yearly Transactions
+            </span>
             <DatePicker
               onChange={onYearChange}
               picker="year"
@@ -125,6 +131,28 @@ const Component = () => {
         </div>
         <div className="rounded-lg border-gray-100 border-[0.5px] p-4">
           <span className="text-gray-text">Payment Channels</span>
+          <div className="gap-2 mt-4 -mb-[2rem] grid grid-cols-2">
+            <div className="flex gap-2 items-center">
+              <span className="font-inter-semibold">Card</span>
+              <span>{Format.toNaira(item?.totalCardTransactionAmount?.toString() ?? "0.00")}</span>
+            </div>
+            <div className="flex gap-1 items-center">
+              <span className="font-inter-semibold">Transfer</span>
+              <span>{Format.toNaira(item?.totalTransferTransactionAmount?.toString() ?? "0.00")}</span>
+            </div>
+            <div className="flex gap-1 items-center">
+            <span className="font-inter-semibold">Account</span>
+              <span>{Format.toNaira(item?.totalAccountTransactionAmount?.toString() ?? "0.00")}</span>
+            </div>
+            <div className="flex gap-1 items-center">
+            <span className="font-inter-semibold">QR</span>
+              <span>{Format.toNaira(item?.totalQRAmount?.toString() ?? "0.00")}</span>
+            </div>
+            <div className="flex gap-1 items-center">
+            <span className="font-inter-semibold">eNaira</span>
+              <span>{Format.toNaira(item?.totalENairaTransactionAmount?.toString() ?? "0.00")}</span>
+            </div>
+          </div>
           {item ? (
             <Pie {...pieConfig} />
           ) : (

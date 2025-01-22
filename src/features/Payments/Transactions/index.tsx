@@ -2,17 +2,41 @@ import { XpressTable } from "@/components";
 import { PageTitle } from "@/components";
 import { APIResponse, AppState } from "@/models";
 import { TransactionFilter } from "./Filter";
-import { useTransactionFilters } from "@/hooks";
+import { useAPI, useTransactionFilters } from "@/hooks";
 import { usePageStore } from "@/store";
 import { TransactionColumns } from "./Columns";
+import { useEffect } from "react";
+import { endpoints } from "@/service";
 
 const Transactions = () => {
   const { loading, loadingTransaction, onPaginate, hasDataOnRender } =
     useTransactionFilters();
-  const { transactionData, transactionPageNumber } = usePageStore<AppState>(
+  const { transactionData, transactionPageNumber, setState } = usePageStore<AppState>(
     (state) => state
   );
   const tableData: any = transactionData?.transactions?.items ?? [];
+
+  const {
+    callGetData,
+    data: merchantDetails,
+  } = useAPI<Array<APIResponse.MerchantDetails>>({});
+
+  useEffect(() => {
+    callGetData(endpoints.SetUp.GetAllMerchant)
+  }, [callGetData])
+
+  useEffect(() => {
+    if (Array.isArray(merchantDetails)) {
+      setState(
+        "merchantItem",
+        merchantDetails.map((item) => ({
+          label: item.businessName ?? "N/A",
+          value: item.id ?? 0,
+        }))
+      );
+    }
+  }, [merchantDetails, setState]);
+  
 
   return (
     <div className="space-y-4">

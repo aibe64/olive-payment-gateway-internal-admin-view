@@ -1,15 +1,39 @@
 import { Outlet } from "react-router-dom";
 
-import { FloatButton } from "antd";
-import { usePageStore } from "@/store";
+import { FloatButton, Typography } from "antd";
+import { useModalStore, usePageStore } from "@/store";
 import { State } from "@/models";
-import { WarningHeader } from "../UI";
+import { TimeOut, WarningHeader } from "../UI";
 import { XpressHeader } from "../Element";
 import { XpressSideBar } from ".";
+import { useCallback } from "react";
+import { useTimeoutHook } from "@/hooks";
 
 export const HomeLayout = () => {
   const { isApproved } = usePageStore<State.Layout>((state) => state);
+  const { set } = useModalStore();
+  const onShowTimeout = useCallback(() => {
+    set({
+      open: true,
+      title: (
+        <Typography className="text-center text-base">
+          SESSION TIMED OUT
+        </Typography>
+      ),
+      body: <TimeOut />,
+      showCloseButton: false,
+      width: 448,
+      styles: {
+        mask: { backdropFilter: "blur(10px)" },
+      },
+    });
+  }, [set]);
 
+  useTimeoutHook({
+    onTimeout() {
+      onShowTimeout();
+    },
+  });
   return (
     <div className="min-h-screen grid lg:grid-cols-[16rem_1fr]">
       <XpressSideBar className="hidden lg:flex" />

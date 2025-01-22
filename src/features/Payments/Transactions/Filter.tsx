@@ -20,7 +20,6 @@ import { APIRequest, APIResponse, AppState, State } from "@/models";
 import { Moment } from "moment";
 import { useTransactionFilters } from "@/hooks";
 import { disableFutureDates, exportToExcel, omit } from "@/lib";
-import { endpoints } from "@/service";
 
 export const TransactionFilter = () => {
   const {
@@ -41,8 +40,6 @@ export const TransactionFilter = () => {
     applyFilter,
     downloadDataToExcel,
     downloading,
-    loadingMerchant,
-    callMerchant,
   } = useTransactionFilters();
 
   const handlePopOver = useCallback(() => {
@@ -127,16 +124,17 @@ export const TransactionFilter = () => {
             />
           </Form.Item>
           <div className="grid grid-cols-2 gap-x-5 -gap-y-7">
-            <Form.Item label="Merchant" className="-mt-4">
-              <Select
-                value={payload?.merchantId}
-                onChange={(e) => setPayload("merchantId", e)}
-                className="!h-[35px]"
-                loading={loadingMerchant}
-                onFocus={() => callMerchant(endpoints.SetUp.GetAllMerchant)}
-                options={merchantItem ?? [{label: "MuyiTech", value: 10}]}
-              />
-            </Form.Item>
+            {Array.isArray(merchantItem) && (
+              <Form.Item label="Merchant" className="-mt-4">
+                <Select
+                  value={payload?.merchantId}
+                  onChange={(e) => setPayload("merchantId", e)}
+                  className="!h-[35px]"
+                  options={merchantItem}
+                />
+              </Form.Item>
+            )}
+
             <Form.Item label="Customer Email" className="-mt-4">
               <Input
                 value={payload?.customerEmail as string}
@@ -207,7 +205,7 @@ export const TransactionFilter = () => {
         </Form>
       </div>,
     ],
-    [setState, applyFilter, handleSetDateRange, setPayload]
+    [setState, applyFilter, handleSetDateRange, setPayload, merchantItem]
   );
   return (
     <div className="flex justify-between items-center">

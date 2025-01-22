@@ -77,6 +77,7 @@ export const UpdateMerchant: FC<{
       }}
       className="px-2 gap-0 overflow-y-scroll h-[650px]"
     >
+    <span className="font-inter-semibold text-danger">{records?.disapprovedComment}</span>
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 ">
         <XpressField
           name="businessName"

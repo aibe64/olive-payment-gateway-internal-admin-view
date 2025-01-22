@@ -12,6 +12,7 @@ const BinPage = lazy(() => import("@/features/Setup/Bin"));
 const InstitutionPage = lazy(() => import("@/features/Setup/Institution"));
 const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
 const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
+const ProfilePage = lazy(() => import("@/features/Settings"));
 const TransactionManagerPage = lazy(
   () => import("@/features/Setup/TransactionManager")
 );
@@ -68,6 +69,10 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.Users,
         Component: UsersPage,
+      },
+      {
+        path: ROUTE_PATH.Profile,
+        Component: ProfilePage,
       },
     ],
   },

@@ -101,8 +101,8 @@ export const useStoreTransactionFilters = () => {
 
   const onPaginate = useCallback(
     (pageNumber: number, limit: number) => {
-      setState("transactionPageNumber", pageNumber);
-      setState("transactionPageLimit", limit);
+      setState("storeTransactionPageNumber", pageNumber);
+      setState("storeTransactionPageLimit", limit);
     },
     [setState]
   );

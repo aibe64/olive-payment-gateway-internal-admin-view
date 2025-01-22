@@ -30,7 +30,7 @@ const Bin = () => {
     set({
       open: true,
       showCloseButton: true,
-      title: <span className="text-[1.2rem] font-bold">Create Bin</span>,
+      title: <span className="text-[1.2rem] font-bold">Create BIN</span>,
       body: <UpdateBin isCreate/>,
       clearPayloadOnClose: true,
       width: 500
@@ -39,14 +39,14 @@ const Bin = () => {
 
   return (
     <div className="flex flex-col gap-5">
-      <PageTitle totalDataCount={tableData?.length ?? 0} title="Bin" />
+      <PageTitle totalDataCount={tableData?.length ?? 0} title="BIN" />
       {originalTableData?.length ? (
         <TableFilter>
           <div className="flex gap-2 items-center">
             <XpressButton
               classNames="!py-5"
               onClick={onAddButton}
-              title="Add Bin"
+              title="Add BIN"
             />
           </div>
         </TableFilter>
@@ -57,8 +57,8 @@ const Bin = () => {
         columns={binColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}
-        emptyHeadingText="No Bin"
-        emptyParagraphText="There are no bin created yet."
+        emptyHeadingText="No BIN"
+        emptyParagraphText="There are no BIN created yet."
         spinning={fetching}
       />
     </div>

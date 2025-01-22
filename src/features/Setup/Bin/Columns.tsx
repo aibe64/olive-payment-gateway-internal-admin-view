@@ -34,7 +34,7 @@ export const binColumn: ColumnProps<APIResponse.Bin>[] = [
     },
   },
   {
-    title: "Bin Name",
+    title: "BIN Name",
     width: "25%",
     key: "2",
     ellipsis: true,
@@ -60,7 +60,7 @@ export const binColumn: ColumnProps<APIResponse.Bin>[] = [
     },
   },
   {
-    title: "Pin Required",
+    title: "PIN Required",
     width: "20%",
     key: "2",
     ellipsis: true,
@@ -157,7 +157,7 @@ export const binColumn: ColumnProps<APIResponse.Bin>[] = [
       return (
         <XpressTableActions
           record={record}
-          pageName={"Bin"}
+          pageName={"BIN"}
           actions={[
             { title: "View", action: "View", modalWidth: 500 },
             { title: "Edit", action: "Edit", modalWidth: 500 },

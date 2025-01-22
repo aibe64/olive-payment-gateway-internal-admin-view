@@ -5,6 +5,7 @@ export const ROUTE_PATH = {
   Merchant: "/merchant",
   Roles: "/roles",
   Users: "/users",
+  Profile: "/profile",
   MerchantApproval: "/approval/merchant",
   Transaction: "/payment/transaction",
   Store: "/payment/store",

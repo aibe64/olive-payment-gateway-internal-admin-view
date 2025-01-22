@@ -8,16 +8,15 @@ import { useAPI } from "./useApi";
 
 export const useAuthorization = () => {
   const token = getQueryStringValue("token");
-  const appKey = getQueryStringValue("key");
   const { callPostData } = useAPI<APIResponse.LoginInfo>({});
 
   useEffect(() => {
-    if (appKey && token) {
+    if (token) {
       callPostData({
-        url: endpoints.Users.ValidateUserFirstTimeLogIn,
-        request: { appKey, token },
+        url: `${endpoints.Users.ValidateUserFirstTimeLogIn}?token=${token}`,
+        request: {},
         callBackApiError() {
-          window.location.href = AppConfig.SSO_DOMAIN;
+          window.location.href = AppConfig.MERCHANT_ADMIN_DOMAIN;
         },
         callBackApiResponse(apiResponse: APIResponse.LoginInfo) {
           AppStorage.setItem(AppStorageKeys.Token, apiResponse.token);
@@ -26,9 +25,9 @@ export const useAuthorization = () => {
         },
       });
     } else {
-      window.location.href = AppConfig.SSO_DOMAIN;
+      window.location.href = AppConfig.MERCHANT_ADMIN_DOMAIN;
     }
-  }, [appKey, token]);
+  }, [token]);
 
   return { token };
 };

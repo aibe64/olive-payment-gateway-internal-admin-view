@@ -4,7 +4,6 @@ import { APIRequest, APIResponse, AppState, State } from "@/models";
 import { GET_TRANSACTIONS } from "@/config";
 import { useFormStore, usePageStore } from "@/store";
 import { Format } from "@/lib";
-import { useAPI } from "./useApi";
 
 export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   const threeYearsAgo = new Date();
@@ -18,11 +17,6 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     APIRequest.TransactionsVars
   >(GET_TRANSACTIONS);
   const [hasDataOnRender, setHasDataOnRender] = useState(false);
-  const {
-    callGetData,
-    data: merchantDetails,
-    fetching: loadingMerchant,
-  } = useAPI<Array<APIResponse.MerchantDetails>>({});
 
   const [downloadTransactions, { data: downloadData, loading: downloading }] =
     useLazyQuery<APIResponse.TransactionsData, APIRequest.TransactionsVars>(
@@ -179,18 +173,6 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     }
   }, [downloadData, setState]);
 
-  useEffect(() => {
-    if (Array.isArray(merchantDetails)) {
-      setState(
-        "merchantItem",
-        merchantDetails.map((item) => ({
-          label: item.businessName ?? "N/A",
-          value: item.id ?? 0,
-        }))
-      );
-    }
-  }, [merchantDetails, setState]);
-
   return {
     loading,
     applyFilter,
@@ -200,8 +182,5 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     downloading,
     downloadDataToExcel,
     hasDataOnRender,
-    merchantDetails,
-    loadingMerchant,
-    callMerchant: callGetData,
   };
 };

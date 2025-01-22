@@ -5,36 +5,48 @@ import {
   CaretDownOutlined,
 } from "@ant-design/icons";
 import { NotificationIcon } from "@/assets";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { APIResponse } from "@/models";
 import { Avatar, Drawer, Dropdown, MenuProps } from "antd";
 import { Link } from "react-router-dom";
-import { Logout, useTheme } from "../UI";
-import { usePageStore, AppStorage } from "@/store";
-import { ROUTE_PATH, State } from "@/models";
+import { LogOut, useTheme } from "../UI";
+import {  AppStorage, useModalStore } from "@/store";
+import { ROUTE_PATH } from "@/models";
 import { XpressSideBar } from "../Layout";
 
 const Header = () => {
-  const { showLogout } = usePageStore<State.Layout>((state) => state);
   const userInfo = AppStorage.getItem<APIResponse.LoginInfo>("");
   const { themeMode, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const { set } = useModalStore();
+
+  const onLogout = useCallback(() => {
+    set({
+      body: <LogOut logOutOnRender={false} />,
+      width: 400,
+      closable: false,
+      open: true,
+    });
+  }, [set]);
 
   const items: MenuProps["items"] = [
     {
       key: "1",
-      label: <Link to={ROUTE_PATH.Users}>Profile</Link>,
+      label: <Link to={ROUTE_PATH.Profile}>Profile</Link>,
     },
     { type: "divider" },
     {
       key: "2",
-      label: <Link to={ROUTE_PATH.Landing}>Logout</Link>,
+      label: (
+        <div onClick={onLogout}>
+          <button>LogOut</button>
+        </div>
+      ),
     },
   ];
 
   return (
     <header className="dark:border-b dark:border-b-[#1F1F1F] dark:bg-primary-dark flex items-center px-2 md:px-5 justify-between relative">
-      {showLogout && <Logout />}
       <MenuOutlined
         onClick={() => setOpen(true)}
         className="lg:!hidden dark:text-[#FFFFFF]"

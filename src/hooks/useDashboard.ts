@@ -74,7 +74,7 @@ export const useDashboard = () => {
             cardBrand: null,
             paymentMethod,
             status,
-            merchantId
+            merchantId,
           },
         },
       });
@@ -126,13 +126,17 @@ export const useDashboard = () => {
 
   useEffect(() => {
     if (Array.isArray(merchantDetails)) {
-      setState(
-        "merchantItem",
-        merchantDetails.map((item) => ({
+      const merchantItems: { label: string; value: number }[] = [
+        { label: "All", value: 0 },
+      ];
+      const merchantData = [
+        ...merchantItems,
+        ...merchantDetails.map((item) => ({
           label: item.businessName ?? "N/A",
           value: item.id ?? 0,
-        }))
-      );
+        })),
+      ];
+      setState("merchantItem", merchantData);
     }
   }, [merchantDetails, setState]);
 

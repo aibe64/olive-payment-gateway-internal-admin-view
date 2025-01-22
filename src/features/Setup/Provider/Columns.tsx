@@ -64,14 +64,14 @@ export const providerColumn: ColumnProps<APIResponse.Provider>[] = [
     },
   },
   {
-    title: "Account",
+    title: "Transfer",
     width: "10%",
     key: "2",
     ellipsis: true,
     render(_, record) {
       return (
         <div>
-          {record.account ? (
+          {record.bankTransfer ? (
             <img src={enabledIcon} alt="" />
           ) : (
             <img src={disabledIcon} alt="" />
@@ -81,14 +81,14 @@ export const providerColumn: ColumnProps<APIResponse.Provider>[] = [
     },
   },
   {
-    title: "Bank",
+    title: "Account",
     width: "10%",
     key: "2",
     ellipsis: true,
     render(_, record) {
       return (
         <div>
-          {record.bank ? (
+          {record.account ? (
             <img src={enabledIcon} alt="" />
           ) : (
             <img src={disabledIcon} alt="" />

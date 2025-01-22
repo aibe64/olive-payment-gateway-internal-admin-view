@@ -36,7 +36,7 @@ export const ManagerDetails: FC<{
       ),
     },
     {
-      key: "Default Provider Enabled",
+      key: "Default Route Enabled",
       value: records?.useDefault ? (
         <Tag color={"green"}>Enabled</Tag>
       ) : (

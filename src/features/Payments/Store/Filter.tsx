@@ -111,7 +111,7 @@ export const TransactionFilter = () => {
             </Form.Item>
             <Form.Item label="Store Name" className="-mt-4">
               <Input
-                value={payload?.reference as string}
+                value={payload?.storeName as string}
                 onChange={(e) => setPayload("storeName", e.target.value)}
                 className="!h-[35px]"
               />

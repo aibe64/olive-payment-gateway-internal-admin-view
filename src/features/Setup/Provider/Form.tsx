@@ -62,11 +62,11 @@ export const UpdateProvider: FC<{
         name="name"
         label="Provider Name"
         type="text"
-        placeholder="Enter category name"
+        placeholder="Enter provider name"
         key={"1"}
-        required
+        required={isCreate}
       />
-      <XpressField name="shortName" label="Short Name" key={"2"} required />
+      <XpressField name="shortName" label="Short Name" key={"2"} required={isCreate} />
       <div className="flex gap-2">
         <label htmlFor="status">Status</label>
         <Switch
@@ -115,6 +115,7 @@ export const UpdateProvider: FC<{
       <Divider />
       <XpressButton.Submit
         title={isCreate ? "Create Provider" : "Update Provider"}
+        disabled={false}
       />
     </XpressForm>
   );

@@ -37,6 +37,7 @@ export const UpdateBin: FC<{
   useEffect(() => {
     if (records && !isCreate) {
       setFormState("payload", {
+        name: records?.binName,
         ...records,
       });
     } else {
@@ -77,20 +78,20 @@ export const UpdateBin: FC<{
     >
       <XpressField
         name="name"
-        label="Bin Name"
+        label="BIN Name"
         type="text"
-        placeholder="Enter category name"
+        placeholder="Enter BIN name"
         key={"1"}
-        required
+        required={isCreate}
       />
       <XpressField
         name="cardBrand"
         label="Card Brand"
         loading={fetching} 
         key={"2"}
-        required
         type="select"
         items={brandItem}
+        required={isCreate}
       />
       <div className="flex gap-2">
         <label htmlFor="status">Status</label>
@@ -102,7 +103,7 @@ export const UpdateBin: FC<{
       <Divider />
       <div className="grid grid-cols-2 gap-3 gap-y-6 mb-5">
         <div className="flex gap-2">
-          <label htmlFor="status">Pin Required</label>
+          <label htmlFor="status">PIN Required</label>
           <Switch
             onChange={(checked) => setPayload("isPinRequired", checked)}
             checked={payload?.isPinRequired ?? false}
@@ -117,7 +118,7 @@ export const UpdateBin: FC<{
         </div>
       </div>
       <Divider />
-      <XpressButton.Submit title={isCreate ? "Create Bin" : "Update Bin"} />
+      <XpressButton.Submit title={isCreate ? "Create BIN" : "Update BIN"} />
     </XpressForm>
   );
 };

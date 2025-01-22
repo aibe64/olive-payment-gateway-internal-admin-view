@@ -12,7 +12,6 @@ const Component = <T,>({
   pageName,
   details,
 }: Props.TableAction<T>) => {
-  console.log("details", details);
   const { setActionModal } = useTableActions({});
 
   const onClickAction = useCallback(
@@ -64,7 +63,6 @@ const Component = <T,>({
           );
           break;
         case "Approve":
-          console.log("xxxxxxx", actionDetails);
           setActionModal(
             <ApproveForm {...actionDetails} />,
             `${action} ${pageName}`,

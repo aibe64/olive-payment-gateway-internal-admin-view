@@ -84,4 +84,5 @@ export interface XpressModalConfig {
   width?: number;
   closable?: boolean;
   clearPayloadOnClose?: boolean;
+  styles?: any
 }

@@ -13,7 +13,6 @@ export const useAppForm = () => {
         setFormState("submitForm", true);
       })
       .catch((error) => {
-        console.log(error)
         if (Array.isArray(error.errorFields) && error.errorFields?.length) {
           setFormState("submitForm", false);
         }

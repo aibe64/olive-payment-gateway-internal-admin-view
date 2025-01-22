@@ -45,8 +45,14 @@ export const DashboardFilter = () => {
 
   const merchantChange = useCallback(
     (id: number) => {
-      setMerchantId(id);
-      applyFilter(dates.start, dates.end, statusValue, paymentMethodValue, id);
+      setMerchantId(id === 0 ? null : id);
+      applyFilter(
+        dates.start,
+        dates.end,
+        statusValue,
+        paymentMethodValue,
+        id === 0 ? null : id
+      );
     },
     [applyFilter, statusValue, paymentMethodValue, dates, setMerchantId]
   );
@@ -91,7 +97,7 @@ export const DashboardFilter = () => {
         onChange={(e) => merchantChange(e)}
         loading={loadingMerchant}
         onFocus={() => callMerchant(endpoints.SetUp.GetAllMerchant)}
-        options={merchantItem ?? [{ label: "MuyiTech", value: 10 }]}
+        options={merchantItem ?? []}
       />
       <Select
         onChange={(e) => onFilterChange(e, null)}
@@ -100,6 +106,10 @@ export const DashboardFilter = () => {
         allowClear
         onClear={() => onClearFilter(true)}
         options={[
+          {
+            label: "All",
+            value: null,
+          },
           {
             label: "Success",
             value: "00",
@@ -121,6 +131,10 @@ export const DashboardFilter = () => {
         allowClear
         onClear={() => onClearFilter(false)}
         options={[
+          {
+            label: "All",
+            value: null,
+          },
           {
             label: "Card",
             value: "Card",

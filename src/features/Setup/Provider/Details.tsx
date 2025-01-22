@@ -31,8 +31,8 @@ export const ProviderDetails: FC<{
         ),
       },
       {
-        key: "Bank",
-        value: records?.bank ? (
+        key: "Account",
+        value: records?.account ? (
           <Tag color={"green"}>Enabled</Tag>
         ) : (
           <Tag color={"red"}>Disabled</Tag>
