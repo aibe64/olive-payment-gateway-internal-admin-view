@@ -52,7 +52,7 @@ const Merchant: React.FC = () => {
         <Button
           iconPosition="end"
           onClick={() =>
-            exportToExcel(tableDataWithoutId ?? [], "Product Category")
+            exportToExcel(tableDataWithoutId ?? [], "Merchant")
           }
           icon={<DownloadOutlined />}
           className="!bg-white !border-primary text-primary"

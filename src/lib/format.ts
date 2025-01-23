@@ -2,23 +2,23 @@ export class Format {
   static toDateTime = (value: string) => {
     // Convert string to a Date object
     const dateObj = new Date(value);
-    // Format the date
-    const formattedDate = dateObj.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long", // You can use "short" or "numeric" as well
-      day: "numeric",
-    });
 
-    // Format the time
-    const formattedTime = dateObj.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true, // This makes it 12-hour format (AM/PM)
-    });
+    // Extract the date components
+    const year = dateObj.getUTCFullYear();
+    const month = String(dateObj.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+    const day = String(dateObj.getUTCDate()).padStart(2, "0");
 
-    const formatted = `${formattedDate} - ${formattedTime}`;
+    // Extract the time components
+    const hours = String(dateObj.getUTCHours()).padStart(2, "0");
+    const minutes = String(dateObj.getUTCMinutes()).padStart(2, "0");
+    const seconds = String(dateObj.getUTCSeconds()).padStart(2, "0");
 
+    // Format the date and time
+    const formattedDate = `${year}/${month}/${day}`;
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+    const formatted = `${formattedDate}-${formattedTime}`;
+console.log(formatted)
     return formatted;
   };
 
@@ -30,6 +30,14 @@ export class Format {
     const minutes = String(date.getMinutes()).padStart(2, "0");
     const seconds = String(date.getSeconds()).padStart(2, "0");
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
+  };
+
+  static toOnlyDate = (value: string): string => {
+    const date = new Date(value);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   };
 
   static toNaira = (money: string, hideCurrencyIcon?: boolean): string => {
@@ -57,7 +65,7 @@ export class Format {
 
   static fromNumberToWords(num: number): string {
     if (num === 0) return "Zero Naira Only";
-  
+
     const belowTwenty = [
       "Zero",
       "One",
@@ -80,7 +88,7 @@ export class Format {
       "Eighteen",
       "Nineteen",
     ];
-  
+
     const tens = [
       "",
       "",
@@ -93,9 +101,9 @@ export class Format {
       "Eighty",
       "Ninety",
     ];
-  
+
     const thousands = ["", "Thousand", "Million", "Billion"];
-  
+
     function helper(n: number): string {
       if (n < 20) return belowTwenty[n];
       if (n < 100)
@@ -109,7 +117,7 @@ export class Format {
           " Hundred" +
           (n % 100 !== 0 ? " " + helper(n % 100) : "")
         );
-  
+
       for (let i = 0; i < thousands.length; i++) {
         const divisor = Math.pow(1000, i);
         if (n < divisor * 1000) {
@@ -121,10 +129,10 @@ export class Format {
           );
         }
       }
-  
+
       return "N/A";
     }
-  
+
     function decimalToWords(decimalPart: number): string {
       const decimalStr = decimalPart.toString();
       const words = [];
@@ -133,15 +141,14 @@ export class Format {
       }
       return words.join(" ");
     }
-  
+
     const integerPart = Math.floor(num);
     const decimalPart = Math.round((num - integerPart) * 100); // Get decimal part as whole number (e.g., 0.45 -> 45)
-  
+
     const integerWords = helper(integerPart)?.trim();
     const decimalWords =
       decimalPart > 0 ? ` and ${decimalToWords(decimalPart)} Kobo Only` : "";
-  
+
     return `${integerWords} Naira${decimalWords}`;
   }
-  
 }

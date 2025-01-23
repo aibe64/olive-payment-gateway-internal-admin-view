@@ -40,7 +40,7 @@ export const roleColumn: ColumnProps<APIResponse.Roles>[] = [
     render(_, record) {
       return (
         <div className="flex flex-col">
-          <span className="font-inter-semibold">{record.roleName}</span>
+          <span className="font-inter-semibold">{record.name}</span>
         </div>
       );
     },

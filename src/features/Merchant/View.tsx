@@ -89,8 +89,16 @@ export const ViewMerchant: FC<{
       value: records?.tokenization ? "True" : "False",
     },
     {
+      key: "Charge To Customer",
+      value: records?.isChargeTransferedToCustomer ? "True" : "False"
+    },
+    {
+      key: "Charge To Merchant",
+      value: records?.isChargeTransferedToCustomer ? "False" : "True"
+    },
+    {
       key: "Charge Type",
-      value: records?.chargeType ?? "N/A",
+      value: records?.chargeType?.toUpperCase() ?? "N/A",
     },
     {
       key: "Charge Value",

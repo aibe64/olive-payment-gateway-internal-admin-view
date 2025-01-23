@@ -12,7 +12,15 @@ export const UpdateBin: FC<{
   records?: APIResponse.Bin;
 }> = ({ isCreate, records }) => {
   const { callGetData, fetching, data } = useAPI<Array<{ brand: string }>>({});
+  const {
+    callGetData: callProvider,
+    fetching: loadingProvider,
+    data: providers,
+  } = useAPI<Array<{ shortName: string }>>({});
   const [brandItem, setBrandItem] = useState<
+    { label: string; value: string }[]
+  >([]);
+  const [providerItem, setProviderItem] = useState<
     { label: string; value: string }[]
   >([]);
   const { set } = useModalStore();
@@ -50,6 +58,10 @@ export const UpdateBin: FC<{
   }, []);
 
   useEffect(() => {
+    callProvider(endpoints.SetUp.GetAllProviders);
+  }, []);
+
+  useEffect(() => {
     if (Array.isArray(data)) {
       setBrandItem(
         data.map((item) => ({ label: item.brand, value: item.brand }))
@@ -57,11 +69,23 @@ export const UpdateBin: FC<{
     }
   }, [data]);
 
+  useEffect(() => {
+    if (Array.isArray(providers)) {
+      setProviderItem(
+        providers.map((provider) => ({
+          label: provider.shortName,
+          value: provider.shortName,
+        }))
+      );
+    }
+  }, [providers]);
+
   return (
     <XpressForm<APIRequest.Bin>
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
+        isActive: payload?.isActive ? true : false,
       }}
       apiConfig={{
         endpoint: isCreate
@@ -77,20 +101,32 @@ export const UpdateBin: FC<{
       className="px-2 gap-0"
     >
       <XpressField
-        name="name"
-        label="BIN Name"
+        name="binName"
+        label="BIN"
         type="text"
-        placeholder="Enter BIN name"
+        placeholder="Enter BIN"
         key={"1"}
         required={isCreate}
+        validator={"bin"}
+        maxLength={8}
+        minLength={6}
       />
       <XpressField
         name="cardBrand"
         label="Card Brand"
-        loading={fetching} 
+        loading={fetching}
         key={"2"}
         type="select"
         items={brandItem}
+        required={isCreate}
+      />
+      <XpressField
+        name="provider"
+        label="Provider"
+        loading={loadingProvider}
+        key={"9"}
+        type="select"
+        items={providerItem}
         required={isCreate}
       />
       <div className="flex gap-2">

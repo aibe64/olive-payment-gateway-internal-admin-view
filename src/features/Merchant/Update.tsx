@@ -209,8 +209,8 @@ export const UpdateMerchant: FC<{
           <div className="flex gap-2">
             <label htmlFor="status">Transfer</label>
             <Switch
-              onChange={(checked) => setPayload("bankTrasferPayment", checked)}
-              checked={payload?.bankTrasferPayment ?? false}
+              onChange={(checked) => setPayload("bankTransferPayment", checked)}
+              checked={payload?.bankTransferPayment ?? false}
             />
           </div>
           <div className="flex gap-2">

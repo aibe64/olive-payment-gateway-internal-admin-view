@@ -62,7 +62,7 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantDetails>[] = [
   },
   {
     title: "Status",
-    width: "10%",
+    width: "15%",
     key: "2",
     ellipsis: true,
     render(_, record) {

@@ -56,7 +56,7 @@ export const menuList: Props.MenuListProps[] = [
         path: ROUTE_PATH.Provider,
       },
       {
-        label: "Bin",
+        label: "BIN",
         path: ROUTE_PATH.Bin,
       },
       {

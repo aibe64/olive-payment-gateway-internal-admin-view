@@ -80,7 +80,8 @@ export namespace Props {
       | "onlyAphabet"
       | "onlyNumber"
       | "url"
-      | "exist_on_db"
+      | "exist_on_db" |
+      "bin"
       | "amountRange";
     validatorFetchConfig?: ValidateFetchConfig;
     showPasswordMeter?: boolean;

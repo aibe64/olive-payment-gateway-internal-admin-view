@@ -61,6 +61,19 @@ export const useFieldValidationRule = (config?: ValidateFetchConfig) => {
     }
   );
 
+  const validateBinRule = useFieldValidation(
+    async (value: string): Promise<string | null> => {
+      const onlyNumberRegex = /^\d+$/;
+      const onlySixToEightRegex = /^\d{6,8}$/;
+      if (!value || !onlyNumberRegex.test(value)) {
+        return "Only numbers are accepted";
+      }else if(!value || onlySixToEightRegex.test(value)){
+        return null
+      }
+      return "Please enter the first 6 to 8 digits of the credit card number";
+    }
+  );
+
   const validateUrlRule = useFieldValidation(
     async (value: string): Promise<string | null> => {
       const urlRegex =
@@ -321,6 +334,7 @@ export const useFieldValidationRule = (config?: ValidateFetchConfig) => {
     validateUrlRule,
     validateValueIfItExistOnDB,
     updateValidatingStatusByFieldName,
-    setFieldValueValidation
+    setFieldValueValidation,
+    validateBinRule
   };
 };

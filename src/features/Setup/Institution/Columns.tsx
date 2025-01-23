@@ -120,7 +120,7 @@ export const institutionColumn: ColumnProps<APIResponse.Banks>[] = [
       return (
         <XpressTableActions
           record={record}
-          pageName={"Transaction Manager"}
+          pageName={"Institution"}
           actions={[
             { title: "View", action: "View", modalWidth: 500 },
             { title: "Edit", action: "Edit", modalWidth: 500 },

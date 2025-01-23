@@ -109,7 +109,7 @@ const Component = () => {
       className="!border !border-[#E8E8E8] dark:!border-[#1F1F1F] !rounded-[8px] !mt-5"
     >
       <div className="grid grid-cols-[60%_38%] gap-[2%]">
-        <div className="rounded-lg border-gray-100 border-[0.5px] p-4 flex flex-col gap-2">
+        <div className="rounded-lg border-gray-100 border-[0.5px] p-4 flex flex-col gap-2 dark:bg-white">
           <div className="flex justify-between">
             <span className="text-gray-text dark:text-white">
               Yearly Transactions

@@ -75,6 +75,7 @@ export const XpressField: React.FC<Props.Field> = ({
     validateRangeAmountRule,
     validateUrlRule,
     updateValidatingStatusByFieldName,
+    validateBinRule,
   } = useFieldValidationRule(validatorFetchConfig);
 
   const validatingStatus:
@@ -156,6 +157,8 @@ export const XpressField: React.FC<Props.Field> = ({
           ? validateRangeAmountRule
           : validator === "onlyAphabet"
           ? validateOnlyAlphabetRule
+          : validator === "bin"
+          ? validateBinRule
           : { required: required, message: "" },
         validate
           ? { validator: validate }

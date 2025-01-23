@@ -393,6 +393,7 @@ export namespace APIResponse {
 
   export interface Roles {
     id: number
+    name: string
     roleName: string
     description: string
     datecreated: string

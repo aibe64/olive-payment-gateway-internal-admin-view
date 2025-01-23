@@ -21,7 +21,7 @@ export namespace APIRequest {
     ussdPayment: boolean;
     qrPayment: boolean;
     walletPayment: boolean;
-    bankTrasferPayment: boolean;
+    bankTransferPayment: boolean;
     businessLogo: string;
     transactionLimit: number;
     dateProfiled: string;

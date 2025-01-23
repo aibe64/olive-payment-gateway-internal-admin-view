@@ -76,6 +76,7 @@ export const SubmitButton: React.FC<Props.SubmitButton> = ({
   form,
   loading,
   customApiConfigs,
+  disabled
 }) => {
   const { isProcessing } = useFormStore((state) => state);
   return (
@@ -87,6 +88,7 @@ export const SubmitButton: React.FC<Props.SubmitButton> = ({
       form={form}
       loading={loading || isProcessing}
       customApiConfigs={customApiConfigs}
+      disabled={disabled}
     />
   );
 };

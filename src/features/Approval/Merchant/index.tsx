@@ -8,6 +8,7 @@ const MerchantApproval = () => {
   const { data, fetching } = useAPI<Array<APIResponse.MerchantApproval>>({
     callGetApiOnRender: true,
     queryDataEndpoint: endpoints.Approvals.GetAllMerchantChargePendingApproval,
+    isDataTable: true
   });
 
   return (

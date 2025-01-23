@@ -9,6 +9,7 @@ export const useTableActions = (details: ActionDetails) => {
 
   const handleApiResponse = useCallback(() => {
     setModalState("open", false);
+    
   }, [setModalState]);
 
   const callActionApi = useCallback(() => {
@@ -20,7 +21,7 @@ export const useTableActions = (details: ActionDetails) => {
       showToastAfterApiResponse: true,
       reloadTable: true,
     });
-  }, [details.endpoint, details?.payload]);
+  }, [details.endpoint, details?.payload, callPostData]);
 
   const setActionModal = useCallback(
     (component: JSX.Element, title: string | JSX.Element, modalWidth?: number) => {

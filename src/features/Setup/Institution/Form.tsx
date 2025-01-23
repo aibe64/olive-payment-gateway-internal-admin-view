@@ -1,10 +1,11 @@
 import { XpressButton, XpressField, XpressForm } from "@/components";
+import { useAPI } from "@/hooks";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
 import { endpoints } from "@/service";
 import { useFormStore, useModalStore } from "@/store";
 import { Divider, Switch } from "antd";
-import { FC, useCallback, useEffect } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 export const UpdateInstitution: FC<{
   records?: APIResponse.Banks;
@@ -16,6 +17,12 @@ export const UpdateInstitution: FC<{
     setPayload,
     payload,
   }: State.Form<APIRequest.BankRequest> = useFormStore();
+  const { callGetData, fetching, data } = useAPI<Array<APIResponse.Provider>>({
+    isDataTable: false,
+  });
+  const [providerItem, setProviderItem] = useState<
+    { label: string; value: string }[]
+  >([]);
 
   const closeModal = useCallback(() => {
     set({
@@ -27,6 +34,21 @@ export const UpdateInstitution: FC<{
     });
     clearForm();
   }, [set]);
+
+  useEffect(() => {
+    callGetData(endpoints.SetUp.GetAllProviders);
+  }, []);
+
+  useEffect(() => {
+    if (Array.isArray(data)) {
+      setProviderItem(
+        data.map((item) => ({
+          label: item.shortName ?? "",
+          value: item.shortName ?? "",
+        }))
+      );
+    }
+  }, [data]);
 
   useEffect(() => {
     if (records) {
@@ -59,7 +81,14 @@ export const UpdateInstitution: FC<{
         key={"1"}
         readonly
       />
-      <XpressField name="provider" label="Processor" key={"3"} />
+      <XpressField
+        name="provider"
+        label="Processor"
+        loading={fetching}
+        key={"3"}
+        type="select"
+        items={providerItem}
+      />
       <Divider />
       <div className="grid grid-cols-2 gap-3 gap-y-6 mb-5">
         <div className="flex gap-2">

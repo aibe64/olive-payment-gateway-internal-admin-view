@@ -12,11 +12,18 @@ export const UpdateRoles: FC<{
 }> = ({ isCreate, records }) => {
   const { closeModal, permissions, setPayload, payload, updatePermission } =
     usePermission(records, isCreate);
+
+    console.log("object", permissions);
+
   return (
     <XpressForm<APIRequest.RoleAndPermission>
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
+        isActive: payload?.isActive ? true : false,
+        permissions: permissions
+          ?.filter((x) => x.isChecked)
+          ?.map((y) => ({ id: y.id, claim: y.name })),
       }}
       apiConfig={{
         endpoint: isCreate
@@ -76,7 +83,10 @@ export const UpdateRoles: FC<{
         </Row>
       </div>
       <Divider />
-      <XpressButton.Submit title={isCreate ? "Create Role" : "Update Update"} />
+      <XpressButton.Submit
+        disabled={permissions?.filter((x) => x.isChecked)?.length <= 0}
+        title={isCreate ? "Create Role" : "Update Update"}
+      />
     </XpressForm>
   );
 };
