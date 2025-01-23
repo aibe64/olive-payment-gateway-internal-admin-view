@@ -15,7 +15,7 @@ const StoreTransactions = () => {
     storeTransactionData?.storeTransactions?.items ?? [];
 
   return (
-    <div className="space-y-4"> 
+    <div className="space-y-4">
       <PageTitle
         totalDataCount={
           storeTransactionData?.storeTransactions?.totalCount ?? 0

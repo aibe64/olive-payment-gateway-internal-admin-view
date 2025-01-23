@@ -153,19 +153,30 @@ export const useStoreTransactionFilters = () => {
           page: storeTransactionPageNumber ?? 1,
           limit: storeTransactionPageLimit ?? 10,
           filter: {
-            customerEmail: null,
-            reference: null,
-            transactionId: null,
-            startDate: null,
-            endDate: null,
-            cardBrand: null,
-            paymentMethod: null,
-            status: null,
-            storeName: null,
+            ...payload,
+            cardBrand: payload?.cardBrand ? payload?.cardBrand : null,
+            customerEmail: payload?.customerEmail
+              ? payload?.customerEmail
+              : null,
+            paymentMethod: payload?.paymentMethod
+              ? payload?.paymentMethod
+              : null,
+            reference: payload?.reference ? payload?.reference : null,
+            transactionId: payload?.transactionId
+              ? payload?.transactionId
+              : null,
+            storeName: payload?.storeName ? payload?.storeName : null,
+            status: payload?.status === "All" ? undefined : payload?.status,
+            startDate: payload?.startDate
+              ? Format.toAPIDate(new Date(payload?.startDate))
+              : null,
+            endDate: payload?.endDate
+              ? Format.toAPIDate(new Date(payload?.endDate))
+              : null,
           },
         },
       });
-  }, [storeTransactionPageNumber, storeTransactionPageLimit]);
+  }, [storeTransactionPageNumber, storeTransactionPageLimit, payload]);
 
   useEffect(() => {
     setFormState("payload", undefined);
