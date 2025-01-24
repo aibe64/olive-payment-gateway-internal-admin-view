@@ -1,4 +1,5 @@
 import { nigerianBanks } from "@/data";
+import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { List } from "antd";
 import { FC } from "react";
@@ -31,6 +32,14 @@ export const ViewMerchant: FC<{
     {
       key: "Business Number",
       value: records?.businessNumber ?? "N/A",
+    },
+    {
+      key: "Business Type",
+      value: records?.businessType ?? "N/A",
+    },
+    {
+      key: "Transaction Limit",
+      value: Format.toNaira(records?.transactionLimit?.toString() ?? "0.00"),
     },
     {
       key: "Bank",
@@ -90,11 +99,11 @@ export const ViewMerchant: FC<{
     },
     {
       key: "Charge To Customer",
-      value: records?.isChargeTransferedToCustomer ? "True" : "False"
+      value: records?.isChargeTransferedToCustomer ? "True" : "False",
     },
     {
       key: "Charge To Merchant",
-      value: records?.isChargeTransferedToCustomer ? "False" : "True"
+      value: records?.isChargeTransferedToCustomer ? "False" : "True",
     },
     {
       key: "Charge Type",

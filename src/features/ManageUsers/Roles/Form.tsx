@@ -13,8 +13,6 @@ export const UpdateRoles: FC<{
   const { closeModal, permissions, setPayload, payload, updatePermission } =
     usePermission(records, isCreate);
 
-    console.log("object", permissions);
-
   return (
     <XpressForm<APIRequest.RoleAndPermission>
       callApi

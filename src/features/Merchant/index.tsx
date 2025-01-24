@@ -13,6 +13,7 @@ const Merchant: React.FC = () => {
   const { data, fetching } = useAPI<Array<APIResponse.MerchantDetails>>({
     callGetApiOnRender: true,
     queryDataEndpoint: endpoints.SetUp.GetAllMerchant,
+    isDataTable: true
   });
   const { setState, originalTableData, tableData } = usePageStore<AppState>(
     (state) => state

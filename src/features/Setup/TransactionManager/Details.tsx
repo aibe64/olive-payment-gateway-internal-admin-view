@@ -20,7 +20,7 @@ export const ManagerDetails: FC<{
       value: records?.staticRouteProvider ?? "N/A",
     },
     {
-      key: "Bin Enabled",
+      key: "BIN Enabled",
       value: records?.useBin ? (
         <Tag color={"green"}>Enabled</Tag>
       ) : (

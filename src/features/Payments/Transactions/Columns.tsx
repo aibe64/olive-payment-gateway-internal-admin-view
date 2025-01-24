@@ -107,7 +107,7 @@ export const TransactionColumns: ColumnProps<APIResponse.Transaction>[] = [
           ) : record.paymentResponseCode === APIResponseCode.Failed ? (
             <Typography className="text-danger">Failed</Typography>
           ) : (
-            <Typography className="text-tertiary">Failed</Typography>
+            <Typography className="text-tertiary">Pending</Typography>
           )}
         </div>
       );

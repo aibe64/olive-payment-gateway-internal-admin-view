@@ -78,10 +78,14 @@ export const useStoreTransactionFilters = () => {
               storeName: payload?.storeName ? payload?.storeName : null,
               status: payload?.status === "All" ? undefined : payload?.status,
               startDate: payload.startDate
-                ? Format.toAPIDate(new Date(payload.startDate))
+                ? `${
+                    Format.toAPIDate(new Date(payload.startDate))?.split("T")[0]
+                  }T00:00:00Z`
                 : null,
               endDate: payload.endDate
-                ? Format.toAPIDate(new Date(payload.endDate))
+                ? `${
+                    Format.toAPIDate(new Date(payload.endDate))?.split("T")[0]
+                  }T00:00:00Z`
                 : null,
             },
           },
@@ -168,10 +172,14 @@ export const useStoreTransactionFilters = () => {
             storeName: payload?.storeName ? payload?.storeName : null,
             status: payload?.status === "All" ? undefined : payload?.status,
             startDate: payload?.startDate
-              ? Format.toAPIDate(new Date(payload?.startDate))
+              ? `${
+                  Format.toAPIDate(new Date(payload?.startDate))?.split("T")[0]
+                }T00:00:00Z`
               : null,
             endDate: payload?.endDate
-              ? Format.toAPIDate(new Date(payload?.endDate))
+              ? `${
+                  Format.toAPIDate(new Date(payload?.endDate))?.split("T")[0]
+                }T00:00:00Z`
               : null,
           },
         },

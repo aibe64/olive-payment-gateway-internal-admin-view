@@ -70,7 +70,7 @@ export const institutionColumn: ColumnProps<APIResponse.Banks>[] = [
     },
   },
   {
-    title: "Pin Required",
+    title: "PIN Required",
     width: "23%",
     key: "2",
     ellipsis: true,

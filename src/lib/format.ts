@@ -18,7 +18,6 @@ export class Format {
     const formattedTime = `${hours}:${minutes}:${seconds}`;
 
     const formatted = `${formattedDate}-${formattedTime}`;
-console.log(formatted)
     return formatted;
   };
 

@@ -60,7 +60,7 @@ export const binColumn: ColumnProps<APIResponse.Bin>[] = [
     },
   },
   {
-    title: "Pin Required",
+    title: "PIN Required",
     width: "20%",
     key: "2",
     ellipsis: true,

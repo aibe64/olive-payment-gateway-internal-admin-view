@@ -129,7 +129,7 @@ export const UpdateInstitution: FC<{
           />
         </div>
         <div className="flex gap-2">
-          <label htmlFor="status"> Pin Required</label>
+          <label htmlFor="status"> PIN Required</label>
           <Switch
             onChange={(checked) => setPayload("isPinRequired", checked)}
             checked={payload?.isPinRequired ?? false}

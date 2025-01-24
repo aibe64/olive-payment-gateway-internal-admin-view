@@ -26,6 +26,7 @@ const Header = () => {
       width: 400,
       closable: false,
       open: true,
+      title: <></>
     });
   }, [set]);
 

@@ -1,4 +1,5 @@
 import { TRANSACTION_SUMMARY, YEARLY_TRANSACTIONS } from "@/config";
+import { Format } from "@/lib";
 import { APIRequest, APIResponse, AppState } from "@/models";
 import { usePageStore } from "@/store";
 import { useQuery, useLazyQuery } from "@apollo/client";
@@ -69,8 +70,8 @@ export const useDashboard = () => {
             customerEmail: null,
             reference: null,
             transactionId: null,
-            startDate,
-            endDate,
+            startDate: startDate ? Format.toAPIDate(new Date(startDate)) : null,
+            endDate: endDate ? Format.toAPIDate(new Date(endDate)) : null,
             cardBrand: null,
             paymentMethod,
             status,

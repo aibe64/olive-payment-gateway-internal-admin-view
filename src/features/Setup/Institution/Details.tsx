@@ -52,7 +52,7 @@ export const InstitutionDetails: FC<{
       ),
     },
     {
-      key: "Pin Required",
+      key: "PIN Required",
       value: records?.isPinRequired ? (
         <Tag color={"green"}>Enabled</Tag>
       ) : (

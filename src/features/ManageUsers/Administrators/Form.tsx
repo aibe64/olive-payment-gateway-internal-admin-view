@@ -77,7 +77,7 @@ export const UpdateBin: FC<{
     >
       <XpressField
         name="name"
-        label="Bin Name"
+        label="BIN Name"
         type="text"
         placeholder="Enter category name"
         key={"1"}

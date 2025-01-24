@@ -34,7 +34,7 @@ export const managerColumn: ColumnProps<APIResponse.MerchantDetails>[] = [
     },
   },
   {
-    title: "Bin Enabled",
+    title: "BIN Enabled",
     width: "16%",
     key: "2",
     ellipsis: true,

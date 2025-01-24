@@ -96,6 +96,7 @@ export const DashboardFilter = () => {
         placeholder="Merchant"
         onChange={(e) => merchantChange(e)}
         loading={loadingMerchant}
+        showSearch
         onFocus={() => callMerchant(endpoints.SetUp.GetAllMerchant)}
         options={merchantItem ?? []}
       />

@@ -55,6 +55,10 @@ export const TransactionFilter = () => {
         setPayload("startDate", startDate);
         setPayload("endDate", endDate);
         setDates(dates);
+      }else{
+        setDates(null)
+        setPayload("startDate", null);
+        setPayload("endDate", null);
       }
     },
     [setPayload]
@@ -117,6 +121,7 @@ export const TransactionFilter = () => {
             <DatePicker.RangePicker
               value={dates}
               disabledDate={disableFutureDates}
+              
               onChange={(dates) =>
                 handleSetDateRange(dates as [Moment, Moment] | null)
               }
@@ -153,7 +158,7 @@ export const TransactionFilter = () => {
               <Select
                 value={payload?.cardBrand as string}
                 onChange={(e) =>
-                  setPayload("cardBrand", e === "All" ? null : e)
+                  setPayload("cardBrand", e)
                 }
                 className="!h-[35px]"
                 options={[
@@ -169,7 +174,7 @@ export const TransactionFilter = () => {
               <Select
                 value={payload?.paymentMethod as string}
                 onChange={(e) =>
-                  setPayload("paymentMethod", e === "All" ? null : e)
+                  setPayload("paymentMethod", e)
                 }
                 className="!h-[35px]"
                 options={[
@@ -185,7 +190,7 @@ export const TransactionFilter = () => {
               <Select
                 value={payload?.status as string}
                 className="!h-[35px]"
-                onChange={(e) => setPayload("status", e === "All" ? null : e)}
+                onChange={(e) => setPayload("status", e)}
                 options={[
                   { label: "Success", value: "00" },
                   { label: "Failed", value: "02" },

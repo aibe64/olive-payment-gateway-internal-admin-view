@@ -60,6 +60,7 @@ const Component = () => {
       { type: "Card", value: item?.totalCardTransactionAmount },
       { type: "Transfer", value: item?.totalTransferTransactionAmount },
       { type: "Account", value: item?.totalAccountTransactionAmount },
+      { type: "USSD", value: item?.totalUSSDTransactionAmount },
       { type: "QR", value: item?.totalQRAmount },
       { type: "E-Naira", value: item?.totalENairaTransactionAmount },
     ],
@@ -67,13 +68,7 @@ const Component = () => {
     colorField: "type",
     innerRadius: 0.6,
     label: false,
-    legend: {
-      color: {
-        title: false,
-        position: "bottom",
-        rowPadding: 5,
-      },
-    },
+    legend: false,
     annotations: [
       {
         type: "text",
@@ -88,7 +83,6 @@ const Component = () => {
       },
     ],
   };
-
   const disableFutureYears = (current: Dayjs | null): boolean => {
     return !!current && current.year() > dayjs().year();
   };
@@ -130,27 +124,55 @@ const Component = () => {
           )}
         </div>
         <div className="rounded-lg border-gray-100 border-[0.5px] p-4">
-          <span className="text-gray-text">Payment Channels</span>
+          <span className="text-gray-text dark:text-white">
+            Payment Channels
+          </span>
           <div className="gap-2 mt-4 -mb-[2rem] grid grid-cols-2">
             <div className="flex gap-2 items-center">
               <span className="font-inter-semibold">Card</span>
-              <span>{Format.toNaira(item?.totalCardTransactionAmount?.toString() ?? "0.00")}</span>
+              <span>
+                {Format.toNaira(
+                  item?.totalCardTransactionAmount?.toString() ?? "0.00"
+                )}
+              </span>
             </div>
             <div className="flex gap-1 items-center">
               <span className="font-inter-semibold">Transfer</span>
-              <span>{Format.toNaira(item?.totalTransferTransactionAmount?.toString() ?? "0.00")}</span>
+              <span>
+                {Format.toNaira(
+                  item?.totalTransferTransactionAmount?.toString() ?? "0.00"
+                )}
+              </span>
             </div>
             <div className="flex gap-1 items-center">
-            <span className="font-inter-semibold">Account</span>
-              <span>{Format.toNaira(item?.totalAccountTransactionAmount?.toString() ?? "0.00")}</span>
+              <span className="font-inter-semibold">USSD</span>
+              <span>
+                {Format.toNaira(
+                  item?.totalUSSDTransactionAmount?.toString() ?? "0.00"
+                )}
+              </span>
             </div>
             <div className="flex gap-1 items-center">
-            <span className="font-inter-semibold">QR</span>
-              <span>{Format.toNaira(item?.totalQRAmount?.toString() ?? "0.00")}</span>
+              <span className="font-inter-semibold">Account</span>
+              <span>
+                {Format.toNaira(
+                  item?.totalAccountTransactionAmount?.toString() ?? "0.00"
+                )}
+              </span>
             </div>
             <div className="flex gap-1 items-center">
-            <span className="font-inter-semibold">eNaira</span>
-              <span>{Format.toNaira(item?.totalENairaTransactionAmount?.toString() ?? "0.00")}</span>
+              <span className="font-inter-semibold">QR</span>
+              <span>
+                {Format.toNaira(item?.totalQRAmount?.toString() ?? "0.00")}
+              </span>
+            </div>
+            <div className="flex gap-1 items-center">
+              <span className="font-inter-semibold">eNaira</span>
+              <span>
+                {Format.toNaira(
+                  item?.totalENairaTransactionAmount?.toString() ?? "0.00"
+                )}
+              </span>
             </div>
           </div>
           {item ? (
@@ -160,6 +182,26 @@ const Component = () => {
               <Empty className=" -translate-x-1/2 -translate-y-1/2 mt-[25%]" />
             </div>
           )}
+          <div className="grid grid-cols-4 px-5">
+            <div className="flex gap-1 items-center">
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#1a75ff]" /> <span>Card</span>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#66cc66]" /> <span>Transfer</span>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#ff6666]" /> <span>Account</span>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" /> <span>USSD</span>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" /> <span>QR</span>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#1a75ff]" /> <span>eNaira</span>
+            </div>
+          </div>
         </div>
       </div>
     </Card>

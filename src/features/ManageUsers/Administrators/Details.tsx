@@ -8,7 +8,7 @@ export const BinDetails: FC<{
 }> = ({ records }) => {
   const items = [
     {
-      key: "Bin Name",
+      key: "BIN Name",
       value: records?.binName ?? "N/A",
     },
     {

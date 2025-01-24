@@ -67,11 +67,19 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
           filter: {
             ...payload,
             status: payload?.status === "All" ? undefined : payload?.status,
+            paymentMethod:
+              payload?.paymentMethod === "All"
+                ? undefined
+                : payload?.paymentMethod,
             startDate: payload.startDate
-              ? `${Format.toAPIDate(new Date(payload.startDate))?.split("T")[0]}T00:00:00Z`
+              ? `${
+                  Format.toAPIDate(new Date(payload.startDate))?.split("T")[0]
+                }T00:00:00Z`
               : null,
             endDate: payload.endDate
-              ? `${Format.toAPIDate(new Date(payload.endDate))?.split("T")[0]}T00:00:00Z`
+              ? `${
+                  Format.toAPIDate(new Date(payload.endDate))?.split("T")[0]
+                }T00:00:00Z`
               : null,
           },
         },
@@ -153,10 +161,14 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
             ...payload,
             status: payload?.status === "All" ? undefined : payload?.status,
             startDate: payload?.startDate
-              ? Format.toAPIDate(new Date(payload.startDate))
+              ? `${
+                  Format.toAPIDate(new Date(payload.startDate))?.split("T")[0]
+                }T00:00:00Z`
               : null,
             endDate: payload?.endDate
-              ? Format.toAPIDate(new Date(payload?.endDate))
+              ? `${
+                  Format.toAPIDate(new Date(payload.endDate))?.split("T")[0]
+                }T00:00:00Z`
               : null,
           },
         },
