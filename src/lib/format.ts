@@ -64,7 +64,7 @@ export class Format {
 
   static fromNumberToWords(num: number): string {
     if (num === 0) return "Zero Naira Only";
-
+  
     const belowTwenty = [
       "Zero",
       "One",
@@ -87,7 +87,7 @@ export class Format {
       "Eighteen",
       "Nineteen",
     ];
-
+  
     const tens = [
       "",
       "",
@@ -100,54 +100,55 @@ export class Format {
       "Eighty",
       "Ninety",
     ];
-
+  
     const thousands = ["", "Thousand", "Million", "Billion"];
-
+  
     function helper(n: number): string {
       if (n < 20) return belowTwenty[n];
       if (n < 100)
         return (
           tens[Math.floor(n / 10)] +
-          (n % 10 !== 0 ? " " + belowTwenty[n % 10] : "")
+          (n % 10 !== 0 ? "-" + belowTwenty[n % 10] : "")
         );
       if (n < 1000)
         return (
           belowTwenty[Math.floor(n / 100)] +
           " Hundred" +
-          (n % 100 !== 0 ? " " + helper(n % 100) : "")
+          (n % 100 !== 0 ? " and " + helper(n % 100) : "")
         );
-
+  
       for (let i = 0; i < thousands.length; i++) {
-        const divisor = Math.pow(1000, i);
-        if (n < divisor * 1000) {
+        const divisor = Math.pow(1000, i + 1);
+        if (n < divisor) {
+          const unit = Math.pow(1000, i);
           return (
-            helper(Math.floor(n / divisor)) +
+            helper(Math.floor(n / unit)) +
             " " +
             thousands[i] +
-            (n % divisor !== 0 ? " " + helper(n % divisor) : "")
+            (n % unit !== 0 ? ", " + helper(n % unit) : "")
           );
         }
       }
-
+  
       return "N/A";
     }
-
+  
     function decimalToWords(decimalPart: number): string {
-      const decimalStr = decimalPart.toString();
+      const decimalStr = decimalPart.toString().padStart(2, "0"); // Ensure two digits for decimals
       const words = [];
       for (const digit of decimalStr) {
         words.push(belowTwenty[parseInt(digit)]);
       }
       return words.join(" ");
     }
-
+  
     const integerPart = Math.floor(num);
-    const decimalPart = Math.round((num - integerPart) * 100); // Get decimal part as whole number (e.g., 0.45 -> 45)
-
+    const decimalPart = Math.round((num - integerPart) * 100); // Get decimal part as a whole number (e.g., 0.56 -> 56)
+  
     const integerWords = helper(integerPart)?.trim();
     const decimalWords =
-      decimalPart > 0 ? ` and ${decimalToWords(decimalPart)} Kobo Only` : "";
-
+      decimalPart > 0 ? `, ${decimalToWords(decimalPart)} Kobo Only` : " Only";
+  
     return `${integerWords} Naira${decimalWords}`;
   }
 }

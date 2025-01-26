@@ -34,7 +34,7 @@ export const DashboardFilter = () => {
         applyFilter(
           dates.start,
           dates.end,
-          null,
+          statusValue,
           paymentMethod,
           merchantId
         );

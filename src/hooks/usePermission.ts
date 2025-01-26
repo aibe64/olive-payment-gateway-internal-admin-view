@@ -51,6 +51,7 @@ export const usePermission = (
     if (records && !isCreate) {
       setFormState("payload", {
         ...records,
+        roleName: records?.name,
       });
     } else {
       clearForm();
@@ -58,11 +59,27 @@ export const usePermission = (
   }, [records, setFormState, isCreate, clearForm]);
 
   useEffect(() => {
+    if (records && Array.isArray(data)) {
+      if (records?.roleResources && Array.isArray(records?.roleResources)) {
+        const newPermissions: APIResponse.Permissions[] = [];
+        data.forEach((element) => {
+          const isChecked =
+            records?.roleResources.filter(
+              (resource) => resource.resourceId === element.id
+            )?.length > 0;
+          newPermissions.push({ ...element, isChecked });
+        });
+        setPermissions(newPermissions);
+      }
+    }
+  }, [data]);
+
+  useEffect(() => {
     callGetData(endpoints.Account.GetPermissions);
   }, []);
 
   useEffect(() => {
-    if (Array.isArray(data)) {
+    if (Array.isArray(data) && !records) {
       setPermissions(data);
     }
   }, [data]);

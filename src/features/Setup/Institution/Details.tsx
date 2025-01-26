@@ -17,10 +17,10 @@ export const InstitutionDetails: FC<{
     },
     {
       key: "Visible on Payment",
-      value: records?.isVisibleToMerchantForPayment ?? "N/A",
+      value: records?.isVisibleToMerchantForPayment ? "True" : "False",
     },
     {
-      key: "Bvn Required",
+      key: "BVN Required",
       value: records?.isBvnRequired ? (
         <Tag color={"green"}>Enabled</Tag>
       ) : (

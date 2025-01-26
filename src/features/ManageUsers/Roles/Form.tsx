@@ -17,11 +17,11 @@ export const UpdateRoles: FC<{
     <XpressForm<APIRequest.RoleAndPermission>
       callApi
       extraValues={{
-        id: !isCreate ? records?.id : undefined,
+        roleId: !isCreate ? records?.id : undefined,
         isActive: payload?.isActive ? true : false,
         permissions: permissions
           ?.filter((x) => x.isChecked)
-          ?.map((y) => ({ id: y.id, claim: y.name })),
+          ?.map((y) => ({ id: y?.id, claim: y.name })),
       }}
       apiConfig={{
         endpoint: isCreate

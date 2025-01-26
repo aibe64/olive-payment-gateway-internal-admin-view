@@ -122,7 +122,7 @@ export const UpdateManager: FC<{
           />
         </div>
         <div className="flex gap-2">
-          <label htmlFor="status">Use Bin</label>
+          <label htmlFor="status">Use BIN</label>
           <Switch
             onChange={(checked) => setPayload("useBin", checked)}
             checked={payload?.useBin ?? false}

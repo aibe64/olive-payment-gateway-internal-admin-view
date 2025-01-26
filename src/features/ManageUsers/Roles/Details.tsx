@@ -11,7 +11,7 @@ export const RoleDetails: FC<{
   const items = [
     {
       key: "Role Name",
-      value: records?.roleName ?? "N/A",
+      value: records?.name ?? "N/A",
     },
     {
       key: "Description",
@@ -33,7 +33,7 @@ export const RoleDetails: FC<{
   return (
     <div className="flex flex-col">
       <List
-        size="large"
+        size="small"
         dataSource={items}
         renderItem={(item) => (
           <List.Item>

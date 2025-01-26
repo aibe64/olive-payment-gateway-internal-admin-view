@@ -1,45 +1,30 @@
-import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { List, Tag } from "antd";
 import { FC } from "react";
 
 export const BinDetails: FC<{
-  records?: APIResponse.Bin;
+  records?: APIResponse.InternalUsers;
 }> = ({ records }) => {
   const items = [
     {
-      key: "BIN Name",
-      value: records?.binName ?? "N/A",
+      key: "Full Name",
+      value: `${records?.firstName} ${records?.lastName}`,
     },
     {
-      key: "Provider",
-      value: records?.provider ?? "N/A",
+      key: "Email Address",
+      value: records?.email ?? "N/A",
     },
     {
-      key: "Card",
-      value: records?.isPinRequired ? (
-        <Tag color={"green"}>Enabled</Tag>
+      key: "Role Name",
+      value: records?.roleName ?? "N/A",
+    },
+    {
+      key: "Is Active",
+      value: records?.isActive ? (
+        <Tag color={"green"}>Active</Tag>
       ) : (
-        <Tag color={"red"}>Disabled</Tag>
+        <Tag color={"red"}>Inactive</Tag>
       ),
-    },
-    {
-      key: "Others Required",
-      value: records?.isOthersRequired ? (
-        <Tag color={"green"}>Enabled</Tag>
-      ) : (
-        <Tag color={"red"}>Disabled</Tag>
-      ),
-    },
-    {
-      key: "Card Brand",
-      value: records?.cardBrand ?? "N/A",
-    },
-    {
-      key: "Date Created",
-      value: Format.toDateTime(
-        records?.dateCreated ?? new Date()?.toString()
-      ).split("-")[0],
     },
   ];
   return (

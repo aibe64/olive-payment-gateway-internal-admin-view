@@ -109,7 +109,7 @@ export const roleColumn: ColumnProps<APIResponse.Roles>[] = [
       return (
         <XpressTableActions
           record={record}
-          pageName={"Provider"}
+          pageName={"Role"}
           actions={[
             { title: "View", action: "View", modalWidth: 500 },
             { title: "Edit", action: "Edit", modalWidth: 500 },

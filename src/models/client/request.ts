@@ -210,7 +210,7 @@ export namespace APIRequest {
 
   export class RoleAndPermission {
     roleName?: string;
-    id?: number;
+    roleId?: number;
     description?: string;
     isActive?: boolean;
     permissions?: Array<Permission>;
@@ -220,5 +220,16 @@ export namespace APIRequest {
     claim?: string;
     isChecked?: boolean;
     name?: string;
+  }
+
+  export interface InternalUsers {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    userId?: string;
+    roleId?: number;
+    isActive?: boolean;
+    isInternalUser?: boolean;
   }
 }

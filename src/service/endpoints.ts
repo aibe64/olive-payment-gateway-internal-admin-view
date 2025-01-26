@@ -17,6 +17,8 @@ export const endpoints = {
     GetAllIndustries: "Accounts/GetAllIndustries",
     GetAllCategories: "Accounts/GetAllCategories",
     ValidateSettlementAccount: "Merchants/ValidateSettlementAccount",
+    GetInternalUsers: "Admin/GetInternalUsers",
+    UpdateUser: "Admin/UpdateUsers"
   },
   Approvals: {
     GetAllMerchantChargePendingApproval:

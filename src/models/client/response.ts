@@ -392,14 +392,14 @@ export namespace APIResponse {
   }
 
   export interface Roles {
-    id: number
-    name: string
-    roleName: string
-    description: string
-    datecreated: string
-    dateModified: string
-    isActive?: boolean
-    roleResources: Array<Permissions>
+    id: number;
+    name: string;
+    roleName: string;
+    description: string;
+    datecreated: string;
+    dateModified: string;
+    isActive?: boolean;
+    roleResources: Array<Permissions>;
   }
 
   export class Permissions {
@@ -409,6 +409,7 @@ export namespace APIResponse {
     name?: string;
     roleResources?: any;
     isChecked?: boolean;
+    resourceId?: number;
   }
 
   export class RoleResources {
@@ -428,6 +429,19 @@ export namespace APIResponse {
     constructor(keyName: string, items: T) {
       this[keyName] = items;
     }
+  }
+
+  export interface InternalUsers {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    userId: string;
+    roleId: number;
+    isActive: boolean;
+    roles: any;
+    roleName?: string;
+    isInternalUser: boolean;
   }
 }
 
