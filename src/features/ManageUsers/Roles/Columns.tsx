@@ -14,8 +14,8 @@ export const roleColumn: ColumnProps<APIResponse.Roles>[] = [
     ellipsis: true,
     render(_, record) {
       const dates =
-        record.datecreated && record.datecreated !== "0001-01-01T00:00:00"
-          ? Format.toDateTime(record.datecreated).split("-")
+        record.dateCreated && record.dateCreated !== "0001-01-01T00:00:00"
+          ? Format.toDateTime(record.dateCreated).split("-")
           : undefined;
       return (
         <div className="flex flex-col items-flex-start w-full">

@@ -39,7 +39,7 @@ export const UpdateUsers: FC<{
     if (records) {
       setFormState("payload", {
         ...records,
-        userId: records.userId
+        userId: records.userId,
       });
     }
   }, [records, setFormState, clearForm]);
@@ -57,14 +57,15 @@ export const UpdateUsers: FC<{
   return (
     <XpressForm<APIRequest.InternalUsers>
       callApi
-      extraValues={{
-        id: records?.id,
-        userId: records?.userId,
-      }}
       apiConfig={{
         endpoint: endpoints.Users.UpdateUser,
         showToastAfterApiResponse: true,
         method: "POST",
+        customPayload: {
+          id: records?.id,
+          isActive: payload?.isActive,
+          roleId: payload?.roleId,
+        },
         reloadTable: true,
         callBack() {
           closeModal();

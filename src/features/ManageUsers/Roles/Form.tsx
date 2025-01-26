@@ -42,13 +42,13 @@ export const UpdateRoles: FC<{
         type="text"
         placeholder="Enter role name"
         key={"1"}
-        required
+        required={isCreate}
       />
       <XpressField
         name="description"
         label="Role Description"
         key={"2"}
-        required
+        required={isCreate}
       />
       <div className="flex gap-2">
         <label htmlFor="status">Status</label>

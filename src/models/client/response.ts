@@ -396,7 +396,7 @@ export namespace APIResponse {
     name: string;
     roleName: string;
     description: string;
-    datecreated: string;
+    dateCreated: string;
     dateModified: string;
     isActive?: boolean;
     roleResources: Array<Permissions>;

@@ -83,6 +83,7 @@ export const ViewMerchant: FC<{
       value: records?.chargeCap ?? "N/A",
     },
   ];
+  
   return (
     <div>
       <List
