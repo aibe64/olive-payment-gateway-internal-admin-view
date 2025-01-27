@@ -391,6 +391,13 @@ export namespace APIResponse {
     processor?: string;
   }
 
+  export interface Permission {
+    id: number
+    name: string
+    description: any
+    roleResources: any
+  }
+
   export interface Roles {
     id: number;
     name: string;
@@ -442,6 +449,42 @@ export namespace APIResponse {
     roles: any;
     roleName?: string;
     isInternalUser: boolean;
+  }
+
+  export interface SubAccount {
+    id: number;
+    merchantId: number;
+    subAccountName: string;
+    subAccountEmail: string;
+    splitType: "percentage" | "flat";
+    bankName: string;
+    bankCode: string;
+    accountNumber: string;
+    accountName: string;
+    flatAmount: number;
+    merchantSharePercentage: number;
+    subAccountShareOfPercentage: number;
+    dateCreated: string;
+    dateModified: any;
+    createdBy: string;
+    updatedBy: any;
+  }
+  export interface SubAccountGroup {
+    id: number;
+    groupName: string;
+    splitType: string;
+    deductFeeFrom: string;
+    subAccounts?: SubAccountDetails[];
+    dateCreated: string;
+    dateModified: any;
+    createdBy: string;
+    updatedBy: any;
+  }
+  export interface SubAccountDetails {
+    amount?: number;
+    percentage?: number;
+    id: number;
+    subAccountName?: string;
   }
 }
 

@@ -45,6 +45,14 @@ export const menuList: Props.MenuListProps[] = [
         label: "Store",
         path: ROUTE_PATH.Store,
       },
+      {
+        label: "Sub Account",
+        path: ROUTE_PATH.SubAccount,
+      },
+      {
+        label: "Sub Account Group",
+        path: ROUTE_PATH.SubAccountGroup,
+      },
     ],
   },
   {

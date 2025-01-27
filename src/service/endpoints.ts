@@ -11,6 +11,8 @@ export const endpoints = {
     GetPermissions: "Accounts/GetAllPermissions",
     CreateRoleResources: "Accounts/CreateRolePermission",
     UpdateRoleResources: "Accounts/UpdateRolePermission",
+    GetSubAccountGroup: "Accounts/GetMerchantSubAccountGroup?",
+    GetSubAccount: "Accounts/GetMerchantSubAccount?",
   },
   Users: {
     ValidateUserFirstTimeLogIn: "Admin/ValidateUserFirstTimeLogIn",

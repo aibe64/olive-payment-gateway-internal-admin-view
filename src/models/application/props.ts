@@ -5,7 +5,11 @@ import {
   ColumnType,
   TableRowSelection,
 } from "antd/es/table/interface";
-import { ActionDetails, ApiConfigModel, ValidateFetchConfig } from "./arguments";
+import {
+  ActionDetails,
+  ApiConfigModel,
+  ValidateFetchConfig,
+} from "./arguments";
 import { MenuProps } from "rc-menu";
 
 export namespace Props {
@@ -50,6 +54,8 @@ export namespace Props {
     isPaginated?: boolean;
     filterTypes?: Array<"dateRange" | "status" | JSX.Element>;
     customSelectedValue?: JSX.Element;
+    hideFilterField?: boolean;
+    customFilter?: JSX.Element;
     onCallBackFilter?: () => void;
     statusOptions?: Array<{
       label: string;
@@ -80,8 +86,8 @@ export namespace Props {
       | "onlyAphabet"
       | "onlyNumber"
       | "url"
-      | "exist_on_db" |
-      "bin"
+      | "exist_on_db"
+      | "bin"
       | "amountRange";
     validatorFetchConfig?: ValidateFetchConfig;
     showPasswordMeter?: boolean;

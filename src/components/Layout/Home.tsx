@@ -7,11 +7,12 @@ import { TimeOut, WarningHeader } from "../UI";
 import { XpressHeader } from "../Element";
 import { XpressSideBar } from ".";
 import { useCallback } from "react";
-import { useTimeoutHook } from "@/hooks";
+import { useAppPermission, useTimeoutHook } from "@/hooks";
 
 export const HomeLayout = () => {
   const { isApproved } = usePageStore<State.Layout>((state) => state);
   const { set } = useModalStore();
+   useAppPermission()
   const onShowTimeout = useCallback(() => {
     set({
       open: true,

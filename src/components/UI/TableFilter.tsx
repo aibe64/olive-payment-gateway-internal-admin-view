@@ -6,6 +6,8 @@ import { usePageStore } from "@/store";
 import { searchTable } from "@/lib";
 export const TableFilter: FC<PropsWithChildren<Props.Filter>> = ({
   children,
+  hideFilterField,
+  customFilter,
 }) => {
   const { setState, originalTableData } = usePageStore<AppState>(
     (state) => state
@@ -20,13 +22,16 @@ export const TableFilter: FC<PropsWithChildren<Props.Filter>> = ({
 
   return (
     <div className="flex justify-between items-center">
-      <div className="flex items-center">
-        <Input
-          onChange={(e) => onFilterChange(e.target.value)}
-          className="lg:w-[20rem] rounded-2xl"
-          prefix={<SearchOutlined />}
-          placeholder={"Search..."}
-        />
+      <div className="flex items-center gap-2">
+        {customFilter ? customFilter : <></>}
+        {!hideFilterField && (
+          <Input
+            onChange={(e) => onFilterChange(e.target.value)}
+            className="lg:w-[20rem] rounded-2xl"
+            prefix={<SearchOutlined />}
+            placeholder={"Search..."}
+          />
+        )}
       </div>
       {children}
     </div>

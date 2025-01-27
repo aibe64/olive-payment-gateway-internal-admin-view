@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { NotificationIcon } from "@/assets";
 import { useCallback, useState } from "react";
-import { APIResponse } from "@/models";
+import { APIResponse, AppStorageKeys } from "@/models";
 import { Avatar, Drawer, Dropdown, MenuProps } from "antd";
 import { Link } from "react-router-dom";
 import { LogOut, useTheme } from "../UI";
@@ -15,7 +15,7 @@ import { ROUTE_PATH } from "@/models";
 import { XpressSideBar } from "../Layout";
 
 const Header = () => {
-  const userInfo = AppStorage.getItem<APIResponse.LoginInfo>("");
+  const userInfo = AppStorage.getItem<APIResponse.LoginInfo>(AppStorageKeys.UserInfo);
   const { themeMode, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const { set } = useModalStore();

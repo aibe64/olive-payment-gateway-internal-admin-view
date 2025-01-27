@@ -13,10 +13,15 @@ const InstitutionPage = lazy(() => import("@/features/Setup/Institution"));
 const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
 const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
 const ProfilePage = lazy(() => import("@/features/Settings"));
+const UAuthorizedPage = lazy(() => import("@/features/UnAuthorize"));
 const TransactionManagerPage = lazy(
   () => import("@/features/Setup/TransactionManager")
 );
 const Dashboard = lazy(() => import("@/features/Dashboard"));
+const SubAccountPage = lazy(() => import("@/features/Payments/SubAccount"));
+const SplitPaymentPage = lazy(
+  () => import("@/features/Payments/SubAccountGroup")
+);
 
 export const privateRoutes = [
   {
@@ -73,6 +78,18 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.Profile,
         Component: ProfilePage,
+      },
+      {
+        path: ROUTE_PATH.UnAuthorize,
+        Component: UAuthorizedPage,
+      },
+      {
+        path: ROUTE_PATH.SubAccount,
+        Component: SubAccountPage,
+      },
+      {
+        path: ROUTE_PATH.SubAccountGroup,
+        Component: SplitPaymentPage,
       },
     ],
   },
