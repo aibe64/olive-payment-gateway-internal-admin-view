@@ -17,6 +17,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     APIRequest.TransactionsVars
   >(GET_TRANSACTIONS);
   const [hasDataOnRender, setHasDataOnRender] = useState(false);
+  const [isDownload, setIsDownload] = useState(false);
 
   const [downloadTransactions, { data: downloadData, loading: downloading }] =
     useLazyQuery<APIResponse.TransactionsData, APIRequest.TransactionsVars>(
@@ -50,6 +51,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
         },
       });
     }
+    setIsDownload(true);
   }, [
     payload,
     transactionPageLimit,
@@ -179,11 +181,13 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     if (
       downloadData &&
       downloadData?.transactions &&
-      Array.isArray(downloadData.transactions?.items)
+      Array.isArray(downloadData.transactions?.items) &&
+      isDownload
     ) {
       setState("transactionDataForDownload", downloadData.transactions.items);
+      setIsDownload(false);
     }
-  }, [downloadData, setState]);
+  }, [downloadData, setState, isDownload, setIsDownload]);
 
   return {
     loading,

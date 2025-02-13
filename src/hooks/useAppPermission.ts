@@ -24,7 +24,6 @@ export const useAppPermission = () => {
 
   const handleAuthorization = useCallback(
     (userPermissions: (string | undefined)[]) => {
-      console.log("userPermissions", userPermissions, path);
       switch (path) {
         case ROUTE_PATH.Bin:
           if (!userPermissions.includes(AppPermissions.ViewBin)) {
@@ -53,7 +52,6 @@ export const useAppPermission = () => {
           break;
         case ROUTE_PATH.Roles:
           if (!userPermissions.includes(AppPermissions.ViewAllRoles)) {
-            console.log("entered");
             navigate(ROUTE_PATH.UnAuthorize);
           }
           break;
@@ -100,7 +98,6 @@ export const useAppPermission = () => {
   }, [path, userInfo?.roleId]);
 
   useEffect(() => {
-    console.log("Current Route Path:", location.pathname);
     setPath(location.pathname);
   }, [location.pathname]);
 };

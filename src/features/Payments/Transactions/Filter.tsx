@@ -16,10 +16,15 @@ import {
 import { FaRightLeft } from "react-icons/fa6";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormStore, usePageStore } from "@/store";
-import { APIRequest, APIResponse, AppState, State } from "@/models";
+import { APIRequest, AppState, State } from "@/models";
 import { Moment } from "moment";
 import { useTransactionFilters } from "@/hooks";
-import { disableFutureDates, exportToExcel, omit } from "@/lib";
+import {
+  disableFutureDates,
+  exportToExcel,
+  Format,
+  GetExcelColumnValue,
+} from "@/lib";
 
 export const TransactionFilter = () => {
   const {
@@ -36,11 +41,8 @@ export const TransactionFilter = () => {
   const [form] = Form.useForm();
   const [dates, setDates] = useState<any | null>();
 
-  const {
-    applyFilter,
-    downloadDataToExcel,
-    downloading,
-  } = useTransactionFilters();
+  const { applyFilter, downloadDataToExcel, downloading } =
+    useTransactionFilters();
 
   const handlePopOver = useCallback(() => {
     setState("openTransactionFilter", !openTransactionFilter);
@@ -55,8 +57,8 @@ export const TransactionFilter = () => {
         setPayload("startDate", startDate);
         setPayload("endDate", endDate);
         setDates(dates);
-      }else{
-        setDates(null)
+      } else {
+        setDates(null);
         setPayload("startDate", null);
         setPayload("endDate", null);
       }
@@ -74,21 +76,71 @@ export const TransactionFilter = () => {
       transactionDataForDownload &&
       Array.isArray(transactionDataForDownload)
     ) {
-      const excelTransactionData: Partial<APIResponse.Transaction>[] =
-        transactionDataForDownload?.map((item) =>
-          omit(item, [
-            "id",
-            "_typename",
-            "mandateCode",
-            "transType",
-            "merchantId",
-            "merchantName",
-            "cardType",
-            "transactionNumber",
-            "productDescription",
-          ])
-        ) || [];
-      exportToExcel(excelTransactionData ?? [], "merchant_transactions");
+      // const excelTransactionData: Partial<APIResponse.Transaction>[] =
+      //   transactionDataForDownload?.map((item) =>
+      //     omit(item, [
+      //       "id",
+      //       "_typename",
+      //       "mandateCode",
+      //       "transType",
+      //       "merchantId",
+      //       "merchantName",
+      //       "cardType",
+      //       "transactionNumber",
+      //       "productDescription",
+      //     ])
+      //   ) || [];
+      const excelData = transactionDataForDownload?.map((transaction) => ({
+        "Unique Key": transaction.id,
+        "Merchant Key": transaction.merchantId,
+        "Old Merchant Key": transaction.merchantId,
+        "Old Gateway MerchantId": transaction.merchantId,
+        "Payment Type": transaction.paymentType ?? "N/A",
+        Email: transaction.email ?? "N/A",
+        "First Name": transaction.firstname ?? "N/A",
+        "Last Name": transaction.lastname ?? "N/A",
+        Address: "N/A",
+        Organization: transaction.merchantName ?? "N/A",
+        Amount: transaction?.amount
+          ?.toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        Currency: transaction?.currency ?? "NGN",
+        "Transaction Reference": transaction?.transactionReference ?? "N/A",
+        "Masked Pan": transaction?.cardPan ?? "N/A",
+        "Account Number": "N/A",
+        Brand: transaction?.cardType ?? "N/A",
+        Type: transaction?.cardType ?? "N/A",
+        Provider: transaction.processor ?? "N/A",
+        "Provider Reference": transaction?.providerReference ?? "N/A",
+        "Payment Reference": transaction?.xpressReference ?? "N/A",
+        "Payment Response Code": transaction?.paymentResponseCode ?? "N/A",
+        "Payment Response Msg": transaction?.paymentResponseMessage ?? "N/A",
+        "Expiry Month": transaction?.expiryMonth ?? "N/A",
+        "Expiry Year": transaction?.expiryYear ?? "N/A",
+        "Phone Number": transaction?.phoneNumber ?? "N/A",
+        "Device Finger Print": "N/A",
+        IP: "N/A",
+        "Transaction Process Date": Format.toDateAndTime(
+          transaction?.dateCreated
+        ),
+        Metas: transaction.metaData,
+        "Revenue Code":
+          GetExcelColumnValue(transaction.metaData, "revenue_code", "") ??
+          "N/A",
+        "Updated At": Format.toDateAndTime(transaction?.dateModified),
+        "Product ID": transaction.productId ?? "N/A",
+        "Product Description":
+          GetExcelColumnValue(
+            transaction.metaData,
+            "product_description",
+            transaction.productDescription as string
+          ) ?? "N/A",
+        "Merchant Name": transaction?.merchantName,
+        "Transaction Number": transaction?.transactionNumber,
+        "Charge Type": "N/A",
+        "Charge Value": "N/A",
+      }));
+      exportToExcel(excelData ?? [], "merchant_transactions");
       setState("transactionDataForDownload", undefined);
     }
   }, [setState, transactionDataForDownload]);
@@ -121,7 +173,6 @@ export const TransactionFilter = () => {
             <DatePicker.RangePicker
               value={dates}
               disabledDate={disableFutureDates}
-              
               onChange={(dates) =>
                 handleSetDateRange(dates as [Moment, Moment] | null)
               }
@@ -157,9 +208,7 @@ export const TransactionFilter = () => {
             <Form.Item label="Card Brand" className="-mt-4">
               <Select
                 value={payload?.cardBrand as string}
-                onChange={(e) =>
-                  setPayload("cardBrand", e)
-                }
+                onChange={(e) => setPayload("cardBrand", e)}
                 className="!h-[35px]"
                 options={[
                   { label: "Master Card", value: "mastercard" },
@@ -173,9 +222,7 @@ export const TransactionFilter = () => {
             <Form.Item label="Payment Method" className="-mt-4">
               <Select
                 value={payload?.paymentMethod as string}
-                onChange={(e) =>
-                  setPayload("paymentMethod", e)
-                }
+                onChange={(e) => setPayload("paymentMethod", e)}
                 className="!h-[35px]"
                 options={[
                   { label: "Card", value: "Card" },

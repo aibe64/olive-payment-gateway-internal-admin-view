@@ -132,7 +132,7 @@ export const TransactionColumns: ColumnProps<APIResponse.Transaction>[] = [
                 modalWidth: 500,
                 downloadName: "transaction_receipt",
               },
-              { title: "Payment log", action: "Custom", modalWidth: 500 },
+              // { title: "Payment log", action: "Custom", modalWidth: 500 },
             ]}
             components={{
               View: <TransactionSummary record={record} />,

@@ -121,7 +121,7 @@ export const DashboardFilter = () => {
           },
           {
             label: "Pending",
-            value: "05",
+            value: "05|06|07|09|11",
           },
         ]}
       />

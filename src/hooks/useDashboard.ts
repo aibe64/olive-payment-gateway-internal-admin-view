@@ -3,11 +3,12 @@ import { Format } from "@/lib";
 import { APIRequest, APIResponse, AppState } from "@/models";
 import { usePageStore } from "@/store";
 import { useQuery, useLazyQuery } from "@apollo/client";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAPI } from "./useApi";
 
 export const useDashboard = () => {
   const { setState } = usePageStore<AppState>((state) => state);
+  const [statusValue, setStatus] = useState<string | null>(null);
   const {
     callGetData,
     data: merchantDetails,
@@ -64,6 +65,7 @@ export const useDashboard = () => {
       paymentMethod: string | null,
       merchantId: number | null
     ) => {
+      setStatus(status);
       fetchTransactions({
         variables: {
           filter: {
@@ -80,7 +82,7 @@ export const useDashboard = () => {
         },
       });
     },
-    []
+    [setStatus]
   );
 
   const filterChart = useCallback((year: string) => {
@@ -100,10 +102,28 @@ export const useDashboard = () => {
   }, [data]);
 
   useEffect(() => {
-    if (transactionSummary) {
-      setState("transactionSummaryData", transactionSummary);
+    if (
+      statusValue &&
+      ["05|06|07|09|11", "02"].includes(statusValue) &&
+      transactionSummary
+    ) {
+      setState("transactionSummaryData", {
+        ...transactionSummary,
+        transactionSummarry: {
+          ...transactionSummary.transactionSummarry,
+          item: {
+            ...transactionSummary.transactionSummarry.item,
+            nextSettlementAmount: 0,
+          },
+        },
+      });
+    } else {
+      if (transactionSummary) {
+        setState("transactionSummaryData", transactionSummary);
+      }
     }
-  }, [transactionSummary]);
+  }, [transactionSummary, statusValue, setState]);
+
 
   useEffect(() => {
     setState("loadingSummary", loading || processing);

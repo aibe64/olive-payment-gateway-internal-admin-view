@@ -186,3 +186,64 @@ export const Search = <T>(array: Array<T>, value: string) => {
     return array;
   }
 };
+
+export const GetExcelColumnValue = (
+  metaData: any,
+  valueKey: string,
+  productDesc: string
+): string => {
+  try {
+    const newMetata: any = JSON.parse(metaData);
+    if (Array.isArray(newMetata)) {
+      if (newMetata?.length > 0) {
+        const meta = newMetata.filter((x) => x.Name === "revenue_items");
+        const paymentDetails = newMetata.filter(
+          (x) => x.Name === "PaymentDetails"
+        );
+        try {
+          const values = JSON.parse(meta?.length ? meta[0].Value : []);
+          if (Array.isArray(values)) {
+            switch (valueKey) {
+              case "revenue_code":
+                return values.map((x) => x.revenue_code).toString();
+              case "product_description":
+                return values.map((x) => x.revenue_name).toString();
+              default:
+                break;
+            }
+          }
+          if (paymentDetails?.length) {
+            switch (valueKey) {
+              case "revenue_code":
+                return paymentDetails
+                  .map((x) => x.paymentItemCode)
+                  .toString();
+              case "product_description":
+                const desc = paymentDetails.map((x) => x.paymentItemName);
+                if (desc?.length > 0) {
+                  return paymentDetails
+                    .map((x) => x.paymentItemName)
+                    .toString();
+                } else {
+                  return productDesc;
+                }
+              default:
+                break;
+            }
+          }
+        } catch (error) {
+          if (productDesc?.length && valueKey === "product_description")
+            return productDesc;
+          return "N/A";
+        }
+      }
+    }
+  } catch (error) {
+    if (productDesc?.length && valueKey === "product_description")
+      return productDesc;
+    return "N/A";
+  }
+  if (productDesc?.length && valueKey === "product_description")
+    return productDesc;
+  return "N/A";
+};

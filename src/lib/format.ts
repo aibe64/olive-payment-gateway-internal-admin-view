@@ -21,6 +21,18 @@ export class Format {
     return formatted;
   };
 
+  static toDateAndTime = (params: string): string => {
+    let date = new Date(params);
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = date.getFullYear();
+    const hours = date.getHours();
+    const min = date.getMinutes();
+    return `${dd}-${mm}-${yyyy} ${hours.toString().padStart(2, "0")}:${min
+      .toString()
+      .padStart(2, "0")}`;
+  };
+
   static toAPIDate = (date: Date): string => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -64,7 +76,7 @@ export class Format {
 
   static fromNumberToWords(num: number): string {
     if (num === 0) return "Zero Naira Only";
-  
+
     const belowTwenty = [
       "Zero",
       "One",
@@ -87,7 +99,7 @@ export class Format {
       "Eighteen",
       "Nineteen",
     ];
-  
+
     const tens = [
       "",
       "",
@@ -100,9 +112,9 @@ export class Format {
       "Eighty",
       "Ninety",
     ];
-  
+
     const thousands = ["", "Thousand", "Million", "Billion"];
-  
+
     function helper(n: number): string {
       if (n < 20) return belowTwenty[n];
       if (n < 100)
@@ -116,7 +128,7 @@ export class Format {
           " Hundred" +
           (n % 100 !== 0 ? " and " + helper(n % 100) : "")
         );
-  
+
       for (let i = 0; i < thousands.length; i++) {
         const divisor = Math.pow(1000, i + 1);
         if (n < divisor) {
@@ -129,10 +141,10 @@ export class Format {
           );
         }
       }
-  
+
       return "N/A";
     }
-  
+
     function decimalToWords(decimalPart: number): string {
       const decimalStr = decimalPart.toString().padStart(2, "0"); // Ensure two digits for decimals
       const words = [];
@@ -141,14 +153,14 @@ export class Format {
       }
       return words.join(" ");
     }
-  
+
     const integerPart = Math.floor(num);
     const decimalPart = Math.round((num - integerPart) * 100); // Get decimal part as a whole number (e.g., 0.56 -> 56)
-  
+
     const integerWords = helper(integerPart)?.trim();
     const decimalWords =
       decimalPart > 0 ? `, ${decimalToWords(decimalPart)} Kobo Only` : " Only";
-  
+
     return `${integerWords} Naira${decimalWords}`;
   }
 }
