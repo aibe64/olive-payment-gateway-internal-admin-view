@@ -50,7 +50,7 @@ export const TransactionColumns: ColumnProps<APIResponse.Transaction>[] = [
   },
   {
     title: "Reference",
-    dataIndex: "reference",
+    dataIndex: "transactionReference",
     width: "20%",
     key: "4",
     ellipsis: true,

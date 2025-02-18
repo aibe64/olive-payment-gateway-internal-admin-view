@@ -28,8 +28,8 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     if (payload) {
       downloadTransactions({
         variables: {
-          page: 10000,
-          limit: 10000,
+          page: 1000000,
+          limit: 1000000,
           filter: {
             ...payload,
             status: payload?.status === "All" ? undefined : payload?.status,
@@ -64,8 +64,8 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     if (payload) {
       fetchTransactions({
         variables: {
-          page: transactionPageNumber ?? 1,
-          limit: transactionPageLimit ?? 10,
+          page: 1,
+          limit: 10,
           filter: {
             ...payload,
             status: payload?.status === "All" ? undefined : payload?.status,
@@ -89,8 +89,8 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     } else {
       fetchTransactions({
         variables: {
-          page: transactionPageNumber ?? 1,
-          limit: transactionPageLimit ?? 10,
+          page: 1,
+          limit: 10,
           filter: {},
         },
       });
@@ -128,7 +128,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   );
 
   useEffect(() => {
-    if (data) {
+    if (Array.isArray(data?.transactions?.items)) {
       if (!hasDataOnRender) setHasDataOnRender(true);
       setState("transactionData", data);
     }
@@ -198,5 +198,6 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     downloading,
     downloadDataToExcel,
     hasDataOnRender,
+    transactions: data?.transactions?.items,
   };
 };

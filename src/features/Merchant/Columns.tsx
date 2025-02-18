@@ -19,6 +19,15 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantDetails>[] = [
     },
   },
   {
+    title: "Code",
+    width: "10%",
+    key: "21",
+    ellipsis: true,
+    render(_, record) {
+      return record.id ?? "N/A";
+    },
+  },
+  {
     title: "Business Name",
     width: "30%",
     key: "2",
@@ -32,7 +41,6 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantDetails>[] = [
       );
     },
   },
-
   {
     title: "Business Number",
     width: "18%",
