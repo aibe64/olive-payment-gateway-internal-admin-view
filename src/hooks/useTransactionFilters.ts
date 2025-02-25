@@ -15,7 +15,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   const [fetchTransactions, { data, loading }] = useLazyQuery<
     APIResponse.TransactionsData,
     APIRequest.TransactionsVars
-  >(GET_TRANSACTIONS);
+  >(GET_TRANSACTIONS, { fetchPolicy: "no-cache" });
   const [hasDataOnRender, setHasDataOnRender] = useState(false);
   const [isDownload, setIsDownload] = useState(false);
 
@@ -28,8 +28,8 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     if (payload) {
       downloadTransactions({
         variables: {
-          page: 1000000,
-          limit: 1000000,
+          page: 1,
+          limit: 30000,
           filter: {
             ...payload,
             status: payload?.status === "All" ? undefined : payload?.status,
@@ -46,7 +46,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
       downloadTransactions({
         variables: {
           page: 1,
-          limit: 10000,
+          limit: 30000,
           filter: {},
         },
       });
@@ -95,7 +95,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
         },
       });
     }
-  }, [payload, transactionPageLimit, transactionPageNumber]);
+  }, [payload, setState]);
 
   const applyValidateReferenceFilter = useCallback(
     (reference: string) => {
@@ -128,11 +128,11 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   );
 
   useEffect(() => {
-    if (Array.isArray(data?.transactions?.items)) {
+    if (data) {
       if (!hasDataOnRender) setHasDataOnRender(true);
       setState("transactionData", data);
     }
-  }, [data, setState, setHasDataOnRender, hasDataOnRender]);
+  }, [data]);
 
   useEffect(() => {
     setFormState("payload", undefined);
@@ -154,7 +154,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   }, [callReportOnRender, setState, setHasDataOnRender]);
 
   useEffect(() => {
-    if (transactionPageNumber && transactionPageLimit)
+    if (transactionPageNumber && transactionPageLimit) {
       fetchTransactions({
         variables: {
           page: transactionPageNumber ?? 1,
@@ -175,6 +175,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
           },
         },
       });
+    }
   }, [transactionPageNumber, transactionPageLimit, payload]);
 
   useEffect(() => {

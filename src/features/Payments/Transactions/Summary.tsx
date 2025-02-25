@@ -42,11 +42,10 @@ export const TransactionSummary: FC<{ record: APIResponse.Transaction }> = ({
       value: record?.email ?? "N/A",
     },
     {
-      key: "Transaction Date",
-      value: Format.toDateTime(record?.transactionDate),
+      key: "Transaction Dates",
+      value: Format.toDateTime(record?.dateCreated),
     },
   ];
-
   return (
     <div>
     <div className="relative flex flex-col w-full">
@@ -80,7 +79,7 @@ export const TransactionSummary: FC<{ record: APIResponse.Transaction }> = ({
           {Format.fromNumberToWords(record?.amount ?? 0)}
         </span>
         <span className="text-gray-text text-[0.9rem] mt-1">
-          {Format.toDateTime(record?.transactionDate)}
+          {Format.toDateTime(record?.dateCreated)}
         </span>
       </div>
       <Divider className="mb-0" />

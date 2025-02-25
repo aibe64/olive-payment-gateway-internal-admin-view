@@ -194,6 +194,8 @@ export namespace APIResponse {
     merchantName: string;
     transactionNumber: string;
     transactionDate: string;
+    oldGatewayMerchantId: string;
+    oldMerchantId: string;
     userActivities: UserActivity[];
   }
   export interface StoreTransaction {

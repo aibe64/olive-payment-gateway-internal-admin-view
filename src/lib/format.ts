@@ -21,6 +21,27 @@ export class Format {
     return formatted;
   };
 
+  static toReportDateTime = (value: string) => {
+    // Convert string to a Date object
+    const dateObj = new Date(value);
+
+    // Extract the date components
+    const year = dateObj.getUTCFullYear();
+    const month = String(dateObj.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+    const day = String(dateObj.getUTCDate()).padStart(2, "0");
+
+    // Extract the time components
+    const hours = String(dateObj.getUTCHours()).padStart(2, "0");
+    const minutes = String(dateObj.getUTCMinutes()).padStart(2, "0");
+
+    // Format the date and time
+    const formattedDate = `${day}-${month}-${year}`;
+    const formattedTime = `${hours}:${minutes}`;
+
+    const formatted = `${formattedDate} ${formattedTime}`;
+    return formatted;
+  };
+
   static toDateAndTime = (params: string): string => {
     let date = new Date(params);
     const dd = String(date.getDate()).padStart(2, "0");

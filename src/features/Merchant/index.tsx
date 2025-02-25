@@ -20,10 +20,11 @@ const Merchant: React.FC = () => {
   );
 
   const excelData = (data ?? [])?.map((merchant) => {
-    ({
+    return ({
       "Unique Key": merchant.id,
       "Merchant Code": merchant.id,
       oldMerchantId: merchant?.oldMerchantId ?? "N/A",
+      oldGatewayMerchantId: merchant?.oldGatewayMerchantId ?? "N/A",
       name: merchant.businessName ?? "N/A",
       email: merchant?.businessEmail ?? "N/A",
       supportEmail: merchant?.supportEmail ?? "N/A",

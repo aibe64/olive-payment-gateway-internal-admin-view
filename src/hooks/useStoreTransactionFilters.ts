@@ -14,7 +14,7 @@ export const useStoreTransactionFilters = () => {
   const [fetchTransactions, { data, loading }] = useLazyQuery<
     APIResponse.StoreTransactionsData,
     APIRequest.StoreTransactionsVars
-  >(GET_STORE_TRANSACTIONS);
+  >(GET_STORE_TRANSACTIONS, { fetchPolicy: "no-cache" });
 
   const [
     downloadTransactions,

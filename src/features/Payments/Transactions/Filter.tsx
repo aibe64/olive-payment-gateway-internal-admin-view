@@ -93,8 +93,8 @@ export const TransactionFilter = () => {
       const excelData = transactionDataForDownload?.map((transaction) => ({
         "Unique Key": transaction.id,
         "Merchant Key": transaction.merchantId,
-        "Old Merchant Key": transaction.merchantId,
-        "Old Gateway MerchantId": transaction.merchantId,
+        "Old Merchant Key": transaction.oldMerchantId,
+        "Old Gateway MerchantId": transaction.oldGatewayMerchantId,
         "Payment Type": transaction.paymentType ?? "N/A",
         Email: transaction.email ?? "N/A",
         "First Name": transaction.firstname ?? "N/A",
@@ -120,14 +120,14 @@ export const TransactionFilter = () => {
         "Phone Number": transaction?.phoneNumber ?? "N/A",
         "Device Finger Print": "N/A",
         IP: "N/A",
-        "Transaction Process Date": Format.toDateAndTime(
+        "Transaction Process Date": Format.toReportDateTime(
           transaction?.dateCreated
         ),
         Metas: transaction.metaData,
         "Revenue Code":
           GetExcelColumnValue(transaction.metaData, "revenue_code", "") ??
           "N/A",
-        "Updated At": Format.toDateAndTime(transaction?.dateModified),
+        "Updated At": Format.toReportDateTime(transaction?.dateModified),
         "Product ID": transaction.productId ?? "N/A",
         "Product Description":
           GetExcelColumnValue(
