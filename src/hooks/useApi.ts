@@ -5,13 +5,15 @@ import {
   APIResponse,
   BaseQueryErrorResponse,
   AppState,
+  AppStorageKeys,
 } from "@/models";
 import { useGetDataOnClickMutation, usePostDataMutation } from "@/service";
-import { useFormStore, usePageStore } from "@/store";
+import { AppStorage, useFormStore, usePageStore } from "@/store";
 import { camelCaseToTitle } from "@/lib";
 import { useCallback, useEffect, useState } from "react";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import axios from "axios";
 
 interface APIHook {
   callGetApiOnRender?: boolean;
@@ -35,6 +37,8 @@ export const useAPI = <T>({
   const { setState } = usePageStore<AppState>((state) => state);
   const [data, setData] = useState<T | undefined>();
   const [reloadTable, setReloadTable] = useState(isDataTable);
+  const [downloading, setDownloading] = useState(false);
+
 
   const handleGetDataResponse = useCallback(
     (
@@ -100,6 +104,38 @@ export const useAPI = <T>({
     ]
   );
 
+  const downloadData = useCallback(
+    async (endpoint: string, filter: any) => {
+      try {
+        setDownloading(true);
+        const response = await axios.post(endpoint, filter, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `bearer ${
+              AppStorage.getItem(AppStorageKeys.Token) as string
+            }`,
+            Accept: "*/*",
+          },
+          responseType: "blob",
+        });
+        setDownloading(false);
+        // Create a URL for the blob and trigger a download
+        const blob = new Blob([response.data], {
+          type: response.headers["content-type"],
+        });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "merchant_transactions.xlsx");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (error) {
+        console.error("Error downloading transactions:", error);
+      }
+    },
+    [setDownloading]
+  );
   const fetchData = useCallback(
     async <T>(
       endpoint: string,
@@ -299,5 +335,7 @@ export const useAPI = <T>({
     callBack,
     fetchData,
     data,
+    downloadData,
+    downloading
   };
 };

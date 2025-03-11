@@ -44,6 +44,8 @@ export const GET_TRANSACTIONS: DocumentNode = gql`
         merchantName
         transactionNumber
         transactionDate
+        oldMerchantId
+        oldGatewayMerchantId
         userActivities {
           id
           accessCode

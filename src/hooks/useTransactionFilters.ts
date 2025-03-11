@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { APIRequest, APIResponse, AppState, State } from "@/models";
-import { GET_TRANSACTIONS } from "@/config";
+import { AppConfig, GET_TRANSACTIONS } from "@/config";
 import { useFormStore, usePageStore } from "@/store";
 import { Format } from "@/lib";
+import { useAPI } from "./useApi";
+import { endpoints } from "@/service";
 
 export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   const threeYearsAgo = new Date();
@@ -17,41 +19,30 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     APIRequest.TransactionsVars
   >(GET_TRANSACTIONS, { fetchPolicy: "no-cache" });
   const [hasDataOnRender, setHasDataOnRender] = useState(false);
-  const [isDownload, setIsDownload] = useState(false);
-
-  const [downloadTransactions, { data: downloadData, loading: downloading }] =
-    useLazyQuery<APIResponse.TransactionsData, APIRequest.TransactionsVars>(
-      GET_TRANSACTIONS
-    );
+  const { downloadData, downloading } = useAPI({});
 
   const downloadDataToExcel = useCallback(() => {
+    console.log("first")
     if (payload) {
-      downloadTransactions({
-        variables: {
-          page: 1,
-          limit: 30000,
-          filter: {
-            ...payload,
-            status: payload?.status === "All" ? undefined : payload?.status,
-            startDate: payload.startDate
-              ? Format.toAPIDate(new Date(payload.startDate))
-              : null,
-            endDate: payload.endDate
-              ? Format.toAPIDate(new Date(payload.endDate))
-              : null,
-          },
-        },
-      });
+      downloadData(
+        `${AppConfig.GRAPHQL_URL}/${endpoints.Report.Download}?Page=1&PageSize=30000`,
+        {
+          ...payload,
+          status: payload?.status === "All" ? undefined : payload?.status,
+          startDate: payload.startDate
+            ? Format.toAPIDate(new Date(payload.startDate))
+            : null,
+          endDate: payload.endDate
+            ? Format.toAPIDate(new Date(payload.endDate))
+            : null,
+        }
+      );
     } else {
-      downloadTransactions({
-        variables: {
-          page: 1,
-          limit: 30000,
-          filter: {},
-        },
-      });
+      downloadData(
+        `${AppConfig.GRAPHQL_URL}/${endpoints.Report.Download}?Page=1&PageSize=30000`,
+        { }
+      );
     }
-    setIsDownload(true);
   }, [
     payload,
     transactionPageLimit,
@@ -177,18 +168,6 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
       });
     }
   }, [transactionPageNumber, transactionPageLimit, payload]);
-
-  useEffect(() => {
-    if (
-      downloadData &&
-      downloadData?.transactions &&
-      Array.isArray(downloadData.transactions?.items) &&
-      isDownload
-    ) {
-      setState("transactionDataForDownload", downloadData.transactions.items);
-      setIsDownload(false);
-    }
-  }, [downloadData, setState, isDownload, setIsDownload]);
 
   return {
     loading,

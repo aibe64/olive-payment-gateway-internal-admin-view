@@ -52,6 +52,8 @@ export const endpoints = {
     GetAdminTranReport: "Report/GetTransactionReportForAdmin",
     GetMerchantTranReport: "Report/GetTransactionReportForMerchant",
     GetAdditionalReport: "Report/GetTransactionReportForFountain",
+    Download: "api/Report/Downloads",
+    DownloadForFountain: "api/Report/DownloadFountain"
   },
   PaymentPage: {
     GetMerchantPages: "PaymentPages/GetAllPages/",

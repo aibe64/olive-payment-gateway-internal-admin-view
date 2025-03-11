@@ -30,7 +30,7 @@ export const useStoreTransactionFilters = () => {
       downloadTransactions({
         variables: {
           page: 1,
-          limit: 10000,
+          limit: 30000,
           filter: {
             ...payload,
             status: payload?.status === "All" ? undefined : payload?.status,
@@ -47,7 +47,7 @@ export const useStoreTransactionFilters = () => {
       downloadTransactions({
         variables: {
           page: 1,
-          limit: 10000,
+          limit: 30000,
           filter: {},
         },
       });
@@ -61,7 +61,7 @@ export const useStoreTransactionFilters = () => {
         fetchTransactions({
           variables: {
             page: storeTransactionPageNumber ?? 1,
-            limit: isDownload ? 10000 : 10,
+            limit: isDownload ? 30000 : 10,
             filter: {
               ...payload,
               cardBrand: payload?.cardBrand ? payload?.cardBrand : null,
