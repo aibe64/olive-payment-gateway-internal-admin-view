@@ -205,6 +205,13 @@ export const TransactionFilter = () => {
                 className="!h-[35px]"
               />
             </Form.Item>
+            <Form.Item label="Transaction ID" className="-mt-4">
+              <Input
+                value={payload?.transactionId as string}
+                onChange={(e) => setPayload("transactionId", e.target.value)}
+                className="!h-[35px]"
+              />
+            </Form.Item>
             <Form.Item label="Card Brand" className="-mt-4">
               <Select
                 value={payload?.cardBrand as string}

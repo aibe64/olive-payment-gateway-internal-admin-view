@@ -11,6 +11,7 @@ import { endpoints } from "@/service";
 const Transactions = () => {
   const { loading, loadingTransaction, onPaginate, hasDataOnRender } =
     useTransactionFilters();
+
   const { transactionData, transactionPageNumber, setState } = usePageStore<AppState>(
     (state) => state
   );

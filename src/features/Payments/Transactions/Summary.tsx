@@ -13,6 +13,10 @@ export const TransactionSummary: FC<{ record: APIResponse.Transaction }> = ({
   // Data for rendering in both UI and PDF
   const data: { key: string; value: string }[] = [
     {
+      key: "Merchant Name",
+      value: record?.merchantName ?? "N/A",
+    },
+    {
       key: "Status",
       value:
         record?.paymentResponseCode === APIResponseCode.Success

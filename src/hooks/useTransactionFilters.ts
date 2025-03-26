@@ -10,8 +10,12 @@ import { endpoints } from "@/service";
 export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   const threeYearsAgo = new Date();
   threeYearsAgo.setFullYear(new Date().getFullYear() - 3);
-  const { setState, transactionPageNumber, transactionPageLimit } =
-    usePageStore<AppState>((state) => state);
+  const {
+    setState,
+    transactionPageNumber,
+    transactionPageLimit,
+    transactionData,
+  } = usePageStore<AppState>((state) => state);
   const { payload, setFormState }: State.Form<APIRequest.TransactionsFilters> =
     useFormStore();
   const [fetchTransactions, { data, loading }] = useLazyQuery<
@@ -22,10 +26,9 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   const { downloadData, downloading } = useAPI({});
 
   const downloadDataToExcel = useCallback(() => {
-    console.log("first")
     if (payload) {
       downloadData(
-        `${AppConfig.GRAPHQL_URL}/${endpoints.Report.Download}?Page=1&PageSize=30000`,
+        `${AppConfig.GRAPHQL_URL}/${endpoints.Report.Download}?Page=1&PageSize=${transactionData?.transactions.totalCount}`,
         {
           ...payload,
           status: payload?.status === "All" ? undefined : payload?.status,
@@ -39,8 +42,8 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
       );
     } else {
       downloadData(
-        `${AppConfig.GRAPHQL_URL}/${endpoints.Report.Download}?Page=1&PageSize=30000`,
-        { }
+        `${AppConfig.GRAPHQL_URL}/${endpoints.Report.Download}?Page=1&PageSize=${transactionData?.transactions?.totalCount}`,
+        {}
       );
     }
   }, [
@@ -48,6 +51,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
     transactionPageLimit,
     transactionPageNumber,
     transactionPageLimit,
+    transactionData?.transactions?.totalCount,
   ]);
 
   const applyFilter = useCallback(() => {
@@ -172,7 +176,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   return {
     loading,
     applyFilter,
-    loadingTransaction: false,
+    loadingTransaction: loading,
     onPaginate,
     applyValidateReferenceFilter,
     downloading,
