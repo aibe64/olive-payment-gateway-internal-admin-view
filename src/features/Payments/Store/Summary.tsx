@@ -84,7 +84,10 @@ export const TransactionSummary: FC<{
               : "Pending"}
           </span>
           <span className="text-primary font-inter-semibold mt-1">
-            {Format.toNaira(record?.totalAmount?.toString() ?? "0.00")}
+            {Format.toNaira(
+              record?.totalAmount?.toString() ?? "0.00",
+              record?.currency
+            )}
           </span>
           <span className="text-gray-text text-[0.8rem] mt-1">
             {Format.fromNumberToWords(record?.totalAmount ?? 0)}
@@ -136,7 +139,10 @@ export const TransactionSummary: FC<{
                       ? Format.toNaira(
                           (item.amount * item?.quantity)?.toString() ?? "0.00"
                         )
-                      : Format.toNaira(item.amount?.toString() ?? "0.00")}
+                      : Format.toNaira(
+                          item.amount?.toString() ?? "0.00",
+                          record?.currency
+                        )}
                   </span>
                 </div>
               </List.Item>

@@ -36,7 +36,10 @@ export const TransactionColumns: ColumnProps<APIResponse.Transaction>[] = [
     key: "1",
     ellipsis: true,
     render(_, record) {
-      return `${Format.toNaira(record?.amount?.toString() ?? "0.00")}`;
+      return `${Format.toNaira(
+        record?.amount?.toString() ?? "0.00",
+        record?.currency
+      )}`;
     },
   },
   {
@@ -73,9 +76,7 @@ export const TransactionColumns: ColumnProps<APIResponse.Transaction>[] = [
     key: "4",
     ellipsis: true,
     render(_, record) {
-      return (
-       <div>{record.cardType ?? "N/A"}</div>
-      );
+      return <div>{record.cardType ?? "N/A"}</div>;
     },
   },
   {

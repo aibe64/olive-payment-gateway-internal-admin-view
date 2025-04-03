@@ -54,6 +54,14 @@ export const ProviderDetails: FC<{
           <Tag color={"red"}>Disabled</Tag>
         ),
       },
+      {
+        key: "QR",
+        value: records?.qr ? (
+          <Tag color={"green"}>Enabled</Tag>
+        ) : (
+          <Tag color={"red"}>Disabled</Tag>
+        ),
+      },
   ];
   return (
     <div>

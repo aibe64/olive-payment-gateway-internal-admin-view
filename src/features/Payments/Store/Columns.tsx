@@ -62,7 +62,10 @@ export const TransactionColumns: ColumnProps<APIResponse.StoreTransaction>[] = [
     key: "1",
     ellipsis: true,
     render(_, record) {
-      return `${Format.toNaira(record?.totalAmount?.toString() ?? "0.00")}`;
+      return `${Format.toNaira(
+        record?.totalAmount?.toString() ?? "0.00",
+        record?.currency
+      )}`;
     },
   },
   {

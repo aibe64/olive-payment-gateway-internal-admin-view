@@ -66,7 +66,12 @@ export const UpdateProvider: FC<{
         key={"1"}
         required={isCreate}
       />
-      <XpressField name="shortName" label="Short Name" key={"2"} required={isCreate} />
+      <XpressField
+        name="shortName"
+        label="Short Name"
+        key={"2"}
+        required={isCreate}
+      />
       <div className="flex gap-2">
         <label htmlFor="status">Status</label>
         <Switch
@@ -105,7 +110,14 @@ export const UpdateProvider: FC<{
           />
         </div>
         <div className="flex gap-2">
-          <label htmlFor="status"> Wallet</label>
+          <label htmlFor="status">QR</label>
+          <Switch
+            onChange={(checked) => setPayload("qr", checked)}
+            checked={payload?.qr ?? false}
+          />
+        </div>
+        <div className="flex gap-2">
+          <label htmlFor="status">Wallet</label>
           <Switch
             onChange={(checked) => setPayload("wallet", checked)}
             checked={payload?.wallet ?? false}

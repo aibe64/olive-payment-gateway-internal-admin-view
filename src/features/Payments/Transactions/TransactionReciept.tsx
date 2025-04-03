@@ -167,7 +167,12 @@ export const TransactionReceipt: FC<{ record: APIResponse.Transaction }> = ({
               color: "#006F01",
             }}
           >
-            NGN {Format.toNaira(record?.amount?.toString() ?? "0.00", true)}
+            {}{" "}
+            {Format.toNaira(
+              record?.amount?.toString() ?? "0.00",
+              undefined,
+              true
+            )}
           </Text>
           <Text
             style={{

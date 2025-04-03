@@ -6,9 +6,11 @@ import { useDashboard } from "@/hooks";
 import { endpoints } from "@/service";
 import { AppState } from "@/models";
 import { usePageStore } from "@/store";
+import { currencies } from "@/data";
 
 export const DashboardFilter = () => {
-  const { merchantItem } = usePageStore<AppState>((state) => state);
+  const { merchantItem, dashboardFilterCurrency, setState } =
+    usePageStore<AppState>((state) => state);
   const { applyFilter, callMerchant, loadingMerchant } = useDashboard();
   const [statusValue, setStatus] = useState<string | null>(null);
   const [paymentMethodValue, setPaymentMethod] = useState<string | null>(null);
@@ -28,7 +30,8 @@ export const DashboardFilter = () => {
           dates.end,
           status,
           paymentMethodValue,
-          merchantId
+          merchantId,
+          dashboardFilterCurrency ?? null
         );
       } else {
         applyFilter(
@@ -36,11 +39,19 @@ export const DashboardFilter = () => {
           dates.end,
           null,
           paymentMethod,
-          merchantId
+          merchantId,
+          dashboardFilterCurrency ?? null
         );
       }
     },
-    [applyFilter, statusValue, paymentMethodValue, dates, merchantId]
+    [
+      applyFilter,
+      statusValue,
+      paymentMethodValue,
+      dates,
+      merchantId,
+      dashboardFilterCurrency,
+    ]
   );
 
   const merchantChange = useCallback(
@@ -51,10 +62,18 @@ export const DashboardFilter = () => {
         dates.end,
         statusValue,
         paymentMethodValue,
-        id === 0 ? null : id
+        id === 0 ? null : id,
+        dashboardFilterCurrency ?? null
       );
     },
-    [applyFilter, statusValue, paymentMethodValue, dates, setMerchantId]
+    [
+      applyFilter,
+      statusValue,
+      paymentMethodValue,
+      dates,
+      setMerchantId,
+      dashboardFilterCurrency,
+    ]
   );
 
   const handleSetDateRange = useCallback(
@@ -69,14 +88,28 @@ export const DashboardFilter = () => {
           Format.toAPIDate(new Date(endDate)),
           statusValue,
           paymentMethodValue,
-          merchantId
+          merchantId,
+          dashboardFilterCurrency ?? null
         );
       } else {
         setDates((prev) => ({ ...prev, start: null, end: null }));
-        applyFilter(null, null, statusValue, paymentMethodValue, merchantId);
+        applyFilter(
+          null,
+          null,
+          statusValue,
+          paymentMethodValue,
+          merchantId,
+          dashboardFilterCurrency ?? null
+        );
       }
     },
-    [statusValue, paymentMethodValue, setDates, merchantId]
+    [
+      statusValue,
+      paymentMethodValue,
+      setDates,
+      merchantId,
+      dashboardFilterCurrency,
+    ]
   );
   const onClearFilter = useCallback(
     (isStatus: boolean) => {
@@ -86,11 +119,31 @@ export const DashboardFilter = () => {
         onFilterChange(statusValue, null);
       }
     },
-    [statusValue, paymentMethodValue, onFilterChange]
+    [statusValue, paymentMethodValue, onFilterChange, dashboardFilterCurrency]
+  );
+
+  const handleCurrency = useCallback(
+    (value: string | null) => {
+      setState("dashboardFilterCurrency", value ?? undefined);
+      if (value) {
+        applyFilter(dates.start, dates.end, null, null, null, value);
+      } else {
+        applyFilter(dates.start, dates.end, null, null, null, null);
+      }
+    },
+    [applyFilter, dates, setState]
   );
 
   return (
     <div className="flex gap-3 mt-5">
+      <Select
+        onChange={(e) => handleCurrency(e)}
+        className="!bg-[#FFFFFF] dark:!bg-[#1F1F1F] !w-[120px] !text-gray-text !rounded-[8px]"
+        defaultValue="Naira"
+        allowClear
+        onClear={() => handleCurrency(null)}
+        options={currencies}
+      />
       <Select
         className="!bg-[#FFFFFF] dark:!bg-[#1F1F1F] !w-[160px] !text-gray-text !rounded-[8px]"
         placeholder="Merchant"

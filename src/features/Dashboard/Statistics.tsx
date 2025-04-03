@@ -7,14 +7,16 @@ import { usePageStore } from "@/store";
 
 const Component = () => {
   const { themeMode } = useTheme();
-  const { transactionSummaryData, loadingSummary } = usePageStore<AppState>(
-    (state) => state
-  );
+  const { transactionSummaryData, loadingSummary, dashboardFilterCurrency } =
+    usePageStore<AppState>((state) => state);
   const item = transactionSummaryData?.transactionSummarry.item;
   const data = [
     {
       name: "Transaction Value",
-      value: Format.toNaira(item?.totalTransactionAmount?.toString() ?? "0.00"),
+      value: Format.toNaira(
+        item?.totalTransactionAmount?.toString() ?? "0.00",
+        dashboardFilterCurrency
+      ),
     },
     {
       name: "Transaction Volume",
@@ -22,7 +24,10 @@ const Component = () => {
     },
     {
       name: "Next Settlement",
-      value: Format.toNaira(item?.nextSettlementAmount?.toString() ?? "0.00"),
+      value: Format.toNaira(
+        item?.nextSettlementAmount?.toString() ?? "0.00",
+        dashboardFilterCurrency
+      ),
     },
   ];
 

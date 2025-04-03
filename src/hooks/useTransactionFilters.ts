@@ -64,6 +64,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
           filter: {
             ...payload,
             status: payload?.status === "All" ? undefined : payload?.status,
+            currency: payload?.currency ?? null,
             paymentMethod:
               payload?.paymentMethod === "All"
                 ? undefined
@@ -172,6 +173,10 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
       });
     }
   }, [transactionPageNumber, transactionPageLimit, payload]);
+
+  useEffect(() => {
+    setState("dashboardFilterCurrency", "NGN");
+  }, []);
 
   return {
     loading,

@@ -25,6 +25,7 @@ import {
   Format,
   GetExcelColumnValue,
 } from "@/lib";
+import { currencies } from "@/data";
 
 export const TransactionFilter = () => {
   const {
@@ -190,7 +191,15 @@ export const TransactionFilter = () => {
                 />
               </Form.Item>
             )}
-
+            <Form.Item label="Currency" className="-mt-4">
+              <Select
+                onChange={(value) => setPayload("currency", value)}
+                className="!bg-[#FFFFFF] dark:!bg-[#1F1F1F] !text-gray-text !rounded-[8px]"
+                defaultValue="Naira"
+                value={payload?.currency}
+                options={currencies}
+              />
+            </Form.Item>
             <Form.Item label="Customer Email" className="-mt-4">
               <Input
                 value={payload?.customerEmail as string}

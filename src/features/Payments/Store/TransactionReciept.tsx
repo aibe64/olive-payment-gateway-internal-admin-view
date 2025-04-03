@@ -170,8 +170,12 @@ export const TransactionReceipt: React.FC<{
               color: "#006F01",
             }}
           >
-            NGN{" "}
-            {Format.toNaira(record?.totalAmount?.toString() ?? "0.00", true)}
+            {record?.currency}{" "}
+            {Format.toNaira(
+              record?.totalAmount?.toString() ?? "0.00",
+              undefined,
+              true
+            )}
           </Text>
           <Text
             style={{
@@ -215,19 +219,25 @@ export const TransactionReceipt: React.FC<{
                 <Text>{item.quantity || "-"}</Text>
                 {item.productName === "Total" ? (
                   <Text style={styles.textBold}>
-                    {Format.toNaira(item.amount?.toString() ?? "0.00")}
+                    {Format.toNaira(
+                      item.amount?.toString() ?? "0.00",
+                      record?.currency
+                    )}
                   </Text>
                 ) : (
                   <Text>
-                    {Format.toNaira(item.amount?.toString() ?? "0.00")}
+                    {Format.toNaira(
+                      item.amount?.toString() ?? "0.00",
+                      record?.currency
+                    )}
                   </Text>
                 )}
               </View>
             ))}
           </View>
         </View>
-         {/* Footer Section */}
-         <View style={styles.footer}>
+        {/* Footer Section */}
+        <View style={styles.footer}>
           <Text
             style={[
               styles.textMedium,

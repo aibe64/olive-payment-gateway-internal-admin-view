@@ -68,6 +68,7 @@ export const useStoreTransactionFilters = () => {
               customerEmail: payload?.customerEmail
                 ? payload?.customerEmail
                 : null,
+                currency: payload?.currency ?? null,
               paymentMethod: payload?.paymentMethod
                 ? payload?.paymentMethod
                 : null,

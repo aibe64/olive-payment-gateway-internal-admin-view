@@ -215,6 +215,7 @@ export namespace APIResponse {
     dateUpdated: string;
     isSuccessful: boolean;
     transactionId: string;
+    currency: string
     status: APIResponseCode;
     storeName: string;
     paymentResponseMessage: string;

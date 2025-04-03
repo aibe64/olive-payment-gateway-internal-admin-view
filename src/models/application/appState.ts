@@ -22,6 +22,7 @@ export interface AppState<T = any> extends State.Actions<AppState> {
   chartData?: APIResponse.YearlyTransactionsResponse;
   loadingChart?: boolean;
   loadingSummary?: boolean;
+  dashboardFilterCurrency?: string
 }
 
 interface Authority {

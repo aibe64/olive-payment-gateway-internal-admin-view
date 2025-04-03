@@ -72,11 +72,29 @@ export class Format {
     return `${year}-${month}-${day}`;
   };
 
-  static toNaira = (money: string, hideCurrencyIcon?: boolean): string => {
+  static toNaira = (
+    money: string,
+    currencyCode?: string,
+    hideCurrencyIcon?: boolean
+  ): string => {
     const amount = parseFloat(money).toFixed(2); // Convert to a number and ensure two decimal places
     return hideCurrencyIcon
       ? amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      : `₦ ${amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+      : `${Format.toCurrencySymbol(currencyCode ?? "NGN")} ${amount.replace(
+          /\B(?=(\d{3})+(?!\d))/g,
+          ","
+        )}`;
+  };
+
+  static toCurrencySymbol = (currencyCode: string): string => {
+    const symbolMap: Record<string, string> = {
+      NGN: "₦",
+      USD: "$",
+      GBP: "£",
+      EUR: "€",
+    };
+
+    return symbolMap[currencyCode] || "";
   };
 
   static fromCamelCaseToTitle = (str: string) => {

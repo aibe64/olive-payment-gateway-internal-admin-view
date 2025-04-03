@@ -152,3 +152,10 @@ export const statusOptionsForStore = [
     value: "all",
   },
 ];
+
+export const currencies = [
+  { label: "Naira", value: "NGN" },
+  { label: "US Dollar", value: "USD" },
+  { label: "Great Britain Pounds", value: "GBP" },
+  { label: "Euros", value: "EUR" },
+];

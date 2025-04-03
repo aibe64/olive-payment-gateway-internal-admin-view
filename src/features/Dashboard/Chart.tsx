@@ -11,8 +11,12 @@ import { Format } from "@/lib";
 const Component = () => {
   const { themeMode } = useTheme();
   const { filterChart } = useDashboard();
-  const { transactionSummaryData, loadingSummary, chartData } =
-    usePageStore<AppState>((state) => state);
+  const {
+    transactionSummaryData,
+    loadingSummary,
+    chartData,
+    dashboardFilterCurrency,
+  } = usePageStore<AppState>((state) => state);
   const item = transactionSummaryData?.transactionSummarry.item;
   const yearlyData =
     chartData?.yearlyTransactions?.items?.map((item) => ({
@@ -127,12 +131,13 @@ const Component = () => {
           <span className="text-gray-text dark:text-white">
             Payment Channels
           </span>
-          <div className="gap-2 mt-4 -mb-[2rem] grid grid-cols-2">
+          <div className="gap-2 mt-4 -mb-[2rem] grid grid-cols-2 mb-1">
             <div className="flex gap-2 items-center">
               <span className="font-inter-semibold">Card</span>
               <span>
                 {Format.toNaira(
-                  item?.totalCardTransactionAmount?.toString() ?? "0.00"
+                  item?.totalCardTransactionAmount?.toString() ?? "0.00",
+                  dashboardFilterCurrency
                 )}
               </span>
             </div>
@@ -140,7 +145,8 @@ const Component = () => {
               <span className="font-inter-semibold">Transfer</span>
               <span>
                 {Format.toNaira(
-                  item?.totalTransferTransactionAmount?.toString() ?? "0.00"
+                  item?.totalTransferTransactionAmount?.toString() ?? "0.00",
+                  dashboardFilterCurrency
                 )}
               </span>
             </div>
@@ -148,7 +154,8 @@ const Component = () => {
               <span className="font-inter-semibold">USSD</span>
               <span>
                 {Format.toNaira(
-                  item?.totalUSSDTransactionAmount?.toString() ?? "0.00"
+                  item?.totalUSSDTransactionAmount?.toString() ?? "0.00",
+                  dashboardFilterCurrency
                 )}
               </span>
             </div>
@@ -156,21 +163,26 @@ const Component = () => {
               <span className="font-inter-semibold">Account</span>
               <span>
                 {Format.toNaira(
-                  item?.totalAccountTransactionAmount?.toString() ?? "0.00"
+                  item?.totalAccountTransactionAmount?.toString() ?? "0.00",
+                  dashboardFilterCurrency
                 )}
               </span>
             </div>
             <div className="flex gap-1 items-center">
               <span className="font-inter-semibold">QR</span>
               <span>
-                {Format.toNaira(item?.totalQRAmount?.toString() ?? "0.00")}
+                {Format.toNaira(
+                  item?.totalQRAmount?.toString() ?? "0.00",
+                  dashboardFilterCurrency
+                )}
               </span>
             </div>
             <div className="flex gap-1 items-center">
               <span className="font-inter-semibold">eNaira</span>
               <span>
                 {Format.toNaira(
-                  item?.totalENairaTransactionAmount?.toString() ?? "0.00"
+                  item?.totalENairaTransactionAmount?.toString() ?? "0.00",
+                  dashboardFilterCurrency
                 )}
               </span>
             </div>
@@ -184,22 +196,28 @@ const Component = () => {
           )}
           <div className="grid grid-cols-4 px-5">
             <div className="flex gap-1 items-center">
-              <div className="w-[0.5rem] h-[0.5rem] bg-[#1a75ff]" /> <span>Card</span>
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#1a75ff]" />{" "}
+              <span>Card</span>
             </div>
             <div className="flex gap-1 items-center">
-              <div className="w-[0.5rem] h-[0.5rem] bg-[#66cc66]" /> <span>Transfer</span>
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#66cc66]" />{" "}
+              <span>Transfer</span>
             </div>
             <div className="flex gap-1 items-center">
-              <div className="w-[0.5rem] h-[0.5rem] bg-[#ff6666]" /> <span>Account</span>
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#ff6666]" />{" "}
+              <span>Account</span>
             </div>
             <div className="flex gap-1 items-center">
-              <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" /> <span>USSD</span>
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" />{" "}
+              <span>USSD</span>
             </div>
             <div className="flex gap-1 items-center">
-              <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" /> <span>QR</span>
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" />{" "}
+              <span>QR</span>
             </div>
             <div className="flex gap-1 items-center">
-              <div className="w-[0.5rem] h-[0.5rem] bg-[#1a75ff]" /> <span>eNaira</span>
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#1a75ff]" />{" "}
+              <span>eNaira</span>
             </div>
           </div>
         </div>

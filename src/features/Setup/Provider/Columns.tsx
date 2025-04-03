@@ -115,14 +115,14 @@ export const providerColumn: ColumnProps<APIResponse.Provider>[] = [
     },
   },
   {
-    title: "Wallet",
+    title: "QR",
     width: "10%",
     key: "2",
     ellipsis: true,
     render(_, record) {
       return (
         <div>
-          {record.wallet ? (
+          {record.qr ? (
             <img src={enabledIcon} alt="" />
           ) : (
             <img src={disabledIcon} alt="" />
@@ -131,6 +131,23 @@ export const providerColumn: ColumnProps<APIResponse.Provider>[] = [
       );
     },
   },
+  // {
+  //   title: "Wallet",
+  //   width: "10%",
+  //   key: "2",
+  //   ellipsis: true,
+  //   render(_, record) {
+  //     return (
+  //       <div>
+  //         {record.wallet ? (
+  //           <img src={enabledIcon} alt="" />
+  //         ) : (
+  //           <img src={disabledIcon} alt="" />
+  //         )}
+  //       </div>
+  //     );
+  //   },
+  // },
   {
     title: "Date Modified",
     width: "20%",

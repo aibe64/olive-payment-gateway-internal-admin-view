@@ -20,6 +20,7 @@ import { APIRequest, APIResponse, AppState, State } from "@/models";
 import { Moment } from "moment";
 import { useStoreTransactionFilters } from "@/hooks";
 import { disableFutureDates, exportToExcel, omit } from "@/lib";
+import { currencies } from "@/data";
 
 export const TransactionFilter = () => {
   const {
@@ -102,6 +103,15 @@ export const TransactionFilter = () => {
             />
           </Form.Item>
           <div className="grid grid-cols-2 gap-x-5 -gap-y-7">
+          <Form.Item label="Currency" className="-mt-4">
+              <Select
+                onChange={(value) => setPayload("currency", value)}
+                className="!bg-[#FFFFFF] dark:!bg-[#1F1F1F] !text-gray-text !rounded-[8px]"
+                defaultValue="Naira"
+                value={payload?.currency}
+                options={currencies}
+              />
+            </Form.Item>
             <Form.Item label="Customer Email" className="-mt-4">
               <Input
                 value={payload?.customerEmail as string}

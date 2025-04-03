@@ -87,6 +87,7 @@ export const GET_STORE_TRANSACTIONS = gql`
         dateUpdated
         isDelivered
         isSuccessful
+        currency
         transactionId
         status
         paymentResponseMessage

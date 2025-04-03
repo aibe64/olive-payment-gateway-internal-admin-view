@@ -83,6 +83,7 @@ export namespace APIRequest {
     status?: string | null;
     storeName?: string | null;
     merchantId?: number | null;
+    currency?: string | null;
   }
 
   export interface StoreTransactionsVars {
@@ -98,6 +99,7 @@ export namespace APIRequest {
       paymentMethod?: string | null;
       status?: string | null;
       storeName?: string | null;
+      currency?: string | null
     };
   }
   export interface StoreTransactionFilterInput {
@@ -134,6 +136,7 @@ export namespace APIRequest {
       paymentMethod?: string | null;
       status?: string | null;
       merchantId?: number | null;
+      currency?: string | null
     };
   }
 
@@ -146,6 +149,7 @@ export namespace APIRequest {
     cardBrand?: string | null;
     paymentMethod?: string | null;
     status?: string | null;
+    currency?: string | null
   }
 
   export interface YearlyTransactionsFilterInput {

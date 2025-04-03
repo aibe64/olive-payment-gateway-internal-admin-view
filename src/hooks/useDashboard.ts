@@ -63,7 +63,8 @@ export const useDashboard = () => {
       endDate: string | null,
       status: string | null,
       paymentMethod: string | null,
-      merchantId: number | null
+      merchantId: number | null,
+      currency: string | null
     ) => {
       setStatus(status);
       fetchTransactions({
@@ -78,6 +79,7 @@ export const useDashboard = () => {
             paymentMethod,
             status,
             merchantId,
+            currency,
           },
         },
       });
@@ -124,7 +126,6 @@ export const useDashboard = () => {
     }
   }, [transactionSummary, statusValue, setState]);
 
-
   useEffect(() => {
     setState("loadingSummary", loading || processing);
   }, [loading, processing]);
@@ -160,6 +161,10 @@ export const useDashboard = () => {
       setState("merchantItem", merchantData);
     }
   }, [merchantDetails, setState]);
+
+  useEffect(() => {
+    setState("dashboardFilterCurrency", "NGN");
+  }, []);
 
   return {
     applyFilter,
