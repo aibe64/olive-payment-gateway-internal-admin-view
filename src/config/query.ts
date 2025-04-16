@@ -63,6 +63,83 @@ export const GET_TRANSACTIONS: DocumentNode = gql`
   }
 `;
 
+export const GET_SPLIT_TRANSACTIONS: DocumentNode = gql`
+  query GetSplitTransactions(
+    $page: Int!
+    $limit: Int!
+    $filter: TransactionFilterInput!
+  ) {
+    splitTransactions(page: $page, limit: $limit, filter: $filter) {
+      items {
+        id
+        transactionReference
+        firstname
+        lastname
+        amount
+        paymentType
+        pageName
+        pageType
+        paymentLinkReference
+        publicKey
+        clientRedirectUrl
+        expiryMonth
+        expiryYear
+        email
+        currency
+        transactionId
+        xpressReference
+        providerReference
+        phoneNumber
+        narration
+        cardBin
+        brand
+        cardType
+        processor
+        merchantId
+        paymentResponseCode
+        paymentResponseMessage
+        dateCreated
+        dateModified
+        billerCode
+        mandateCode
+        transType
+        cardPan
+        metaData
+        productDescription
+        productId
+        merchantName
+        transactionNumber
+        transactionDate
+        splitPaymentReference
+        subAccountGroup {
+          id
+          groupName
+          splitType
+          deductFeeFrom
+          dateCreated
+          dateModified
+          createdBy
+          updatedBy
+          subAccounts {
+            id
+            subAccountName
+            percentage
+            amount
+            accountNumber
+            bankName
+            bankCode
+            accountName
+            subAccountId
+          }
+        }
+      }
+      totalCount
+      pageNumber
+      pageSize
+    }
+  }
+`;
+
 export const GET_STORE_TRANSACTIONS = gql`
   query StoreTransactions(
     $page: Int!

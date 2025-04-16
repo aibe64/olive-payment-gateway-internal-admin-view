@@ -9,12 +9,16 @@ export interface AppState<T = any> extends State.Actions<AppState> {
   totalDataCount?: number;
   storeTransactionForDownloadData?: APIResponse.StoreTransaction[];
   transactionDataForDownload?: APIResponse.Transaction[];
+  splitTransactionDataForDownload?: APIResponse.SplitTransaction[];
   storeSummary?: APIResponse.StoreTransactionSummaryResponse;
   transactionSummaryData?: APIResponse.TransactionSummaryResponse;
   transactionData?: APIResponse.TransactionsData;
   storeTransactionData?: APIResponse.StoreTransactionsData;
   transactionPageNumber?: number;
   storeTransactionPageLimit?: number;
+  splitTransactionData?: APIResponse.SplitTransactionsData;
+  splitTransactionPageNumber?: number;
+  splitTransactionPageLimit?: number;
   storeTransactionPageNumber?: number;
   transactionPageLimit?: number;
   openTransactionFilter?: boolean;

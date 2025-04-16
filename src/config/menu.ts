@@ -42,6 +42,10 @@ export const menuList: Props.MenuListProps[] = [
         path: ROUTE_PATH.Transaction,
       },
       {
+        label: "Split",
+        path: ROUTE_PATH.Split,
+      },
+      {
         label: "Store",
         path: ROUTE_PATH.Store,
       },

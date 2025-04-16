@@ -92,11 +92,11 @@ export const useAppPermission = () => {
         );
         handleAuthorization(userRoleResources);
       } else {
-        navigate(ROUTE_PATH.UnAuthorize);
+       // navigate(ROUTE_PATH.UnAuthorize);
       }
     }
   }, [path, userInfo?.roleId]);
-
+  
   useEffect(() => {
     setPath(location.pathname);
   }, [location.pathname]);

@@ -7,7 +7,7 @@ import { SubAccountDetails } from "./Details";
 export const SubAccountColumn: ColumnProps<APIResponse.SubAccount>[] = [
   {
     title: "Name",
-    width: "15%",
+    width: "25%",
     key: "2",
     ellipsis: true,
     render(_, record) {
@@ -21,21 +21,6 @@ export const SubAccountColumn: ColumnProps<APIResponse.SubAccount>[] = [
     ellipsis: true,
     render(_, record) {
       return `${record?.accountNumber ?? "N/A"}(${record?.bankName ?? "N/A"})`;
-    },
-  },
-  {
-    title: "Split",
-    width: "20%",
-    key: "1",
-    ellipsis: true,
-    render(_, record) {
-      return (
-        <span>
-          {record?.splitType === "percentage"
-            ? `You - ${record.merchantSharePercentage}%, S -${record.subAccountShareOfPercentage}%`
-            : Format.toNaira(record?.flatAmount?.toString() ?? "0.00")}
-        </span>
-      );
     },
   },
   {

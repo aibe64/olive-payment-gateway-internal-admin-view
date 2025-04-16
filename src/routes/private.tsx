@@ -6,6 +6,7 @@ import { lazy } from "react";
 const MerchantPage = lazy(() => import("@/features/Merchant"));
 const TransactionPage = lazy(() => import("@/features/Payments/Transactions"));
 const StoreTransactionPage = lazy(() => import("@/features/Payments/Store"));
+const SplitTransactionPage = lazy(() => import("@/features/Payments/Split"));
 const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
 const ProviderPage = lazy(() => import("@/features/Setup/Provider"));
 const BinPage = lazy(() => import("@/features/Setup/Bin"));
@@ -46,6 +47,10 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.Transaction,
         Component: TransactionPage,
+      },
+      {
+        path: ROUTE_PATH.Split,
+        Component: SplitTransactionPage,
       },
       {
         path: ROUTE_PATH.Store,

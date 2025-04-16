@@ -8,6 +8,7 @@ export const ROUTE_PATH = {
   Profile: "/profile",
   MerchantApproval: "/approval/merchant",
   Transaction: "/payment/transaction",
+  Split: "/payment/split",
   Store: "/payment/store",
   SubAccount: "/payments/sub-account",
   SubAccountGroup: "payments/sub-account-groups",

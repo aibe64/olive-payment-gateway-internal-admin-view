@@ -255,6 +255,85 @@ export namespace APIResponse {
     };
   }
 
+  export interface SplitTransactionsData {
+    splitTransactions: {
+      items: SplitTransaction[];
+      totalCount: number;
+      pageNumber: number;
+      pageSize: number;
+    };
+  }
+
+  export interface SplitTransaction {
+    id: string;
+    transactionReference: string;
+    firstname: string;
+    lastname: string;
+    amount: number;
+    paymentType: string;
+    pageName: string;
+    pageType: string;
+    paymentLinkReference: string;
+    publicKey: string;
+    clientRedirectUrl: string;
+    expiryMonth: string;
+    expiryYear: string;
+    email: string;
+    currency: string;
+    transactionId: string;
+    xpressReference: string;
+    providerReference: string;
+    phoneNumber: string;
+    narration: string;
+    cardBin: string;
+    brand: string;
+    cardType: string;
+    processor: string;
+    merchantId: string;
+    paymentResponseCode: string;
+    paymentResponseMessage: string;
+    dateCreated: string;
+    dateModified: string;
+    billerCode: string;
+    mandateCode: string;
+    transType: string;
+    cardPan: string;
+    metaData: string;
+    productDescription: string;
+    productId: string;
+    merchantName: string;
+    transactionNumber: string;
+    transactionDate: string;
+    splitPaymentReference: string;
+    subAccountGroup: SubAccountGroupData;
+  }
+
+  export interface SubAccountGroupData {
+    id: string;
+    groupName: string;
+    splitType: string;
+    deductFeeFrom: string;
+    dateCreated: string;
+    dateModified: string;
+    createdBy: string;
+    updatedBy: string;
+    subAccounts: SubAccountData[];
+  }
+  
+  export interface SubAccountData {
+    id: string;
+    subAccountName: string;
+    percentage: number;
+    amount: number;
+    accountNumber: string;
+    bankName: string;
+    bankCode: string;
+    accountName: string;
+    subAccountId: string;
+  }
+  
+  
+
   export interface StoreTransactionsData {
     storeTransactions: {
       items: StoreTransaction[];
@@ -482,6 +561,7 @@ export namespace APIResponse {
     dateModified: any;
     createdBy: string;
     updatedBy: any;
+    splitReference?: string
   }
   export interface SubAccountDetails {
     amount?: number;

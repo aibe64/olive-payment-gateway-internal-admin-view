@@ -15,6 +15,15 @@ export const SubAccountColumn: ColumnProps<APIResponse.SubAccountGroup>[] = [
     },
   },
   {
+    title: "Split Reference",
+    width: "15%",
+    key: "splitReference",
+    ellipsis: true,
+    render(_, record) {
+      return record.splitReference ?? "N/A";
+    },
+  },
+  {
     title: "Split Type",
     width: "15%",
     key: "1",

@@ -1,9 +1,10 @@
-import { AppStorageKeys, MerchantPortalDetails } from "@/models";
+import { APIResponse, AppStorageKeys, MerchantPortalDetails } from "@/models";
 import { AppStorage } from "@/store";
 import { jwtDecode } from "jwt-decode";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import dayjs, { Dayjs } from "dayjs";
+import { Format } from "./format";
 
 export const formatToNaira = (money: string): string => {
   return `₦${money.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
@@ -215,9 +216,7 @@ export const GetExcelColumnValue = (
           if (paymentDetails?.length) {
             switch (valueKey) {
               case "revenue_code":
-                return paymentDetails
-                  .map((x) => x.paymentItemCode)
-                  .toString();
+                return paymentDetails.map((x) => x.paymentItemCode).toString();
               case "product_description":
                 const desc = paymentDetails.map((x) => x.paymentItemName);
                 if (desc?.length > 0) {
@@ -246,4 +245,24 @@ export const GetExcelColumnValue = (
   if (productDesc?.length && valueKey === "product_description")
     return productDesc;
   return "N/A";
+};
+
+export const formatSplitDetails = (group: APIResponse.SubAccountGroupData) => {
+  let subAccountGroupFormatted = "No Split";
+  if (group) {
+    const groupName = group.groupName || "Unnamed Split";
+    const accounts = group.subAccounts
+      .map((sub) => {
+        return `${sub.accountNumber} - ${sub.accountName}(${sub.bankName}) - ${
+          sub.percentage ? `${sub.percentage}%` : ""
+        } ${
+          sub.amount && sub.amount > 0
+            ? `/ ${Format.toNaira(sub.amount?.toString() ?? "0.00")}`
+            : ""
+        }`;
+      })
+      .join("; ");
+    subAccountGroupFormatted = `${groupName}: ${accounts}`;
+  }
+  return subAccountGroupFormatted;
 };
