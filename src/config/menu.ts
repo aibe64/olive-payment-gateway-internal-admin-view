@@ -20,6 +20,20 @@ export const menuList: Props.MenuListProps[] = [
     icon: UserIcon,
   },
   {
+    label: "NQR",
+    icon: SettingsIcon,
+    children: [
+      {
+        label: "Merchant",
+        path: ROUTE_PATH.QrMerchant,
+      },
+      {
+        label: "Sub Merchant",
+        path: ROUTE_PATH.QrSubMerchant,
+      },
+    ],
+  },
+  {
     label: "Manage Users",
     icon: UsersIcon,
     children: [

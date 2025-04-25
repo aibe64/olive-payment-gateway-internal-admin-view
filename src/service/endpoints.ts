@@ -62,4 +62,13 @@ export const endpoints = {
     ValidateLink: "PaymentPages/ValidatePaymentPageLinkRefernce/",
     GetTransactions: "PaymentPages/GetPaymentPageTransactions/",
   },
+  QR:{
+    CreateMerchant: "NIBSS/CreateMerchant",
+    GetQrMerchant: "NIBSS/GetQrMerchant",
+    GetQrSubMerchant: "NIBSS/GetQrSubMerchant",
+    UpdateQrSubMerchant: "NIBSS/UpdateQrSubMerchant",
+    UpdateQrMerchant: "NIBSS/UpdateQrMerchant",
+    BindMerchantAccount: "NIBSS/BindMerchantAccount",
+    CreateSubMerchant: "NIBSS/CreateSubMerchant",
+  }
 };

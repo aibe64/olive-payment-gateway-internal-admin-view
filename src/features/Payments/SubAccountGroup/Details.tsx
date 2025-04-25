@@ -12,6 +12,10 @@ export const SubAccountGroupDetails: FC<{
       value: <span>{record?.groupName ?? "N/A"}</span>,
     },
     {
+      key: "Currency",
+      value: <span>{record?.currency ?? "N/A"}</span>,
+    },
+    {
       key: "Split Type",
       value: <span>{record?.splitType ?? "N/A"}</span>,
     },

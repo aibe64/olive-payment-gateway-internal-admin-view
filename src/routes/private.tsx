@@ -23,6 +23,8 @@ const SubAccountPage = lazy(() => import("@/features/Payments/SubAccount"));
 const SplitPaymentPage = lazy(
   () => import("@/features/Payments/SubAccountGroup")
 );
+const NqrMerchantPage = lazy(() => import("@/features/NQR/Merchant"));
+const NqrSubMerchantPage = lazy(() => import("@/features/NQR/SubMerchant"));
 
 export const privateRoutes = [
   {
@@ -95,6 +97,14 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.SubAccountGroup,
         Component: SplitPaymentPage,
+      },
+      {
+        path: ROUTE_PATH.QrMerchant,
+        Component: NqrMerchantPage,
+      },
+      {
+        path: ROUTE_PATH.QrSubMerchant,
+        Component: NqrSubMerchantPage,
       },
     ],
   },

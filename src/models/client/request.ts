@@ -66,6 +66,40 @@ export namespace APIRequest {
     receiveInternationalPayment: boolean;
     merchantPortalId: string;
   }
+
+  export interface QrMerchant {
+    id?: number;
+    institutionNumber?: string;
+    type?: string;
+    merchantNum?: string;
+    merchantName?: string;
+    merchantTIN?: string;
+    contact?: string;
+    phoneNumber?: string;
+    email?: string;
+    address?: string;
+    bankCode?: string;
+    bankName?: string;
+    accountName?: string;
+    accountNumber?: string;
+    transactionFeeBearer?: string;
+    emv?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    isHub?: boolean;
+    notificationUrl?: string;
+  }
+
+  export interface QrSubMerchant {
+    name?: string
+    merchantNumber?: string
+    phonenumber?: string
+    email?: string
+    channel?: number
+    terminalId?: string
+    id?: number
+  }
+
   export interface TransactionsVars {
     page: number;
     limit: number;
@@ -99,7 +133,7 @@ export namespace APIRequest {
       paymentMethod?: string | null;
       status?: string | null;
       storeName?: string | null;
-      currency?: string | null
+      currency?: string | null;
     };
   }
   export interface StoreTransactionFilterInput {
@@ -136,7 +170,7 @@ export namespace APIRequest {
       paymentMethod?: string | null;
       status?: string | null;
       merchantId?: number | null;
-      currency?: string | null
+      currency?: string | null;
     };
   }
 
@@ -149,7 +183,7 @@ export namespace APIRequest {
     cardBrand?: string | null;
     paymentMethod?: string | null;
     status?: string | null;
-    currency?: string | null
+    currency?: string | null;
   }
 
   export interface YearlyTransactionsFilterInput {

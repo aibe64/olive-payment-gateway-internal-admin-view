@@ -4,6 +4,8 @@ export const ROUTE_PATH = {
   Dashboard: "/dashboard",
   Merchant: "/merchant",
   Roles: "/roles",
+  QrMerchant: "/nqr/merchant",
+  QrSubMerchant: "/nqr/sub-merchant",
   Users: "/users",
   Profile: "/profile",
   MerchantApproval: "/approval/merchant",

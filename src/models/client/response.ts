@@ -446,6 +446,48 @@ export namespace APIResponse {
     provider?: string;
   }
 
+  export interface QrMerchant {
+    id: number
+    institutionNumber: string
+    type: string
+    merchantNum: string
+    merchantName: string
+    merchantTIN: string
+    contact: string
+    phoneNumber: string
+    email: string
+    address: string
+    bankCode: string
+    bankName: string
+    accountName: string
+    accountNumber: string
+    transactionFeeBearer: string
+    emv: any
+    createdAt: string
+    updatedAt: string
+    isHub: boolean
+    notificationUrl: string
+    nibssnqrSubMerchants: any
+    isAccountBinded?: boolean
+  }
+
+  export interface QrSubMerchant {
+    id: number
+    institutionNumber: string
+    nibssnqrMerchantId: number
+    channel: number
+    terminalId: string
+    merchantNum: string
+    merchantName: string
+    merchantTIN: string
+    emv: string
+    createdAt: string
+    updatedAt: string
+    isHub: boolean
+    notificationUrl: string
+    nibssnqrMerchant: any
+  }
+
   export interface Banks {
     $id?: string;
     id?: number;
@@ -538,6 +580,7 @@ export namespace APIResponse {
     merchantId: number;
     subAccountName: string;
     subAccountEmail: string;
+    currency: string;
     splitType: "percentage" | "flat";
     bankName: string;
     bankCode: string;
@@ -555,6 +598,7 @@ export namespace APIResponse {
     id: number;
     groupName: string;
     splitType: string;
+    currency: string;
     deductFeeFrom: string;
     subAccounts?: SubAccountDetails[];
     dateCreated: string;

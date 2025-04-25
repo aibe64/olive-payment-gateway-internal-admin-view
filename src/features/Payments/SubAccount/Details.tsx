@@ -12,6 +12,10 @@ export const SubAccountDetails: FC<{ record?: APIResponse.SubAccount }> = ({
       value: <span>{record?.subAccountName ?? "N/A"}</span>,
     },
     {
+      key: "Currency",
+      value: <span>{record?.currency ?? "N/A"}</span>,
+    },
+    {
       key: "Sub-Account Email",
       value: <span>{record?.subAccountEmail ?? "N/A"}</span>,
     },
