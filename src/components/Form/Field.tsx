@@ -261,6 +261,14 @@ export const XpressField: React.FC<Props.Field> = ({
           placeholder={placeholder}
           disabled={readonly}
           loading={loading}
+          showSearch
+          options={items}
+          filterOption={(input, option) =>
+            (option?.label ?? "")
+              .toString()
+              ?.toLowerCase()
+              ?.includes(input.toLowerCase())
+          }
           onChange={(e) => {
             setPayload(name, e);
             if (onSelectDropDownCallBack) onSelectDropDownCallBack(e);

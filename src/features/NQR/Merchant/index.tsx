@@ -19,15 +19,21 @@ const NqrMerchant = () => {
     queryDataEndpoint: `${AppConfig.NQR_API_BASE_URL}${endpoints.QR.GetQrMerchant}`,
     isDataTable: true,
   });
-  const { tableData, originalTableData }: AppState<Array<APIResponse.QrMerchant>> =
-    usePageStore<AppState>((state) => state);
+  const {
+    tableData,
+    originalTableData,
+  }: AppState<Array<APIResponse.QrMerchant>> = usePageStore<AppState>(
+    (state) => state
+  );
   const { set } = useModalStore();
 
   const onAddButton = useCallback(() => {
     set({
       open: true,
       showCloseButton: true,
-      title: <span className="text-[1.2rem] font-bold">Create NQR Merchant</span>,
+      title: (
+        <span className="text-[1.2rem] font-bold">Create NQR Merchant</span>
+      ),
       body: <UpdateMerchantQR isCreate />,
       clearPayloadOnClose: true,
       width: 600,
@@ -37,19 +43,15 @@ const NqrMerchant = () => {
   return (
     <div className="flex flex-col gap-5">
       <PageTitle totalDataCount={tableData?.length ?? 0} title="NQR Merchant" />
-      {originalTableData?.length ? (
-        <TableFilter>
-          <div className="flex gap-2 items-center">
-            <XpressButton
-              classNames="!py-5"
-              onClick={onAddButton}
-              title="Add NQR Merchant"
-            />
-          </div>
-        </TableFilter>
-      ) : (
-        ""
-      )}
+      <TableFilter>
+        <div className="flex gap-2 items-center">
+          <XpressButton
+            classNames="!py-5"
+            onClick={onAddButton}
+            title="Add NQR Merchant"
+          />
+        </div>
+      </TableFilter>
       <XpressTable<APIResponse.QrMerchant>
         columns={binColumn}
         dataSource={tableData ?? []}

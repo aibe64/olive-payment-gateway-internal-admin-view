@@ -1,5 +1,5 @@
 import { XpressButton, XpressField, XpressForm } from "@/components";
-import { nigerianBanks } from "@/data";
+import { nibssBanks } from "@/data";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
 import { endpoints } from "@/service";
@@ -48,6 +48,8 @@ export const UpdateMerchantQR: FC<{
         id: !isCreate ? records?.id : undefined,
         merchantNum: !isCreate ? records?.merchantNum : undefined,
         isHub: payload?.isHub ?? false,
+        bankName: nibssBanks.find((bank) => payload?.bankCode === bank.bankCode)
+          ?.bankCode,
       }}
       apiConfig={{
         endpoint: isCreate
@@ -107,29 +109,13 @@ export const UpdateMerchantQR: FC<{
           key="2"
           validator="onlyNumber"
         />
-        <div className="flex flex-col">
-          <XpressField
-            name="bankCode"
-            label="Institution Code"
-            readonly={!isCreate}
-            key="2"
-            maxLength={6}
-            minLength={6}
-            validator="onlyNumber"
-            required={isCreate}
-          />
-          <span className="text-[0.8rem] -mt-2 mb-3">
-            This is the 6-digit institution code of the issuer bank E.g “012345”
-            of the account number provided by the merchant.
-          </span>
-        </div>
         <XpressField
-          name="bankName"
+          name="bankCode"
           label="Bank Name"
           key="7"
-          items={nigerianBanks?.map((bank) => ({
-            label: bank.label,
-            value: bank.label,
+          items={nibssBanks?.map((bank) => ({
+            label: bank.bankName,
+            value: bank.bankCode,
           }))}
           type="select"
           required={isCreate}

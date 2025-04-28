@@ -41,8 +41,7 @@ const NqrSubMerchant = () => {
   return (
     <div className="flex flex-col gap-5">
       <PageTitle totalDataCount={tableData?.length ?? 0} title="Sub Merchant" />
-      {originalTableData?.length ? (
-        <TableFilter>
+      <TableFilter>
           <div className="flex gap-2 items-center">
             <XpressButton
               classNames="!py-5"
@@ -51,9 +50,6 @@ const NqrSubMerchant = () => {
             />
           </div>
         </TableFilter>
-      ) : (
-        ""
-      )}
       <XpressTable<APIResponse.QrSubMerchant>
         columns={binColumn}
         dataSource={tableData ?? []}
