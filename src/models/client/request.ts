@@ -91,13 +91,15 @@ export namespace APIRequest {
   }
 
   export interface QrSubMerchant {
-    name?: string
-    merchantNumber?: string
-    phonenumber?: string
-    email?: string
-    channel?: number
-    terminalId?: string
-    id?: number
+    name?: string;
+    merchantNumber?: string;
+    phonenumber?: string;
+    email?: string;
+    channel?: number;
+    terminalId?: string;
+    id?: number;
+    isHub?: boolean;
+    notificationUrl?: string;
   }
 
   export interface TransactionsVars {

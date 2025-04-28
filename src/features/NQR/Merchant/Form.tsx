@@ -47,6 +47,7 @@ export const UpdateMerchantQR: FC<{
       extraValues={{
         id: !isCreate ? records?.id : undefined,
         merchantNum: !isCreate ? records?.merchantNum : undefined,
+        isHub: payload?.isHub ?? false,
       }}
       apiConfig={{
         endpoint: isCreate
@@ -65,18 +66,21 @@ export const UpdateMerchantQR: FC<{
         <XpressField
           name="merchantName"
           label="Merchant Name"
+          readonly={!isCreate}
           key="1"
           required={isCreate}
         />
         <XpressField
           name="contact"
           label="Contact"
+          readonly={!isCreate}
           key="3"
           required={isCreate}
         />
         <XpressField
           name="phoneNumber"
           label="Phone Number"
+          readonly={!isCreate}
           key="4"
           type="tel"
           required={isCreate}
@@ -84,6 +88,7 @@ export const UpdateMerchantQR: FC<{
         <XpressField
           name="email"
           type="email"
+          readonly={!isCreate}
           label="Email"
           key="5"
           required={isCreate}
@@ -91,12 +96,14 @@ export const UpdateMerchantQR: FC<{
         <XpressField
           name="address"
           label="Address"
+          readonly={!isCreate}
           key="6"
           required={isCreate}
         />
         <XpressField
           name="tin"
           label="TIN"
+          readonly={!isCreate}
           key="2"
           validator="onlyNumber"
         />
@@ -104,6 +111,7 @@ export const UpdateMerchantQR: FC<{
           <XpressField
             name="bankCode"
             label="Institution Code"
+            readonly={!isCreate}
             key="2"
             maxLength={6}
             minLength={6}
