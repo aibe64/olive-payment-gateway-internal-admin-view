@@ -110,6 +110,13 @@ export const TransactionFilter = () => {
                 defaultValue="Naira"
                 value={payload?.currency}
                 options={currencies}
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toString()
+                    ?.toLowerCase()
+                    ?.includes(input.toLowerCase())
+                }
               />
             </Form.Item>
             <Form.Item label="Customer Email" className="-mt-4">
@@ -138,6 +145,13 @@ export const TransactionFilter = () => {
                 value={payload?.status as string}
                 className="!h-[35px]"
                 onChange={(e) => setPayload("status", e === "All" ? null : e)}
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toString()
+                    ?.toLowerCase()
+                    ?.includes(input.toLowerCase())
+                }
                 options={[
                   { label: "Success", value: "00" },
                   { label: "Failed", value: "02" },

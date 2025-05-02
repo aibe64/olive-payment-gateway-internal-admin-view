@@ -188,6 +188,13 @@ export const TransactionFilter = () => {
                   onChange={(e) => setPayload("merchantId", e)}
                   className="!h-[35px]"
                   options={merchantItem}
+                  showSearch
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toString()
+                      ?.toLowerCase()
+                      ?.includes(input.toLowerCase())
+                  }
                 />
               </Form.Item>
             )}
@@ -198,6 +205,13 @@ export const TransactionFilter = () => {
                 defaultValue="Naira"
                 value={payload?.currency}
                 options={currencies}
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toString()
+                    ?.toLowerCase()
+                    ?.includes(input.toLowerCase())
+                }
               />
             </Form.Item>
             <Form.Item label="Customer Email" className="-mt-4">
@@ -226,6 +240,13 @@ export const TransactionFilter = () => {
                 value={payload?.cardBrand as string}
                 onChange={(e) => setPayload("cardBrand", e)}
                 className="!h-[35px]"
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toString()
+                    ?.toLowerCase()
+                    ?.includes(input.toLowerCase())
+                }
                 options={[
                   { label: "Master Card", value: "mastercard" },
                   { label: "Visa", value: "visa" },
@@ -240,6 +261,13 @@ export const TransactionFilter = () => {
                 value={payload?.paymentMethod as string}
                 onChange={(e) => setPayload("paymentMethod", e)}
                 className="!h-[35px]"
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toString()
+                    ?.toLowerCase()
+                    ?.includes(input.toLowerCase())
+                }
                 options={[
                   { label: "Card", value: "Card" },
                   { label: "Transfer", value: "Transfer" },
@@ -254,6 +282,13 @@ export const TransactionFilter = () => {
                 value={payload?.status as string}
                 className="!h-[35px]"
                 onChange={(e) => setPayload("status", e)}
+                showSearch
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toString()
+                    ?.toLowerCase()
+                    ?.includes(input.toLowerCase())
+                }
                 options={[
                   { label: "Success", value: "00" },
                   { label: "Failed", value: "02" },

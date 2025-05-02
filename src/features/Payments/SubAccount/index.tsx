@@ -11,7 +11,9 @@ import { useCallback, useMemo } from "react";
 
 const SubAccount = () => {
   const { fetching, callGetData } = useAPI({
-    queryDataEndpoint: `${endpoints.Account.GetSubAccount}page=${1}&size=${1000}`,
+    queryDataEndpoint: `${
+      endpoints.Account.GetSubAccount
+    }page=${1}&size=${1000}`,
     isDataTable: true,
     callGetApiOnRender: true,
   });
@@ -41,26 +43,30 @@ const SubAccount = () => {
   //   []
   // );
 
-  const filterByMerchant = useCallback(
-    (merchantId: number) => {
-      callGetData(
-        `${endpoints.Account.GetSubAccount}page=${1}&size=${10000}&mid=${merchantId}`
-      );
-    },
-    []
-  );
-  const onClear = useCallback(() => {
+  const filterByMerchant = useCallback((merchantId: number) => {
     callGetData(
-      `${endpoints.Account.GetSubAccount}page=${1}&size=${100000}`
+      `${
+        endpoints.Account.GetSubAccount
+      }page=${1}&size=${10000}&mid=${merchantId}`
     );
+  }, []);
+  const onClear = useCallback(() => {
+    callGetData(`${endpoints.Account.GetSubAccount}page=${1}&size=${100000}`);
   }, []);
 
   const merchantContent = useMemo(() => {
     return (
       <Select
         className="w-[15rem]"
-      allowClear
-      onClear={onClear}
+        showSearch
+        filterOption={(input, option) =>
+          (option?.label ?? "")
+            .toString()
+            ?.toLowerCase()
+            ?.includes(input.toLowerCase())
+        }
+        allowClear
+        onClear={onClear}
         onChange={(e) => filterByMerchant(e)}
         options={
           Array.isArray(merchants)

@@ -34,7 +34,9 @@ const SubAccountGroup = () => {
 
   const filterByMerchant = useCallback((merchantId: number) => {
     callGetData(
-      `${endpoints.Account.GetSubAccountGroup}page=${1}&size=${10}&mid=${merchantId}`
+      `${
+        endpoints.Account.GetSubAccountGroup
+      }page=${1}&size=${10}&mid=${merchantId}`
     );
   }, []);
 
@@ -47,9 +49,16 @@ const SubAccountGroup = () => {
   const merchantContent = useMemo(() => {
     return (
       <Select
-      allowClear
-      onClear={onClear}
-      className="w-[15rem]"
+      showSearch
+      filterOption={(input, option) =>
+        (option?.label ?? "")
+          .toString()
+          ?.toLowerCase()
+          ?.includes(input.toLowerCase())
+      }
+        allowClear
+        onClear={onClear}
+        className="w-[15rem]"
         onChange={(e) => filterByMerchant(e)}
         options={
           Array.isArray(merchants)

@@ -143,6 +143,13 @@ export const DashboardFilter = () => {
         allowClear
         onClear={() => handleCurrency(null)}
         options={currencies}
+        showSearch
+        filterOption={(input, option) =>
+          (option?.label ?? "")
+            .toString()
+            ?.toLowerCase()
+            ?.includes(input.toLowerCase())
+        }
       />
       <Select
         className="!bg-[#FFFFFF] dark:!bg-[#1F1F1F] !w-[160px] !text-gray-text !rounded-[8px]"
@@ -152,6 +159,13 @@ export const DashboardFilter = () => {
         showSearch
         onFocus={() => callMerchant(endpoints.SetUp.GetAllMerchant)}
         options={merchantItem ?? []}
+        showSearch
+        filterOption={(input, option) =>
+          (option?.label ?? "")
+            .toString()
+            ?.toLowerCase()
+            ?.includes(input.toLowerCase())
+        }
       />
       <Select
         onChange={(e) => onFilterChange(e, null)}
@@ -159,6 +173,13 @@ export const DashboardFilter = () => {
         defaultValue="Status"
         allowClear
         onClear={() => onClearFilter(true)}
+        showSearch
+        filterOption={(input, option) =>
+          (option?.label ?? "")
+            .toString()
+            ?.toLowerCase()
+            ?.includes(input.toLowerCase())
+        }
         options={[
           {
             label: "All",
@@ -184,6 +205,13 @@ export const DashboardFilter = () => {
         defaultValue="Payment Method"
         allowClear
         onClear={() => onClearFilter(false)}
+        showSearch
+        filterOption={(input, option) =>
+          (option?.label ?? "")
+            .toString()
+            ?.toLowerCase()
+            ?.includes(input.toLowerCase())
+        }
         options={[
           {
             label: "All",
