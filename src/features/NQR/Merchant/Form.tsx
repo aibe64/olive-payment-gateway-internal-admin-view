@@ -35,6 +35,7 @@ export const UpdateMerchantQR: FC<{
     if (records && !isCreate) {
       setFormState("payload", {
         ...records,
+        tin: records?.merchantTIN
       });
     } else {
       clearForm();
@@ -107,7 +108,6 @@ export const UpdateMerchantQR: FC<{
           label="TIN"
           readonly={!isCreate}
           key="2"
-          validator="onlyNumber"
         />
         <XpressField
           name="bankCode"
@@ -139,7 +139,7 @@ export const UpdateMerchantQR: FC<{
           name="transactionFeeBearer"
           label="Transaction Fee Bearer"
           key="10"
-          required={isCreate}
+          required={!isCreate}
           type="select"
           items={[
             {
