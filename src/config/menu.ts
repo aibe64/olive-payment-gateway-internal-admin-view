@@ -6,6 +6,7 @@ import {
   UserIcon,
   UsersIcon,
 } from "@/assets";
+import AuditTrailIcon from "@/assets/AuditTrailIcon";
 import { Props, ROUTE_PATH } from "@/models";
 
 export const menuList: Props.MenuListProps[] = [
@@ -104,5 +105,10 @@ export const menuList: Props.MenuListProps[] = [
         path: ROUTE_PATH.MerchantApproval,
       },
     ],
+  },
+  {
+    label: "Audit Trail",
+    path: ROUTE_PATH.AuditTrail,
+    icon: AuditTrailIcon,
   },
 ];

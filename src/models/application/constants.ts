@@ -18,8 +18,9 @@ export const ROUTE_PATH = {
   Bin: "/setup/bin",
   Institution: "setup/institution",
   TransactionManager: "setup/transaction-manager",
+  AuditTrail: "/audit-trail",
   Login: import.meta.env.VITE_AUTH_DOMAIN,
-  UnAuthorize: "/403"
+  UnAuthorize: "/403",
 };
 
 export enum KycStatus {
