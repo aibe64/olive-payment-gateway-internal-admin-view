@@ -1,8 +1,8 @@
 import { PageTitle, TableFilter, XpressTable } from "@/components";
-import { Button, Select } from "antd";
+import { Button, Select, Input } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import SortByIcon from "@/assets/SortByIcon";
-import { exportToExcel } from "@/lib/helper";
+import { exportToExcel, searchTable } from "@/lib/helper";
 import { useState } from "react";
 
 const dummyData = [
@@ -129,11 +129,16 @@ const sortOptions = [
 ];
 
 const AuditTrail = () => {
-  const [data] = useState(dummyData);
+  const [originalData] = useState(dummyData);
+  const [data, setData] = useState(dummyData);
   const [sort, setSort] = useState("default");
 
   const handleDownload = () => {
     exportToExcel(data, "Audit_Logs");
+  };
+
+  const handleFilterChange = (value: string) => {
+    setData(searchTable(originalData, value));
   };
 
   return (
@@ -152,7 +157,15 @@ const AuditTrail = () => {
             />
           </div>
         }
+        hideFilterField={true}
       >
+        <Input
+          onChange={(e) => handleFilterChange(e.target.value)}
+          className="lg:w-[20rem] rounded-2xl mr-2"
+          placeholder={"Search..."}
+          style={{ fontSize: 14 }}
+          allowClear
+        />
         <Button
           icon={<DownloadOutlined />}
           className="!bg-primary !text-white"
