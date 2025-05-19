@@ -57,6 +57,9 @@ export const UpdateQrSubMerchant: FC<{
       extraValues={{
         id: !isCreate ? records?.id : undefined,
         isHub: payload?.isHub ?? false,
+        phonenumber: payload?.phonenumber
+          ? `+234${payload?.phonenumber}`
+          : undefined,
       }}
       apiConfig={{
         endpoint: isCreate
@@ -79,7 +82,7 @@ export const UpdateQrSubMerchant: FC<{
         key={"1"}
         required={isCreate}
       />
-        <XpressField
+      <XpressField
         name="email"
         label="Email"
         validator="email"
@@ -87,7 +90,7 @@ export const UpdateQrSubMerchant: FC<{
         key={"1"}
         required={isCreate}
       />
-         <XpressField
+      <XpressField
         name="phoneNumber"
         label="Phone Number"
         type="tel"

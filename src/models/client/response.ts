@@ -427,6 +427,7 @@ export namespace APIResponse {
     wallet?: any;
     isWallet?: boolean;
     status?: string;
+    serviceUrl?: string
   }
 
   export interface Bin {

@@ -15,6 +15,10 @@ export const ProviderDetails: FC<{
       value: records?.shortName ?? "N/A",
     },
     {
+      key: "Service URL",
+      value: records?.serviceUrl ?? "N/A",
+    },
+    {
       key: "Card",
       value: records?.card ? (
         <Tag color={"green"}>Enabled</Tag>

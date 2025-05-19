@@ -72,6 +72,13 @@ export const UpdateProvider: FC<{
         key={"2"}
         required={isCreate}
       />
+      <XpressField
+        name="serviceUrl"
+        label="Service URL"
+        validator="url"
+        key={"4"}
+        required={isCreate}
+      />
       <div className="flex gap-2">
         <label htmlFor="status">Status</label>
         <Switch

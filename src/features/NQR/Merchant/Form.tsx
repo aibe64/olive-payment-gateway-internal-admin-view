@@ -35,7 +35,7 @@ export const UpdateMerchantQR: FC<{
     if (records && !isCreate) {
       setFormState("payload", {
         ...records,
-        tin: records?.merchantTIN
+        tin: records?.merchantTIN,
       });
     } else {
       clearForm();
@@ -48,6 +48,9 @@ export const UpdateMerchantQR: FC<{
       extraValues={{
         id: !isCreate ? records?.id : undefined,
         merchantNum: !isCreate ? records?.merchantNum : undefined,
+        phoneNumber: payload?.phoneNumber
+          ? `+234${payload?.phoneNumber}`
+          : undefined,
         isHub: payload?.isHub ?? false,
         bankName: nibssBanks.find((bank) => payload?.bankCode === bank.bankCode)
           ?.bankCode,
@@ -103,12 +106,7 @@ export const UpdateMerchantQR: FC<{
           key="6"
           required={isCreate}
         />
-        <XpressField
-          name="tin"
-          label="TIN"
-          readonly={!isCreate}
-          key="2"
-        />
+        <XpressField name="tin" label="TIN" readonly={!isCreate} key="2" />
         <XpressField
           name="bankCode"
           label="Bank Name"
