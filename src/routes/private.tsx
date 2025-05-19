@@ -25,6 +25,7 @@ const SplitPaymentPage = lazy(
 );
 const NqrMerchantPage = lazy(() => import("@/features/NQR/Merchant"));
 const NqrSubMerchantPage = lazy(() => import("@/features/NQR/SubMerchant"));
+const AuditTrailPage = lazy(() => import("@/features/AuditTrail"));
 
 export const privateRoutes = [
   {
@@ -105,6 +106,10 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.QrSubMerchant,
         Component: NqrSubMerchantPage,
+      },
+      {
+        path: ROUTE_PATH.AuditTrail,
+        Component: AuditTrailPage,
       },
     ],
   },
