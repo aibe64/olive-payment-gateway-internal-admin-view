@@ -614,6 +614,17 @@ export namespace APIResponse {
     id: number;
     subAccountName?: string;
   }
+  export interface AuditTrails {
+    items: AuditTrailItems[]
+    totalCount: number
+  }
+  export interface AuditTrailItems {
+    id: number
+    action: string
+    userEmail: string
+    details: string
+    timestamp: string
+  }
 }
 
 export interface BaseQueryErrorResponse {

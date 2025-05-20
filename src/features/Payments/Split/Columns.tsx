@@ -87,6 +87,26 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     ),
   },
   {
+    title: "Deduct Fee From",
+    dataIndex: "merchantName",
+    width: "15%",
+    key: "15",
+    ellipsis: true,
+    render(_, record) {
+      return (
+        <div>
+          {record.subAccountGroup.deductFeeFrom ? (
+            <span className="capitalize">
+              {record.subAccountGroup.deductFeeFrom?.replace("_", " ")}
+            </span>
+          ) : (
+            <span>N/A</span>
+          )}
+        </div>
+      );
+    },
+  },
+  {
     title: "Status",
     width: "12%",
     key: "6",

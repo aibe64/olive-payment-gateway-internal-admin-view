@@ -1,15 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { APIRequest, APIResponse, AppState, State } from "@/models";
-import { GET_SPLIT_TRANSACTIONS } from "@/config";
+import { AppConfig, GET_SPLIT_TRANSACTIONS } from "@/config";
 import { useFormStore, usePageStore } from "@/store";
 import { Format } from "@/lib";
+import { useAPI } from "./useApi";
+import { endpoints } from "@/service";
 
 export const useSplitTransactions = (callReportOnRender: boolean = true) => {
   const threeYearsAgo = new Date();
   threeYearsAgo.setFullYear(new Date().getFullYear() - 3);
-  const { setState, splitTransactionPageLimit, splitTransactionPageNumber } =
-    usePageStore<AppState>((state) => state);
+  const {
+    setState,
+    splitTransactionPageLimit,
+    splitTransactionPageNumber,
+    splitTransactionData,
+  } = usePageStore<AppState>((state) => state);
   const { payload, setFormState }: State.Form<APIRequest.TransactionsFilters> =
     useFormStore();
 
@@ -18,44 +24,67 @@ export const useSplitTransactions = (callReportOnRender: boolean = true) => {
     APIRequest.TransactionsVars
   >(GET_SPLIT_TRANSACTIONS, { fetchPolicy: "no-cache" });
 
-  const [
-    downloadTransactions,
-    { data: transactionDataForDownload, loading: downloading },
-  ] = useLazyQuery<
-    APIResponse.SplitTransactionsData,
-    APIRequest.TransactionsVars
-  >(GET_SPLIT_TRANSACTIONS);
+  const { downloadData, downloading } = useAPI({});
+
+  // const [downloadTransactions, { data: transactionDataForDownload }] =
+  //   useLazyQuery<
+  //     APIResponse.SplitTransactionsData,
+  //     APIRequest.TransactionsVars
+  //   >(GET_SPLIT_TRANSACTIONS);
 
   const [hasDataOnRender, setHasDataOnRender] = useState(false);
 
+  // const downloadDataToExcel = useCallback(() => {
+  //   if (payload) {
+  //     downloadTransactions({
+  //       variables: {
+  //         page: 1,
+  //         limit: 30000,
+  //         filter: {
+  //           ...payload,
+  //           status: payload?.status === "All" ? undefined : payload?.status,
+  //           startDate: payload.startDate
+  //             ? Format.toAPIDate(new Date(payload.startDate))
+  //             : null,
+  //           endDate: payload.endDate
+  //             ? Format.toAPIDate(new Date(payload.endDate))
+  //             : null,
+  //         },
+  //       },
+  //     });
+  //   } else {
+  //     downloadTransactions({
+  //       variables: {
+  //         page: 1,
+  //         limit: 30000,
+  //         filter: {},
+  //       },
+  //     });
+  //   }
+  // }, [payload]);
+
   const downloadDataToExcel = useCallback(() => {
     if (payload) {
-      downloadTransactions({
-        variables: {
-          page: 1,
-          limit: 30000,
-          filter: {
-            ...payload,
-            status: payload?.status === "All" ? undefined : payload?.status,
-            startDate: payload.startDate
-              ? Format.toAPIDate(new Date(payload.startDate))
-              : null,
-            endDate: payload.endDate
-              ? Format.toAPIDate(new Date(payload.endDate))
-              : null,
-          },
-        },
-      });
+      downloadData(
+        `${AppConfig.GRAPHQL_URL}/api/${endpoints.Report.DownloadSplit}?Page=1&PageSize=${splitTransactionData?.splitTransactions?.totalCount}`,
+        {
+          ...payload,
+          status: payload?.status === "All" ? undefined : payload?.status,
+          startDate: payload.startDate
+            ? Format.toAPIDate(new Date(payload.startDate))
+            : null,
+          endDate: payload.endDate
+            ? Format.toAPIDate(new Date(payload.endDate))
+            : null,
+        }
+      );
     } else {
-      downloadTransactions({
-        variables: {
-          page: 1,
-          limit: 30000,
-          filter: {},
-        },
-      });
+      downloadData(
+        `${AppConfig.GRAPHQL_URL}/api/${endpoints.Report.DownloadSplit}?Page=1&PageSize=${splitTransactionData?.splitTransactions?.totalCount}`,
+        {}
+      );
     }
-  }, [payload]);
+  }, [payload, splitTransactionData?.splitTransactions?.totalCount]);
 
   const applyFilter = useCallback(() => {
     setState("openTransactionFilter", false);
@@ -152,18 +181,18 @@ export const useSplitTransactions = (callReportOnRender: boolean = true) => {
     }
   }, [callReportOnRender, setState, setHasDataOnRender]);
 
-  useEffect(() => {
-    if (
-      transactionDataForDownload &&
-      transactionDataForDownload?.splitTransactions &&
-      Array.isArray(transactionDataForDownload.splitTransactions?.items)
-    ) {
-      setState(
-        "splitTransactionDataForDownload",
-        transactionDataForDownload.splitTransactions.items
-      );
-    }
-  }, [transactionDataForDownload, setState]);
+  // useEffect(() => {
+  //   if (
+  //     transactionDataForDownload &&
+  //     transactionDataForDownload?.splitTransactions &&
+  //     Array.isArray(transactionDataForDownload.splitTransactions?.items)
+  //   ) {
+  //     setState(
+  //       "splitTransactionDataForDownload",
+  //       transactionDataForDownload.splitTransactions.items
+  //     );
+  //   }
+  // }, [transactionDataForDownload, setState]);
 
   useEffect(() => {
     if (splitTransactionPageNumber && splitTransactionPageLimit) {

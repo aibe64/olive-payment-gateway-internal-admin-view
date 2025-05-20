@@ -27,6 +27,8 @@ export interface AppState<T = any> extends State.Actions<AppState> {
   loadingChart?: boolean;
   loadingSummary?: boolean;
   dashboardFilterCurrency?: string
+  auditTrailsData?: APIResponse.AuditTrails
+  originalAuditTrailsData?: APIResponse.AuditTrails
 }
 
 interface Authority {
