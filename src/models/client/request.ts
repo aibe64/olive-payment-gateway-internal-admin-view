@@ -272,4 +272,19 @@ export namespace APIRequest {
     isActive?: boolean;
     isInternalUser?: boolean;
   }
+  export interface PaymentMethod {
+    id?: number;
+    paymentType?: number;
+    feeType?: string;
+    defaultCharge?: number;
+    chargeCap?: number;
+    description?: string;
+    isEnabledGlobal?: boolean;
+    isDefault?: boolean;
+  }
+  export interface StorePaymentMethod extends PaymentMethod {
+    feeType?: string
+    isActive?: boolean
+    fee?: number
+  }
 }

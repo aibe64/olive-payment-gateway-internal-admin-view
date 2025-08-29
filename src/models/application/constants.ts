@@ -17,6 +17,8 @@ export const ROUTE_PATH = {
   Provider: "/setup/provider",
   Bin: "/setup/bin",
   Institution: "setup/institution",
+  PaymentMethod: "setup/payment-method",
+  XpressStore: "setup/xpress-store",
   TransactionManager: "setup/transaction-manager",
   AuditTrail: "/audit-trail",
   Login: import.meta.env.VITE_AUTH_DOMAIN,

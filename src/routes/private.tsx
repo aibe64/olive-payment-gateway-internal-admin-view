@@ -11,6 +11,8 @@ const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
 const ProviderPage = lazy(() => import("@/features/Setup/Provider"));
 const BinPage = lazy(() => import("@/features/Setup/Bin"));
 const InstitutionPage = lazy(() => import("@/features/Setup/Institution"));
+const PaymentMethodPage = lazy(() => import("@/features/Setup/PaymentMethod"));
+const XpressStorePage = lazy(() => import("@/features/Setup/XpressStore"));
 const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
 const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
 const ProfilePage = lazy(() => import("@/features/Settings"));
@@ -64,6 +66,10 @@ export const privateRoutes = [
         Component: ProviderPage,
       },
       {
+        path: ROUTE_PATH.XpressStore,
+        Component: XpressStorePage,
+      },
+      {
         path: ROUTE_PATH.Bin,
         Component: BinPage,
       },
@@ -74,6 +80,10 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.TransactionManager,
         Component: TransactionManagerPage,
+      },
+      {
+        path: ROUTE_PATH.PaymentMethod,
+        Component: PaymentMethodPage,
       },
       {
         path: ROUTE_PATH.Roles,

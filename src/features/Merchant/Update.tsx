@@ -2,12 +2,12 @@ import { XpressButton } from "@/components";
 import { XpressField, XpressForm } from "@/components";
 import { nigerianBanks } from "@/data";
 import { useAPI } from "@/hooks";
-import { cleanDecimalInput } from "@/lib";
+// import { cleanDecimalInput } from "@/lib";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models/client/request";
 import { endpoints } from "@/service";
 import { useFormStore, useModalStore } from "@/store";
-import { Button, Divider, Input, Radio, Switch } from "antd";
+import { Button, Divider, Input, Switch } from "antd";
 import { FC, useCallback, useEffect } from "react";
 
 export const UpdateMerchant: FC<{
@@ -38,22 +38,22 @@ export const UpdateMerchant: FC<{
     }
   }, []);
 
-  const onChangeTaxPercentage = useCallback(
-    (value: string) => {
-      value = cleanDecimalInput(value);
-      if (/^\d+(\.\d+)?$/.test(value)) {
-        const percentage = parseFloat(value);
-        if (percentage <= 100) {
-          setPayload("chargeValue", percentage?.toString());
-        } else {
-          setPayload("chargeValue", payload?.chargeValue ?? "");
-        }
-      } else {
-        setPayload("chargeValue", value);
-      }
-    },
-    [payload?.chargeValue, setPayload]
-  );
+  // const onChangeTaxPercentage = useCallback(
+  //   (value: string) => {
+  //     value = cleanDecimalInput(value);
+  //     if (/^\d+(\.\d+)?$/.test(value)) {
+  //       const percentage = parseFloat(value);
+  //       if (percentage <= 100) {
+  //         setPayload("chargeValue", percentage?.toString());
+  //       } else {
+  //         setPayload("chargeValue", payload?.chargeValue ?? "");
+  //       }
+  //     } else {
+  //       setPayload("chargeValue", value);
+  //     }
+  //   },
+  //   [payload?.chargeValue, setPayload]
+  // );
 
   useEffect(() => {
     setFormState("payload", {
@@ -264,7 +264,7 @@ export const UpdateMerchant: FC<{
           </div>
         </div>
       </div>
-      <Divider className="mb-3" />
+      {/* <Divider className="mb-3" />
       <div className="flex flex-col gap-3 mb-5">
         <span>Charges</span>
         <div className="flex gap-[4rem]">
@@ -324,7 +324,7 @@ export const UpdateMerchant: FC<{
             )}
           </div>
         )}
-      </div>
+      </div> */}
       <XpressButton.Submit title="Submit" />
     </XpressForm>
   );

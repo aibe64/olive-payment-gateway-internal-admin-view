@@ -3,6 +3,7 @@ import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { Tag } from "antd";
 import { ColumnProps } from "antd/es/table";
+import { PaymentMethodCharges } from "./Charges";
 import { UpdateMerchant } from "./Update";
 import { ViewMerchant } from "./View";
 
@@ -102,10 +103,14 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantDetails>[] = [
           actions={[
             { title: "View", action: "View", modalWidth: 500 },
             { title: "Edit", action: "Edit", modalWidth: 600 },
+            { title: "Charges", action: "Custom", modalWidth: 700 },
           ]}
           components={{
-            View: <ViewMerchant records={record}/>,
-            Edit: <UpdateMerchant records={record} />,
+            View: <ViewMerchant records={record} key={`${record.id}`} />,
+            Edit: <UpdateMerchant records={record} key={`${record.id}`} />,
+            Custom: (
+              <PaymentMethodCharges record={record} key={`${record.id}`} />
+            ),
           }}
         />
       );

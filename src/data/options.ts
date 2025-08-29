@@ -159,3 +159,13 @@ export const currencies = [
   { label: "Great Britain Pounds", value: "GBP" },
   { label: "Euros", value: "EUR" },
 ];
+
+export const paymentMethods = [
+  { label: "Card", value: 1 },
+  { label: "Account", value: 2 },
+  { label: "QR", value: 3 },
+  { label: "USSD", value: 4 },
+  { label: "Wallet", value: 5 },
+  { label: "Wallet", value: 6 },
+  { label: "ENaira", value: 7 },
+];

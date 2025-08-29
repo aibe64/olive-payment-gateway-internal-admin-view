@@ -93,6 +93,9 @@ export const ThemeProviderComponent: React.FC<MyComponentProps> = ({
             colorBorder: themeMode === "dark" ? "#121212" : "#E8E8E8",
             colorBgContainer: themeMode === "dark" ? "#1F1F1F" : "#FFFFFF",
           },
+          Switch: {
+            colorTextQuaternary: "#FF6D00"
+          },
           Select: {
             controlHeight: 40,
             boxShadow: "none",

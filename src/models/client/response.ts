@@ -215,7 +215,7 @@ export namespace APIResponse {
     dateUpdated: string;
     isSuccessful: boolean;
     transactionId: string;
-    currency: string
+    currency: string;
     status: APIResponseCode;
     storeName: string;
     paymentResponseMessage: string;
@@ -319,7 +319,7 @@ export namespace APIResponse {
     updatedBy: string;
     subAccounts: SubAccountData[];
   }
-  
+
   export interface SubAccountData {
     id: string;
     subAccountName: string;
@@ -331,8 +331,6 @@ export namespace APIResponse {
     accountName: string;
     subAccountId: string;
   }
-  
-  
 
   export interface StoreTransactionsData {
     storeTransactions: {
@@ -427,7 +425,7 @@ export namespace APIResponse {
     wallet?: any;
     isWallet?: boolean;
     status?: string;
-    serviceUrl?: string
+    serviceUrl?: string;
   }
 
   export interface Bin {
@@ -448,45 +446,45 @@ export namespace APIResponse {
   }
 
   export interface QrMerchant {
-    id: number
-    institutionNumber: string
-    type: string
-    merchantNum: string
-    merchantName: string
-    merchantTIN: string
-    contact: string
-    phoneNumber: string
-    email: string
-    address: string
-    bankCode: string
-    bankName: string
-    accountName: string
-    accountNumber: string
-    transactionFeeBearer: string
-    emv: any
-    createdAt: string
-    updatedAt: string
-    isHub: boolean
-    notificationUrl: string
-    nibssnqrSubMerchants: any
-    isAccountBinded?: boolean
+    id: number;
+    institutionNumber: string;
+    type: string;
+    merchantNum: string;
+    merchantName: string;
+    merchantTIN: string;
+    contact: string;
+    phoneNumber: string;
+    email: string;
+    address: string;
+    bankCode: string;
+    bankName: string;
+    accountName: string;
+    accountNumber: string;
+    transactionFeeBearer: string;
+    emv: any;
+    createdAt: string;
+    updatedAt: string;
+    isHub: boolean;
+    notificationUrl: string;
+    nibssnqrSubMerchants: any;
+    isAccountBinded?: boolean;
   }
 
   export interface QrSubMerchant {
-    id: number
-    institutionNumber: string
-    nibssnqrMerchantId: number
-    channel: number
-    terminalId: string
-    merchantNum: string
-    merchantName: string
-    merchantTIN: string
-    emv: string
-    createdAt: string
-    updatedAt: string
-    isHub: boolean
-    notificationUrl: string
-    nibssnqrMerchant: any
+    id: number;
+    institutionNumber: string;
+    nibssnqrMerchantId: number;
+    channel: number;
+    terminalId: string;
+    merchantNum: string;
+    merchantName: string;
+    merchantTIN: string;
+    emv: string;
+    createdAt: string;
+    updatedAt: string;
+    isHub: boolean;
+    notificationUrl: string;
+    nibssnqrMerchant: any;
   }
 
   export interface Banks {
@@ -517,10 +515,10 @@ export namespace APIResponse {
   }
 
   export interface Permission {
-    id: number
-    name: string
-    description: any
-    roleResources: any
+    id: number;
+    name: string;
+    description: any;
+    roleResources: any;
   }
 
   export interface Roles {
@@ -606,7 +604,7 @@ export namespace APIResponse {
     dateModified: any;
     createdBy: string;
     updatedBy: any;
-    splitReference?: string
+    splitReference?: string;
   }
   export interface SubAccountDetails {
     amount?: number;
@@ -615,15 +613,45 @@ export namespace APIResponse {
     subAccountName?: string;
   }
   export interface AuditTrails {
-    items: AuditTrailItems[]
-    totalCount: number
+    items: AuditTrailItems[];
+    totalCount: number;
   }
   export interface AuditTrailItems {
-    id: number
-    action: string
-    userEmail: string
-    details: string
-    timestamp: string
+    id: number;
+    action: string;
+    userEmail: string;
+    details: string;
+    timestamp: string;
+  }
+  export interface PaymentMethod {
+    id: number;
+    paymentType: string;
+    defaultCharge: number;
+    chargeCap: number;
+    description: string;
+    isEnabledGlobal: boolean;
+    isDefault: boolean;
+    createdAt: string;
+    updatedAt: any;
+    feeType: string;
+    isActive: boolean;
+  }
+  export interface StorePaymentMethod extends PaymentMethod {
+    feeType: string;
+    isActive: boolean;
+    fee: string;
+  }
+  export interface MerchantPaymentMethod {
+    isChargeTransferredToCustomer: boolean;
+    paymentMethods: {
+      paymentMethodId: number;
+      paymentType: string;
+      fee: number;
+      feeType: string;
+      description: string;
+      isEnabled: boolean;
+      chargeCap: number
+    }[];
   }
 }
 

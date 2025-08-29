@@ -20,7 +20,7 @@ export const endpoints = {
     GetAllCategories: "Accounts/GetAllCategories",
     ValidateSettlementAccount: "Merchants/ValidateSettlementAccount",
     GetInternalUsers: "Admin/GetInternalUsers",
-    UpdateUser: "Admin/UpdateUsers"
+    UpdateUser: "Admin/UpdateUsers",
   },
   Approvals: {
     GetAllMerchantChargePendingApproval:
@@ -47,6 +47,12 @@ export const endpoints = {
     GetTransactionLimit: "Setup/GetAllTransactionLimit",
     UpdateTransactionLimit: "Setup/UpdateTransactionLimit",
     CreateTransactionLimit: "Setup/CreateTransactionLimit",
+    GetAllPaymentMethod: "SetUp/GetAllPaymentMethod",
+    UpdatePaymentMethod: "SetUp/UpsertPaymentMethod",
+    GetAllStorePaymentMethods: "SetUp/GetAllStorePaymentMethods",
+    UpdateStorePaymentMethod: "SetUp/UpdateStorePaymentMethod",
+    GetMerchantPaymentMethod: "SetUp/GetMerchantPaymentMethod/",
+    UpdateMerchantPaymentMethod: "SetUp/UpdatePaymentMethod/"
   },
   Report: {
     GetAdminTranReport: "Report/GetTransactionReportForAdmin",
@@ -55,7 +61,7 @@ export const endpoints = {
     Download: "api/Report/Downloads",
     DownloadForFountain: "api/Report/DownloadFountain",
     GetAuditReport: "/Admin/GetAuditLogs",
-    DownloadSplit: "SplitPayment/Downloads"
+    DownloadSplit: "SplitPayment/Downloads",
   },
   PaymentPage: {
     GetMerchantPages: "PaymentPages/GetAllPages/",
@@ -64,7 +70,7 @@ export const endpoints = {
     ValidateLink: "PaymentPages/ValidatePaymentPageLinkRefernce/",
     GetTransactions: "PaymentPages/GetPaymentPageTransactions/",
   },
-  QR:{
+  QR: {
     CreateMerchant: "NIBSS/CreateMerchant",
     GetQrMerchant: "NIBSS/GetQrMerchant",
     GetQrSubMerchant: "NIBSS/GetQrSubMerchant",
@@ -72,5 +78,5 @@ export const endpoints = {
     UpdateQrMerchant: "NIBSS/UpdateQrMerchant",
     BindMerchantAccount: "NIBSS/BindMerchantAccount",
     CreateSubMerchant: "NIBSS/CreateSubMerchant",
-  }
+  },
 };
