@@ -34,7 +34,7 @@ export const UpdatePaymentMethod: FC<{
     if (records && !isCreate) {
       setFormState("payload", {
         ...records,
-        fee: Number(records?.fee ?? "0.00")
+        fee: Number(records?.fee ?? "0.00"),
       });
     } else {
       clearForm();
@@ -46,10 +46,12 @@ export const UpdatePaymentMethod: FC<{
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
-        fee: Number(payload?.fee ?? "0.00")
+        fee: Number(payload?.fee ?? "0.00"),
       }}
       apiConfig={{
-        endpoint: endpoints.SetUp.UpdateStorePaymentMethod,
+        endpoint: isCreate
+          ? endpoints.SetUp.CreateStorePaymentMethod
+          : endpoints.SetUp.UpdateStorePaymentMethod,
         showToastAfterApiResponse: true,
         method: "POST",
         reloadTable: true,
@@ -91,6 +93,17 @@ export const UpdatePaymentMethod: FC<{
         suffix={payload?.feeType === "Percentage" ? "%" : undefined}
         key={"3"}
       />
+      {payload?.feeType === "Percentage" ? (
+        <XpressField
+          name="chargeCap"
+          label="Capped At"
+          isAmountField
+          key={"8"}
+        />
+      ) : (
+        <></>
+      )}
+
       <div className="flex justify-between gap-1 mb-3">
         <div className="flex gap-2">
           <label htmlFor="status">Status</label>

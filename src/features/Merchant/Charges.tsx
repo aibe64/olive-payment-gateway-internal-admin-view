@@ -59,13 +59,14 @@ export const PaymentMethodCharges: FC<{
         <Switch
           className="w-[3rem]"
           checked={response?.isChargeTransferredToCustomer}
-          onChange={(value) =>
-            setResponse((prev) =>
-              prev
-                ? { ...prev, isChargeTransferredToCustomer: value }
-                : { isChargeTransferredToCustomer: value, paymentMethods: [] }
-            )
-          }
+          disabled
+          // onChange={(value) =>
+          //   setResponse((prev) =>
+          //     prev
+          //       ? { ...prev, isChargeTransferredToCustomer: value }
+          //       : { isChargeTransferredToCustomer: value, paymentMethods: [] }
+          //   )
+          // }
         />
       </div>
       <div className="">
@@ -96,10 +97,10 @@ export const PaymentMethodCharges: FC<{
                       updateResponse(item.paymentMethodId, "fee", value);
                     }
                   }}
-                  className="w-[7rem] bg-[#F0F0F0]"
+                  className="w-[7rem] bg-[#F0F0F0] dark:bg-primary-dark"
                 />
                 <Select
-                  className="w-[9rem] !bg-[#F0F0F0]"
+                  className="w-[9rem]  dark:bg-primary-dark"
                   value={item.feeType}
                   onChange={(value) =>
                     updateResponse(item.paymentMethodId, "feeType", value)
@@ -112,7 +113,7 @@ export const PaymentMethodCharges: FC<{
                 <Input
                   prefix="₦"
                   value={item.chargeCap ?? "0.00"}
-                  className="w-[7rem] bg-[#F0F0F0]"
+                  className="w-[7rem] bg-[#F0F0F0] dark:bg-primary-dark "
                   onChange={(e) => {
                     const value = e.target.value;
                     const isValid = /^(\d+(\.\d*)?|\.\d+)?$/.test(value);

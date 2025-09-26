@@ -51,6 +51,7 @@ export const endpoints = {
     UpdatePaymentMethod: "SetUp/UpsertPaymentMethod",
     GetAllStorePaymentMethods: "SetUp/GetAllStorePaymentMethods",
     UpdateStorePaymentMethod: "SetUp/UpdateStorePaymentMethod",
+    CreateStorePaymentMethod: "SetUp/CreateStorePaymentMethod",
     GetMerchantPaymentMethod: "SetUp/GetMerchantPaymentMethod/",
     UpdateMerchantPaymentMethod: "SetUp/UpdatePaymentMethod/"
   },

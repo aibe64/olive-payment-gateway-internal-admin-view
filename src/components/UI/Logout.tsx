@@ -5,9 +5,9 @@
 import { FC, Fragment, useCallback, useEffect } from "react";
 import { Button } from "antd";
 import { AppStorage, useModalStore } from "@/store";
-import { ROUTE_PATH } from "@/models";
 import { LogoutIcon } from "@/assets";
 import { Notify } from "./Alert";
+import { AppConfig } from "@/config";
 
 export const LogOut: FC<{ logOutOnRender: boolean }> = ({ logOutOnRender }) => {
   const { setModalState } = useModalStore();
@@ -17,7 +17,7 @@ export const LogOut: FC<{ logOutOnRender: boolean }> = ({ logOutOnRender }) => {
     setModalState("open", false);
     Notify("Logout Successful", true);
     setTimeout(() => {
-      window.location.href = ROUTE_PATH.Landing;
+      window.location.href = AppConfig.MERCHANT_ADMIN_DOMAIN
     }, 1000);
   };
 

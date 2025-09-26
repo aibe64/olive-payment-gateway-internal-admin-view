@@ -93,12 +93,16 @@ export const UpdatePaymentMethod: FC<{
         suffix={payload?.feeType === "Percentage" ? "%" : undefined}
         key={"3"}
       />
-      <XpressField
-        name="chargeCap"
-        label="Charge Cap"
-        isAmountField
-        key={"4"}
-      />
+      {payload?.feeType === "Percentage" ? (
+        <XpressField
+          name="chargeCap"
+          label="Capped At"
+          isAmountField
+          key={"8"}
+        />
+      ) : (
+        <></>
+      )}
       <div className="flex justify-between gap-1 mb-3">
         <div className="flex gap-2">
           <label htmlFor="status">Enable Globally</label>

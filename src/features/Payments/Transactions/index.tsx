@@ -49,7 +49,7 @@ const Transactions = () => {
       <XpressTable<APIResponse.Transaction>
         emptyHeadingText={
           <h3>
-            No have transaction found.{" "}
+            No transaction found.{" "}
             <span className="text-[#FF6D00]">Please filter again.</span>
           </h3>
         }
