@@ -18,7 +18,7 @@ export const UpdatePaymentMethod: FC<{
     setPayload,
     payload,
   }: State.Form<APIRequest.PaymentMethod> = useFormStore();
-  const chargeCap = payload?.chargeCap as string;
+  const chargeCap = `${payload?.chargeCap}`;
 
   const closeModal = useCallback(() => {
     set({

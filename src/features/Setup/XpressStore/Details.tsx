@@ -24,6 +24,10 @@ export const PaymentMethodDetails: FC<{
       value: Format.toNaira(String(records?.fee ?? "0.00")),
     },
     {
+      key: "Charge Cap",
+      value: Format.toNaira(String(records?.chargeCap ?? "0.00")),
+    },
+    {
       key: "Status",
       value: records?.isActive ? (
         <Tag color={"green"}>Active</Tag>
