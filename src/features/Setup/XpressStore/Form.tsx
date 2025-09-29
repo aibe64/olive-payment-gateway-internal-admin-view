@@ -18,6 +18,7 @@ export const UpdatePaymentMethod: FC<{
     setPayload,
     payload,
   }: State.Form<APIRequest.StorePaymentMethod> = useFormStore();
+  const chargeCap = payload?.chargeCap as string;
 
   const closeModal = useCallback(() => {
     set({
@@ -47,6 +48,9 @@ export const UpdatePaymentMethod: FC<{
       extraValues={{
         id: !isCreate ? records?.id : undefined,
         fee: Number(payload?.fee ?? "0.00"),
+        chargeCap: parseFloat(
+          chargeCap ? chargeCap?.replace(/,/g, "") : "0.00"
+        ),
       }}
       apiConfig={{
         endpoint: isCreate

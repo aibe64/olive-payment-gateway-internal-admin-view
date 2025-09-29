@@ -18,6 +18,7 @@ export const UpdatePaymentMethod: FC<{
     setPayload,
     payload,
   }: State.Form<APIRequest.PaymentMethod> = useFormStore();
+  const chargeCap = payload?.chargeCap as string;
 
   const closeModal = useCallback(() => {
     set({
@@ -49,9 +50,13 @@ export const UpdatePaymentMethod: FC<{
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
+        chargeCap: parseFloat(
+          chargeCap ? chargeCap?.replace(/,/g, "") : "0.00"
+        ),
       }}
       apiConfig={{
         endpoint: endpoints.SetUp.UpdatePaymentMethod,
+
         showToastAfterApiResponse: true,
         method: "POST",
         reloadTable: true,

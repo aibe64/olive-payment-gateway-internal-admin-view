@@ -277,7 +277,7 @@ export namespace APIRequest {
     paymentType?: number;
     feeType?: string;
     defaultCharge?: number;
-    chargeCap?: number;
+    chargeCap?: number | string;
     description?: string;
     isEnabledGlobal?: boolean;
     isDefault?: boolean;
