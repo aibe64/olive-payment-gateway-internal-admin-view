@@ -10,18 +10,11 @@ export const GET_TRANSACTIONS: DocumentNode = gql`
       items {
         id
         transactionReference
-        firstname
-        lastname
         amount
         paymentType
-        publicKey
-        clientRedirectUrl
-        expiryMonth
-        expiryYear
         email
         currency
         transactionId
-        oliveReference
         providerReference
         phoneNumber
         narration
@@ -34,7 +27,6 @@ export const GET_TRANSACTIONS: DocumentNode = gql`
         paymentResponseMessage
         dateCreated
         dateModified
-        billerCode
         mandateCode
         transType
         cardPan
@@ -43,18 +35,11 @@ export const GET_TRANSACTIONS: DocumentNode = gql`
         productId
         merchantName
         transactionNumber
+        pageName
+        paymentLinkReference
+        pageType
+        name
         transactionDate
-        oldMerchantId
-        oldGatewayMerchantId
-        userActivities {
-          id
-          accessCode
-          createdAt
-          message
-          reference
-          transactionId
-          type
-        }
       }
       totalCount
       pageNumber
