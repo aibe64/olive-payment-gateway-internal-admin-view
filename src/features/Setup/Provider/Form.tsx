@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
 import { endpoints } from "@/service";
@@ -40,7 +40,7 @@ export const UpdateProvider: FC<{
   }, [records, setFormState, isCreate, clearForm]);
 
   return (
-    <XpressForm<APIRequest.Provider>
+    <OliveForm<APIRequest.Provider>
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
@@ -58,7 +58,7 @@ export const UpdateProvider: FC<{
       }}
       className="px-2 gap-0"
     >
-      <XpressField
+      <OliveField
         name="name"
         label="Provider Name"
         type="text"
@@ -66,13 +66,13 @@ export const UpdateProvider: FC<{
         key={"1"}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="shortName"
         label="Short Name"
         key={"2"}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="serviceUrl"
         label="Service URL"
         validator="url"
@@ -132,10 +132,10 @@ export const UpdateProvider: FC<{
         </div>
       </div>
       <Divider />
-      <XpressButton.Submit
+      <OliveButton.Submit
         title={isCreate ? "Create Provider" : "Update Provider"}
         disabled={false}
       />
-    </XpressForm>
+    </OliveForm>
   );
 };

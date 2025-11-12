@@ -1,5 +1,5 @@
 import { disabledIcon, enabledIcon } from "@/assets";
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { ColumnProps } from "antd/es/table";
@@ -118,7 +118,7 @@ export const institutionColumn: ColumnProps<APIResponse.Banks>[] = [
     width: "80px",
     render(_: any, record: APIResponse.Banks) {
       return (
-        <XpressTableActions
+        <OliveTableActions
           record={record}
           pageName={"Institution"}
           actions={[

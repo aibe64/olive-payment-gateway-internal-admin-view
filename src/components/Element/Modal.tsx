@@ -85,4 +85,4 @@ const Component = () => {
   );
 };
 
-export const XpressModal = memo(Component);
+export const OliveModal = memo(Component);

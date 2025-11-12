@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { State, XpressModalConfig } from "@/models";
+import { State, OliveModalConfig } from "@/models";
 
 export const useModalStore = create<State.Modal>((set) => ({
   setAllModalState: (newState: State.Modal) => {
@@ -11,7 +11,7 @@ export const useModalStore = create<State.Modal>((set) => ({
       [key]: value,
     }));
   },
-  set: ({ ...arg }: XpressModalConfig) => {
+  set: ({ ...arg }: OliveModalConfig) => {
     set((state: State.Modal) => ({
       ...state,
       ...(arg as any),

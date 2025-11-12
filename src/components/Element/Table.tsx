@@ -109,6 +109,6 @@ const Component = <T,>({
   );
 };
 
-export const XpressTable = memo(Component) as <T>(
+export const OliveTable = memo(Component) as <T>(
   props: Props.TableData<T>
 ) => JSX.Element;

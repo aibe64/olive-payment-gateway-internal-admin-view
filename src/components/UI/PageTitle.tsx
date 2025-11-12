@@ -5,7 +5,7 @@ export const PageTitle: FC<{ title: string; totalDataCount?: number }> = ({
   title,
   totalDataCount,
 }) => {
-  document.title = `XpressPay | ${title}`;
+  document.title = `OlivePay | ${title}`;
   return (
     <div className="flex items-end gap-1 mt-5">
       <Typography className="text-2xl font-semibold">{title}</Typography>

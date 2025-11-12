@@ -1,6 +1,6 @@
 import { APIResponse, APIResponseCode } from "@/models";
 import { ColumnProps } from "antd/es/table";
-import { XpressTableActions } from "@/components";
+import { OliveTableActions } from "@/components";
 import { Format } from "@/lib";
 import { Typography } from "antd";
 import { TransactionSummary } from "./Summary";
@@ -133,7 +133,7 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     render(_: any, record) {
       return (
         <div className="flex gap-2">
-          <XpressTableActions
+          <OliveTableActions
             record={record}
             pageName={"Transaction Summary"}
             actions={[

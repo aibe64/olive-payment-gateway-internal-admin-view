@@ -1,5 +1,5 @@
 import { settingSVG } from "@/assets";
-import { PageTitle, TableFilter, XpressButton, XpressTable } from "@/components";
+import { PageTitle, TableFilter, OliveButton, OliveTable } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, AppState } from "@/models";
 import { endpoints } from "@/service";
@@ -9,7 +9,7 @@ import { useCallback } from "react";
 import { paymentMethodColumn } from "./Columns";
 import { UpdatePaymentMethod } from "./Form";
 
-const XpressStore = () => {
+const OliveStore = () => {
   const { fetching } = useAPI<Array<APIResponse.StorePaymentMethod>>({
     callGetApiOnRender: true,
     queryDataEndpoint: endpoints.SetUp.GetAllStorePaymentMethods,
@@ -48,7 +48,7 @@ const XpressStore = () => {
          {originalTableData?.length ? (
         <TableFilter filterTypes={["dateRange"]}>
           <div className="flex gap-2 items-center">
-            <XpressButton
+            <OliveButton
               classNames="!py-5"
               onClick={onAddButton}
               title="Add Store Payment Method"
@@ -58,7 +58,7 @@ const XpressStore = () => {
       ) : (
         ""
       )}
-      <XpressTable<APIResponse.StorePaymentMethod>
+      <OliveTable<APIResponse.StorePaymentMethod>
         columns={paymentMethodColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}
@@ -79,4 +79,4 @@ const XpressStore = () => {
     </div>
   );
 };
-export default XpressStore;
+export default OliveStore;

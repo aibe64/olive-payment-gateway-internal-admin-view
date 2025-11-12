@@ -4,7 +4,7 @@ import { ActionDetails, Props } from "@/models";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Button, Divider, Dropdown, MenuProps, Typography } from "antd";
 import { FC, memo, useCallback, useMemo } from "react";
-import { XpressButton } from "../Element";
+import { OliveButton } from "../Element";
 
 const Component = <T,>({
   actions,
@@ -174,9 +174,9 @@ const Component = <T,>({
   );
 };
 
-export const XpressTableActions = memo(Component);
+export const OliveTableActions = memo(Component);
 
-XpressTableActions.displayName = "Xpress table actions";
+OliveTableActions.displayName = "Olive table actions";
 
 export const DeleteForm: FC<ActionDetails> = ({
   actionFor,
@@ -203,7 +203,7 @@ export const DeleteForm: FC<ActionDetails> = ({
         >
           No
         </Button>
-        <XpressButton
+        <OliveButton
           onClick={callActionApi}
           classNames="!py-2"
           title="Yes"
@@ -241,7 +241,7 @@ export const ApproveForm: FC<ActionDetails> = ({
         >
           No
         </Button>
-        <XpressButton
+        <OliveButton
           onClick={callActionApi}
           classNames="!py-2"
           title="Yes"
@@ -279,7 +279,7 @@ export const DisapproveForm: FC<ActionDetails> = ({
         >
           No
         </Button>
-        <XpressButton
+        <OliveButton
           onClick={callActionApi}
           classNames="!py-2"
           title="Yes"
@@ -318,7 +318,7 @@ export const OtherForm: FC<ActionDetails> = ({
         >
           No
         </Button>
-        <XpressButton
+        <OliveButton
           onClick={callActionApi}
           classNames="!py-2"
           title="Yes"
@@ -354,7 +354,7 @@ export const ActivateForm: FC<ActionDetails> = ({
         >
           No
         </Button>
-        <XpressButton
+        <OliveButton
           onClick={callActionApi}
           classNames="!py-2"
           title="Yes"
@@ -390,7 +390,7 @@ export const DeactivateForm: FC<ActionDetails> = ({
         >
           No
         </Button>
-        <XpressButton
+        <OliveButton
           onClick={callActionApi}
           classNames="!py-2"
           title="Yes"

@@ -113,7 +113,7 @@ export const TransactionFilter = () => {
         Type: transaction?.cardType ?? "N/A",
         Provider: transaction.processor ?? "N/A",
         "Provider Reference": transaction?.providerReference ?? "N/A",
-        "Payment Reference": transaction?.xpressReference ?? "N/A",
+        "Payment Reference": transaction?.oliveReference ?? "N/A",
         "Payment Response Code": transaction?.paymentResponseCode ?? "N/A",
         "Payment Response Msg": transaction?.paymentResponseMessage ?? "N/A",
         "Expiry Month": transaction?.expiryMonth ?? "N/A",

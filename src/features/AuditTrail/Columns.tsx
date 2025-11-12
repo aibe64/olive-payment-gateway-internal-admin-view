@@ -1,4 +1,4 @@
-import { XpressTableActions } from "@/components";
+import { OliveTableActions } from "@/components";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { ColumnProps } from "antd/es/table";
@@ -38,7 +38,7 @@ export const auditTrailDataColumns: ColumnProps<APIResponse.AuditTrailItems>[] =
       width: "100px",
       render(_: any, record: APIResponse.AuditTrailItems) {
         return (
-          <XpressTableActions
+          <OliveTableActions
             record={record}
             pageName={"Audit Trails"}
             actions={[{ title: "View", action: "View", modalWidth: 500 }]}

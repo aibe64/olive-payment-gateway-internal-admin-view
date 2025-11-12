@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { nibssBanks } from "@/data";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
@@ -43,7 +43,7 @@ export const UpdateMerchantQR: FC<{
   }, [records, setFormState, isCreate, clearForm]);
 
   return (
-    <XpressForm<APIRequest.QrMerchant>
+    <OliveForm<APIRequest.QrMerchant>
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
@@ -57,8 +57,8 @@ export const UpdateMerchantQR: FC<{
       }}
       apiConfig={{
         endpoint: isCreate
-          ? `${AppConfig.NQR_API_BASE_URL}${endpoints.QR.CreateMerchant}`
-          : `${AppConfig.NQR_API_BASE_URL}${endpoints.QR.UpdateQrMerchant}`,
+          ? `${AppConfig.NQR_API_BASE_URL}${endpoints.NQR.CreateMerchant}`
+          : `${AppConfig.NQR_API_BASE_URL}${endpoints.NQR.UpdateQrMerchant}`,
         showToastAfterApiResponse: true,
         method: "POST",
         reloadTable: true,
@@ -69,21 +69,21 @@ export const UpdateMerchantQR: FC<{
       className="px-2 gap-0"
     >
       <div className="gap-x-4 grid grid-cols-2">
-        <XpressField
+        <OliveField
           name="merchantName"
           label="Merchant Name"
           readonly={!isCreate}
           key="1"
           required={isCreate}
         />
-        <XpressField
+        <OliveField
           name="contact"
           label="Contact"
           readonly={!isCreate}
           key="3"
           required={isCreate}
         />
-        <XpressField
+        <OliveField
           name="phoneNumber"
           label="Phone Number"
           readonly={!isCreate}
@@ -91,7 +91,7 @@ export const UpdateMerchantQR: FC<{
           type="tel"
           required={isCreate}
         />
-        <XpressField
+        <OliveField
           name="email"
           type="email"
           readonly={!isCreate}
@@ -99,15 +99,15 @@ export const UpdateMerchantQR: FC<{
           key="5"
           required={isCreate}
         />
-        <XpressField
+        <OliveField
           name="address"
           label="Address"
           readonly={!isCreate}
           key="6"
           required={isCreate}
         />
-        <XpressField name="tin" label="TIN" readonly={!isCreate} key="2" />
-        <XpressField
+        <OliveField name="tin" label="TIN" readonly={!isCreate} key="2" />
+        <OliveField
           name="bankCode"
           label="Bank Name"
           key="7"
@@ -118,13 +118,13 @@ export const UpdateMerchantQR: FC<{
           type="select"
           required={isCreate}
         />
-        <XpressField
+        <OliveField
           name="accountName"
           label="Account Name"
           key="8"
           required={isCreate}
         />
-        <XpressField
+        <OliveField
           name="accountNumber"
           label="Account Number"
           validator="onlyNumber"
@@ -133,7 +133,7 @@ export const UpdateMerchantQR: FC<{
           key="9"
           required={isCreate}
         />
-        <XpressField
+        <OliveField
           name="transactionFeeBearer"
           label="Transaction Fee Bearer"
           key="10"
@@ -157,7 +157,7 @@ export const UpdateMerchantQR: FC<{
           />
         </div>
         {!payload?.isHub && (
-          <XpressField
+          <OliveField
             name="notificationUrl"
             label="Notification URL"
             key="13"
@@ -167,9 +167,9 @@ export const UpdateMerchantQR: FC<{
         )}
       </div>
 
-      <XpressButton.Submit
+      <OliveButton.Submit
         title={isCreate ? "Create QR Merchant" : "Update QR Merchant"}
       />
-    </XpressForm>
+    </OliveForm>
   );
 };

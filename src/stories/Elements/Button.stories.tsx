@@ -1,12 +1,12 @@
 import { Meta, StoryFn } from "@storybook/react/types-6-0";
-import { XpressButton } from "@/components";
+import { OliveButton } from "@/components";
 import { Props } from "@/models"; 
 import "../../index.css";
 
 // Define metadata for the story
 export default {
   title: "Elements/Button",
-  component: XpressButton,
+  component: OliveButton,
   tags: ['autodocs'],
   argTypes: {
     onClick: { action: "clicked" },
@@ -17,7 +17,7 @@ export default {
 
 // Define a template for the story
 const Template: StoryFn<Props.Button> = (args: Props.Button) => (
-    <XpressButton {...args} />
+    <OliveButton {...args} />
 );
 
 // Default Button story

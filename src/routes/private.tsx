@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { HomeLayout, XpressProtectedRoutes } from "@/components";
+import { HomeLayout, OliveProtectedRoutes } from "@/components";
 import { ROUTE_PATH } from "@/models";
 import { lazy } from "react";
 
@@ -12,7 +12,7 @@ const ProviderPage = lazy(() => import("@/features/Setup/Provider"));
 const BinPage = lazy(() => import("@/features/Setup/Bin"));
 const InstitutionPage = lazy(() => import("@/features/Setup/Institution"));
 const PaymentMethodPage = lazy(() => import("@/features/Setup/PaymentMethod"));
-const XpressStorePage = lazy(() => import("@/features/Setup/XpressStore"));
+const OliveStorePage = lazy(() => import("@/features/Setup/OliveStore"));
 const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
 const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
 const ProfilePage = lazy(() => import("@/features/Settings"));
@@ -32,9 +32,9 @@ const AuditTrailPage = lazy(() => import("@/features/AuditTrail"));
 export const privateRoutes = [
   {
     element: (
-      <XpressProtectedRoutes>
+      <OliveProtectedRoutes>
         <HomeLayout />
-      </XpressProtectedRoutes>
+      </OliveProtectedRoutes>
     ),
     children: [
       {
@@ -66,8 +66,8 @@ export const privateRoutes = [
         Component: ProviderPage,
       },
       {
-        path: ROUTE_PATH.XpressStore,
-        Component: XpressStorePage,
+        path: ROUTE_PATH.OliveStore,
+        Component: OliveStorePage,
       },
       {
         path: ROUTE_PATH.Bin,

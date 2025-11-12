@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
@@ -61,7 +61,7 @@ export const UpdateInstitution: FC<{
   }, [records, setFormState, clearForm]);
 
   return (
-    <XpressForm<APIRequest.BankRequest>
+    <OliveForm<APIRequest.BankRequest>
       callApi
       apiConfig={{
         endpoint: endpoints.SetUp.UpdateBanks,
@@ -74,14 +74,14 @@ export const UpdateInstitution: FC<{
       }}
       className="px-2 gap-0"
     >
-      <XpressField
+      <OliveField
         name="bankName"
         label="Bank Name"
         type="text"
         key={"1"}
         readonly
       />
-      <XpressField
+      <OliveField
         name="provider"
         label="Processor"
         loading={fetching}
@@ -144,7 +144,7 @@ export const UpdateInstitution: FC<{
         </div>
       </div>
       <Divider />
-      <XpressButton.Submit title={"Update Institution"} />
-    </XpressForm>
+      <OliveButton.Submit title={"Update Institution"} />
+    </OliveForm>
   );
 };

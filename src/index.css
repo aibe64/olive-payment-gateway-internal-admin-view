@@ -2,37 +2,38 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
 @font-face {
   font-family: "inter-black";
-  src: url("./assets//fonts/Inter-Black.ttf");
+  src: url("./assets/fonts/Inter-Black.ttf");
 }
 @font-face {
   font-family: "inter-bold";
-  src: url("./assets//fonts/Inter-Bold.ttf");
+  src: url("./assets/fonts/Inter-Bold.ttf");
 }
 @font-face {
   font-family: "inter-extrabold";
-  src: url("./assets//fonts/Inter-ExtraBold.ttf");
+  src: url("./assets/fonts/Inter-ExtraBold.ttf");
 }
 @font-face {
   font-family: "inter-extralight";
-  src: url("./assets//fonts/Inter-ExtraLight.ttf");
+  src: url("./assets/fonts/Inter-ExtraLight.ttf");
 }
 @font-face {
   font-family: "inter-medium";
-  src: url("./assets//fonts/Inter-Medium.ttf");
+  src: url("./assets/fonts/Inter-Medium.ttf");
 }
 @font-face {
   font-family: "inter-regular";
-  src: url("./assets//fonts/Inter-Regular.ttf");
+  src: url("./assets/fonts/Inter-Regular.ttf");
 }
 @font-face {
   font-family: "inter-semibold";
-  src: url("./assets//fonts/Inter-SemiBold.ttf");
+  src: url("./assets/fonts/Inter-SemiBold.ttf");
 }
 @font-face {
   font-family: "inter-thin";
-  src: url("./assets//fonts/Inter-Thin.ttf");
+  src: url("./assets/fonts/Inter-Thin.ttf");
 }
 
 html,
@@ -54,11 +55,11 @@ body {
   position: absolute;
   inset: 0px;
   border-radius: 50%;
-  border: 5px solid #006f01;
+  border: 5px solid #0B3D3B;
   animation: prixClipFix 2s linear infinite;
 }
 .loader::after {
-  border-color: #78d579;
+  border-color: #94BB0D;
   animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
   inset: 6px;
 }
@@ -89,6 +90,18 @@ body {
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
 }
+/* Default (light mode) styles */
+.ant-table-thead > tr > th {
+  background-color: white;  /* Light mode background */
+  color: black;             /* Light mode text color */
+}
+
+/* Dark mode styles */
+.dark .ant-table-thead > tr > th {
+  background-color: #424242;  /* Dark mode background */
+  color: white;             /* Dark mode text color */
+}
+
 
 /* width */
 ::-webkit-scrollbar {
@@ -99,7 +112,7 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #eef2f8;
+  background: white;
   /* display: none; */
   border-radius: 12px;
 }
@@ -115,14 +128,14 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  display: none;
+  background: #0B3D3B;
+  /* display: none; */
   border-radius: 12px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #d0d5dd;
+  background: #0B3D3B;
   border-radius: 12px;
   display: block;
 }
@@ -173,3 +186,42 @@ body {
   border-bottom-right-radius: 0px !important;
 }
 
+.test-key .ant-input-group-wrapper-outlined .ant-input-group-addon {
+  background: #E8E8E8 !important;
+}
+
+.ant-pagination-prev  {
+  margin-top: 5px !important;
+}
+.ant-pagination-next{
+  margin-top: 5px !important;
+}
+
+.ant-pagination .ant-pagination-item{
+  margin-top: 4px !important;
+}
+
+.animated-bar {
+  height: 100%;
+  transition: width 1.5s ease-in-out;
+  animation: slideIn 1.5s ease-in-out forwards;
+}
+
+/* global link color */
+a {
+  color: #0B3D3B;
+}
+
+a:hover {
+  color: #94BB0D;
+}
+/* ----------------- */
+
+@keyframes slideIn {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}

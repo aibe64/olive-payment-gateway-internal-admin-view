@@ -1,14 +1,14 @@
-// XpressModal.stories.tsx
+// OliveModal.stories.tsx
 import { Meta, StoryFn } from "@storybook/react";
 import { useEffect } from "react";
 import { Button } from "antd";
 import { useModalStore } from "@/store";
-import { XpressModal } from "@/components";
-import { XpressField, XpressForm } from "@/components/Form";
+import { OliveModal } from "@/components";
+import { OliveField, OliveForm } from "@/components/Form";
 
 export default {
-  title: "Elements/XpressModal",
-  component: XpressModal,
+  title: "Elements/OliveModal",
+  component: OliveModal,
   tags: ["autodocs"],
   argTypes: {
     open: {
@@ -38,7 +38,7 @@ export default {
         // Only show the necessary part of the code in documentation
         code: `
   import { Button } from "antd";
-  import { XpressModal } from "./XpressModal"; 
+  import { OliveModal } from "./OliveModal"; 
   import { useModalStore } from "@/store";
   
   const MyComponent = () => {
@@ -61,7 +61,7 @@ export default {
         <Button type="primary" onClick={toggle}>
           Toggle Modal
         </Button>
-        <XpressModal />
+        <OliveModal />
       </div>
     );
   };`,
@@ -87,7 +87,7 @@ const DefaultTemplate: StoryFn = (args) => {
       <Button className="!bg-primary !text-[#FFF]" onClick={toggle}>
         Toggle Modal
       </Button>
-      <XpressModal />
+      <OliveModal />
     </div>
   );
 };
@@ -106,10 +106,10 @@ const ClearFieldTemplate: StoryFn = (args) => {
 
   // Sync with Zustand store
   const UserForm = (
-    <XpressForm>
-      <XpressField name="name" label="Name" />
-      <XpressField name="email" label="Email" type="email" />
-    </XpressForm>
+    <OliveForm>
+      <OliveField name="name" label="Name" />
+      <OliveField name="email" label="Email" type="email" />
+    </OliveForm>
   );
   useEffect(() => {
     set({ ...args, body: UserForm });
@@ -126,7 +126,7 @@ const ClearFieldTemplate: StoryFn = (args) => {
       <Button className={"w-[150px] !bg-primary !text-[#FFF]"} onClick={toggle}>
         Add User
       </Button>
-      <XpressModal />
+      <OliveModal />
     </div>
   );
 };

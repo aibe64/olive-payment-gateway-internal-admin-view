@@ -96,7 +96,7 @@ export const LandingPageLayout: React.FC<Props.LandingPageLayout> = ({
       </main>
       <footer className="flex items-center mx-auto -mt-5 mb-5">
         <Typography className="!font-inter-medium text-gray-text !text-[0.7rem] lg:!text-base !text-center">
-          Xpress Payment Solutions Limited - Licensed by the{" "}
+          Olive Payment - Licensed by the{" "}
           <strong>Central Bank of Nigeria</strong>
         </Typography>
       </footer>

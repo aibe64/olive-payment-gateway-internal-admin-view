@@ -1,4 +1,4 @@
-import { PageTitle, TableFilter, XpressTable } from "@/components";
+import { PageTitle, TableFilter, OliveTable } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, AppState } from "@/models";
 import { endpoints } from "@/service";
@@ -25,7 +25,7 @@ const Users = () => {
         title="Administrators"
       />
       {originalTableData?.length ? <TableFilter></TableFilter> : ""}
-      <XpressTable<APIResponse.InternalUsers>
+      <OliveTable<APIResponse.InternalUsers>
         columns={userColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}

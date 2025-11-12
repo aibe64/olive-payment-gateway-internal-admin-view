@@ -1,8 +1,8 @@
 import {
   PageTitle,
   TableFilter,
-  XpressButton,
-  XpressTable,
+  OliveButton,
+  OliveTable,
 } from "@/components";
 import { AppConfig } from "@/config";
 import { useAPI } from "@/hooks";
@@ -16,7 +16,7 @@ import { UpdateMerchantQR } from "./Form";
 const NqrMerchant = () => {
   const { fetching } = useAPI<Array<APIResponse.QrMerchant>>({
     callGetApiOnRender: true,
-    queryDataEndpoint: `${AppConfig.NQR_API_BASE_URL}${endpoints.QR.GetQrMerchant}`,
+    queryDataEndpoint: `${AppConfig.NQR_API_BASE_URL}${endpoints.NQR.GetQrMerchant}`,
     isDataTable: true,
   });
   const {
@@ -45,14 +45,14 @@ const NqrMerchant = () => {
       <PageTitle totalDataCount={tableData?.length ?? 0} title="NQR Merchant" />
       <TableFilter>
         <div className="flex gap-2 items-center">
-          <XpressButton
+          <OliveButton
             classNames="!py-5"
             onClick={onAddButton}
             title="Add NQR Merchant"
           />
         </div>
       </TableFilter>
-      <XpressTable<APIResponse.QrMerchant>
+      <OliveTable<APIResponse.QrMerchant>
         columns={binColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}

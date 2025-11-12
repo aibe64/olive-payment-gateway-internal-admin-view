@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
@@ -61,7 +61,7 @@ export const UpdateManager: FC<{
   }, [data]);
 
   return (
-    <XpressForm<APIRequest.TransactionManager>
+    <OliveForm<APIRequest.TransactionManager>
       callApi
       extraValues={{ merchantId: records?.id ?? 0, isActive: true }}
       apiConfig={{
@@ -75,14 +75,14 @@ export const UpdateManager: FC<{
       }}
       className="px-2 gap-0"
     >
-      <XpressField
+      <OliveField
         name="businessName"
         label="Merchant Name"
         type="text"
         key={"1"}
         readonly
       />
-      <XpressField
+      <OliveField
         name="staticRouteProvider"
         label="Static Route Processor"
         loading={fetching}
@@ -90,7 +90,7 @@ export const UpdateManager: FC<{
         type="select"
         items={providerItem}
       />
-      <XpressField
+      <OliveField
         name="defaultProvider"
         label="Default Processor"
         loading={fetching}
@@ -130,7 +130,7 @@ export const UpdateManager: FC<{
         </div>
       </div>
       <Divider />
-      <XpressButton.Submit title={"Update Transaction Manager"} />
-    </XpressForm>
+      <OliveButton.Submit title={"Update Transaction Manager"} />
+    </OliveForm>
   );
 };

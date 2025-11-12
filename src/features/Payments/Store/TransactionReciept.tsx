@@ -247,7 +247,7 @@ export const TransactionReceipt: React.FC<{
               },
             ]}
           >
-            Xpress Payment Solutions Limited
+            Olive Payment
           </Text>
           <Text
             style={[
@@ -260,7 +260,7 @@ export const TransactionReceipt: React.FC<{
               },
             ]}
           >
-            Customer.care@xpresspayments.com
+            Customer.care@olivepayments.com
           </Text>
           <Text
             style={[

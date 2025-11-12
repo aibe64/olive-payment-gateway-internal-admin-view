@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { AppConfig } from "@/config";
 import { useAPI } from "@/hooks";
 import { APIResponse, State } from "@/models";
@@ -37,7 +37,7 @@ export const UpdateQrSubMerchant: FC<{
   }, [set]);
 
   useEffect(() => {
-    callGetData(`${AppConfig.NQR_API_BASE_URL}${endpoints.QR.GetQrMerchant}`);
+    callGetData(`${AppConfig.NQR_API_BASE_URL}${endpoints.NQR.GetQrMerchant}`);
   }, []);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export const UpdateQrSubMerchant: FC<{
   }, [data]);
 
   return (
-    <XpressForm<APIRequest.QrSubMerchant>
+    <OliveForm<APIRequest.QrSubMerchant>
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
@@ -63,8 +63,8 @@ export const UpdateQrSubMerchant: FC<{
       }}
       apiConfig={{
         endpoint: isCreate
-          ? `${AppConfig.NQR_API_BASE_URL}${endpoints.QR.CreateSubMerchant}`
-          : `${AppConfig.NQR_API_BASE_URL}${endpoints.QR.UpdateQrSubMerchant}`,
+          ? `${AppConfig.NQR_API_BASE_URL}${endpoints.NQR.CreateSubMerchant}`
+          : `${AppConfig.NQR_API_BASE_URL}${endpoints.NQR.UpdateQrSubMerchant}`,
         showToastAfterApiResponse: true,
         method: "POST",
         reloadTable: true,
@@ -74,7 +74,7 @@ export const UpdateQrSubMerchant: FC<{
       }}
       className="px-2 gap-0"
     >
-      <XpressField
+      <OliveField
         name="name"
         label="Sub Merchant Name"
         type="text"
@@ -82,7 +82,7 @@ export const UpdateQrSubMerchant: FC<{
         key={"1"}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="email"
         label="Email"
         validator="email"
@@ -90,7 +90,7 @@ export const UpdateQrSubMerchant: FC<{
         key={"1"}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="phoneNumber"
         label="Phone Number"
         type="tel"
@@ -98,7 +98,7 @@ export const UpdateQrSubMerchant: FC<{
         key={"1"}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="merchantNumber"
         label="Merchant"
         loading={fetching}
@@ -107,7 +107,7 @@ export const UpdateQrSubMerchant: FC<{
         items={merchantItem}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="channel"
         label="Channel"
         loading={fetching}
@@ -120,7 +120,7 @@ export const UpdateQrSubMerchant: FC<{
         required={isCreate}
       />
       {payload?.channel === 2 ? (
-        <XpressField
+        <OliveField
           name="terminalId"
           label="Terminal ID"
           key="8"
@@ -138,7 +138,7 @@ export const UpdateQrSubMerchant: FC<{
         />
       </div>
       {!payload?.isHub ? (
-        <XpressField
+        <OliveField
           name="notificationUrl"
           label="Notification URL"
           key="13"
@@ -148,9 +148,9 @@ export const UpdateQrSubMerchant: FC<{
       ) : (
         <></>
       )}
-      <XpressButton.Submit
+      <OliveButton.Submit
         title={isCreate ? "Create Sub Merchant" : "Update Sub Merchant"}
       />
-    </XpressForm>
+    </OliveForm>
   );
 };

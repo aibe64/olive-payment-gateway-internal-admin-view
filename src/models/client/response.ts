@@ -171,7 +171,7 @@ export namespace APIResponse {
     email: string;
     currency: string;
     transactionId: string;
-    xpressReference: string;
+    oliveReference: string;
     providerReference: string;
     phoneNumber: string;
     narration: string;
@@ -281,7 +281,7 @@ export namespace APIResponse {
     email: string;
     currency: string;
     transactionId: string;
-    xpressReference: string;
+    oliveReference: string;
     providerReference: string;
     phoneNumber: string;
     narration: string;

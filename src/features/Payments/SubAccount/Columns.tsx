@@ -1,6 +1,6 @@
 import { APIResponse } from "@/models";
 import { ColumnProps } from "antd/es/table";
-import { XpressTableActions } from "@/components";
+import { OliveTableActions } from "@/components";
 import { Format } from "@/lib";
 import { SubAccountDetails } from "./Details";
 
@@ -73,7 +73,7 @@ export const SubAccountColumn: ColumnProps<APIResponse.SubAccount>[] = [
     render(_: any, record) {
       return (
         <div className="flex gap-2">
-          <XpressTableActions
+          <OliveTableActions
             record={record}
             pageName={"Sub-Account"}
             actions={[

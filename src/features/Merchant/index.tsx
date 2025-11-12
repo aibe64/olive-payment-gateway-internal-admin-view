@@ -1,4 +1,4 @@
-import { PageTitle, XpressTable } from "@/components";
+import { PageTitle, OliveTable } from "@/components";
 import { useAPI } from "@/hooks";
 import { exportToExcel, Format, searchTable } from "@/lib";
 import { APIResponse, AppState } from "@/models";
@@ -104,7 +104,7 @@ const Merchant: React.FC = () => {
         </Button>
       </div>
 
-      <XpressTable<APIResponse.MerchantDetails>
+      <OliveTable<APIResponse.MerchantDetails>
         columns={merchantDataColumns}
         dataSource={tableData ?? []}
         emptyHeadingText="No User"

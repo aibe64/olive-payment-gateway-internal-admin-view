@@ -1,6 +1,6 @@
 import { PieConfig } from "@ant-design/plots";
 
-export namespace XpressChart {
+export namespace OliveChart {
   export const colors = [
     "#FF6D00B2",
     "#CCCCCC",

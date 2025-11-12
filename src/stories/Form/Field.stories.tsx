@@ -1,12 +1,12 @@
 import { Meta, StoryFn } from "@storybook/react/types-6-0";
-import { XpressField, XpressForm } from "@/components";
+import { OliveField, OliveForm } from "@/components";
 import { Props } from "@/models";
 import "../../index.css";
 
 // Define metadata for the story
 export default {
   title: "Form/Field",
-  component: XpressField,
+  component: OliveField,
   tags: ["autodocs"],
   argTypes: {
     onClick: { action: "clicked" },
@@ -64,8 +64,8 @@ export default {
 // Define a template for the story
 const Template: StoryFn<Props.Field> = (args: Props.Field) => {
   return (
-    <XpressForm>
-      <XpressField
+    <OliveForm>
+      <OliveField
         name={args.name}
         label={args.label}
         required={args.required}
@@ -74,7 +74,7 @@ const Template: StoryFn<Props.Field> = (args: Props.Field) => {
         showPasswordMeter={args.showPasswordMeter}
         isAmountField={args.isAmountField}
       />
-    </XpressForm>
+    </OliveForm>
   );
 };
 

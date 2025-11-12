@@ -2,8 +2,8 @@ import { settingSVG } from "@/assets";
 import {
   PageTitle,
   TableFilter,
-  XpressButton,
-  XpressTable,
+  OliveButton,
+  OliveTable,
 } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, AppState } from "@/models";
@@ -14,7 +14,7 @@ import { useCallback } from "react";
 import { providerColumn } from "./Columns";
 import { UpdateProvider } from "./Form";
 
-const XpressProvider = () => {
+const OliveProvider = () => {
   const { fetching } = useAPI<Array<APIResponse.Provider>>({
     callGetApiOnRender: true,
     queryDataEndpoint: endpoints.SetUp.GetAllProviders,
@@ -46,7 +46,7 @@ const XpressProvider = () => {
       {originalTableData?.length ? (
         <TableFilter filterTypes={["dateRange"]}>
           <div className="flex gap-2 items-center">
-            <XpressButton
+            <OliveButton
               classNames="!py-5"
               onClick={onAddButton}
               title="Add Provider"
@@ -56,7 +56,7 @@ const XpressProvider = () => {
       ) : (
         ""
       )}
-      <XpressTable<APIResponse.Provider>
+      <OliveTable<APIResponse.Provider>
         columns={providerColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}
@@ -77,4 +77,4 @@ const XpressProvider = () => {
     </div>
   );
 };
-export default XpressProvider;
+export default OliveProvider;

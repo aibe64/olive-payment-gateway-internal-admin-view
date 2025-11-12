@@ -1,4 +1,4 @@
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { Tag } from "antd";
@@ -107,7 +107,7 @@ export const roleColumn: ColumnProps<APIResponse.Roles>[] = [
     width: "80px",
     render(_: any, record: APIResponse.Roles) {
       return (
-        <XpressTableActions
+        <OliveTableActions
           record={record}
           pageName={"Role"}
           actions={[

@@ -1,5 +1,5 @@
-import { XpressButton } from "@/components";
-import { XpressField, XpressForm } from "@/components";
+import { OliveButton } from "@/components";
+import { OliveField, OliveForm } from "@/components";
 import { nigerianBanks } from "@/data";
 import { useAPI } from "@/hooks";
 // import { cleanDecimalInput } from "@/lib";
@@ -62,7 +62,7 @@ export const UpdateMerchant: FC<{
   }, [records]);
 
   return (
-    <XpressForm
+    <OliveForm
       callApi
       apiConfig={{
         endpoint: endpoints.SetUp.UpdateMerchant,
@@ -79,7 +79,7 @@ export const UpdateMerchant: FC<{
     >
     <span className="font-inter-semibold text-danger">{records?.disapprovedComment}</span>
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 ">
-        <XpressField
+        <OliveField
           name="businessName"
           label="Business Name"
           placeholder="Enter first name"
@@ -87,7 +87,7 @@ export const UpdateMerchant: FC<{
           value={records?.businessName}
           readonly
         />
-        <XpressField
+        <OliveField
           name="businessNumber"
           label="Business Number"
           placeholder="Enter phone"
@@ -96,13 +96,13 @@ export const UpdateMerchant: FC<{
         />
       </div>
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
-        <XpressField
+        <OliveField
           name="businessEmail"
           label="Business Email"
           key={"3"}
           readonly
         />
-        <XpressField
+        <OliveField
           name="disputeEmail"
           label="ChargeBack Email"
           key={"4"}
@@ -110,14 +110,14 @@ export const UpdateMerchant: FC<{
         />
       </div>
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
-        <XpressField
+        <OliveField
           name="transactionLimit"
           label="Transaction Limit"
           key={"5"}
           readonly
           isAmountField
         />
-        <XpressField
+        <OliveField
           name="bankCode"
           label="Bank"
           type="select"
@@ -127,7 +127,7 @@ export const UpdateMerchant: FC<{
         />
       </div>
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
-        <XpressField
+        <OliveField
           name="serviceCategory"
           label="Service Category"
           key={"7"}
@@ -153,13 +153,13 @@ export const UpdateMerchant: FC<{
         </div>
       </div>
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
-        <XpressField
+        <OliveField
           name="businessType"
           label="Business Type"
           key={"8"}
           readonly
         />
-        <XpressField
+        <OliveField
           name="accountName"
           label="Settlement Account Name"
           key={"9"}
@@ -286,7 +286,7 @@ export const UpdateMerchant: FC<{
         </div>
         {payload?.isChargeTransferedToCustomer && (
           <div className="flex gap-9">
-            <XpressField
+            <OliveField
               classNames="!w-[150px]"
               name="chargeType"
               label="Type"
@@ -299,14 +299,14 @@ export const UpdateMerchant: FC<{
               ]}
             />
             {payload.chargeType === "fixed" ? (
-              <XpressField
+              <OliveField
                 name="chargeValue"
                 label="Value"
                 key={"14"}
                 isAmountField
               />
             ) : (
-              <XpressField
+              <OliveField
                 name="chargeValue"
                 label="Value"
                 key={"14"}
@@ -315,7 +315,7 @@ export const UpdateMerchant: FC<{
               />
             )}
             {payload.chargeType === "percentage" && (
-              <XpressField
+              <OliveField
                 name="chargeCap"
                 label="Capped At"
                 key={"14"}
@@ -325,7 +325,7 @@ export const UpdateMerchant: FC<{
           </div>
         )}
       </div> */}
-      <XpressButton.Submit title="Submit" />
-    </XpressForm>
+      <OliveButton.Submit title="Submit" />
+    </OliveForm>
   );
 };

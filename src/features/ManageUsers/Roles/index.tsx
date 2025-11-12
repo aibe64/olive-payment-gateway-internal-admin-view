@@ -2,8 +2,8 @@ import { settingSVG } from "@/assets";
 import {
   PageTitle,
   TableFilter,
-  XpressButton,
-  XpressTable,
+  OliveButton,
+  OliveTable,
 } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, AppState } from "@/models";
@@ -46,7 +46,7 @@ const Role = () => {
       {originalTableData?.length ? (
         <TableFilter filterTypes={["dateRange"]}>
           <div className="flex gap-2 items-center">
-            <XpressButton
+            <OliveButton
               classNames="!py-5"
               onClick={onAddButton}
               title="Add Role"
@@ -56,7 +56,7 @@ const Role = () => {
       ) : (
         ""
       )}
-      <XpressTable<APIResponse.Roles>
+      <OliveTable<APIResponse.Roles>
         columns={roleColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}

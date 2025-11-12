@@ -1,8 +1,8 @@
 import {
   PageTitle,
   TableFilter,
-  XpressButton,
-  XpressTable,
+  OliveButton,
+  OliveTable,
 } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, AppState } from "@/models";
@@ -43,7 +43,7 @@ const Bin = () => {
       {originalTableData?.length ? (
         <TableFilter>
           <div className="flex gap-2 items-center">
-            <XpressButton
+            <OliveButton
               classNames="!py-5"
               onClick={onAddButton}
               title="Add BIN"
@@ -53,7 +53,7 @@ const Bin = () => {
       ) : (
         ""
       )}
-      <XpressTable<APIResponse.Bin>
+      <OliveTable<APIResponse.Bin>
         columns={binColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}

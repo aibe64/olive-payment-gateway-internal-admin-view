@@ -1,4 +1,4 @@
-import { XpressTable } from "@/components";
+import { OliveTable } from "@/components";
 import { PageTitle } from "@/components";
 import { APIResponse, AppState } from "@/models";
 import { TransactionFilter } from "./Filter";
@@ -45,7 +45,7 @@ const SplitTransactions = () => {
         title="Split Transactions"
       />
       {hasDataOnRender ? <TransactionFilter /> : ""}
-      <XpressTable<APIResponse.SplitTransaction>
+      <OliveTable<APIResponse.SplitTransaction>
         emptyHeadingText={
           <h3>
             Looks like there are no split transactions today.{" "}

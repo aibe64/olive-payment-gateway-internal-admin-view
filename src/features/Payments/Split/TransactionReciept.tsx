@@ -209,7 +209,7 @@ export const TransactionReceipt: FC<{ record: APIResponse.SplitTransaction }> = 
               },
             ]}
           >
-            Xpress Payment Solutions Limited
+            Olive Payment
           </Text>
           <Text
             style={[
@@ -222,7 +222,7 @@ export const TransactionReceipt: FC<{ record: APIResponse.SplitTransaction }> = 
               },
             ]}
           >
-            Customer.care@xpresspayments.com
+            Customer.care@olivepayments.com
           </Text>
           <Text
             style={[

@@ -1,7 +1,7 @@
 import React from "react";
 import { Tooltip, Typography } from "antd";
 import { AppStorageKeys } from "@/models";
-import { XpressMenuItems } from "../UI";
+import { OliveMenuItems } from "../UI";
 import { AppStorage } from "@/store";
 import { APIResponse } from "@/models/client";
 import {logo} from '@/assets';
@@ -18,7 +18,7 @@ const SideBar: React.FC<{ className?: string }> = ({ className }) => {
           <div className="flex flex-col gap-2 items-center">
             <img src={logo} alt="" className="w-[4rem]"/>
             <Tooltip
-              title={userInfo?.firstName?.toUpperCase() ?? "Xpresspay"}
+              title={userInfo?.firstName?.toUpperCase() ?? "Olivepay"}
               placement="top"
             >
               <Typography
@@ -34,14 +34,14 @@ const SideBar: React.FC<{ className?: string }> = ({ className }) => {
             </Tooltip>
           </div>
         </div>
-        <XpressMenuItems />
+        <OliveMenuItems />
       </div>
       <div className="absolute bottom-0 p-5 hidden lg:block">
         <Typography
           className="!font-inter-medium text-gray-text !text-[11px]"
           style={{ width: "99%" }}
         >
-          Xpress Payment Solutions Limited - Licensed by the Central Bank of
+          Olive Payment - Licensed by the Central Bank of
           Nigeria
         </Typography>
       </div>

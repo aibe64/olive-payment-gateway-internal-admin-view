@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react/types-6-0";
-import { XpressTable } from "@/components";
+import { OliveTable } from "@/components";
 import { APIResponse, Props } from "@/models";
 import "../../index.css";
 import { userDataColumns } from "@/features/Merchant/Columns";
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 // Define metadata for the story
 export default {
   title: "Elements/Table",
-  component: XpressTable,
+  component: OliveTable,
   parameters: {
     layout: "fullscreen",
   },
@@ -19,7 +19,7 @@ export default {
 const Template: StoryFn<Props.TableData<APIResponse.User>> = (
   args: Props.TableData<APIResponse.User>
 ) => {
-  return <XpressTable<APIResponse.User> {...args} />;
+  return <OliveTable<APIResponse.User> {...args} />;
 };
 
 // Define a template for the story
@@ -44,7 +44,7 @@ const TemplateWithAPICall: StoryFn<Props.TableData<APIResponse.User>> = (
     fetchData();
   }, []);
   return (
-    <XpressTable<APIResponse.User>
+    <OliveTable<APIResponse.User>
       {...args}
       dataSource={dataSource}
       spinning={loading}

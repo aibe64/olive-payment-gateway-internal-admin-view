@@ -1,4 +1,4 @@
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { AppConfig } from "@/config";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
@@ -98,7 +98,7 @@ export const binColumn: ColumnProps<APIResponse.QrMerchant>[] = [
     width: "80px",
     render(_: any, record: APIResponse.QrMerchant) {
       return (
-        <XpressTableActions
+        <OliveTableActions
           record={record}
           pageName={"NQR Merchant"}
           actions={[
@@ -110,7 +110,7 @@ export const binColumn: ColumnProps<APIResponse.QrMerchant>[] = [
             {
               name: "Others",
               actionFor: `${record.merchantName}`,
-              endpoint: `${AppConfig.NQR_API_BASE_URL}${endpoints.QR.BindMerchantAccount}`,
+              endpoint: `${AppConfig.NQR_API_BASE_URL}${endpoints.NQR.BindMerchantAccount}`,
               payload: {
                 merchantNumber: record?.merchantNum,
                 bank_no: record?.bankCode,

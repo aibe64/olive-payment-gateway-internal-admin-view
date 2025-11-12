@@ -18,7 +18,7 @@ export const ROUTE_PATH = {
   Bin: "/setup/bin",
   Institution: "setup/institution",
   PaymentMethod: "setup/payment-method",
-  XpressStore: "setup/xpress-store",
+  OliveStore: "setup/olive-store",
   TransactionManager: "setup/transaction-manager",
   AuditTrail: "/audit-trail",
   Login: import.meta.env.VITE_AUTH_DOMAIN,
@@ -38,7 +38,7 @@ export enum AppStorageKeys {
 export enum APIResponseCode {
   Success = "00",
   BadRequest = "ERR_BAD_REQUEST",
-  RedirectToXpressPay = "05",
+  RedirectToOlivePay = "05",
   Invalid = "04",
   Pending = "06",
   Failed = "02",

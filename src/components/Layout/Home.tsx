@@ -4,8 +4,8 @@ import { FloatButton, Typography } from "antd";
 import { useModalStore, usePageStore } from "@/store";
 import { State } from "@/models";
 import { TimeOut, WarningHeader } from "../UI";
-import { XpressHeader } from "../Element";
-import { XpressSideBar } from ".";
+import { OliveHeader } from "../Element";
+import { OliveSideBar } from ".";
 import { useCallback } from "react";
 import { useAppPermission, useTimeoutHook } from "@/hooks";
 
@@ -37,14 +37,14 @@ export const HomeLayout = () => {
   });
   return (
     <div className="min-h-screen grid lg:grid-cols-[16rem_1fr]">
-      <XpressSideBar className="hidden lg:flex" />
+      <OliveSideBar className="hidden lg:flex" />
       <main
         className={`h-screen grid grid-rows-[4rem_1fr] lg:grid-rows-[4rem_1fr]`}
       >
         {isApproved && (
           <WarningHeader message="Upgrade your kyc to use this service." />
         )}
-        <XpressHeader/>
+        <OliveHeader/>
         <section className="p-2 md:p-5 md:pr-16 bg-[#FAFAFA] dark:bg-[#121212] overflow-auto">
           <Outlet />
         </section>

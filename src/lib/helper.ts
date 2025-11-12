@@ -138,7 +138,7 @@ export const searchTable = <T>(array: Array<T>, value: string): Array<T> => {
     let object = array[0];
     if (object || object != null) {
       array.forEach(function (element) {
-        let values: string[] = Object.values(element);
+        let values: string[] = Object.values(element as string[]);
         let exist = false;
         values.forEach(function (element2) {
           if (element2 !== null && element2) {
@@ -166,7 +166,7 @@ export const Search = <T>(array: Array<T>, value: string) => {
     let object = array[0];
     if (object || object != null) {
       array.forEach(function (element) {
-        let values: string[] = Object.values(element);
+        let values: string[] = Object.values(element as string[]);
         let exist = false;
         values.forEach(function (element2) {
           if (element2 !== null && element2) {

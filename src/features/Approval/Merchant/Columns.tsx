@@ -1,4 +1,4 @@
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { endpoints } from "@/service";
@@ -124,7 +124,7 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantApproval>[] =
       width: "80px",
       render(_: any, record: APIResponse.MerchantApproval) {
         return (
-          <XpressTableActions
+          <OliveTableActions
             record={record}
             pageName={"Merchant Registration"}
             actions={[

@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { paymentMethods } from "@/data";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
@@ -46,7 +46,7 @@ export const UpdatePaymentMethod: FC<{
   }, [records, setFormState, isCreate, clearForm]);
 
   return (
-    <XpressForm<APIRequest.PaymentMethod>
+    <OliveForm<APIRequest.PaymentMethod>
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
@@ -66,7 +66,7 @@ export const UpdatePaymentMethod: FC<{
       }}
       className="px-2 gap-0"
     >
-      <XpressField
+      <OliveField
         name="paymentType"
         label="Payment Type"
         type="select"
@@ -75,13 +75,13 @@ export const UpdatePaymentMethod: FC<{
         key={"1"}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="description"
         label="Description"
         key={"2"}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="feeType"
         label="Fee Type"
         type="select"
@@ -91,7 +91,7 @@ export const UpdatePaymentMethod: FC<{
         ]}
         key={"5"}
       />
-      <XpressField
+      <OliveField
         name="defaultCharge"
         label="Default Charge"
         isAmountField={payload?.feeType === "Percentage" ? false : true}
@@ -99,7 +99,7 @@ export const UpdatePaymentMethod: FC<{
         key={"3"}
       />
       {payload?.feeType === "Percentage" ? (
-        <XpressField
+        <OliveField
           name="chargeCap"
           label="Capped At"
           isAmountField
@@ -125,10 +125,10 @@ export const UpdatePaymentMethod: FC<{
         </div>
       </div>
 
-      <XpressButton.Submit
+      <OliveButton.Submit
         title={isCreate ? "Create Payment Method" : "Update Payment Method"}
         disabled={false}
       />
-    </XpressForm>
+    </OliveForm>
   );
 };

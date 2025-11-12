@@ -1,5 +1,5 @@
 import { disabledIcon, enabledIcon } from "@/assets";
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { Tag } from "antd";
@@ -197,7 +197,7 @@ export const providerColumn: ColumnProps<APIResponse.Provider>[] = [
     width: "80px",
     render(_: any, record: APIResponse.Provider) {
       return (
-        <XpressTableActions
+        <OliveTableActions
           record={record}
           pageName={"Provider"}
           actions={[

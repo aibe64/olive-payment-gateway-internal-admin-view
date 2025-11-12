@@ -1,4 +1,4 @@
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { Tag } from "antd";
@@ -100,7 +100,7 @@ export const paymentMethodColumn: ColumnProps<APIResponse.StorePaymentMethod>[] 
       width: "80px",
       render(_: any, record: APIResponse.StorePaymentMethod) {
         return (
-          <XpressTableActions
+          <OliveTableActions
             record={record}
             pageName={"Payment Method"}
             actions={[

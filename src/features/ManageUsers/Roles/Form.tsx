@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { usePermission } from "@/hooks";
 import { APIResponse } from "@/models";
 import { APIRequest } from "@/models";
@@ -14,7 +14,7 @@ export const UpdateRoles: FC<{
     usePermission(records, isCreate);
 
   return (
-    <XpressForm<APIRequest.RoleAndPermission>
+    <OliveForm<APIRequest.RoleAndPermission>
       callApi
       extraValues={{
         roleId: !isCreate ? records?.id : undefined,
@@ -36,7 +36,7 @@ export const UpdateRoles: FC<{
       }}
       className="px-2 gap-0"
     >
-      <XpressField
+      <OliveField
         name="roleName"
         label="Role Name"
         type="text"
@@ -44,7 +44,7 @@ export const UpdateRoles: FC<{
         key={"1"}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="description"
         label="Role Description"
         key={"2"}
@@ -81,10 +81,10 @@ export const UpdateRoles: FC<{
         </Row>
       </div>
       <Divider />
-      <XpressButton.Submit
+      <OliveButton.Submit
         disabled={permissions?.filter((x) => x.isChecked)?.length <= 0}
         title={isCreate ? "Create Role" : "Update Update"}
       />
-    </XpressForm>
+    </OliveForm>
   );
 };

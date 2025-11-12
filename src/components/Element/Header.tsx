@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { LogOut, useTheme } from "../UI";
 import {  AppStorage, useModalStore } from "@/store";
 import { ROUTE_PATH } from "@/models";
-import { XpressSideBar } from "../Layout";
+import { OliveSideBar } from "../Layout";
 
 const Header = () => {
   const userInfo = AppStorage.getItem<APIResponse.LoginInfo>(AppStorageKeys.UserInfo);
@@ -98,7 +98,7 @@ const Header = () => {
         closable={false}
         width="75%"
       >
-        <XpressSideBar />
+        <OliveSideBar />
       </Drawer>
     </header>
   );

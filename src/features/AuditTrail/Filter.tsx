@@ -1,7 +1,7 @@
 import { Button, Popover, Typography } from "antd";
 import { useState, useCallback, useMemo } from "react";
 import { FilterOutlined, DownOutlined } from "@ant-design/icons";
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { useFormStore, usePageStore } from "@/store";
 import { endpoints } from "@/service";
 import { APIResponse, AppState } from "@/models";
@@ -19,7 +19,7 @@ export const AuditTrailFilter = () => {
 
   const filterContent = useMemo(() => {
     return (
-      <XpressForm
+      <OliveForm
         callApi
         apiConfig={{
           endpoint: endpoints.Report.GetAuditReport,
@@ -32,24 +32,24 @@ export const AuditTrailFilter = () => {
         }}
         className="flex flex-col w-[250px]"
       >
-        <XpressField
+        <OliveField
           classNames="w-full"
           label={"Start Date"}
           name="startDate"
           type="date"
         />
-        <XpressField
+        <OliveField
           classNames="w-full"
           label={"End Date"}
           name="endDate"
           type="date"
         />
-        <XpressField label={"Email"} name="email" validator="email" />
+        <OliveField label={"Email"} name="email" validator="email" />
         <div className="flex flex-row gap-2 w-full justify-between">
           <Button onClick={clearForm}>Clear</Button>
-          <XpressButton.Submit classNames="!py-5" title="Apply" />
+          <OliveButton.Submit classNames="!py-5" title="Apply" />
         </div>
-      </XpressForm>
+      </OliveForm>
     );
   }, []);
 

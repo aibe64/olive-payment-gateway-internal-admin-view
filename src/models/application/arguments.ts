@@ -76,7 +76,7 @@ export interface ValidateFetchConfig {
   }>;
 }
 
-export interface XpressModalConfig {
+export interface OliveModalConfig {
   open?: boolean;
   body?: JSX.Element;
   showCloseButton?: boolean;

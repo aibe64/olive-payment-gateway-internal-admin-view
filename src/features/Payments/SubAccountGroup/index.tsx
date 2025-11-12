@@ -1,4 +1,4 @@
-import { PageTitle, TableFilter, XpressTable } from "@/components";
+import { PageTitle, TableFilter, OliveTable } from "@/components";
 import { exportToExcel } from "@/lib";
 import { APIResponse, AppState } from "@/models";
 import { Button, Select } from "antd";
@@ -113,7 +113,7 @@ const SubAccountGroup = () => {
           <></>
         )}
       </TableFilter>
-      <XpressTable<APIResponse.SubAccountGroup>
+      <OliveTable<APIResponse.SubAccountGroup>
         emptyHeadingText={
           <h3>
             You have not created any Split Payment, they’ll appear here once you

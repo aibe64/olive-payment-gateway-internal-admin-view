@@ -1,4 +1,4 @@
-import { PageTitle, XpressTable } from "@/components";
+import { PageTitle, OliveTable } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, AppState } from "@/models";
 import { endpoints } from "@/service";
@@ -26,7 +26,7 @@ const MerchantApproval = () => {
   return (
     <div className="flex flex-col gap-5">
       <PageTitle totalDataCount={data?.length ?? 0} title="Merchant Approval" />
-      <XpressTable<APIResponse.MerchantApproval>
+      <OliveTable<APIResponse.MerchantApproval>
         columns={merchantDataColumns}
         originalSource={originalTableData}
         dataSource={tableData ?? []}

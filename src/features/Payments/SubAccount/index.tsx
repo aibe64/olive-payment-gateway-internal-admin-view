@@ -1,4 +1,4 @@
-import { PageTitle, TableFilter, XpressTable } from "@/components";
+import { PageTitle, TableFilter, OliveTable } from "@/components";
 import { exportToExcel } from "@/lib";
 import { APIResponse, AppState } from "@/models";
 import { Button, Select } from "antd";
@@ -100,7 +100,7 @@ const SubAccount = () => {
           <></>
         )}
       </TableFilter>
-      <XpressTable<APIResponse.SubAccount>
+      <OliveTable<APIResponse.SubAccount>
         emptyHeadingText={
           <h3>
             You have not created any sub-account, they’ll appear here once you

@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
@@ -81,7 +81,7 @@ export const UpdateBin: FC<{
   }, [providers]);
 
   return (
-    <XpressForm<APIRequest.Bin>
+    <OliveForm<APIRequest.Bin>
       callApi
       extraValues={{
         id: !isCreate ? records?.id : undefined,
@@ -100,7 +100,7 @@ export const UpdateBin: FC<{
       }}
       className="px-2 gap-0"
     >
-      <XpressField
+      <OliveField
         name="binName"
         label="BIN"
         type="text"
@@ -111,7 +111,7 @@ export const UpdateBin: FC<{
         maxLength={8}
         minLength={6}
       />
-      <XpressField
+      <OliveField
         name="cardBrand"
         label="Card Brand"
         loading={fetching}
@@ -120,7 +120,7 @@ export const UpdateBin: FC<{
         items={brandItem}
         required={isCreate}
       />
-      <XpressField
+      <OliveField
         name="provider"
         label="Provider"
         loading={loadingProvider}
@@ -154,7 +154,7 @@ export const UpdateBin: FC<{
         </div>
       </div>
       <Divider />
-      <XpressButton.Submit title={isCreate ? "Create BIN" : "Update BIN"} />
-    </XpressForm>
+      <OliveButton.Submit title={isCreate ? "Create BIN" : "Update BIN"} />
+    </OliveForm>
   );
 };

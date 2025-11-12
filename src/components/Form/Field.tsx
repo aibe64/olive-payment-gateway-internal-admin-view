@@ -20,7 +20,7 @@ import { useFieldValidationRule } from "@/hooks";
 import { NgnFlag } from "@/assets";
 import { isObject } from "@/lib";
 
-export const XpressField: React.FC<Props.Field> = ({
+export const OliveField: React.FC<Props.Field> = ({
   name,
   required,
   label,

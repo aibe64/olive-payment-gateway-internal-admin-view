@@ -4,7 +4,7 @@ import { Props } from "@/models";
 import { useFormStore } from "@/store";
 import { useAPI } from "@/hooks";
 
-export const XpressButton = ({
+export const OliveButton = ({
   title,
   onClick,
   htmlType,
@@ -80,7 +80,7 @@ export const SubmitButton: React.FC<Props.SubmitButton> = ({
 }) => {
   const { isProcessing } = useFormStore((state) => state);
   return (
-    <XpressButton
+    <OliveButton
       title={title}
       block={true}
       htmlType="submit"
@@ -104,7 +104,7 @@ export const Link: React.FC<Props.SubmitButton> = ({
 }) => {
   const { isProcessing } = useFormStore((state) => state);
   return (
-    <XpressButton
+    <OliveButton
       title={title}
       block={true}
       htmlType="link"
@@ -140,5 +140,5 @@ export const Primary: React.FC<Props.SubmitButton> = ({
   );
 };
 
-XpressButton.Submit = SubmitButton;
-XpressButton.Link = Link;
+OliveButton.Submit = SubmitButton;
+OliveButton.Link = Link;

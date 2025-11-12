@@ -99,8 +99,8 @@ export const menuList: Props.MenuListProps[] = [
         path: ROUTE_PATH.PaymentMethod,
       },
       {
-        label: "Xpress Store",
-        path: ROUTE_PATH.XpressStore,
+        label: "Olive Store",
+        path: ROUTE_PATH.OliveStore,
       },
     ],
   },

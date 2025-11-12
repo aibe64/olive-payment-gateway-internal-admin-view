@@ -1,7 +1,7 @@
 import {
   PageTitle,
   TableFilter,
-  XpressTable,
+  OliveTable,
 } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, AppState } from "@/models";
@@ -31,7 +31,7 @@ const Institution  = () => {
       ) : (
         ""
       )}
-      <XpressTable<APIResponse.Banks>
+      <OliveTable<APIResponse.Banks>
         columns={institutionColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}

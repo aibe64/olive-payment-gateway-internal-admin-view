@@ -1,4 +1,4 @@
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { ColumnProps } from "antd/es/table";
@@ -92,7 +92,7 @@ export const binColumn: ColumnProps<APIResponse.QrSubMerchant>[] = [
     width: "80px",
     render(_: any, record: APIResponse.QrSubMerchant) {
       return (
-        <XpressTableActions
+        <OliveTableActions
           record={record}
           pageName={"NQR Sub Merchant"}
           actions={[

@@ -1,5 +1,5 @@
 import { disabledIcon, enabledIcon } from "@/assets";
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { ColumnProps } from "antd/es/table";
@@ -99,7 +99,7 @@ export const managerColumn: ColumnProps<APIResponse.MerchantDetails>[] = [
     width: "80px",
     render(_: any, record: APIResponse.MerchantDetails) {
       return (
-        <XpressTableActions
+        <OliveTableActions
           record={record}
           pageName={"Transaction Manager"}
           actions={[

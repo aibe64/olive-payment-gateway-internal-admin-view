@@ -1,4 +1,4 @@
-import { XpressButton, XpressField, XpressForm } from "@/components";
+import { OliveButton, OliveField, OliveForm } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, State } from "@/models";
 import { APIRequest } from "@/models";
@@ -55,7 +55,7 @@ export const UpdateUsers: FC<{
   }, [data]);
 
   return (
-    <XpressForm<APIRequest.InternalUsers>
+    <OliveForm<APIRequest.InternalUsers>
       callApi
       apiConfig={{
         endpoint: endpoints.Users.UpdateUser,
@@ -73,28 +73,28 @@ export const UpdateUsers: FC<{
       }}
       className="px-2 gap-0"
     >
-      <XpressField
+      <OliveField
         name="firstName"
         label="First Name"
         type="text"
         key={"1"}
         readonly
       />
-      <XpressField
+      <OliveField
         name="lastName"
         label="Last Name"
         type="text"
         key={"2"}
         readonly
       />
-      <XpressField
+      <OliveField
         name="email"
         label="Email Address"
         type="text"
         key={"3"}
         readonly
       />
-      <XpressField
+      <OliveField
         name="roleId"
         label="Role"
         loading={fetching}
@@ -111,7 +111,7 @@ export const UpdateUsers: FC<{
         />
       </div>
       <Divider />
-      <XpressButton.Submit title={"Update Administrator"} />
-    </XpressForm>
+      <OliveButton.Submit title={"Update Administrator"} />
+    </OliveForm>
   );
 };

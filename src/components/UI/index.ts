@@ -6,7 +6,7 @@ export * from "./Alert"
 export * from "./PageTitle"
 export * from "./TableFilter"
 export * from "./TimeOut"
-export { default as XpressMenuItems } from "./MenuItems";
+export { default as OliveMenuItems } from "./MenuItems";
 export * from "./Logout";
-export { default as XpressProtectedRoutes } from "./ProtectedRoutes";
+export { default as OliveProtectedRoutes } from "./ProtectedRoutes";
 

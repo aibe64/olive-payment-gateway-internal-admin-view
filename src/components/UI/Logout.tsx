@@ -17,7 +17,7 @@ export const LogOut: FC<{ logOutOnRender: boolean }> = ({ logOutOnRender }) => {
     setModalState("open", false);
     Notify("Logout Successful", true);
     setTimeout(() => {
-      window.location.href = AppConfig.MERCHANT_ADMIN_DOMAIN
+      window.location.href = AppConfig.MERCHANT_ONBOARDING_URL
     }, 1000);
   };
 

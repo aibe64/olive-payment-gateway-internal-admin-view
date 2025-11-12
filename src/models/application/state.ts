@@ -1,6 +1,6 @@
 import { FormInstance, TourStepProps } from "antd";
 import { APIResponse } from "../client";
-import { XpressModalConfig } from "./arguments";
+import { OliveModalConfig } from "./arguments";
 
 export namespace State {
   export type Actions<T> = {
@@ -18,7 +18,7 @@ export namespace State {
     width?: number;
     closable?: boolean;
     clearPayloadOnClose?: boolean;
-    set: ({}: XpressModalConfig) => void;
+    set: ({}: OliveModalConfig) => void;
     toggle: () => void;
     styles: any
   }

@@ -2,6 +2,12 @@ export const endpoints = {
   GetAppStatistics: "mock/statistics.json",
   GetUsers: "mock/user.json",
   GetTopTen: "mock/topten.json",
+  AdminAuth: {
+    Login: "AdminAuth/login",
+    AdminUser: "AdminAuth/admin-user",
+    Logout: "AdminAuth/logout",
+    ValidateToken: "AdminAuth/validate-token"
+  },
   Account: {
     GetAllRoles: "Accounts/GetAllRoles",
     GetAdminRoles: "Accounts/GetAllRoles/false",

@@ -2,8 +2,8 @@ import { settingSVG } from "@/assets";
 import {
   PageTitle,
   TableFilter,
-  XpressButton,
-  XpressTable,
+  OliveButton,
+  OliveTable,
 } from "@/components";
 import { useAPI } from "@/hooks";
 import { APIResponse, AppState } from "@/models";
@@ -14,7 +14,7 @@ import { useCallback } from "react";
 import { paymentMethodColumn } from "./Columns";
 import { UpdatePaymentMethod } from "./Form";
 
-const XpressPaymentMethod = () => {
+const OlivePaymentMethod = () => {
   const { fetching } = useAPI<Array<APIResponse.PaymentMethod>>({
     callGetApiOnRender: true,
     queryDataEndpoint: endpoints.SetUp.GetAllPaymentMethod,
@@ -49,7 +49,7 @@ const XpressPaymentMethod = () => {
       {originalTableData?.length ? (
         <TableFilter filterTypes={["dateRange"]}>
           <div className="flex gap-2 items-center">
-            <XpressButton
+            <OliveButton
               classNames="!py-5"
               onClick={onAddButton}
               title="Add Payment Method"
@@ -59,7 +59,7 @@ const XpressPaymentMethod = () => {
       ) : (
         ""
       )}
-      <XpressTable<APIResponse.PaymentMethod>
+      <OliveTable<APIResponse.PaymentMethod>
         columns={paymentMethodColumn}
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}
@@ -80,4 +80,4 @@ const XpressPaymentMethod = () => {
     </div>
   );
 };
-export default XpressPaymentMethod;
+export default OlivePaymentMethod;

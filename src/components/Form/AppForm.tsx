@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { useAppForm } from "@/hooks";
 import { Props } from "@/models";
 
-export const XpressForm = <T,>({
+export const OliveForm = <T,>({
   children,
   className,
   layout,

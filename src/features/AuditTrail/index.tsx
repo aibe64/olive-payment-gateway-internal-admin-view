@@ -1,4 +1,4 @@
-import { PageTitle, TableFilter, XpressTable } from "@/components";
+import { PageTitle, TableFilter, OliveTable } from "@/components";
 import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { exportToExcel } from "@/lib/helper";
@@ -70,7 +70,7 @@ const AuditTrail = () => {
         </Button>
       </TableFilter>
       <div className="audit-table-wrapper">
-        <XpressTable<APIResponse.AuditTrailItems>
+        <OliveTable<APIResponse.AuditTrailItems>
           columns={auditTrailDataColumns}
           dataSource={auditTrailsData?.items ?? []}
           originalSource={originalAuditTrailsData?.items ?? []}

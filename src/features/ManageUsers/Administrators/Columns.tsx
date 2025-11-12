@@ -1,4 +1,4 @@
-import { XpressTableActions } from "@/components/Form";
+import { OliveTableActions } from "@/components/Form";
 import { APIResponse } from "@/models";
 import { Tag } from "antd";
 import { ColumnProps } from "antd/es/table";
@@ -69,7 +69,7 @@ export const userColumn: ColumnProps<APIResponse.InternalUsers>[] = [
     width: "80px",
     render(_: any, record: APIResponse.InternalUsers) {
       return (
-        <XpressTableActions
+        <OliveTableActions
           record={record}
           pageName={"Administrator"}
           actions={[

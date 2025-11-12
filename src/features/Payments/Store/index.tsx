@@ -1,4 +1,4 @@
-import { XpressTable } from "@/components";
+import { OliveTable } from "@/components";
 import { PageTitle } from "@/components";
 import { APIResponse, AppState } from "@/models";
 import { TransactionFilter } from "./Filter";
@@ -23,7 +23,7 @@ const StoreTransactions = () => {
         title="Store Transactions"
       />
       { <TransactionFilter />}
-      <XpressTable<APIResponse.StoreTransaction>
+      <OliveTable<APIResponse.StoreTransaction>
         emptyHeadingText={
           <h3>
             No transaction found.{" "}
