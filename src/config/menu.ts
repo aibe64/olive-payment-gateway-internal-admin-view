@@ -1,12 +1,12 @@
 import {
-  ApprovalIcon,
+  // ApprovalIcon,
   HomeIcon,
   PaymentIcon,
   SettingsIcon,
   UserIcon,
   // UsersIcon,
 } from "@/assets";
-import AuditTrailIcon from "@/assets/AuditTrailIcon";
+// import AuditTrailIcon from "@/assets/AuditTrailIcon";
 import { Props, ROUTE_PATH } from "@/models";
 
 export const menuList: Props.MenuListProps[] = [
@@ -98,25 +98,25 @@ export const menuList: Props.MenuListProps[] = [
         label: "Payment Methods",
         path: ROUTE_PATH.PaymentMethod,
       },
-      {
-        label: "Olive Store",
-        path: ROUTE_PATH.OliveStore,
-      },
+      // {
+      //   label: "Olive Store",
+      //   path: ROUTE_PATH.OliveStore,
+      // },
     ],
   },
-  {
-    label: "Approval",
-    icon: ApprovalIcon,
-    children: [
-      {
-        label: "Merchant",
-        path: ROUTE_PATH.MerchantApproval,
-      },
-    ],
-  },
-  {
-    label: "Audit Trail",
-    path: ROUTE_PATH.AuditTrail,
-    icon: AuditTrailIcon,
-  },
+  // {
+  //   label: "Approval",
+  //   icon: ApprovalIcon,
+  //   children: [
+  //     {
+  //       label: "Merchant",
+  //       path: ROUTE_PATH.MerchantApproval,
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: "Audit Trail",
+  //   path: ROUTE_PATH.AuditTrail,
+  //   icon: AuditTrailIcon,
+  // },
 ];

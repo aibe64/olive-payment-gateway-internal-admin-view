@@ -9,31 +9,6 @@ import { UpdateProvider } from "./Form";
 
 export const providerColumn: ColumnProps<APIResponse.Provider>[] = [
   {
-    title: "Date Created",
-    width: "20%",
-    key: "1",
-    ellipsis: true,
-    render(_, record) {
-      const dates =
-        record.dateCreated && record.dateCreated !== "0001-01-01T00:00:00"
-          ? Format.toDateTime(record.dateCreated).split("-")
-          : undefined;
-      return (
-        <div className="flex flex-col items-flex-start w-full">
-          {dates?.length ? (
-            <>
-              {" "}
-              <span>{dates[0]}</span>
-              <span>{dates[1]}</span>
-            </>
-          ) : (
-            <span>N/A</span>
-          )}
-        </div>
-      );
-    },
-  },
-  {
     title: "Provider Name",
     width: "25%",
     key: "2",
@@ -148,6 +123,31 @@ export const providerColumn: ColumnProps<APIResponse.Provider>[] = [
   //     );
   //   },
   // },
+  {
+    title: "Date Created",
+    width: "20%",
+    key: "1",
+    ellipsis: true,
+    render(_, record) {
+      const dates =
+        record.dateCreated && record.dateCreated !== "0001-01-01T00:00:00"
+          ? Format.toDateTime(record.dateCreated).split("-")
+          : undefined;
+      return (
+        <div className="flex flex-col items-flex-start w-full">
+          {dates?.length ? (
+            <>
+              {" "}
+              <span>{dates[0]}</span>
+              <span>{dates[1]}</span>
+            </>
+          ) : (
+            <span>N/A</span>
+          )}
+        </div>
+      );
+    },
+  },
   {
     title: "Date Modified",
     width: "20%",

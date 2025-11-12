@@ -5,14 +5,14 @@ import { lazy } from "react";
 
 const MerchantPage = lazy(() => import("@/features/Merchant"));
 const TransactionPage = lazy(() => import("@/features/Payments/Transactions"));
-const StoreTransactionPage = lazy(() => import("@/features/Payments/Store"));
+// const StoreTransactionPage = lazy(() => import("@/features/Payments/Store"));
 const SplitTransactionPage = lazy(() => import("@/features/Payments/Split"));
-const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
+// const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
 const ProviderPage = lazy(() => import("@/features/Setup/Provider"));
 const BinPage = lazy(() => import("@/features/Setup/Bin"));
 const InstitutionPage = lazy(() => import("@/features/Setup/Institution"));
 const PaymentMethodPage = lazy(() => import("@/features/Setup/PaymentMethod"));
-const OliveStorePage = lazy(() => import("@/features/Setup/OliveStore"));
+// const OliveStorePage = lazy(() => import("@/features/Setup/OliveStore"));
 // const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
 // const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
 const ProfilePage = lazy(() => import("@/features/Settings"));
@@ -27,7 +27,7 @@ const SplitPaymentPage = lazy(
 );
 const NqrMerchantPage = lazy(() => import("@/features/NQR/Merchant"));
 const NqrSubMerchantPage = lazy(() => import("@/features/NQR/SubMerchant"));
-const AuditTrailPage = lazy(() => import("@/features/AuditTrail"));
+// const AuditTrailPage = lazy(() => import("@/features/AuditTrail"));
 
 export const privateRoutes = [
   {
@@ -45,10 +45,10 @@ export const privateRoutes = [
         path: ROUTE_PATH.Merchant,
         Component: MerchantPage,
       },
-      {
-        path: ROUTE_PATH.MerchantApproval,
-        Component: MerchantApprovalPage,
-      },
+      // {
+      //   path: ROUTE_PATH.MerchantApproval,
+      //   Component: MerchantApprovalPage,
+      // },
       {
         path: ROUTE_PATH.Transaction,
         Component: TransactionPage,
@@ -57,18 +57,18 @@ export const privateRoutes = [
         path: ROUTE_PATH.Split,
         Component: SplitTransactionPage,
       },
-      {
-        path: ROUTE_PATH.Store,
-        Component: StoreTransactionPage,
-      },
+      // {
+      //   path: ROUTE_PATH.Store,
+      //   Component: StoreTransactionPage,
+      // },
       {
         path: ROUTE_PATH.Provider,
         Component: ProviderPage,
       },
-      {
-        path: ROUTE_PATH.OliveStore,
-        Component: OliveStorePage,
-      },
+      // {
+      //   path: ROUTE_PATH.OliveStore,
+      //   Component: OliveStorePage,
+      // },
       {
         path: ROUTE_PATH.Bin,
         Component: BinPage,
@@ -117,10 +117,10 @@ export const privateRoutes = [
         path: ROUTE_PATH.QrSubMerchant,
         Component: NqrSubMerchantPage,
       },
-      {
-        path: ROUTE_PATH.AuditTrail,
-        Component: AuditTrailPage,
-      },
+      // {
+      //   path: ROUTE_PATH.AuditTrail,
+      //   Component: AuditTrailPage,
+      // },
     ],
   },
 ];

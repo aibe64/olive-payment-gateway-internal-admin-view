@@ -91,7 +91,6 @@ const SubAccountGroup = () => {
   return (
     <div className="space-y-4">
       <PageTitle
-        totalDataCount={tableData?.length ?? 0}
         title="Split Payment"
       />
 

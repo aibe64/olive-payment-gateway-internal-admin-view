@@ -72,7 +72,6 @@ export const GET_SPLIT_TRANSACTIONS: DocumentNode = gql`
         email
         currency
         transactionId
-        oliveReference
         providerReference
         phoneNumber
         narration

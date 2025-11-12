@@ -43,7 +43,6 @@ const OlivePaymentMethod = () => {
   return (
     <div className="flex flex-col gap-5">
       <PageTitle
-        totalDataCount={tableData?.length ?? 0}
         title="Payment Method"
       />
       {originalTableData?.length ? (
