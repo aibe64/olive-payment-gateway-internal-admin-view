@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:prod": "tsc && vite build --mode production",
-    "build:dev": "vite build --mode development",
+    "build": "vite build",
     "lint": "eslint --fix \"src/**/*.{ts,tsx}\"",
     "preview": "vite preview",
     "prepare": "husky install",
