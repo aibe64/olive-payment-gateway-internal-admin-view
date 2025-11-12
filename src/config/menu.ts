@@ -4,7 +4,7 @@ import {
   PaymentIcon,
   SettingsIcon,
   UserIcon,
-  UsersIcon,
+  // UsersIcon,
 } from "@/assets";
 import AuditTrailIcon from "@/assets/AuditTrailIcon";
 import { Props, ROUTE_PATH } from "@/models";
@@ -34,20 +34,20 @@ export const menuList: Props.MenuListProps[] = [
       },
     ],
   },
-  {
-    label: "Manage Users",
-    icon: UsersIcon,
-    children: [
-      {
-        label: "Roles",
-        path: ROUTE_PATH.Roles,
-      },
-      {
-        label: "Administrators",
-        path: ROUTE_PATH.Users,
-      },
-    ],
-  },
+  // {
+  //   label: "Manage Users",
+  //   icon: UsersIcon,
+  //   children: [
+  //     {
+  //       label: "Roles",
+  //       path: ROUTE_PATH.Roles,
+  //     },
+  //     {
+  //       label: "Administrators",
+  //       path: ROUTE_PATH.Users,
+  //     },
+  //   ],
+  // },
   {
     label: "Payments",
     icon: PaymentIcon,

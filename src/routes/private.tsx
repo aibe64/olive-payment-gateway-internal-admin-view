@@ -13,8 +13,8 @@ const BinPage = lazy(() => import("@/features/Setup/Bin"));
 const InstitutionPage = lazy(() => import("@/features/Setup/Institution"));
 const PaymentMethodPage = lazy(() => import("@/features/Setup/PaymentMethod"));
 const OliveStorePage = lazy(() => import("@/features/Setup/OliveStore"));
-const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
-const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
+// const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
+// const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
 const ProfilePage = lazy(() => import("@/features/Settings"));
 const UAuthorizedPage = lazy(() => import("@/features/UnAuthorize"));
 const TransactionManagerPage = lazy(
@@ -85,14 +85,14 @@ export const privateRoutes = [
         path: ROUTE_PATH.PaymentMethod,
         Component: PaymentMethodPage,
       },
-      {
-        path: ROUTE_PATH.Roles,
-        Component: RolesPage,
-      },
-      {
-        path: ROUTE_PATH.Users,
-        Component: UsersPage,
-      },
+      // {
+      //   path: ROUTE_PATH.Roles,
+      //   Component: RolesPage,
+      // },
+      // {
+      //   path: ROUTE_PATH.Users,
+      //   Component: UsersPage,
+      // },
       {
         path: ROUTE_PATH.Profile,
         Component: ProfilePage,
