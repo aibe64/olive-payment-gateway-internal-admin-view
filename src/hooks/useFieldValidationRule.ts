@@ -207,7 +207,7 @@ export const useFieldValidationRule = (config?: ValidateFetchConfig) => {
 
   const bvnIsValidate = useCallback(
     async (value: string, fieldName: string): Promise<boolean> => {
-      // Regular eoliveion for checking if there are no alphabets and maximum 11 characters
+      // Regular expression for checking if there are no alphabets and maximum 11 characters
       const bvnRegex = /^[0-9]{11,11}$/;
       if (!value || bvnRegex.test(value)) {
         if (config) {
