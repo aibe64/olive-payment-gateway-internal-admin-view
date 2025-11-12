@@ -1,5 +1,3 @@
-import { nigerianBanks } from "@/data";
-import { Format } from "@/lib";
 import { APIResponse } from "@/models";
 import { List } from "antd";
 import { FC } from "react";
@@ -7,10 +5,6 @@ import { FC } from "react";
 export const ViewMerchant: FC<{
   records?: APIResponse.MerchantDetails;
 }> = ({ records }) => {
-  const getBank = (bankCode: string) => {
-    return nigerianBanks.find((bank) => bank.value == bankCode)?.label;
-  };
-
   const items = [
     {
       key: "Approval Status",
@@ -38,64 +32,12 @@ export const ViewMerchant: FC<{
       value: records?.businessType ?? "N/A",
     },
     {
-      key: "Transaction Limit",
-      value: Format.toNaira(records?.transactionLimit?.toString() ?? "0.00"),
-    },
-    {
-      key: "Bank",
-      value: getBank(records?.bankCode ?? "") ?? "N/A",
-    },
-    {
-      key: "Settlement Account Number",
-      value: records?.settlementAccountNumber ?? "N/A",
-    },
-    {
-      key: "Settlement Account Name",
-      value: records?.accountName ?? "N/A",
-    },
-    {
       key: "Status",
       value: records?.isActive ? "True" : "False",
     },
     {
-      key: "Enable Payment Page Customization",
-      value: records?.isPaymentPageCustomizationEnabled ? "True" : "False",
-    },
-    {
-      key: "Show public Key on merchant dashboard",
-      value: records?.isKeysVisible ? "True" : "False",
-    },
-    {
       key: "Enable International Payment",
       value: records?.receiveInternationalPayment ? "True" : "False",
-    },
-    {
-      key: "Card Payment Active",
-      value: records?.cardPayment ? "True" : "False",
-    },
-    {
-      key: "Transfer Payment Active",
-      value: records?.bankTransferPayment ? "True" : "False",
-    },
-    {
-      key: "USSD Payment Active",
-      value: records?.ussdPayment ? "True" : "False",
-    },
-    {
-      key: "eNaira Payment Active",
-      value: records?.eNaira ? "True" : "False",
-    },
-    {
-      key: "QR Code Payment Active",
-      value: records?.qrPayment ? "True" : "False",
-    },
-    {
-      key: "Wallet Payment Active",
-      value: records?.walletPayment ? "True" : "False",
-    },
-    {
-      key: "Tokenization Payment Active",
-      value: records?.tokenization ? "True" : "False",
     },
     {
       key: "Charge To Customer",
@@ -105,19 +47,8 @@ export const ViewMerchant: FC<{
       key: "Charge To Merchant",
       value: records?.isChargeTransferedToCustomer ? "False" : "True",
     },
-    {
-      key: "Charge Type",
-      value: records?.chargeType?.toUpperCase() ?? "N/A",
-    },
-    {
-      key: "Charge Value",
-      value: records?.chargeValue ?? "N/A",
-    },
-    {
-      key: "Capped At",
-      value: records?.chargeCap ?? "N/A",
-    },
   ];
+
   return (
     <div>
       <List

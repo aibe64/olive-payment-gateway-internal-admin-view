@@ -11,16 +11,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"), // Make sure this path points to your `src` directory
     },
   },
-  // server: {
-  //   port: 8095,
-  //   host: "0.0.0.0",
-  // },
-  // preview: {
-  //   host: '0.0.0.0',
-  //   port: process.env.PORT ? parseInt(process.env.PORT) : 4173,
-  //   strictPort: true,
-  //   allowedHosts: ['.railway.app', '.code.run'],
-  // },
   server: {
     host: '0.0.0.0',
     port: process.env.PORT ? parseInt(process.env.PORT) : 8095,

@@ -54,7 +54,7 @@ export const PaymentMethodCharges: FC<{
   return (
     <div className="flex flex-col gap-3">
       <span className="text-lg font-inter-semibold">{record.businessName}</span>
-      <div className="flex flex-col gap-1">
+      {/* <div className="flex flex-col gap-1">
         <span>Transfer Charge to Customer</span>
         <Switch
           className="w-[3rem]"
@@ -68,7 +68,7 @@ export const PaymentMethodCharges: FC<{
           //   )
           // }
         />
-      </div>
+      </div> */}
       <div className="">
         <List
           loading={fetching}
