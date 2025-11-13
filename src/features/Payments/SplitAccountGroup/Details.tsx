@@ -3,8 +3,8 @@ import { APIResponse } from "@/models";
 import { List } from "antd";
 import { FC } from "react";
 
-export const SubAccountGroupDetails: FC<{
-  record?: APIResponse.SubAccountGroup;
+export const SplitAccountGroupDetails: FC<{
+  record?: APIResponse.SplitAccountGroup;
 }> = ({ record }) => {
   const data = [
     {
@@ -33,9 +33,9 @@ export const SubAccountGroupDetails: FC<{
             <h1 className="font-inter-semibold">%</h1>{" "}
             <h1 className="font-inter-semibold">Flat</h1>
           </div>
-          {record?.subAccounts?.map((account) => (
+          {record?.SplitAccounts?.map((account) => (
             <div className="grid grid-cols-[50%_24%_24%] gap-1">
-              <span>{account.subAccountName}</span>
+              <span>{account.SplitAccountName}</span>
               <span>
                 {(account.percentage as number) > 0
                   ? account.percentage

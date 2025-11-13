@@ -5,7 +5,7 @@ import { Format } from "@/lib";
 import { Typography } from "antd";
 import { TransactionSummary } from "./Summary";
 import { TransactionReceipt } from "./TransactionReciept";
-import { SubAccountGroupCell } from "./SubAccountGroupCell";
+import { SplitAccountGroupCell } from "./SplitAccountGroupCell";
 import { CopyOutlined } from "@ant-design/icons";
 
 export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
@@ -83,7 +83,7 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     key: "40",
     ellipsis: true,
     render: (_: any, record: APIResponse.SplitTransaction) => (
-      <SubAccountGroupCell transaction={record} />
+      <SplitAccountGroupCell transaction={record} />
     ),
   },
   // {
@@ -95,9 +95,9 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
   //   render(_, record) {
   //     return (
   //       <div>
-  //         {record.subAccountGroup.deductFeeFrom ? (
+  //         {record.SplitAccountGroup.deductFeeFrom ? (
   //           <span className="capitalize">
-  //             {record.subAccountGroup.deductFeeFrom?.replace("_", " ")}
+  //             {record.SplitAccountGroup.deductFeeFrom?.replace("_", " ")}
   //           </span>
   //         ) : (
   //           <span>N/A</span>

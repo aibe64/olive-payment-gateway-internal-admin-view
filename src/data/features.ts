@@ -154,12 +154,12 @@ export const featuresData: Array<SearchData> = [
       {
         id: 6,
         featureName: "Sub-Account",
-        redirectTo: ROUTE_PATH.SubAccount,
+        redirectTo: ROUTE_PATH.SplitAccount,
       },
       {
         id: 7,
         featureName: "Split Payment",
-        redirectTo: ROUTE_PATH.SubAccountGroup,
+        redirectTo: ROUTE_PATH.SplitAccountGroup,
       },
       {
         id: 2,

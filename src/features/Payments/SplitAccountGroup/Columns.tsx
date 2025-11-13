@@ -2,9 +2,9 @@ import { APIResponse } from "@/models";
 import { ColumnProps } from "antd/es/table";
 import { OliveTableActions } from "@/components";
 import { Format } from "@/lib";
-import { SubAccountGroupDetails } from "./Details";
+import { SplitAccountGroupDetails } from "./Details";
 
-export const SubAccountColumn: ColumnProps<APIResponse.SubAccountGroup>[] = [
+export const SplitAccountColumn: ColumnProps<APIResponse.SplitAccountGroup>[] = [
   {
     title: "Group Name",
     width: "15%",
@@ -38,7 +38,7 @@ export const SubAccountColumn: ColumnProps<APIResponse.SubAccountGroup>[] = [
     key: "1",
     ellipsis: true,
     render(_, record) {
-      return record.subAccounts?.length ?? 0;
+      return record.SplitAccounts?.length ?? 0;
     },
   },
   {
@@ -96,7 +96,7 @@ export const SubAccountColumn: ColumnProps<APIResponse.SubAccountGroup>[] = [
             pageName={"Split Payment"}
             actions={[{ title: "View", action: "View", modalWidth: 500 }]}
             components={{
-              View: <SubAccountGroupDetails record={record} />,
+              View: <SplitAccountGroupDetails record={record} />,
             }}
           />
         </div>

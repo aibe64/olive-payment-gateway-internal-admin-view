@@ -6,13 +6,13 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { usePageStore } from "@/store";
 import { endpoints } from "@/service";
 import { useAPI } from "@/hooks";
-import { SubAccountColumn } from "./Columns";
+import { SplitAccountColumn } from "./Columns";
 import { useCallback, useMemo } from "react";
 
-const SubAccount = () => {
+const SplitAccount = () => {
   const { fetching, callGetData } = useAPI({
     queryDataEndpoint: `${
-      endpoints.Account.GetSubAccount
+      endpoints.Account.GetSplitAccount
     }page=${1}&size=${1000}`,
     isDataTable: true,
     callGetApiOnRender: true,
@@ -27,7 +27,7 @@ const SubAccount = () => {
   const {
     tableData,
     originalTableData,
-  }: AppState<Array<APIResponse.SubAccount>> = usePageStore<AppState>(
+  }: AppState<Array<APIResponse.SplitAccount>> = usePageStore<AppState>(
     (state) => state
   );
 
@@ -37,7 +37,7 @@ const SubAccount = () => {
   // const onPaginate = useCallback(
   //   (page: number, size: number) => {
   //     callGetData(
-  //       `${endpoints.Account.GetSubAccount}page=${page}&size=${size}`
+  //       `${endpoints.Account.GetSplitAccount}page=${page}&size=${size}`
   //     );
   //   },
   //   []
@@ -46,12 +46,12 @@ const SubAccount = () => {
   const filterByMerchant = useCallback((merchantId: number) => {
     callGetData(
       `${
-        endpoints.Account.GetSubAccount
+        endpoints.Account.GetSplitAccount
       }page=${1}&size=${10000}&mid=${merchantId}`
     );
   }, []);
   const onClear = useCallback(() => {
-    callGetData(`${endpoints.Account.GetSubAccount}page=${1}&size=${100000}`);
+    callGetData(`${endpoints.Account.GetSplitAccount}page=${1}&size=${100000}`);
   }, []);
 
   const merchantContent = useMemo(() => {
@@ -100,7 +100,7 @@ const SubAccount = () => {
           <></>
         )}
       </TableFilter>
-      <OliveTable<APIResponse.SubAccount>
+      <OliveTable<APIResponse.SplitAccount>
         emptyHeadingText={
           <h3>
             You have not created any sub-account, they’ll appear here once you
@@ -111,7 +111,7 @@ const SubAccount = () => {
         emptyDataTableDescriptionText=""
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}
-        columns={SubAccountColumn}
+        columns={SplitAccountColumn}
         spinning={fetching}
         //onPagination={onPaginate}
       />
@@ -119,4 +119,4 @@ const SubAccount = () => {
   );
 };
 
-export default SubAccount;
+export default SplitAccount;

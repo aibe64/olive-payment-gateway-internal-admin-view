@@ -3,13 +3,13 @@ import { APIResponse } from "@/models";
 import { List } from "antd";
 import { FC } from "react";
 
-export const SubAccountDetails: FC<{ record?: APIResponse.SubAccount }> = ({
+export const SplitAccountDetails: FC<{ record?: APIResponse.SplitAccount }> = ({
   record,
 }) => {
   const data = [
     {
       key: "Sub-Account Name",
-      value: <span>{record?.subAccountName ?? "N/A"}</span>,
+      value: <span>{record?.SplitAccountName ?? "N/A"}</span>,
     },
     {
       key: "Currency",
@@ -17,7 +17,7 @@ export const SubAccountDetails: FC<{ record?: APIResponse.SubAccount }> = ({
     },
     {
       key: "Sub-Account Email",
-      value: <span>{record?.subAccountEmail ?? "N/A"}</span>,
+      value: <span>{record?.SplitAccountEmail ?? "N/A"}</span>,
     },
     {
       key: "Account Number",
@@ -36,7 +36,7 @@ export const SubAccountDetails: FC<{ record?: APIResponse.SubAccount }> = ({
       value: (
         <span>
           {record?.splitType === "percentage"
-            ? `You - ${record.merchantSharePercentage}%, S -${record.subAccountShareOfPercentage}%`
+            ? `You - ${record.merchantSharePercentage}%, S -${record.SplitAccountShareOfPercentage}%`
             : `${Format.toNaira(record?.flatAmount?.toString() ?? "0.00")}(flat)`}
         </span>
       ),

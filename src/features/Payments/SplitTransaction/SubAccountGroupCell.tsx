@@ -5,8 +5,8 @@ interface Props {
   transaction: APIResponse.SplitTransaction;
 }
 
-export const SubAccountGroupCell: React.FC<Props> = ({ transaction }) => {
-  const group = transaction?.subAccountGroup;
+export const SplitAccountGroupCell: React.FC<Props> = ({ transaction }) => {
+  const group = transaction?.SplitAccountGroup;
 
   if (!group) return <span className="text-gray-400 italic">No Split</span>;
 
@@ -14,7 +14,7 @@ export const SubAccountGroupCell: React.FC<Props> = ({ transaction }) => {
     <div>
       <strong>{group.groupName}</strong>
       <ul className="mt-1 text-sm text-gray-600 space-y-1">
-        {group.subAccounts.map((sub, idx) => (
+        {group.SplitAccounts.map((sub, idx) => (
           <li key={sub.id || idx}>
             {sub.accountNumber} ({sub.bankName}) —{" "}
             <span className="text-[#FF6D00] font-medium">

@@ -57,20 +57,20 @@ export const menuList: Props.MenuListProps[] = [
         path: ROUTE_PATH.Transaction,
       },
       {
-        label: "Split",
-        path: ROUTE_PATH.Split,
+        label: "Split Transaction",
+        path: ROUTE_PATH.SplitTransaction,
+      },
+      // {
+      //   label: "Store",
+      //   path: ROUTE_PATH.Store,
+      // },
+      {
+        label: "Split Account",
+        path: ROUTE_PATH.SplitAccount,
       },
       {
-        label: "Store",
-        path: ROUTE_PATH.Store,
-      },
-      {
-        label: "Sub Account",
-        path: ROUTE_PATH.SubAccount,
-      },
-      {
-        label: "Sub Account Group",
-        path: ROUTE_PATH.SubAccountGroup,
+        label: "Split Account Group",
+        path: ROUTE_PATH.SplitAccountGroup,
       },
     ],
   },

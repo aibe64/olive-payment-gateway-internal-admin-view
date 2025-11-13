@@ -6,7 +6,7 @@ import { lazy } from "react";
 const MerchantPage = lazy(() => import("@/features/Merchant"));
 const TransactionPage = lazy(() => import("@/features/Payments/Transactions"));
 // const StoreTransactionPage = lazy(() => import("@/features/Payments/Store"));
-const SplitTransactionPage = lazy(() => import("@/features/Payments/Split"));
+const SplitTransactionPage = lazy(() => import("@/features/Payments/SplitTransaction"));
 // const MerchantApprovalPage = lazy(() => import("@/features/Approval/Merchant"));
 const ProviderPage = lazy(() => import("@/features/Setup/Provider"));
 const BinPage = lazy(() => import("@/features/Setup/Bin"));
@@ -21,9 +21,9 @@ const TransactionManagerPage = lazy(
   () => import("@/features/Setup/TransactionManager")
 );
 const Dashboard = lazy(() => import("@/features/Dashboard"));
-const SubAccountPage = lazy(() => import("@/features/Payments/SubAccount"));
+const SplitAccountPage = lazy(() => import("@/features/Payments/SplitAccount"));
 const SplitPaymentPage = lazy(
-  () => import("@/features/Payments/SubAccountGroup")
+  () => import("@/features/Payments/SplitAccountGroup")
 );
 const NqrMerchantPage = lazy(() => import("@/features/NQR/Merchant"));
 const NqrSubMerchantPage = lazy(() => import("@/features/NQR/SubMerchant"));
@@ -54,7 +54,7 @@ export const privateRoutes = [
         Component: TransactionPage,
       },
       {
-        path: ROUTE_PATH.Split,
+        path: ROUTE_PATH.SplitTransaction,
         Component: SplitTransactionPage,
       },
       // {
@@ -102,11 +102,11 @@ export const privateRoutes = [
         Component: UAuthorizedPage,
       },
       {
-        path: ROUTE_PATH.SubAccount,
-        Component: SubAccountPage,
+        path: ROUTE_PATH.SplitAccount,
+        Component: SplitAccountPage,
       },
       {
-        path: ROUTE_PATH.SubAccountGroup,
+        path: ROUTE_PATH.SplitAccountGroup,
         Component: SplitPaymentPage,
       },
       {

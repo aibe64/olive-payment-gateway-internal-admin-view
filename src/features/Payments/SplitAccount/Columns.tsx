@@ -2,16 +2,16 @@ import { APIResponse } from "@/models";
 import { ColumnProps } from "antd/es/table";
 import { OliveTableActions } from "@/components";
 import { Format } from "@/lib";
-import { SubAccountDetails } from "./Details";
+import { SplitAccountDetails } from "./Details";
 
-export const SubAccountColumn: ColumnProps<APIResponse.SubAccount>[] = [
+export const SplitAccountColumn: ColumnProps<APIResponse.SplitAccount>[] = [
   {
     title: "Name",
     width: "25%",
     key: "2",
     ellipsis: true,
     render(_, record) {
-      return record.subAccountName ?? "N/A";
+      return record.SplitAccountName ?? "N/A";
     },
   },
   {
@@ -80,7 +80,7 @@ export const SubAccountColumn: ColumnProps<APIResponse.SubAccount>[] = [
               { title: "View", action: "View", modalWidth: 450 },
             ]}
             components={{
-              View: <SubAccountDetails record={record} />,
+              View: <SplitAccountDetails record={record} />,
             }}
           />
         </div>

@@ -247,11 +247,11 @@ export const GetExcelColumnValue = (
   return "N/A";
 };
 
-export const formatSplitDetails = (group: APIResponse.SubAccountGroupData) => {
-  let subAccountGroupFormatted = "No Split";
+export const formatSplitDetails = (group: APIResponse.SplitAccountGroupData) => {
+  let SplitAccountGroupFormatted = "No Split";
   if (group) {
     const groupName = group.groupName || "Unnamed Split";
-    const accounts = group.subAccounts
+    const accounts = group.SplitAccounts
       .map((sub) => {
         return `${sub.accountNumber} - ${sub.accountName}(${sub.bankName}) - ${
           sub.percentage ? `${sub.percentage}%` : ""
@@ -262,7 +262,7 @@ export const formatSplitDetails = (group: APIResponse.SubAccountGroupData) => {
         }`;
       })
       .join("; ");
-    subAccountGroupFormatted = `${groupName}: ${accounts}`;
+    SplitAccountGroupFormatted = `${groupName}: ${accounts}`;
   }
-  return subAccountGroupFormatted;
+  return SplitAccountGroupFormatted;
 };

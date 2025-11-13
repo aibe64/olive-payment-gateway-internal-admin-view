@@ -6,13 +6,13 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { usePageStore } from "@/store";
 import { endpoints } from "@/service";
 import { useAPI } from "@/hooks";
-import { SubAccountColumn } from "./Columns";
+import { SplitAccountColumn } from "./Columns";
 import { useCallback, useMemo } from "react";
 
-const SubAccountGroup = () => {
+const SplitAccountGroup = () => {
   const { fetching, callGetData } = useAPI({
     queryDataEndpoint: `${
-      endpoints.Account.GetSubAccountGroup
+      endpoints.Account.GetSplitAccountGroup
     }page=${1}&size=${1000}`,
     isDataTable: true,
     callGetApiOnRender: true,
@@ -28,21 +28,21 @@ const SubAccountGroup = () => {
   const {
     tableData,
     originalTableData,
-  }: AppState<Array<APIResponse.SubAccountGroup>> = usePageStore<AppState>(
+  }: AppState<Array<APIResponse.SplitAccountGroup>> = usePageStore<AppState>(
     (state) => state
   );
 
   const filterByMerchant = useCallback((merchantId: number) => {
     callGetData(
       `${
-        endpoints.Account.GetSubAccountGroup
+        endpoints.Account.GetSplitAccountGroup
       }page=${1}&size=${10}&mid=${merchantId}`
     );
   }, []);
 
   const onClear = useCallback(() => {
     callGetData(
-      `${endpoints.Account.GetSubAccountGroup}page=${1}&size=${100000}`
+      `${endpoints.Account.GetSplitAccountGroup}page=${1}&size=${100000}`
     );
   }, []);
 
@@ -76,10 +76,10 @@ const SubAccountGroup = () => {
 
   const excelData = tableDataWithoutId.map((data) => ({
     ...data,
-    subAccounts: data.subAccounts
+    SplitAccounts: data.SplitAccounts
       ?.map(
         (account) =>
-          `${account.subAccountName}(${
+          `${account.SplitAccountName}(${
             (account.percentage as number) > 0
               ? account.percentage
               : account.amount
@@ -112,7 +112,7 @@ const SubAccountGroup = () => {
           <></>
         )}
       </TableFilter>
-      <OliveTable<APIResponse.SubAccountGroup>
+      <OliveTable<APIResponse.SplitAccountGroup>
         emptyHeadingText={
           <h3>
             You have not created any Split Payment, they’ll appear here once you
@@ -123,11 +123,11 @@ const SubAccountGroup = () => {
         emptyDataTableDescriptionText=""
         dataSource={tableData ?? []}
         originalSource={originalTableData ?? []}
-        columns={SubAccountColumn}
+        columns={SplitAccountColumn}
         spinning={fetching}
       />
     </div>
   );
 };
 
-export default SubAccountGroup;
+export default SplitAccountGroup;

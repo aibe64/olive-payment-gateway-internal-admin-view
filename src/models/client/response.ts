@@ -305,10 +305,10 @@ export namespace APIResponse {
     transactionNumber: string;
     transactionDate: string;
     splitPaymentReference: string;
-    subAccountGroup: SubAccountGroupData;
+    SplitAccountGroup: SplitAccountGroupData;
   }
 
-  export interface SubAccountGroupData {
+  export interface SplitAccountGroupData {
     id: string;
     groupName: string;
     splitType: string;
@@ -317,19 +317,19 @@ export namespace APIResponse {
     dateModified: string;
     createdBy: string;
     updatedBy: string;
-    subAccounts: SubAccountData[];
+    SplitAccounts: SplitAccountData[];
   }
 
-  export interface SubAccountData {
+  export interface SplitAccountData {
     id: string;
-    subAccountName: string;
+    SplitAccountName: string;
     percentage: number;
     amount: number;
     accountNumber: string;
     bankName: string;
     bankCode: string;
     accountName: string;
-    subAccountId: string;
+    SplitAccountId: string;
   }
 
   export interface StoreTransactionsData {
@@ -574,11 +574,11 @@ export namespace APIResponse {
     isInternalUser: boolean;
   }
 
-  export interface SubAccount {
+  export interface SplitAccount {
     id: number;
     merchantId: number;
-    subAccountName: string;
-    subAccountEmail: string;
+    SplitAccountName: string;
+    SplitAccountEmail: string;
     currency: string;
     splitType: "percentage" | "flat";
     bankName: string;
@@ -587,30 +587,30 @@ export namespace APIResponse {
     accountName: string;
     flatAmount: number;
     merchantSharePercentage: number;
-    subAccountShareOfPercentage: number;
+    SplitAccountShareOfPercentage: number;
     dateCreated: string;
     dateModified: any;
     createdBy: string;
     updatedBy: any;
   }
-  export interface SubAccountGroup {
+  export interface SplitAccountGroup {
     id: number;
     groupName: string;
     splitType: string;
     currency: string;
     deductFeeFrom: string;
-    subAccounts?: SubAccountDetails[];
+    SplitAccounts?: SplitAccountDetails[];
     dateCreated: string;
     dateModified: any;
     createdBy: string;
     updatedBy: any;
     splitReference?: string;
   }
-  export interface SubAccountDetails {
+  export interface SplitAccountDetails {
     amount?: number;
     percentage?: number;
     id: number;
-    subAccountName?: string;
+    SplitAccountName?: string;
   }
   export interface AuditTrails {
     items: AuditTrailItems[];

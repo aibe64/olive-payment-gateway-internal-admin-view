@@ -95,7 +95,7 @@ export const GET_SPLIT_TRANSACTIONS: DocumentNode = gql`
         transactionNumber
         transactionDate
         splitPaymentReference
-        subAccountGroup {
+        SplitAccountGroup {
           id
           groupName
           splitType
@@ -104,16 +104,16 @@ export const GET_SPLIT_TRANSACTIONS: DocumentNode = gql`
           dateModified
           createdBy
           updatedBy
-          subAccounts {
+          SplitAccounts {
             id
-            subAccountName
+            SplitAccountName
             percentage
             amount
             accountNumber
             bankName
             bankCode
             accountName
-            subAccountId
+            SplitAccountId
           }
         }
       }
