@@ -21,7 +21,8 @@ export const TimeOut = () => {
         <Button
           type="primary"
           onClick={() =>
-            (window.location.href = AppConfig.MERCHANT_ONBOARDING_URL)
+            // (window.location.href = AppConfig.MERCHANT_ONBOARDING_URL)
+            (window.location.href = '/')
           }
           className="px-5 mx-auto shadow-none"
         >
