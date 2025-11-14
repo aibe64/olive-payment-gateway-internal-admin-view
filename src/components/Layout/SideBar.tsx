@@ -34,8 +34,10 @@ const SideBar: React.FC<{ className?: string }> = ({ className }) => {
             </Tooltip>
           </div>
         </div>
+        
         <OliveMenuItems />
       </div>
+
       <div className="absolute bottom-0 p-5 hidden lg:block">
         <Typography
           className="!font-inter-medium text-gray-text !text-[11px]"
