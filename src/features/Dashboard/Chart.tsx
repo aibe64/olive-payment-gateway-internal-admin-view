@@ -119,19 +119,25 @@ const Component = () => {
             />
           </div>
 
-          {yearlyData?.length ? (
-            <Area {...config} />
-          ) : (
-            <div className="flex justify-center w-[130%] mt-[25%]">
-              <Empty className=" -translate-x-1/2 -translate-y-1/2" />
-            </div>
-          )}
+          {
+            yearlyData?.length
+              ? (
+                <div className="h-full">
+                  <Area {...config} />
+                </div>
+              ) 
+              : (
+                <div className="flex justify-center w-[130%] mt-[25%]">
+                  <Empty className=" -translate-x-1/2 -translate-y-1/2" />
+                </div>
+              )
+          }
         </div>
         <div className="rounded-lg border-gray-100 border-[0.5px] p-4">
           <span className="text-gray-text dark:text-white">
             Payment Channels
           </span>
-          <div className="gap-2 mt-4 -mb-[2rem] grid grid-cols-2 mb-1">
+          <div className="gap-2 mt-4 grid grid-cols-2 mb-1">
             <div className="flex gap-2 items-center">
               <span className="font-inter-semibold">Card</span>
               <span>
@@ -159,7 +165,7 @@ const Component = () => {
                 )}
               </span>
             </div>
-            <div className="flex gap-1 items-center">
+            {/* <div className="flex gap-1 items-center">
               <span className="font-inter-semibold">Account</span>
               <span>
                 {Format.toNaira(
@@ -169,7 +175,7 @@ const Component = () => {
               </span>
             </div>
             <div className="flex gap-1 items-center">
-              <span className="font-inter-semibold">QR</span>
+              <span className="font-inter-semibold">NQR</span>
               <span>
                 {Format.toNaira(
                   item?.totalQRAmount?.toString() ?? "0.00",
@@ -185,7 +191,7 @@ const Component = () => {
                   dashboardFilterCurrency
                 )}
               </span>
-            </div>
+            </div> */}
           </div>
           {item ? (
             <Pie {...pieConfig} />
@@ -204,21 +210,21 @@ const Component = () => {
               <span>Transfer</span>
             </div>
             <div className="flex gap-1 items-center">
+              <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" />{" "}
+              <span>USSD</span>
+            </div>
+            {/* <div className="flex gap-1 items-center">
               <div className="w-[0.5rem] h-[0.5rem] bg-[#ff6666]" />{" "}
               <span>Account</span>
             </div>
             <div className="flex gap-1 items-center">
               <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" />{" "}
-              <span>USSD</span>
-            </div>
-            <div className="flex gap-1 items-center">
-              <div className="w-[0.5rem] h-[0.5rem] bg-[#9966cc]" />{" "}
-              <span>QR</span>
+              <span>NQR</span>
             </div>
             <div className="flex gap-1 items-center">
               <div className="w-[0.5rem] h-[0.5rem] bg-[#1a75ff]" />{" "}
               <span>eNaira</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

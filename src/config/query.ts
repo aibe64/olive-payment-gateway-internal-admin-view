@@ -58,17 +58,8 @@ export const GET_SPLIT_TRANSACTIONS: DocumentNode = gql`
       items {
         id
         transactionReference
-        firstname
-        lastname
         amount
         paymentType
-        pageName
-        pageType
-        paymentLinkReference
-        publicKey
-        clientRedirectUrl
-        expiryMonth
-        expiryYear
         email
         currency
         transactionId
@@ -84,7 +75,6 @@ export const GET_SPLIT_TRANSACTIONS: DocumentNode = gql`
         paymentResponseMessage
         dateCreated
         dateModified
-        billerCode
         mandateCode
         transType
         cardPan
@@ -93,9 +83,15 @@ export const GET_SPLIT_TRANSACTIONS: DocumentNode = gql`
         productId
         merchantName
         transactionNumber
+        pageName
+        paymentLinkReference
+        pageType
+        name
         transactionDate
         splitPaymentReference
-        SplitAccountGroup {
+        isSplitPayment
+        isMultipleSplit
+        subAccountGroup {
           id
           groupName
           splitType
@@ -104,16 +100,16 @@ export const GET_SPLIT_TRANSACTIONS: DocumentNode = gql`
           dateModified
           createdBy
           updatedBy
-          SplitAccounts {
+          subAccounts {
             id
-            SplitAccountName
+            subAccountName
             percentage
             amount
             accountNumber
             bankName
             bankCode
             accountName
-            SplitAccountId
+            subAccountId
           }
         }
       }

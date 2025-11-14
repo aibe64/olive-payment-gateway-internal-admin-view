@@ -159,7 +159,6 @@ export const DashboardFilter = () => {
         showSearch
         onFocus={() => callMerchant(endpoints.SetUp.GetAllMerchant)}
         options={merchantItem ?? []}
-        showSearch
         filterOption={(input, option) =>
           (option?.label ?? "")
             .toString()
@@ -222,29 +221,29 @@ export const DashboardFilter = () => {
             value: "Card",
           },
           {
-            label: "Account",
-            value: "Account",
-          },
-          {
-            label: "QR",
-            value: "QR",
+            label: "Transfer",
+            value: "Transfer",
           },
           {
             label: "USSD",
             value: "USSD",
           },
-          {
-            label: "Wallet",
-            value: "Wallet",
-          },
-          {
-            label: "Transfer",
-            value: "Transfer",
-          },
-          {
-            label: "ENaira",
-            value: "ENaira",
-          },
+          // {
+          //   label: "Account",
+          //   value: "Account",
+          // },
+          // {
+          //   label: "NQR",
+          //   value: "NQR",
+          // },
+          // {
+          //   label: "Wallet",
+          //   value: "Wallet",
+          // },
+          // {
+          //   label: "ENaira",
+          //   value: "ENaira",
+          // },
         ]}
       />
       <DatePicker.RangePicker

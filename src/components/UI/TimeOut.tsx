@@ -2,7 +2,6 @@ import { AppStorage } from "@/store";
 import { Button, Typography } from "antd";
 import { WarningFilled } from "@ant-design/icons";
 import { useEffect } from "react";
-import { AppConfig } from "@/config";
 
 export const TimeOut = () => {
   useEffect(() => {
