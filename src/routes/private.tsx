@@ -101,14 +101,14 @@ export const privateRoutes = [
         path: ROUTE_PATH.UnAuthorize,
         Component: UAuthorizedPage,
       },
-      {
-        path: ROUTE_PATH.SplitAccount,
-        Component: SplitAccountPage,
-      },
-      {
-        path: ROUTE_PATH.SplitAccountGroup,
-        Component: SplitPaymentPage,
-      },
+      // {
+      //   path: ROUTE_PATH.SplitAccount,
+      //   Component: SplitAccountPage,
+      // },
+      // {
+      //   path: ROUTE_PATH.SplitAccountGroup,
+      //   Component: SplitPaymentPage,
+      // },
       {
         path: ROUTE_PATH.QrMerchant,
         Component: NqrMerchantPage,
