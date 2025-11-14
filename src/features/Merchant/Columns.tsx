@@ -84,7 +84,7 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantDetails>[] = [
           ) : record.approvalStatus === 3 ? (
             <Tag color={"red"}>Disapproved</Tag>
           ) : (
-            ""
+            "---"
           )}
         </div>
       );

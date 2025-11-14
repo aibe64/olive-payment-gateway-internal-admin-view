@@ -84,7 +84,6 @@ const Merchant: React.FC = () => {
   return (
     <div className="flex flex-col gap-5">
       <PageTitle
-        totalDataCount={data?.length ?? 0}
         title="Merchant Management"
       />
       <div className="flex justify-between">

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import { FloatButton, Typography } from "antd";
+import { Typography } from "antd";
 import { useModalStore, usePageStore } from "@/store";
 import { State } from "@/models";
 import { TimeOut, WarningHeader } from "../UI";
@@ -49,7 +49,6 @@ export const HomeLayout = () => {
           <Outlet />
         </section>
       </main>
-      <FloatButton />
     </div>
   );
 };

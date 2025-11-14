@@ -42,7 +42,7 @@ const Role = () => {
 
   return (
     <div className="flex flex-col gap-5">
-      <PageTitle totalDataCount={tableData?.length ?? 0} title="Role" />
+      <PageTitle title="Role" />
       {originalTableData?.length ? (
         <TableFilter filterTypes={["dateRange"]}>
           <div className="flex gap-2 items-center">

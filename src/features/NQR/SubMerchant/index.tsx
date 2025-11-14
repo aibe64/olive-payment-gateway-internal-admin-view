@@ -40,16 +40,18 @@ const NqrSubMerchant = () => {
 
   return (
     <div className="flex flex-col gap-5">
-      <PageTitle totalDataCount={tableData?.length ?? 0} title="Sub Merchant" />
+      <PageTitle title="Sub Merchant" />
+      
       <TableFilter>
-          <div className="flex gap-2 items-center">
-            <OliveButton
-              classNames="!py-5"
-              onClick={onAddButton}
-              title="Add Sub Merchant"
-            />
-          </div>
-        </TableFilter>
+        <div className="flex gap-2 items-center">
+          <OliveButton
+            classNames="!py-5"
+            onClick={onAddButton}
+            title="Add Sub Merchant"
+          />
+        </div>
+      </TableFilter>
+
       <OliveTable<APIResponse.QrSubMerchant>
         columns={binColumn}
         dataSource={tableData ?? []}

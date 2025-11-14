@@ -42,7 +42,8 @@ const NqrMerchant = () => {
 
   return (
     <div className="flex flex-col gap-5">
-      <PageTitle totalDataCount={tableData?.length ?? 0} title="NQR Merchant" />
+      <PageTitle title="NQR Merchant" />
+
       <TableFilter>
         <div className="flex gap-2 items-center">
           <OliveButton

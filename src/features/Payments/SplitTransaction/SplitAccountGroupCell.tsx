@@ -8,6 +8,8 @@ interface Props {
 export const SplitAccountGroupCell: React.FC<Props> = ({ transaction }) => {
   const group = transaction?.SplitAccountGroup;
 
+  if (!group) return <span className="text-gray-400 italic">No Split</span>;
+
   return (
     <div>
       <strong>{group.groupName}</strong>
