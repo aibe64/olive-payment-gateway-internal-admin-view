@@ -33,8 +33,8 @@ export const SplitAccountGroupDetails: FC<{
             <h1 className="font-inter-semibold">%</h1>{" "}
             <h1 className="font-inter-semibold">Flat</h1>
           </div>
-          {record?.SplitAccounts?.map((account) => (
-            <div className="grid grid-cols-[50%_24%_24%] gap-1">
+          {record?.SplitAccounts?.map((account, i) => (
+            <div key={i} className="grid grid-cols-[50%_24%_24%] gap-1">
               <span>{account.SplitAccountName}</span>
               <span>
                 {(account.percentage as number) > 0

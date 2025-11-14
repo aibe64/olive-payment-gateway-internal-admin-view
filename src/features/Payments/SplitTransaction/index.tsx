@@ -39,9 +39,6 @@ const SplitTransactions = () => {
   return (
     <div className="space-y-4">
       <PageTitle
-        totalDataCount={
-          splitTransactionData?.splitTransactions?.totalCount ?? 0
-        }
         title="Split Transactions"
       />
       {hasDataOnRender ? <TransactionFilter /> : ""}

@@ -81,7 +81,7 @@ const SplitAccount = () => {
 
   return (
     <div className="space-y-4">
-      <PageTitle totalDataCount={tableData?.length ?? 0} title="Sub-Account" />
+      <PageTitle title="Sub-Account" />
       <TableFilter hideFilterField customFilter={merchantContent}>
         {originalTableData?.length ? (
           <div className="flex gap-2 items-center">

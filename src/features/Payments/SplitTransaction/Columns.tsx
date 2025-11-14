@@ -5,7 +5,7 @@ import { Format } from "@/lib";
 import { Typography } from "antd";
 import { TransactionSummary } from "./Summary";
 import { TransactionReceipt } from "./TransactionReciept";
-import { SplitAccountGroupCell } from "./SplitAccountGroupCell";
+// import { SplitAccountGroupCell } from "./SplitAccountGroupCell";
 import { CopyOutlined } from "@ant-design/icons";
 
 export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
@@ -13,7 +13,7 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     title: "Customer Email",
     dataIndex: "email",
     width: "15%",
-    key: "2",
+    key: "email",
     ellipsis: true,
     render(_, record) {
       return record.email ?? "N/A";
@@ -23,7 +23,7 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     title: "Merchant Name",
     dataIndex: "merchantName",
     width: "15%",
-    key: "2",
+    key: "merchantName",
     ellipsis: true,
     render(_, record) {
       return record.merchantName ?? "N/A";
@@ -33,7 +33,7 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     title: "Amount",
     dataIndex: "amount",
     width: "15%",
-    key: "1",
+    key: "amount",
     ellipsis: true,
     render(_, record) {
       return `${Format.toNaira(
@@ -46,7 +46,7 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     title: "Reference",
     dataIndex: "transactionReference",
     width: "20%",
-    key: "4",
+    key: "transactionReference",
     ellipsis: true,
     render(_, record) {
       return (
@@ -65,7 +65,7 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     title: "Date",
     dataIndex: "createdBy",
     width: "15%",
-    key: "1",
+    key: "createdBy",
     ellipsis: true,
     render(_, record) {
       const dates = Format.toDateTime(record.dateCreated).split("-");
@@ -78,19 +78,26 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     },
   },
   {
-    title: "Split Details",
-    width: "50%",
-    key: "40",
+    title: "Transaction Date",
+    dataIndex: "transactionDate",
+    width: "15%",
+    key: "transactionDate",
     ellipsis: true,
-    render: (_: any, record: APIResponse.SplitTransaction) => (
-      <SplitAccountGroupCell transaction={record} />
-    ),
+    render(_, record) {
+      const dates = Format.toDateTime(record.transactionDate).split("-");
+      return (
+        <div className="flex flex-col items-flex-start w-full">
+          <span>{dates[0]}</span>
+          <span>{dates[1]}</span>
+        </div>
+      );
+    },
   },
   // {
   //   title: "Deduct Fee From",
   //   dataIndex: "merchantName",
   //   width: "15%",
-  //   key: "15",
+  //   key: "merchantName",
   //   ellipsis: true,
   //   render(_, record) {
   //     return (

@@ -21,10 +21,10 @@ const TransactionManagerPage = lazy(
   () => import("@/features/Setup/TransactionManager")
 );
 const Dashboard = lazy(() => import("@/features/Dashboard"));
-const SplitAccountPage = lazy(() => import("@/features/Payments/SplitAccount"));
-const SplitPaymentPage = lazy(
-  () => import("@/features/Payments/SplitAccountGroup")
-);
+// const SplitAccountPage = lazy(() => import("@/features/Payments/SplitAccount"));
+// const SplitPaymentPage = lazy(
+//   () => import("@/features/Payments/SplitAccountGroup")
+// );
 const NqrMerchantPage = lazy(() => import("@/features/NQR/Merchant"));
 const NqrSubMerchantPage = lazy(() => import("@/features/NQR/SubMerchant"));
 // const AuditTrailPage = lazy(() => import("@/features/AuditTrail"));
