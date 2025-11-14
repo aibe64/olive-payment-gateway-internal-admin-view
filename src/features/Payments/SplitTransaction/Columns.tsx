@@ -5,7 +5,6 @@ import { Format } from "@/lib";
 import { Typography } from "antd";
 import { TransactionSummary } from "./Summary";
 import { TransactionReceipt } from "./TransactionReciept";
-// import { SplitAccountGroupCell } from "./SplitAccountGroupCell";
 import { CopyOutlined } from "@ant-design/icons";
 
 export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
@@ -62,22 +61,6 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
     },
   },
   {
-    title: "Date",
-    dataIndex: "createdBy",
-    width: "15%",
-    key: "createdBy",
-    ellipsis: true,
-    render(_, record) {
-      const dates = Format.toDateTime(record.dateCreated).split("-");
-      return (
-        <div className="flex flex-col items-flex-start w-full">
-          <span>{dates[0]}</span>
-          <span>{dates[1]}</span>
-        </div>
-      );
-    },
-  },
-  {
     title: "Transaction Date",
     dataIndex: "transactionDate",
     width: "15%",
@@ -93,26 +76,20 @@ export const TransactionColumns: ColumnProps<APIResponse.SplitTransaction>[] = [
       );
     },
   },
-  // {
-  //   title: "Deduct Fee From",
-  //   dataIndex: "merchantName",
-  //   width: "15%",
-  //   key: "merchantName",
-  //   ellipsis: true,
-  //   render(_, record) {
-  //     return (
-  //       <div>
-  //         {record.SplitAccountGroup.deductFeeFrom ? (
-  //           <span className="capitalize">
-  //             {record.SplitAccountGroup.deductFeeFrom?.replace("_", " ")}
-  //           </span>
-  //         ) : (
-  //           <span>N/A</span>
-  //         )}
-  //       </div>
-  //     );
-  //   },
-  // },
+  {
+    title: "Payer Name",
+    dataIndex: "name",
+    width: "15%",
+    key: "name",
+    ellipsis: true,
+    render(_, record) {
+      return (
+        <div className="flex flex-col items-flex-start w-full capitalize">
+          <span>{record.name?.toLocaleLowerCase()}</span>
+        </div>
+      );
+    },
+  },
   {
     title: "Status",
     width: "12%",

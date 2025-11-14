@@ -265,46 +265,41 @@ export namespace APIResponse {
   }
 
   export interface SplitTransaction {
-    id: string;
-    transactionReference: string;
-    firstname: string;
-    lastname: string;
-    amount: number;
-    paymentType: string;
-    pageName: string;
-    pageType: string;
-    paymentLinkReference: string;
-    publicKey: string;
-    clientRedirectUrl: string;
-    expiryMonth: string;
-    expiryYear: string;
-    email: string;
-    currency: string;
-    transactionId: string;
-    oliveReference: string;
-    providerReference: string;
-    phoneNumber: string;
-    narration: string;
-    cardBin: string;
-    brand: string;
-    cardType: string;
-    processor: string;
-    merchantId: string;
-    paymentResponseCode: string;
-    paymentResponseMessage: string;
-    dateCreated: string;
-    dateModified: string;
-    billerCode: string;
-    mandateCode: string;
-    transType: string;
-    cardPan: string;
-    metaData: string;
-    productDescription: string;
-    productId: string;
-    merchantName: string;
-    transactionNumber: string;
-    transactionDate: string;
-    splitPaymentReference: string;
+    id: number
+    transactionReference: string
+    amount: number
+    paymentType: string
+    email: string
+    currency: string
+    transactionId: string
+    providerReference: string | null
+    phoneNumber: string
+    narration: string
+    cardBin: string | null
+    brand: string
+    cardType: string
+    processor: string
+    merchantId:string
+    paymentResponseCode: string
+    paymentResponseMessage: string
+    dateCreated: string
+    dateModified: string
+    mandateCode: string | null
+    transType: string | null
+    cardPan: string
+    metaData:string
+    productDescription: string
+    productId: string
+    merchantName: string
+    transactionNumber: string
+    pageName: string | null
+    paymentLinkReference: string | null
+    pageType: string | null
+    name: string
+    transactionDate: string
+    splitPaymentReference: string | null
+    isSplitPayment: boolean
+    isMultipleSplit: boolean
     SplitAccountGroup: SplitAccountGroupData;
   }
 
@@ -580,7 +575,7 @@ export namespace APIResponse {
     SplitAccountName: string;
     SplitAccountEmail: string;
     currency: string;
-    splitType: "percentage" | "flat";
+    splitType: string  | "flat";
     bankName: string;
     bankCode: string;
     accountNumber: string;
