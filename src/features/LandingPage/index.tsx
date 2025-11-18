@@ -55,11 +55,11 @@ const Home: React.FC = () => {
                     <span className="font-semibold">Remember Me</span>
                   </Checkbox> */}
 
-                  <OliveButton.Link
+                  {/* <OliveButton.Link
                     title="Forgot Password?"
                     classNames="font-bold underline"
                     onClick={() => handleLinkClick('forgot-password')}
-                  />
+                  /> */}
                 </div>
 
                 <div className="flex flex-col">
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
 
           {/* link container */}
           <section className='text-center'>
-            <div className='text-sm'>
+            {/* <div className='text-sm'>
               <span>Don&apos;t have an account? </span>
 
               <OliveButton.Link
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
                 classNames='font-extrabold'
                 onClick={handleLinkClick}
               />
-            </div>
+            </div> */}
           </section>
         </div>
       </div>
