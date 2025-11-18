@@ -17,9 +17,9 @@ const PaymentMethodPage = lazy(() => import("@/features/Setup/PaymentMethod"));
 // const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
 const ProfilePage = lazy(() => import("@/features/Settings"));
 const UAuthorizedPage = lazy(() => import("@/features/UnAuthorize"));
-const TransactionManagerPage = lazy(
-  () => import("@/features/Setup/TransactionManager")
-);
+// const TransactionManagerPage = lazy(
+//   () => import("@/features/Setup/TransactionManager")
+// );
 const Dashboard = lazy(() => import("@/features/Dashboard"));
 // const SplitAccountPage = lazy(() => import("@/features/Payments/SplitAccount"));
 // const SplitPaymentPage = lazy(
