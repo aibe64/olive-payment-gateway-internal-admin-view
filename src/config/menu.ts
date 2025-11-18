@@ -86,10 +86,10 @@ export const menuList: Props.MenuListProps[] = [
         label: "BIN",
         path: ROUTE_PATH.Bin,
       },
-      {
-        label: "Transaction Manager",
-        path: ROUTE_PATH.TransactionManager,
-      },
+      // {
+      //   label: "Transaction Manager",
+      //   path: ROUTE_PATH.TransactionManager,
+      // },
       {
         label: "Institutions",
         path: ROUTE_PATH.Institution,

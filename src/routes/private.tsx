@@ -77,10 +77,10 @@ export const privateRoutes = [
         path: ROUTE_PATH.Institution,
         Component: InstitutionPage,
       },
-      {
-        path: ROUTE_PATH.TransactionManager,
-        Component: TransactionManagerPage,
-      },
+      // {
+      //   path: ROUTE_PATH.TransactionManager,
+      //   Component: TransactionManagerPage,
+      // },
       {
         path: ROUTE_PATH.PaymentMethod,
         Component: PaymentMethodPage,
