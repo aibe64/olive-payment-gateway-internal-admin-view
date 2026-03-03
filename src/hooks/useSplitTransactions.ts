@@ -66,7 +66,7 @@ export const useSplitTransactions = (callReportOnRender: boolean = true) => {
   const downloadDataToExcel = useCallback(() => {
     if (payload) {
       downloadData(
-        `${AppConfig.GRAPHQL_URL}/api/${endpoints.Report.DownloadSplit}?Page=1&PageSize=${splitTransactionData?.splitTransactions?.totalCount}`,
+        `${AppConfig.API_BASE_URL}${endpoints.Report.DownloadSplit}?Page=1&PageSize=${splitTransactionData?.splitTransactions?.totalCount}`,
         {
           ...payload,
           status: payload?.status === "All" ? undefined : payload?.status,
@@ -80,7 +80,7 @@ export const useSplitTransactions = (callReportOnRender: boolean = true) => {
       );
     } else {
       downloadData(
-        `${AppConfig.GRAPHQL_URL}/api/${endpoints.Report.DownloadSplit}?Page=1&PageSize=${splitTransactionData?.splitTransactions?.totalCount}`,
+        `${AppConfig.API_BASE_URL}${endpoints.Report.DownloadSplit}?Page=1&PageSize=${splitTransactionData?.splitTransactions?.totalCount}`,
         {}
       );
     }
