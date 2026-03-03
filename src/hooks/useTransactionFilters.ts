@@ -28,7 +28,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
   const downloadDataToExcel = useCallback(() => {
     if (payload) {
       downloadData(
-        `${AppConfig.API_BASE_URL}/${endpoints.Report.Download}?Page=1&PageSize=${transactionData?.transactions.totalCount}`,
+        `${AppConfig.TRANSACTION_REPORT_URL}${endpoints.Report.Download}?Page=1&PageSize=${transactionData?.transactions.totalCount}`,
         {
           ...payload,
           status: payload?.status === "All" ? undefined : payload?.status,
@@ -42,7 +42,7 @@ export const useTransactionFilters = (callReportOnRender: boolean = true) => {
       );
     } else {
       downloadData(
-        `${AppConfig.API_BASE_URL}/${endpoints.Report.Download}?Page=1&PageSize=${transactionData?.transactions?.totalCount}`,
+        `${AppConfig.TRANSACTION_REPORT_URL}${endpoints.Report.Download}?Page=1&PageSize=${transactionData?.transactions?.totalCount}`,
         {}
       );
     }

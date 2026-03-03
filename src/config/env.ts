@@ -7,6 +7,7 @@ export namespace AppConfig {
   export const MERCHANT_ONBOARDING_BACK_OFFICE_URL = import.meta.env.VITE_MERCHANT_ONBOARDING_BACK_OFFICE_URL;
 
   export const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
+  export const TRANSACTION_REPORT_URL = import.meta.env.VITE_TRANSACTION_REPORT_URL;
 
   export const ENCRYPTION_KEY = import.meta.env.VITE_ENCRYPTION_KEY;
   export const SECRET_KEY = import.meta.env.VITE_SECRET_KEY;
