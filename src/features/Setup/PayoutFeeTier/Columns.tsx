@@ -79,26 +79,14 @@ export const payoutFeeTierColumn: ColumnProps<APIResponse.PayoutFeeTier>[] = [
             {
               name: "Activate",
               actionFor: `Payout Fee Tier #${record.id}`,
-              endpoint: `${endpoints.Admin.CreatePayoutFeeTier}`,
-              payload: {
-                id: record.id,
-                merchantId: 0,
-                minAmount: record.min_amount,
-                maxAmount: record.max_amount,
-                fixedFee: record.fixed_fee
-              }
+              endpoint: `${endpoints.Admin.DeactivatePayoutFeeTier}${record.id}/deactivate`,
+              payload: { id: record.id },
             },
             {
               name: "Deactivate",
               actionFor: `Payout Fee Tier #${record.id}`,
               endpoint: `${endpoints.Admin.DeactivatePayoutFeeTier}${record.id}/deactivate`,
-              payload: {
-                id: record.id,
-                merchantId: 0,
-                minAmount: record.min_amount,
-                maxAmount: record.max_amount,
-                fixedFee: record.fixed_fee
-              }
+              payload: { id: record.id },
             },
           ]}
         />

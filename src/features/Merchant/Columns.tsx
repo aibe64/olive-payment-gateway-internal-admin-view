@@ -120,7 +120,7 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantDetails>[] = [
             {
               title: "View Set Fees",
               action: "Custom",
-              modalWidth: 900,
+              modalWidth: 1000,
               component: (
                 <MerchantPayoutFeeTiers
                   merchantId={record.id ?? undefined}

@@ -5,9 +5,7 @@ import { endpoints } from "@/service";
 import { FC } from "react";
 import { payoutFeeTierColumn } from "./Columns";
 
-const viewColumns = payoutFeeTierColumn.filter(
-  (column) => column.title !== "Actions"
-);
+const viewColumns = payoutFeeTierColumn;
 
 export const MerchantPayoutFeeTiers: FC<{ merchantId?: number }> = ({
   merchantId,
