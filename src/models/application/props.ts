@@ -175,6 +175,7 @@ export namespace Props {
       action: TableActions;
       modalWidth?: number;
       downloadName?: string;
+      component?: JSX.Element;
     }>;
     components?: {
       Edit?: JSX.Element;

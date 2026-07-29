@@ -1,6 +1,8 @@
 import { OliveTableActions } from "@/components/Form";
 import { Format } from "@/lib";
 import { APIResponse } from "@/models";
+import { CreatePayoutFeeTier } from "@/features/Setup/PayoutFeeTier/Form";
+import { MerchantPayoutFeeTiers } from "@/features/Setup/PayoutFeeTier/MerchantPayoutFeeTiers";
 import { Tag } from "antd";
 import { ColumnProps } from "antd/es/table";
 import { PaymentMethodCharges } from "./Charges";
@@ -104,6 +106,28 @@ export const merchantDataColumns: ColumnProps<APIResponse.MerchantDetails>[] = [
             { title: "View", action: "View", modalWidth: 500 },
             { title: "Edit", action: "Edit", modalWidth: 600 },
             { title: "Charges", action: "Custom", modalWidth: 700 },
+            {
+              title: "Set Payout Fee",
+              action: "Custom",
+              modalWidth: 500,
+              component: (
+                <CreatePayoutFeeTier
+                  merchantId={record.id ?? undefined}
+                  key={`payout-fee-tier-${record.id}`}
+                />
+              ),
+            },
+            {
+              title: "View Set Fees",
+              action: "Custom",
+              modalWidth: 900,
+              component: (
+                <MerchantPayoutFeeTiers
+                  merchantId={record.id ?? undefined}
+                  key={`view-payout-fee-tiers-${record.id}`}
+                />
+              ),
+            },
           ]}
           components={{
             View: <ViewMerchant records={record} key={`${record.id}`} />,

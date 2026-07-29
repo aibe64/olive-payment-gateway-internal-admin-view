@@ -12,6 +12,8 @@ const ProviderPage = lazy(() => import("@/features/Setup/Provider"));
 const BinPage = lazy(() => import("@/features/Setup/Bin"));
 const InstitutionPage = lazy(() => import("@/features/Setup/Institution"));
 const PaymentMethodPage = lazy(() => import("@/features/Setup/PaymentMethod"));
+const PayoutFeeTierPage = lazy(() => import("@/features/Setup/PayoutFeeTier"));
+const PayoutVatRatePage = lazy(() => import("@/features/Setup/PayoutVatRate"));
 // const OliveStorePage = lazy(() => import("@/features/Setup/OliveStore"));
 // const RolesPage = lazy(() => import("@/features/ManageUsers/Roles"));
 // const UsersPage = lazy(() => import("@/features/ManageUsers/Administrators"));
@@ -84,6 +86,14 @@ export const privateRoutes = [
       {
         path: ROUTE_PATH.PaymentMethod,
         Component: PaymentMethodPage,
+      },
+      {
+        path: ROUTE_PATH.PayoutFeeTier,
+        Component: PayoutFeeTierPage,
+      },
+      {
+        path: ROUTE_PATH.PayoutVatRate,
+        Component: PayoutVatRatePage,
       },
       // {
       //   path: ROUTE_PATH.Roles,

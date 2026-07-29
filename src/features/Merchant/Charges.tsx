@@ -22,7 +22,7 @@ export const PaymentMethodCharges: FC<{
         let newResponse = { ...response };
         newResponse.paymentMethods = response.paymentMethods.map((item) =>
           item.paymentMethodId === id ? { ...item, [key]: value } : { ...item }
-        );
+        );  
         setResponse(newResponse);
       }
     },

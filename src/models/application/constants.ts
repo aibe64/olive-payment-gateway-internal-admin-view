@@ -18,6 +18,8 @@ export const ROUTE_PATH = {
   Bin: "/setup/bin",
   Institution: "setup/institution",
   PaymentMethod: "setup/payment-method",
+  PayoutFeeTier: "setup/payout-fee-tier",
+  PayoutVatRate: "setup/payout-vat-rate",
   OliveStore: "setup/olive-store",
   TransactionManager: "setup/transaction-manager",
   AuditTrail: "/audit-trail",

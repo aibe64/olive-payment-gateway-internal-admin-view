@@ -86,4 +86,11 @@ export const endpoints = {
     BindMerchantAccount: "NIBSS/BindMerchantAccount",
     CreateSubMerchant: "NIBSS/CreateSubMerchant",
   },
+  Admin: {
+    GetAllPayoutFeeTiers: "Admin/PayoutFeeTiers",
+    CreatePayoutFeeTier: "Admin/PayoutFeeTiers",
+    DeactivatePayoutFeeTier: "Admin/PayoutFeeTiers/",
+    GetPayoutVatRate: "Admin/PayoutVatRate",
+    UpdatePayoutVatRate: "Admin/PayoutVatRate",
+  },
 };

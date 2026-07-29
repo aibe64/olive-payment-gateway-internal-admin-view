@@ -98,6 +98,14 @@ export const menuList: Props.MenuListProps[] = [
         label: "Payment Methods",
         path: ROUTE_PATH.PaymentMethod,
       },
+      {
+        label: "Payout Fee Tier",
+        path: ROUTE_PATH.PayoutFeeTier,
+      },
+      {
+        label: "Payout VAT Rate",
+        path: ROUTE_PATH.PayoutVatRate,
+      },
       // {
       //   label: "Olive Store",
       //   path: ROUTE_PATH.OliveStore,

@@ -4,14 +4,6 @@ import { useAuthorization } from "@/hooks";
 
 const Home: React.FC = () => {
   const { handleLogin } = useAuthorization()
-
-  // const handleLinkClick = (url?: string) => {
-  //   if (url) {
-  //     // window.location.assign(`${AppConfig.MERCHANT_ONBOARDING_URL}${url}`)
-  //   } else {
-  //     // window.location.assign(AppConfig.MERCHANT_ONBOARDING_URL)
-  //   }
-  // }
   
   return (
     <SharedAuthLayout>

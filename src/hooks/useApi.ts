@@ -241,7 +241,7 @@ export const useAPI = <T>({
       } else if (response.error) {
         const error: any = response?.error;
         if (error?.status && error.status === 400) {
-          generateBadRequestErrorMessage(error);
+          generateBadRequestErrorMessage(error, callBackApiError);
         } else if (error.status !== 401) {
           if (callBackApiError) {
             callBackApiError(
@@ -279,22 +279,44 @@ export const useAPI = <T>({
     error: any,
     callBackApiError?: (errorMessage: string) => void
   ) => {
+    const respond = (message: string) => {
+      const cleanMessage = message.replace("$.", "");
+      if (callBackApiError) {
+        callBackApiError(cleanMessage);
+      } else {
+        Notify(cleanMessage, false);
+      }
+    };
+
     if (error?.data?.responseMessage) {
-      if (callBackApiError) {
-        callBackApiError(error?.data?.responseMessage);
-      } else {
-        Notify(error?.data?.responseMessage, false);
-      }
-    } else {
-      const apiError: APIResponse.Error = error?.data;
-      const errorFields: string[] = Object.keys(apiError.errors);
-      let message = `${camelCaseToTitle(errorFields[0])} is required`;
-      if (callBackApiError) {
-        callBackApiError(message.replace("$.", ""));
-      } else {
-        Notify(message.replace("$.", ""), false);
-      }
+      respond(error.data.responseMessage);
+      return;
     }
+
+    const apiError: APIResponse.Error | undefined = error?.data;
+    const errorFields: string[] = apiError?.errors
+      ? Object.keys(apiError.errors)
+      : [];
+
+    if (errorFields.length) {
+      const firstField = errorFields[0];
+      const fieldError = apiError?.errors?.[firstField];
+      const serverMessage = Array.isArray(fieldError)
+        ? fieldError[0]
+        : fieldError;
+
+      respond(
+        typeof serverMessage === "string" && serverMessage.trim()
+          ? serverMessage
+          : `${camelCaseToTitle(firstField)} is invalid`
+      );
+      return;
+    }
+
+    respond(
+      apiError?.title ??
+        "Sorry, an error occurred from the server while processing your request"
+    );
   };
 
   const fetchGetApiOnRender = useCallback(() => {

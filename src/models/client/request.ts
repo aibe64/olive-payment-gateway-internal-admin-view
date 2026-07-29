@@ -217,6 +217,19 @@ export namespace APIRequest {
     cardBrand?: string;
   }
 
+  export interface PayoutFeeTier {
+    id?: number;
+    merchantId?: number;
+    minAmount?: number;
+    maxAmount?: number;
+    fixedFee?: number;
+  }
+
+  export interface PayoutVatRate {
+    id?: number;
+    vatRate?: number;
+  }
+
   export class TransactionManager {
     merchantId?: number;
     useBin?: boolean;

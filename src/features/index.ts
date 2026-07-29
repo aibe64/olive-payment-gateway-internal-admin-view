@@ -1,2 +1,2 @@
-export * from "./LandingPage/indexxxxx"
+export * from "./LandingPage/index"
 export * from "./Merchant"

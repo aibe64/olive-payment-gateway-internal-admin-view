@@ -29,7 +29,8 @@ const Component = <T,>({
         | "Status"
         | "Custom"
         | "none"
-        | "Update"
+        | "Update",
+      actionItem?: Props.TableAction<T>["actions"][number]
     ) => {
       const actionDetails = details?.find((item) => item.name === action);
       switch (action) {
@@ -53,13 +54,14 @@ const Component = <T,>({
           );
           break;
         case "Custom":
-          const details = actions.find((item) => item.action === action);
+          const customDetails =
+            actionItem ?? actions.find((item) => item.action === action);
           setActionModal(
-            components?.Custom ?? <>N/A</>,
+            actionItem?.component ?? components?.Custom ?? <>N/A</>,
             <Typography className="font-bold text-[1.2rem]">
-              {details?.title}
+              {customDetails?.title}
             </Typography>,
-            details?.modalWidth ?? 450
+            customDetails?.modalWidth ?? 450
           );
           break;
         case "Approve":
@@ -136,8 +138,8 @@ const Component = <T,>({
                   </PDFDownloadLink>
                 ) : (
                   <button
-                    className="w-full"
-                    onClick={() => onClickAction(action.action)}
+                    className="w-full text-start"
+                    onClick={() => onClickAction(action.action, action)}
                   >
                     {action.title}
                   </button>
@@ -145,6 +147,7 @@ const Component = <T,>({
               </div>
             ),
           });
+
         if (index < actions.length - 1 && action.action !== "none") {
           acc?.push({ type: "divider" });
         }
@@ -332,10 +335,12 @@ export const OtherForm: FC<ActionDetails> = ({
 export const ActivateForm: FC<ActionDetails> = ({
   actionFor,
   endpoint,
+  payload,
   onCallBackAPI,
 }) => {
   const { processing, callActionApi, handleClose } = useTableActions({
     endpoint,
+    payload,
     onCallBackAPI,
   });
   return (

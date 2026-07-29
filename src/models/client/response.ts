@@ -440,6 +440,24 @@ export namespace APIResponse {
     provider?: string;
   }
 
+  export interface PayoutFeeTier {
+    id: number;
+    merchant_id: number | null;
+    min_amount: number;
+    max_amount: number;
+    fixed_fee: number;
+    is_active: boolean;
+    created_by?: string;
+    created_at?: string;
+    updated_at?: string | null;
+  }
+
+  export interface PayoutVatRate {
+    vatRate: number
+    vatRateDisplay: string
+    beneficiaryVerificationFee: number
+  }
+
   export interface QrMerchant {
     id: number;
     institutionNumber: string;
@@ -575,7 +593,7 @@ export namespace APIResponse {
     SplitAccountName: string;
     SplitAccountEmail: string;
     currency: string;
-    splitType: string  | "flat";
+    splitType: string;
     bankName: string;
     bankCode: string;
     accountNumber: string;
