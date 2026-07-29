@@ -22,7 +22,7 @@ export const payoutFeeTierColumn: ColumnProps<APIResponse.PayoutFeeTier>[] = [
     key: "3",
     ellipsis: true,
     render(_, record) {
-      return <span>{Format.toNaira(String(record.min_amount))}</span>;
+      return <span>{Format.toNaira(String(record.min_amount ?? 0))}</span>;
     },
   },
   {
@@ -31,7 +31,7 @@ export const payoutFeeTierColumn: ColumnProps<APIResponse.PayoutFeeTier>[] = [
     key: "4",
     ellipsis: true,
     render(_, record) {
-      return <span>{Format.toNaira(String(record.max_amount))}</span>;
+      return <span>{Format.toNaira(String(record.max_amount ?? 0))}</span>;
     },
   },
   {
@@ -40,7 +40,7 @@ export const payoutFeeTierColumn: ColumnProps<APIResponse.PayoutFeeTier>[] = [
     key: "5",
     ellipsis: true,
     render(_, record) {
-      return <span>{Format.toNaira(String(record.fixed_fee))}</span>;
+      return <span>{Format.toNaira(String(record.fixed_fee ?? 0))}</span>;
     },
   },
   {
